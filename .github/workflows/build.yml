@@ -42,7 +42,7 @@ jobs:
 
       - name: 📦 Install required packages
         run: |
-          install.packages(c("ggplot2", "dplyr", "readr", "tibble", "stringr", "forcats", "purrr", "tidyr", "readxl", "rsdmx", "tools", "knitr", "scales", "viridis", "zoo", "lubridate", "ggrepel", "curl", "rmarkdown", "lubridate", "rvest", "gt"))
+          install.packages(c("ggplot2", "dplyr", "readr", "tibble", "stringr", "forcats", "purrr", "tidyr", "readxl", "rsdmx", "tools", "knitr", "scales", "viridis", "zoo", "lubridate", "ggrepel", "curl", "rmarkdown", "lubridate", "rvest", "gt", "quarto"))
         shell: Rscript {0}
 
       - name: ▶️ Run _build.R
