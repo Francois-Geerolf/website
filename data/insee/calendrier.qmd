@@ -1,0 +1,60 @@
+---
+title: Calendrier des prochaines publications de l'Insee
+subtitle: Data - Insee
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+library(lubridate)
+library(rvest)
+library(purrr)
+library(dplyr)
+library(gt)
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/Rscript --vanilla _update_qmd_folder.R insee reset
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+```{r, echo = F}
+# Charger les bibliothèques nécessaires
+
+"https://www.insee.fr/fr/information/5235017" |>
+  rvest::read_html() |>
+  rvest::html_table(header = F, fill = T) |>
+  purrr::pluck(1) |>
+  dplyr::mutate(X2 = ifelse(is.na(X2), X1, X2),
+                X3 = ifelse(is.na(X3), "", X3))|>
+  dplyr::select(-X1) |>
+  #dplyr::filter(X3 != "DATE D'EMBARGO", X3 != "") |>
+  dplyr::select(`Données` = X2, `Mise à jour` = X3) |>
+  dplyr::mutate(`Données` = stringr::str_remove_all(`Données`, "\\\t|\\\n|\\\r"),
+         `Données` = substr(`Données`, 1,190)) |>
+  gt::gt() |>
+  #gt::cols_width(`Données` ~ gt::px(400), everything() ~ gt::px(150)) |>
+  gt::cols_label(`Données` = "", `Mise à jour` = "") |>
+  gt::opt_interactive(use_search = F,
+                      use_resizers = T,
+                      use_highlight = T,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/information/5235017>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+- Actualités des indices et séries chronologiques. [html](https://www.insee.fr/fr/information/2862832)
+
+
