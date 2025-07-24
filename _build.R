@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# Fonction pour compiler un fichier .qmd s’il existe
+# Fonction pour compiler un fichier .qmd, s’il existe
 compiler_qmd <- function(fichier) {
   if (file.exists(fichier)) {
     message("📄 Compilation de ", fichier)
