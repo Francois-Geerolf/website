@@ -1,0 +1,334 @@
+---
+title: Données de taux d'intérêt
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+library(gt)
+library(gtExtras)
+library(lubridate)
+library(rvest)
+library(purrr)
+library(dplyr)
+library(tidyr)
+library(gt)
+library(stringr)
+library(knitr)
+## cd ~/iCloud/website/data; ./_update_data_themes.sh taux-dinteret.qmd
+## cd ~/iCloud/website/data; ./_update_data_themes.sh interest-rates.qmd
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-dinteret.qmd")'
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
+## sh ~/iCloud/website/website_short.sh
+ig_d <- function(source, dataset, file){
+  i_g(paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1.png"))
+}
+
+i_g <- function(path) {
+  new_path <- gsub("https://fgeerolf.com/", "", path)
+  new_path_pdf <- paste0(gsub(".png", "", new_path), ".pdf")
+  if (interactive()) {
+    if (file.exists(paste0("~/iCloud/website/", new_path))) {
+      return(knitr::include_graphics(paste0("~/iCloud/website/", new_path)))
+    } else{
+      return(knitr::include_graphics(paste0("~/iCloud/", new_path)))
+    }
+  } else if (knitr::is_latex_output()) {
+    if (file.exists(paste0("~/iCloud/website/", new_path_pdf))) {
+      return(knitr::include_graphics(paste0("~/iCloud/website/", new_path_pdf)))
+    } else if (file.exists(paste0("~/iCloud/website/", new_path))){
+      return(knitr::include_graphics(paste0("~/iCloud/website/", new_path)))
+    } else {
+      return(knitr::include_graphics(paste0("~/iCloud/", new_path)))
+    }
+  }
+    else {
+    return(knitr::include_graphics(paste0("https://fgeerolf.com/", new_path)))
+  }
+}
+
+knitr::opts_chunk$set(echo = T)
+`taux-dinteret` <- tribble(
+  ~source, ~dataset,
+  "bdf",  "FM",
+  "bdf",  "MIR",
+  "bdf",  "MIR1",
+  "bis",  "CBPOL_D",
+  "bis",  "CBPOL_M",
+  "ecb",  "FM",
+  "ecb",  "MIR") |>
+  arrange(source, dataset)
+do.call(save, list("taux-dinteret", file = "taux-dinteret.RData"))
+```
+
+# Taux souverains
+
+## Principaux
+
+```{r, echo = F}
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+temp <- "https://tradingeconomics.com/country-list/rating" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T)
+
+ratings <- temp[[1]] |>
+  rename(country = 1)
+
+temp <- "https://www.investing.com/rates-bonds/world-government-bonds" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T)
+
+# length(temp) - 4 car les.4 dernières tibble ne sont pas des données de taux souverains
+# on enlève les warnings pour la transformation de Chg. en numeric
+
+taux_souverains <- tibble(num = 1:(length(temp)-4)) %>%
+  mutate(data = map(num, ~ temp[[.]] %>%
+                      select(2:7) %>%
+                      mutate(`Chg.` = suppressWarnings(as.numeric(`Chg.`))))) %>%
+  unnest(cols = c(data)) %>%
+  select(-num) %>%
+  mutate(duration = str_extract(Name, "\\d+[YM]$"),
+         country = str_trim(str_extract(Name, "^[\\p{L} .'’]+")),
+         country = case_when(country == "U.S." ~ "United States",
+                             country == "U.K." ~ "United Kingdom",
+                             T ~ country)) %>%
+  select(-Name) %>%
+  select(country, duration, everything())
+
+ratings_taux <- taux_souverains %>%
+  filter(duration %in% c("5Y", "10Y", "30Y")) %>%
+  mutate(country = ifelse(country == "Cote d'Ivoire", "Ivory Coast", country)) %>%
+  select(country, duration, Yield) %>%
+  spread(duration, Yield) %>%
+  left_join(ratings, by = "country")
+
+library(countrycode)
+country_codes <- codelist|>
+  select(country = country.name.en, country.name.fr, country_code_2 = genc2c)
+
+ratings_taux|>
+  left_join(country_codes, by = "country")|>
+  select(-country, -DBRS)|>
+  select(country_code_2, country = country.name.fr, everything())|>
+  filter(country_code_2 %in% c("FR", "US", "UK", "GB", "IT", "JP", "DE"))|>
+  arrange(`10Y`)|>
+  select(-TE)|>
+  filter(!is.na(country))|>
+  gt()|>
+    tab_options(
+      quarto.disable_processing = TRUE
+    ) |> 
+  cols_align(
+    align = "center",
+    columns = -c(country))|>
+  cols_label(
+    country = "",
+    country_code_2 = ""
+    )|>
+  fmt_number(
+    dec_mark = ",",
+    sep_mark = ".",
+    decimals = 2
+  ) |>
+  fmt_flag(columns = country_code_2) |>
+  sub_missing(
+    missing_text = ""
+  )|>
+  opt_interactive(
+    use_search = F,
+    use_pagination = F,
+    use_pagination_info = F,
+    use_compact_mode = T,
+    page_size_default = 20,
+    page_size_values = c(5, 10, 15, 20),
+    use_resizers = T,
+    use_highlight = T
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Principaux avec la Grèce
+
+```{r, echo = F}
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+temp <- "https://tradingeconomics.com/country-list/rating" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T)
+
+ratings <- temp[[1]] |>
+  rename(country = 1)
+
+temp <- "https://www.investing.com/rates-bonds/world-government-bonds" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T)
+
+# length(temp) - 4 car les.4 dernières tibble ne sont pas des données de taux souverains
+# on enlève les warnings pour la transformation de Chg. en numeric
+
+taux_souverains <- tibble(num = 1:(length(temp)-4)) %>%
+  mutate(data = map(num, ~ temp[[.]] %>%
+                      select(2:7) %>%
+                      mutate(`Chg.` = suppressWarnings(as.numeric(`Chg.`))))) %>%
+  unnest(cols = c(data)) %>%
+  select(-num) %>%
+  mutate(duration = str_extract(Name, "\\d+[YM]$"),
+         country = str_trim(str_extract(Name, "^[\\p{L} .'’]+")),
+         country = case_when(country == "U.S." ~ "United States",
+                             country == "U.K." ~ "United Kingdom",
+                             T ~ country)) %>%
+  select(-Name) %>%
+  select(country, duration, everything())
+
+ratings_taux <- taux_souverains %>%
+  filter(duration %in% c("5Y", "10Y", "30Y")) %>%
+  mutate(country = ifelse(country == "Cote d'Ivoire", "Ivory Coast", country)) %>%
+  select(country, duration, Yield) %>%
+  spread(duration, Yield) %>%
+  left_join(ratings, by = "country")
+
+library(countrycode)
+country_codes <- codelist|>
+  select(country = country.name.en, country.name.fr, country_code_2 = genc2c)
+
+ratings_taux|>
+  left_join(country_codes, by = "country")|>
+  select(-country, -DBRS)|>
+  select(country_code_2, country = country.name.fr, everything())|>
+  filter(country_code_2 %in% c("FR", "US", "UK", "GB", "IT", "JP", "DE", "GR"))|>
+  arrange(`10Y`)|>
+  select(-TE)|>
+  filter(!is.na(country))|>
+  gt()|>
+    tab_options(
+      quarto.disable_processing = TRUE
+    ) |> 
+  cols_align(
+    align = "center",
+    columns = -c(country))|>
+  cols_label(
+    country = "",
+    country_code_2 = ""
+    )|>
+  fmt_number(
+    dec_mark = ",",
+    sep_mark = ".",
+    decimals = 2
+  ) |>
+  fmt_flag(columns = country_code_2) |>
+  sub_missing(
+    missing_text = ""
+  )|>
+  opt_interactive(
+    use_search = F,
+    use_pagination = F,
+    use_pagination_info = F,
+    use_compact_mode = T,
+    page_size_default = 20,
+    page_size_values = c(5, 10, 15, 20),
+    use_resizers = T,
+    use_highlight = T
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+## Tous
+
+```{r, echo = F}
+ratings_taux|>
+  left_join(country_codes, by = "country")|>
+  select(-country, -DBRS)|>
+  select(country_code_2, country = country.name.fr, everything())|>
+  arrange(-TE, `10Y`)|>
+  select(-TE)|>
+  filter(!is.na(country))|>
+  gt()|>
+    tab_options(
+      quarto.disable_processing = TRUE
+    ) |> 
+  cols_align(
+    align = "center",
+    columns = -c(country))|>
+  cols_label(
+    country = "",
+    country_code_2 = ""
+    )|>
+  fmt_number(
+    dec_mark = ",",
+    sep_mark = ".",
+    decimals = 2
+  ) |>
+  fmt_flag(columns = country_code_2) |>
+  sub_missing(
+    missing_text = ""
+  )|>
+  opt_interactive(
+    use_search = F,
+    use_pagination = T,
+    use_pagination_info = F,
+    use_compact_mode = T,
+    page_size_default = 20,
+    page_size_values = c(5, 10, 15, 20),
+    use_resizers = T,
+    use_highlight = T
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+# Taux longs
+
+## 10 ans, 5 ans
+
+```{r}
+ig_d("bdf", "FM", "bons-du-tresor-5ans-10ans")
+```
+
+
+
+## France - 30 ans, 10 ans, 5 ans
+
+```{r}
+ig_d("bdf", "FM", "bons-du-tresor-30ans-10ans")
+```
+
+
+# Livrets réglementés
+
+## 2010-
+
+```{r}
+ig_d("bdf", "MIR1", "taux-livrets-reglementes-2000")
+```
+
+## 2018-
+
+```{r}
+ig_d("bdf", "MIR1", "taux-livrets-reglementes-2018")
+```
+
+
+
+
+
+

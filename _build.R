@@ -1,10 +1,20 @@
 #!/usr/bin/env Rscript
 
-# Compiler le fichier calendrier.qmd vers calendrier.html
-if (file.exists("data/insee/calendrier.qmd")) {
-  message("📄 Compilation de data/insee/calendrier.qmd")
-  quarto::quarto_render(input = "data/insee/calendrier.qmd")
-} else {
-  message("❌ Fichier data/insee/calendrier.qmd introuvable")
+# Fonction pour compiler un fichier .qmd s’il existe
+compiler_qmd <- function(fichier) {
+  if (file.exists(fichier)) {
+    message("📄 Compilation de ", fichier)
+    quarto::quarto_render(input = fichier)
+  } else {
+    message("❌ Fichier ", fichier, " introuvable")
+  }
 }
 
+# Liste des fichiers à compiler
+fichiers <- c(
+  "data/insee/calendrier.qmd",
+  "data/taux-dinteret.qmd"
+)
+
+# Compilation
+lapply(fichiers, compiler_qmd)
