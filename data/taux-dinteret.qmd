@@ -25,6 +25,7 @@ library(tidyr)
 library(gt)
 library(stringr)
 library(knitr)
+library(countrycode)
 ## cd ~/iCloud/website/data; ./_update_data_themes.sh taux-dinteret.qmd
 ## cd ~/iCloud/website/data; ./_update_data_themes.sh interest-rates.qmd
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-dinteret.qmd")'
@@ -68,7 +69,6 @@ knitr::opts_chunk$set(echo = T)
   "ecb",  "FM",
   "ecb",  "MIR") |>
   arrange(source, dataset)
-do.call(save, list("taux-dinteret", file = "taux-dinteret.RData"))
 ```
 
 # Taux souverains
@@ -77,6 +77,8 @@ do.call(save, list("taux-dinteret", file = "taux-dinteret.RData"))
 
 ```{r, echo = F}
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+
 temp <- "https://tradingeconomics.com/country-list/rating" |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T)
@@ -112,7 +114,6 @@ ratings_taux <- taux_souverains %>%
   spread(duration, Yield) %>%
   left_join(ratings, by = "country")
 
-library(countrycode)
 country_codes <- codelist|>
   select(country = country.name.en, country.name.fr, country_code_2 = genc2c)
 
@@ -201,7 +202,6 @@ ratings_taux <- taux_souverains %>%
   spread(duration, Yield) %>%
   left_join(ratings, by = "country")
 
-library(countrycode)
 country_codes <- codelist|>
   select(country = country.name.en, country.name.fr, country_code_2 = genc2c)
 
