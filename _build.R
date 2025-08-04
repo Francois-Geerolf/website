@@ -13,7 +13,8 @@ compiler_qmd <- function(fichier) {
 # Liste des fichiers à compiler
 fichiers <- c(
   "data/insee/calendrier.qmd",
-  "data/taux-dinteret.qmd"
+  "data/taux-dinteret.qmd",
+  "data/dette-publique.qmd"
 )
 
 # Compilation

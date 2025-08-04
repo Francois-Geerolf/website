@@ -1,0 +1,594 @@
+---
+title: Données sur la dette publique
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+library(gt)
+library(gtExtras)
+library(lubridate)
+library(rvest)
+library(purrr)
+library(dplyr)
+library(tidyr)
+library(gt)
+library(stringr)
+library(knitr)
+library(countrycode)
+## cd ~/iCloud/website/data; ./_update_data_themes.sh taux-dinteret.qmd
+## cd ~/iCloud/website/data; ./_update_data_themes.sh interest-rates.qmd
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-dinteret.qmd")'
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
+## sh ~/iCloud/website/website_short.sh
+ig_d <- function(source, dataset, file){
+  i_g(paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1.png"))
+}
+
+i_g <- function(path) {
+  new_path <- gsub("https://fgeerolf.com/", "", path)
+  new_path_pdf <- paste0(gsub(".png", "", new_path), ".pdf")
+  if (interactive()) {
+    if (file.exists(paste0("~/iCloud/website/", new_path))) {
+      return(knitr::include_graphics(paste0("~/iCloud/website/", new_path)))
+    } else{
+      return(knitr::include_graphics(paste0("~/iCloud/", new_path)))
+    }
+  } else if (knitr::is_latex_output()) {
+    if (file.exists(paste0("~/iCloud/website/", new_path_pdf))) {
+      return(knitr::include_graphics(paste0("~/iCloud/website/", new_path_pdf)))
+    } else if (file.exists(paste0("~/iCloud/website/", new_path))){
+      return(knitr::include_graphics(paste0("~/iCloud/website/", new_path)))
+    } else {
+      return(knitr::include_graphics(paste0("~/iCloud/", new_path)))
+    }
+  }
+    else {
+    return(knitr::include_graphics(paste0("https://fgeerolf.com/", new_path)))
+  }
+}
+
+knitr::opts_chunk$set(echo = T)
+`dette-publique` <- tribble(
+  ~source, ~dataset,
+  "insee",  "COMPTES-ETAT",
+  "insee", "DETTE-TRIM-APU-2020",
+  "insee", "CNA-2014-DETTE-APU",
+  "insee", "t_compteapu_val",
+  "insee", "T_3217",
+  "insee", "T_7301") %>%
+  arrange(source, dataset)
+```
+
+
+
+# Données récentes
+
+## Taux souverains
+
+### Principaux
+
+```{r, echo = F}
+temp <- "https://tradingeconomics.com/country-list/rating" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T)
+
+ratings <- temp[[1]] |>
+  rename(country = 1)
+
+temp <- "https://www.investing.com/rates-bonds/world-government-bonds" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T)
+
+# length(temp) - 4 car les.4 dernières tibble ne sont pas des données de taux souverains
+# on enlève les warnings pour la transformation de Chg. en numeric
+
+taux_souverains <- tibble(num = 1:(length(temp)-4)) %>%
+  mutate(data = map(num, ~ temp[[.]] %>%
+                      select(2:7) %>%
+                      mutate(`Chg.` = suppressWarnings(as.numeric(`Chg.`))))) %>%
+  unnest(cols = c(data)) %>%
+  select(-num) %>%
+  mutate(duration = str_extract(Name, "\\d+[YM]$"),
+         country = str_trim(str_extract(Name, "^[\\p{L} .'’]+")),
+         country = case_when(country == "U.S." ~ "United States",
+                             country == "U.K." ~ "United Kingdom",
+                             T ~ country)) %>%
+  select(-Name) %>%
+  select(country, duration, everything())
+
+ratings_taux <- taux_souverains %>%
+  filter(duration %in% c("10Y", "30Y")) %>%
+  mutate(country = ifelse(country == "Cote d'Ivoire", "Ivory Coast", country)) %>%
+  select(country, duration, Yield) %>%
+  spread(duration, Yield) %>%
+  left_join(ratings, by = "country")
+
+library(countrycode)
+country_codes <- codelist|>
+  select(country = country.name.en, country.name.fr, country_code_2 = genc2c)
+
+ratings_taux|>
+  left_join(country_codes, by = "country")|>
+  select(-country, -DBRS)|>
+  select(country_code_2, country = country.name.fr, everything())|>
+  filter(country_code_2 %in% c("FR", "DE", "IT", "US", "GB", "CH", "AU")) |>
+  arrange(-TE, `10Y`)|>
+  select(-TE)|>
+  filter(!is.na(country))|>
+  gt()|>
+    tab_options(
+      quarto.disable_processing = TRUE
+    ) |> 
+  cols_align(
+    align = "center",
+    columns = -c(country))|>
+  cols_label(
+    country = "",
+    country_code_2 = ""
+    )|>
+  fmt_number(
+    dec_mark = ",",
+    sep_mark = ".",
+    decimals = 2
+  ) |>
+  fmt_flag(columns = country_code_2) |>
+  gt::sub_missing(
+    missing_text = ""
+  )|>
+  gt::opt_interactive(
+    use_search = F,
+    use_resizers = T,
+    use_highlight = T,
+    use_compact_mode = T,
+    use_pagination = F,
+    use_pagination_info = F,
+    page_size_default = 20,
+    page_size_values = c(20, 30, 50, 100),
+    use_page_size_select = T
+  ) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds> et <https://tradingeconomics.com/country-list/rating>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+### Tous
+
+```{r, echo = F}
+temp <- "https://tradingeconomics.com/country-list/rating" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T)
+
+ratings <- temp[[1]] |>
+  rename(country = 1)
+
+temp <- "https://www.investing.com/rates-bonds/world-government-bonds" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T)
+
+# length(temp) - 4 car les.4 dernières tibble ne sont pas des données de taux souverains
+# on enlève les warnings pour la transformation de Chg. en numeric
+
+taux_souverains <- tibble(num = 1:(length(temp)-4)) %>%
+  mutate(data = map(num, ~ temp[[.]] %>%
+                      select(2:7) %>%
+                      mutate(`Chg.` = suppressWarnings(as.numeric(`Chg.`))))) %>%
+  unnest(cols = c(data)) %>%
+  select(-num) %>%
+  mutate(duration = str_extract(Name, "\\d+[YM]$"),
+         country = str_trim(str_extract(Name, "^[\\p{L} .'’]+")),
+         country = case_when(country == "U.S." ~ "United States",
+                             country == "U.K." ~ "United Kingdom",
+                             T ~ country)) %>%
+  select(-Name) %>%
+  select(country, duration, everything())
+
+ratings_taux <- taux_souverains %>%
+  filter(duration %in% c("10Y", "30Y")) %>%
+  mutate(country = ifelse(country == "Cote d'Ivoire", "Ivory Coast", country)) %>%
+  select(country, duration, Yield) %>%
+  spread(duration, Yield) %>%
+  left_join(ratings, by = "country")
+
+library(countrycode)
+country_codes <- codelist|>
+  select(country = country.name.en, country.name.fr, country_code_2 = genc2c)
+
+ratings_taux|>
+  left_join(country_codes, by = "country")|>
+  select(-country, -DBRS)|>
+  select(country_code_2, country = country.name.fr, everything())|>
+  arrange(-TE, `10Y`)|>
+  select(-TE)|>
+  filter(!is.na(country))|>
+  gt()|>
+    tab_options(
+      quarto.disable_processing = TRUE
+    ) |> 
+  cols_align(
+    align = "center",
+    columns = -c(country))|>
+  cols_label(
+    country = "",
+    country_code_2 = ""
+    )|>
+  fmt_number(
+    dec_mark = ",",
+    sep_mark = ".",
+    decimals = 2
+  ) |>
+  fmt_flag(columns = country_code_2) |>
+  gt::sub_missing(
+    missing_text = ""
+  )|>
+  gt::opt_interactive(
+    use_search = F,
+    use_resizers = T,
+    use_highlight = T,
+    use_compact_mode = T,
+    page_size_default = 20,
+    page_size_values = c(20, 30, 50, 100),
+    use_page_size_select = T
+  ) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds> et <https://tradingeconomics.com/country-list/rating>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+## Agences de notation / de rating
+
+### Calendrier des notations
+
+```{r, echo = F}
+# load_data("public-debt/rating.RData")
+try(
+  `calendrier-notations-france` <- "https://www.aft.gouv.fr/fr/calendrier-notations-france" %>%
+  rvest::read_html()
+)
+
+if(exists("calendrier-notations-france")){
+  `calendrier-notations-france` %>%
+  rvest::html_table(header = T, fill = T) %>%
+  .[[1]] %>%
+  setNames(c(names(.)[1:4], "Prochaine décision"))|>
+  gt::gt()|>
+   gt::tab_options(
+      quarto.disable_processing = TRUE
+    ) |>
+  gt::fmt_number(
+    dec_mark = ",",
+    sep_mark = ".",
+    decimals = 2
+  ) |>
+  gt::sub_missing(
+    missing_text = ""
+  )|>
+  gt::opt_interactive(
+    use_search = F,
+    use_resizers = T,
+    use_highlight = T,
+    use_pagination = F,
+    use_pagination_info = F,
+    use_compact_mode = T,
+    use_page_size_select = F
+  ) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.aft.gouv.fr/fr/calendrier-notations-france>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+}
+
+```
+
+
+### Historique
+
+```{r}
+ig_b("dette", "france-credit-rating", ext = ".jpeg")
+```
+
+
+# Déficit public
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R COMPTES-ETAT; /usr/local/bin/R -e 'quarto::quarto_render("COMPTES-ETAT.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R DETTE-TRIM-APU-2020; /usr/local/bin/R -e 'quarto::quarto_render("DETTE-TRIM-APU-2020.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -f "t_compteapu_val.R"; /usr/local/bin/R -e 'quarto::quarto_render("t_compteapu_val.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "insee", "t_compteapu_val",
+        "insee", "T_7301") %>%
+  source_dataset_file_updates()
+```
+
+
+## Deficit total, déficit primaire
+
+### Annuel
+
+#### Milliards
+
+```{r}
+ig_d("insee", "T_7301", "B9-2000")
+```
+
+
+#### % du PIB
+
+```{r}
+ig_d("insee", "T_7301", "B9-PIB-2000")
+```
+
+
+### Trimestriel
+
+#### Tous
+
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF")
+```
+
+#### 2005-
+
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-2005")
+```
+
+#### 2008-2016
+
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-2008-2016")
+```
+
+
+
+## Deficit total, déficit primaire, charges d'intérêt
+
+### Tous
+
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-interet")
+```
+
+### 2005-
+
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-interet-2005")
+```
+
+### 2008-2016
+
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-interet-2008-2016")
+```
+
+
+# Dette publique
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R COMPTES-ETAT; /usr/local/bin/R -e 'quarto::quarto_render("COMPTES-ETAT.qmd")'
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _download_one.R DET; /usr/local/bin/R -e 'quarto::quarto_render("DET.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "insee", "COMPTES-ETAT",
+        "insee", "T_3201",
+        "insee", "t_compteapu_val",
+        "bdf", "DET") %>%
+  source_dataset_file_updates()
+```
+
+## Dette en valeur
+
+### Linéaire
+
+```{r}
+ig_d("insee", "DETTE-TRIM-APU-2020", "MAASTRICHT-NETTE")
+```
+
+### Log
+
+
+```{r}
+ig_d("insee", "DETTE-TRIM-APU-2020", "MAASTRICHT-NETTE-log")
+```
+
+
+## Solde d'exécution
+
+### 2009-
+
+#### Euros Courants
+
+```{r}
+ig_d("insee", "COMPTES-ETAT", "SGE-2009")
+```
+
+#### Euros Constants
+
+```{r}
+ig_d("insee", "COMPTES-ETAT", "SGE-2009-euros-constants")
+```
+
+
+#### % du PIB
+
+```{r}
+ig_d("insee", "COMPTES-ETAT", "SGE-2009-PIB")
+```
+
+
+### 2018-
+
+```{r}
+ig_d("insee", "COMPTES-ETAT", "SGE-2018")
+```
+
+
+## Dépenses
+
+### 2009-
+
+```{r}
+ig_d("insee", "COMPTES-ETAT", "DEP-2009")
+```
+
+
+### 2018-
+
+```{r}
+ig_d("insee", "COMPTES-ETAT", "DEP-2018")
+```
+
+
+## Recettes
+
+### 2009-
+
+```{r}
+ig_d("insee", "COMPTES-ETAT", "REC-2009")
+```
+
+### 2018-
+
+```{r}
+ig_d("insee", "COMPTES-ETAT", "REC-2018")
+```
+
+## Dépenses, et Recettes
+
+```{r}
+ig_d("insee", "COMPTES-ETAT", "DEP-REC-2017")
+```
+
+
+
+## Trajectory (Source: Oxford Economics)
+
+```{r}
+ig_b("debt", "france-trajectory-march2024")
+```
+
+
+## Charge d'intérêt
+
+```{r}
+ig_d("insee", "T_3201", "line7")
+```
+
+
+
+## Déficit primaire VS total
+
+### Tous
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF")
+```
+
+
+
+### 2005-
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-2005")
+```
+
+
+
+## Charge d'intérêt
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41")
+```
+
+
+
+
+## Détention par les non-résidents de la dette
+
+### Juste dette
+
+```{r}
+ig_d("bdf", "DET", "dette-negociable-non-residents")
+```
+
+### Par maturité
+
+```{r}
+ig_d("bdf", "DET", "dette-negociable-non-residents-maturite")
+```
+
+
+
+### Avec CAC40
+
+```{r}
+ig_d("bdf", "DET", "detention-non-residents")
+```
+
+
+
+
+
+# Pour en savoir plus...
+
+## Données sur la [dette publique](https://fgeerolf.com/data/dette-publique.html)
+
+```{r, echo = F}
+load_data("dette-publique.RData")
+`dette-publique` %>%
+  source_dataset_title_file_updates()
+```
+
+
+
+
+## Bibliographie
+
+### En Français
+
+- La dette publique est-elle un problème ? F. Geerolf & P. Jacquet, Politique étrangère, vol. , no. 2, 2021, pp. 79-92. [[pdf](http://onala.free.fr/geerolf621.pdf)] [[html](https://www.cairn.info/revue-politique-etrangere-2021-2-page-79.htm)]
+
+- Inflation et pouvoir d'achat : it's the politics, stupid! F. Geerolf & P. Jacquet, Relançons le débat économique, juin 2022. [[pdf](https://lecercledeseconomistes.fr/wp-content/uploads/2022/07/rlde-2022-25-geerolfjacquet.pdf)] [[html](https://lecercledeseconomistes.fr/inflation-et-pouvoir-dachat-its-the-politics-stupid/)]
+
+<!---
+- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+--->
+
+### In English
+
+<!---
+
+- Nominal rates matter. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Wages and profits in a time of high inflation in the euro area. [[pdf](https://fgeerolf.com/wages-profits-euroarea.pdf)]
+
+--->
+
+- The Phillips Curve: a Relation between Real Exchange Rate Growth and Unemployment, January 2020. [[pdf](https://fgeerolf.com/phillips.pdf)]
