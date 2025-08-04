@@ -58,6 +58,18 @@ i_g <- function(path) {
   }
 }
 
+ig_b <- function(source = "", folder = "", folder2 = "", folder3 = "", file = "", ext = ".png") {
+  # Build path components conditionally
+  parts <- c("bib", source, folder, folder2, folder3, file)
+  # Remove empty strings
+  path <- paste(parts[parts != ""], collapse = "/")
+  # Add file extension only if not already present
+  if (!grepl(paste0("\\", ext, "$"), path)) {
+    path <- paste0(path, ext)
+  }
+  i_g(path)
+}
+
 knitr::opts_chunk$set(echo = T)
 `dette-publique` <- tribble(
   ~source, ~dataset,
@@ -303,20 +315,6 @@ ig_b("dette", "france-credit-rating", ext = ".jpeg")
 
 # Déficit public
 
-```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R COMPTES-ETAT; /usr/local/bin/R -e 'quarto::quarto_render("COMPTES-ETAT.qmd")'
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R DETTE-TRIM-APU-2020; /usr/local/bin/R -e 'quarto::quarto_render("DETTE-TRIM-APU-2020.qmd")'
-# sh ~/iCloud/website/website_short.sh
-# cd ~/iCloud/website/data/insee; /usr/local/bin/R -f "t_compteapu_val.R"; /usr/local/bin/R -e 'quarto::quarto_render("t_compteapu_val.qmd")'
-# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "t_compteapu_val",
-        "insee", "T_7301") %>%
-  source_dataset_file_updates()
-```
-
 
 ## Deficit total, déficit primaire
 
@@ -386,19 +384,6 @@ ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-interet-2008-2016")
 
 
 # Dette publique
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R COMPTES-ETAT; /usr/local/bin/R -e 'quarto::quarto_render("COMPTES-ETAT.qmd")'
-# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _download_one.R DET; /usr/local/bin/R -e 'quarto::quarto_render("DET.qmd")'
-# sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "COMPTES-ETAT",
-        "insee", "T_3201",
-        "insee", "t_compteapu_val",
-        "bdf", "DET") %>%
-  source_dataset_file_updates()
-```
 
 ## Dette en valeur
 
