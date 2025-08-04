@@ -15,6 +15,8 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
 library(gt)
 library(gtExtras)
 library(lubridate)

@@ -15,6 +15,8 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
 library(gt)
 library(gtExtras)
 library(lubridate)
@@ -76,9 +78,6 @@ knitr::opts_chunk$set(echo = T)
 ## Principaux
 
 ```{r, echo = F}
-invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
-invisible(Sys.setenv(TZ = "Europe/Paris"))
-
 temp <- "https://tradingeconomics.com/country-list/rating" |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T)
