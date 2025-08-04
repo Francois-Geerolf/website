@@ -555,16 +555,6 @@ ig_d("bdf", "DET", "detention-non-residents")
 
 # Pour en savoir plus...
 
-## Données sur la [dette publique](https://fgeerolf.com/data/dette-publique.html)
-
-```{r, echo = F}
-load_data("dette-publique.RData")
-`dette-publique` %>%
-  source_dataset_title_file_updates()
-```
-
-
-
 
 ## Bibliographie
 
