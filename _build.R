@@ -31,12 +31,24 @@ fichiers <- list.files(
   full.names = TRUE
 )
 
-
 # Mesure du temps total
 debut_total <- Sys.time()
 temps_par_fichier <- lapply(fichiers, compiler_qmd)
 fin_total <- Sys.time()
 
-# Affichage du temps total
+# Calcul du temps total
 temps_total_sec <- as.numeric(difftime(fin_total, debut_total, units = "secs"))
-message("⏱️ Temps total de compilation : ", formater_temps(temps_total_sec))
+
+# Résumé final
+message("\n📋 Résumé des temps de compilation :")
+for (i in seq_along(fichiers)) {
+  nom <- fichiers[[i]]
+  temps <- temps_par_fichier[[i]]
+  if (!is.na(temps)) {
+    message(" - ", nom, " : ", formater_temps(temps))
+  } else {
+    message(" - ", nom, " : ❌ Erreur / fichier manquant")
+  }
+}
+message("\n🕒 Temps total de compilation : ", formater_temps(temps_total_sec))
+
