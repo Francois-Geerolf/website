@@ -49,9 +49,9 @@ jobs:
       - name: 📦 Install Pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
-      - name: 📦 Install required packages
+      - name: 📦 Install required packages with timing
         run: |
-          install.packages(c(
+          pkgs <- c(
             "countrycode", "httr", "gt", "gtExtras",
             "ggplot2", "dplyr", "tidyr", "readr",
             "purrr", "tibble", "stringr", "forcats",
@@ -59,7 +59,32 @@ jobs:
             "knitr", "scales", "viridis", "zoo", "lubridate",
             "ggrepel", "curl", "rmarkdown", "rvest", "jsonlite",
             "here", "i18n", "r2country"
-          ))
+          )
+          
+          format_time <- function(seconds) {
+            minutes <- floor(seconds / 60)
+            seconds <- round(seconds %% 60, 1)
+            sprintf("%dm %.1fs", minutes, seconds)
+          }
+      
+          times <- numeric(length(pkgs))
+          names(times) <- pkgs
+          total_time <- proc.time()[3]
+      
+          for (i in seq_along(pkgs)) {
+            pkg <- pkgs[i]
+            cat("⏳ Installing", pkg, "\n")
+            t <- system.time(install.packages(pkg, repos = "https://cloud.r-project.org"))
+            times[i] <- t[3]
+            cat("✅", pkg, "installed in", format_time(t[3]), "\n\n")
+          }
+      
+          total_elapsed <- proc.time()[3] - total_time
+          cat("📋 Installation Summary:\n")
+          for (i in seq_along(times)) {
+            cat(sprintf(" - %s: %s\n", names(times)[i], format_time(times[i])))
+          }
+          cat(sprintf("\n🕒 Total time: %s\n", format_time(total_elapsed)))
         shell: Rscript {0}
         
       - name: 🌍 Add fr_FR.UTF-8 locale
