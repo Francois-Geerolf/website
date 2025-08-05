@@ -1,0 +1,318 @@
+---
+title: Données sur les taux de change
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+## cd ~/iCloud/website/data; ./_update_data_themes.sh xrates.qmd
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-de-change.qmd")'
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+## sh ~/iCloud/website/website_short.sh
+data(country_money)
+country_money <- country_money
+country_names <- country_names
+country_calling_code <- country_calling_code
+codelist <- codelist|>
+  transmute(countryname = country.name.en, country_code_2 = fips)
+
+currencycode_countrycode <- country_money|>
+  left_join(country_names, by = "ID") |>
+  left_join(country_calling_code, by = "ID") |>
+  rename(countryname = name) |>
+  left_join(codelist, by = "countryname") |>
+  transmute(currencycode = isocode, countrycode = country_code_2)
+
+currencycode_countrycode <- tribble(~ currencycode, ~ countrycode,
+                                    "USD", "US",
+                                    "EUR", "EU",
+                                    "JPN", "JP")
+
+currencies <- currencies|>
+  filter(locale == "en")
+
+
+currencies <- currencies|>
+  filter(locale == "en")
+knitr::opts_chunk$set(echo = T)
+`taux-de-change` <- tribble(
+  ~source, ~dataset,
+  "bdf",  "EXR",
+  "bis",  "EER",
+  "bis", "EER_D", 
+  "bis",  "XRU",
+  "bis",  "XRU_D",
+  "ecb",  "EXR",
+  "eurostat", "ert_bil_eur_d",
+  "eurostat", "ert_h_eur_d",
+  "fred",  "xrates",
+  "gfd",  "xrates",
+  "oecd", "SNA_TABLE4",
+  "oecd", "REFSERIES_MSIT",
+  "wdi", "PA.NUS.FCRF") |>
+  arrange(source, dataset)
+
+do.call(save, list("taux-de-change", file = "taux-de-change.RData"))
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-de-change.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# Taux de change actuels
+
+```{r, echo = F, warning = F}
+# load_data("public-debt/rating.RData")
+"https://www.investing.com/currencies/streaming-forex-rates-majors"|>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  select(2:4) |>
+  #dplyr::left_join(currencycode_countrycode|>
+  #                   setNames(c("currencycode1", "countrycode1")),
+  #                 by = c("currencycode1")) |>
+  #dplyr::left_join(currencycode_countrycode|>
+  #                   setNames(c("currencycode2", "countrycode2")),
+  #                 by = c("currencycode2")) |>
+  mutate(Pair2 = str_replace_all(Pair, "(\\w{2})\\w", "\\1"),
+         Pair2 = str_replace(Pair2, "/", ",")) |>
+  mutate(Pair3 = Pair) |>
+  separate(Pair3, into = c("currencycode1", "currencycode2"), sep = "/") |>
+  dplyr::left_join(currencies|>
+                     select(currencycode1 = currency_code, symbol1 = currency_symbol),
+                   by = c("currencycode1")) |>
+  dplyr::left_join(currencies|>
+                     select(currencycode2 = currency_code, symbol2 = currency_symbol),
+                   by = c("currencycode2")) |>
+  select(-currencycode1, -currencycode2) |>
+  mutate(symbol1 = paste0("1 ", symbol1, " = ")) |>
+  #select(Pair2, symbol1, Bid, symbol2, Pair, Ask) |>
+  select(Pair2, symbol1, Bid, symbol2, Pair) |>
+  gt::gt() |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_highlight = T,
+    use_compact_mode = T,
+    page_size_default = 15,
+    page_size_values = c(10, 15, 20, 30, 50, 100),
+    use_text_wrapping = FALSE,
+    use_page_size_select = TRUE
+  ) |>
+  gt::fmt_flag(columns = Pair2) |>
+  gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), everything() ~ gt::px(60)) |>
+  #gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), Ask ~ gt::px(100), everything() ~ gt::px(60)) |>
+  gt::cols_label(Pair2 = "", Pair = "", symbol1 = "", symbol2 = "") |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+## Euros
+
+### Top 10
+
+```{r, echo = F}
+# load_data("public-debt/rating.RData")
+"https://www.x-rates.com/table/?from=EUR&amount=1"|>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_highlight = T,
+    use_compact_mode = T,
+    page_size_default = 20,
+    page_size_values = c(20, 30, 50, 100),
+    use_text_wrapping = FALSE,
+    use_page_size_select = TRUE
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+### All
+
+```{r, echo = F}
+"https://www.x-rates.com/table/?from=EUR&amount=1"|>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_highlight = T,
+    use_compact_mode = T,
+    page_size_default = 10,
+    page_size_values = c(10, 20, 30, 50, 100),
+    use_text_wrapping = FALSE,
+    use_page_size_select = TRUE
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Dollars
+
+
+
+### Top 10
+
+```{r, echo = F}
+# load_data("public-debt/rating.RData")
+"https://www.x-rates.com/table/?from=USD&amount=1"|>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_highlight = T,
+    use_compact_mode = T,
+    page_size_default = 20,
+    page_size_values = c(20, 30, 50, 100),
+    use_text_wrapping = FALSE,
+    use_page_size_select = TRUE
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+### All
+
+```{r, echo = F}
+"https://www.x-rates.com/table/?from=USD&amount=1"|>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_highlight = T,
+    use_compact_mode = T,
+    page_size_default = 10,
+    page_size_values = c(10, 20, 30, 50, 100),
+    use_text_wrapping = FALSE,
+    use_page_size_select = TRUE
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+
+
+# Taux de change de l'€
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/ecb; /usr/local/bin/Rscript --vanilla _download_one_csv.R EXR; /usr/local/bin/R -e 'quarto::quarto_render("EXR.qmd")'
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "xrates.R"; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R ert_bil_eur_d; /usr/local/bin/R -e 'quarto::quarto_render("ert_bil_eur_d.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "ecb", "EXR",
+        "eurostat", "ert_bil_eur_d") |>
+  source_dataset_file_updates()
+```
+
+## Eurostat
+
+### All
+
+```{r}
+ig_d("eurostat", "ert_bil_eur_d", "USD-CHF")
+```
+
+### 10 Years
+
+```{r}
+ig_d("eurostat", "ert_bil_eur_d", "USD-CHF-10-years")
+```
+
+### 1 year
+
+```{r}
+ig_d("eurostat", "ert_bil_eur_d", "USD-CHF-1-year")
+```
+
+
+## BCE
+
+### 1998-
+
+```{r}
+ig_d("ecb", "EXR", "USD-CHF-GBP")
+```
+
+### 1 year
+
+```{r}
+ig_d("ecb", "EXR", "USD-CHF-GBP-1-year")
+```
+
+### 2 years
+
+```{r}
+ig_d("ecb", "EXR", "USD-CHF-GBP-2-years")
+```
+
+### 1 month
+
+```{r}
+ig_d("ecb", "EXR", "USD-CHF-GBP-1-month")
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("public-debt.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("monetary-policy.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("industry.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
