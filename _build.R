@@ -23,12 +23,14 @@ compiler_qmd <- function(fichier) {
   }
 }
 
-# Liste des fichiers à compiler
-fichiers <- c(
-  "data/insee/calendrier.qmd",
-  "data/taux-dinteret.qmd",
-  "data/dette-publique.qmd"
+# Trouver tous les fichiers .qmd dans le dossier "data" et ses sous-dossiers
+fichiers <- list.files(
+  path = "data", 
+  pattern = "\\.qmd$", 
+  recursive = TRUE, 
+  full.names = TRUE
 )
+
 
 # Mesure du temps total
 debut_total <- Sys.time()

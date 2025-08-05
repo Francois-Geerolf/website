@@ -1,0 +1,451 @@
+---
+title: Exchange Rate Data
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+## cd ~/iCloud/website/data; ./_update_data_themes.sh xrates.qmd
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+## sh ~/iCloud/website/website_short.sh
+data(country_money)
+country_money <- country_money
+country_names <- country_names
+country_calling_code <- country_calling_code
+codelist <- codelist|>
+  transmute(countryname = country.name.en, country_code_2 = fips)
+
+currencycode_countrycode <- country_money|>
+  left_join(country_names, by = "ID") |>
+  left_join(country_calling_code, by = "ID") |>
+  rename(countryname = name) |>
+  left_join(codelist, by = "countryname") |>
+  transmute(currencycode = isocode, countrycode = country_code_2)
+
+currencycode_countrycode <- tribble(~ currencycode, ~ countrycode,
+                                    "USD", "US",
+                                    "EUR", "EU",
+                                    "JPN", "JP")
+
+currencies <- currencies|>
+  filter(locale == "en")
+
+
+currencies <- currencies|>
+  filter(locale == "en")
+knitr::opts_chunk$set(echo = T)
+xrates <- tribble(
+  ~source, ~dataset,
+  "bdf",  "EXR",
+  "bis",  "EER",
+  "bis", "EER_D", 
+  "bis",  "XRU",
+  "bis",  "XRU_D",
+  "ecb",  "EXR",
+  "eurostat", "ert_bil_eur_d",
+  "eurostat", "ert_h_eur_d",
+  "fred",  "xrates",
+  "gfd",  "xrates",
+  "oecd", "SNA_TABLE4",
+  "oecd", "REFSERIES_MSIT",
+  "wdi", "PA.NUS.FCRF") |>
+  arrange(source, dataset)
+
+save(xrates, file = "xrates.RData")
+```
+
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-dinteret.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("interest-rates.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# Current exchange rates
+
+```{r, echo = F, warning = F}
+# load_data("public-debt/rating.RData")
+"https://www.investing.com/currencies/streaming-forex-rates-majors"|>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  select(2:4) |>
+  #dplyr::left_join(currencycode_countrycode|>
+  #                   setNames(c("currencycode1", "countrycode1")),
+  #                 by = c("currencycode1")) |>
+  #dplyr::left_join(currencycode_countrycode|>
+  #                   setNames(c("currencycode2", "countrycode2")),
+  #                 by = c("currencycode2")) |>
+  mutate(Pair2 = str_replace_all(Pair, "(\\w{2})\\w", "\\1"),
+         Pair2 = str_replace(Pair2, "/", ",")) |>
+  mutate(Pair3 = Pair) |>
+  separate(Pair3, into = c("currencycode1", "currencycode2"), sep = "/") |>
+  dplyr::left_join(currencies|>
+                     select(currencycode1 = currency_code, symbol1 = currency_symbol),
+                   by = c("currencycode1")) |>
+  dplyr::left_join(currencies|>
+                     select(currencycode2 = currency_code, symbol2 = currency_symbol),
+                   by = c("currencycode2")) |>
+  select(-currencycode1, -currencycode2) |>
+  mutate(symbol1 = paste0("1 ", symbol1, " = ")) |>
+  #select(Pair2, symbol1, Bid, symbol2, Pair, Ask) |>
+  select(Pair2, symbol1, Bid, symbol2, Pair) |>
+  gt::gt() |>
+  gt::fmt_flag(columns = Pair2) |>
+  gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), everything() ~ gt::px(60)) |>
+  #gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), Ask ~ gt::px(100), everything() ~ gt::px(60)) |>
+  gt::cols_label(Pair2 = "", Pair = "", symbol1 = "", symbol2 = "") |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = T,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 10,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+## Euros
+
+```{r, echo = F}
+"https://www.x-rates.com/table/?from=EUR&amount=1"|>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = T,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 10,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Dollars
+
+```{r, echo = F}
+"https://www.x-rates.com/table/?from=USD&amount=1"|>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = T,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 10,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+
+
+# Exchange rate of the €
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/ecb; /usr/local/bin/Rscript --vanilla _download_one_csv.R EXR; /usr/local/bin/R -e 'quarto::quarto_render("EXR.qmd")'
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "xrates.R"; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R ert_bil_eur_d; /usr/local/bin/R -e 'quarto::quarto_render("ert_bil_eur_d.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Eurostat
+
+### All
+
+```{r}
+ig_d("eurostat", "ert_bil_eur_d", "USD-CHF")
+```
+
+### 10 Years
+
+```{r}
+ig_d("eurostat", "ert_bil_eur_d", "USD-CHF-10-years")
+```
+
+### 1 year
+
+```{r}
+ig_d("eurostat", "ert_bil_eur_d", "USD-CHF-1-year")
+```
+
+
+## ECB
+
+### 1998-
+
+```{r}
+ig_d("ecb", "EXR", "USD-CHF-GBP")
+```
+
+### 1 year
+
+```{r}
+ig_d("ecb", "EXR", "USD-CHF-GBP-1-year")
+```
+
+### 2 years
+
+```{r}
+ig_d("ecb", "EXR", "USD-CHF-GBP-2-years")
+```
+
+### 1 month
+
+```{r}
+ig_d("ecb", "EXR", "USD-CHF-GBP-1-month")
+```
+
+# Exchange rate of the $
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "xrates.R"; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Yen
+
+### Long period
+
+```{r}
+ig_d("fred", "xrates", "DEXJPUS")
+```
+
+
+
+### 2000-
+
+```{r}
+ig_d("fred", "xrates", "DEXJPUS-2000")
+```
+
+## Pound
+
+### Long period
+
+```{r}
+ig_d("fred", "xrates", "US-UK-exchange-rate")
+```
+
+### 2010-
+
+```{r}
+ig_d("fred", "xrates", "US-UK-exchange-rate-2010")
+```
+
+
+
+
+# European Countries' exchange rates
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/ecb; /usr/local/bin/Rscript --vanilla _download_one_csv.R EXR; /usr/local/bin/R -e 'quarto::quarto_render("EXR.qmd")'
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "XRU.R"; /usr/local/bin/R -e 'quarto::quarto_render("XRU.qmd")'
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "XRU_D.R"; /usr/local/bin/R -e 'quarto::quarto_render("XRU_D.qmd")'
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "EER.R"; /usr/local/bin/R -e 'quarto::quarto_render("EER.qmd")'
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "EER_D.R"; /usr/local/bin/R -e 'quarto::quarto_render("EER_D.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Italy, Spain, France, Germany
+
+```{r}
+ig_d("bis", "XRU_D", "XRU-DEU-ESP-FRA-ITA")
+```
+
+
+## Poland, Hungary
+
+### All
+
+```{r}
+ig_d("bis", "XRU_D", "POL-HUN-DEU")
+```
+
+### 1995-
+
+```{r}
+ig_d("bis", "XRU_D", "POL-HUN-DEU-1995")
+```
+
+
+# Emerging economies' exchange rates
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "XRU_D.R"; /usr/local/bin/R -e 'quarto::quarto_render("XRU_D.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Russian ruble
+
+```{r}
+ig_d("bis", "XRU_D", "RUS")
+```
+
+
+## Columbian peso
+
+```{r}
+ig_d("bis", "XRU", "COL")
+```
+
+# Effects of events on exchange rates
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R ert_h_eur_d; /usr/local/bin/R -e 'quarto::quarto_render("ert_h_eur_d.qmd")'
+# cd ~/iCloud/website/data/ecb; /usr/local/bin/Rscript --vanilla _download_one_csv.R EXR; /usr/local/bin/R -e 'quarto::quarto_render("EXR.qmd")'
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "XRU.R"; /usr/local/bin/R -e 'quarto::quarto_render("XRU.qmd")'
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "XRU_D.R"; /usr/local/bin/R -e 'quarto::quarto_render("XRU_D.qmd")'
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "EER.R"; /usr/local/bin/R -e 'quarto::quarto_render("EER.qmd")'
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "EER_D.R"; /usr/local/bin/R -e 'quarto::quarto_render("EER_D.qmd")'
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f "EER_M.R"
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+```
+
+## Germany's revaluation of 1961
+
+```{r}
+ig_d("bis", "XRU_D", "DEU-USA-1961")
+```
+
+
+## September 2, 1985 - Plaza accords
+
+### Germany, France, UK
+
+```{r}
+ig_d("bis", "XRU_D", "plaza-accords-1980-1990")
+```
+
+### Canada, Italy, Spain
+
+```{r}
+ig_d("bis", "XRU_D", "plaza-accords-1980-1990-CAN-ITA-ESP")
+```
+
+
+
+## Switzerland, Jan. 15, 2015
+
+On Jan. 15, 2015, Switzerland announced that it was going to scrap its currency peg of 1.20 to the euro.
+
+```{r}
+ig_d("eurostat", "ert_bil_eur_d", "USD-CHF-2014-2015")
+```
+
+
+
+
+## Effects of Brexit referendum: June 23, 2016
+
+```{r}
+ig_d("bis", "XRU_D", "GBR-USA-2015-2018")
+```
+
+
+## Effects of Trump election: November 8, 2016
+
+```{r}
+ig_d("bis", "XRU_D", "GBR-USA-2016-2017")
+```
+
+
+
+
+
+# Comparing different sources for xrates: creation of €
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one2.R PA.NUS.FCRF; /usr/local/bin/R -e 'quarto::quarto_render("PA.NUS.FCRF.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R ert_h_eur_d; /usr/local/bin/R -e 'quarto::quarto_render("ert_h_eur_d.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R SNA_TABLE4; /usr/local/bin/R -e 'quarto::quarto_render("SNA_TABLE4.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R REFSERIES_MSIT; /usr/local/bin/R -e 'quarto::quarto_render("REFSERIES_MSIT.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+
+## BIS
+
+```{r}
+ig_d("bis", "XRU_D", "DEU-ESP-FRA-ITA-GRC")
+```
+
+## Eurostat
+
+```{r}
+ig_d("eurostat", "ert_h_eur_d", "DEM-FRF")
+```
+
+## OECD
+
+### SNA_TABLE4
+
+```{r}
+ig_d("oecd", "SNA_TABLE4", "FRA-DEU-ITA-ESP-GRC")
+```
+
+### REFSERIES_MSIT
+
+```{r}
+ig_d("oecd", "REFSERIES_MSIT", "FRA-DEU-ITA-ESP-GRC")
+```
+
+## WDI
+
+```{r}
+ig_d("wdi", "PA.NUS.FCRF", "FR-DE-IT-ES-GR")
+```
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("public-debt.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("monetary-policy.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("industry.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
