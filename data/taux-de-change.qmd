@@ -63,8 +63,6 @@ knitr::opts_chunk$set(echo = T)
   "oecd", "REFSERIES_MSIT",
   "wdi", "PA.NUS.FCRF") |>
   arrange(source, dataset)
-
-do.call(save, list("taux-de-change", file = "taux-de-change.RData"))
 ```
 
 # Info
@@ -248,11 +246,6 @@ do.call(save, list("taux-de-change", file = "taux-de-change.RData"))
 # cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "xrates.R"; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
 # cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R ert_bil_eur_d; /usr/local/bin/R -e 'quarto::quarto_render("ert_bil_eur_d.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "ecb", "EXR",
-        "eurostat", "ert_bil_eur_d") |>
-  source_dataset_file_updates()
 ```
 
 ## Eurostat
