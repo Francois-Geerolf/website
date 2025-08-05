@@ -17,6 +17,9 @@ on:
       - '_build.R'
   schedule:
     - cron: '0 5 * * *'   # tous les jours à 05:00 UTC
+    - cron: '0 11 * * *'  # every day at 11:00 UTC
+    - cron: '0 17 * * *'  # every day at 17:00 UTC
+    - cron: '0 23 * * *'  # every day at 23:00 UTC
 
 jobs:
   build:
@@ -48,7 +51,14 @@ jobs:
 
       - name: 📦 Install required packages
         run: |
-          install.packages(c("countrycode", "httr", "jsonlite", "ggplot2", "dplyr", "readr", "tibble", "stringr", "forcats", "purrr", "tidyr", "readxl", "rsdmx", "tools", "knitr", "scales", "viridis", "zoo", "lubridate", "ggrepel", "curl", "rmarkdown", "lubridate", "rvest", "gt", "quarto", "gtExtras"))
+          install.packages(c(
+            "countrycode", "httr", "jsonlite", "ggplot2",
+            "dplyr", "readr", "tibble", "stringr", "forcats",
+            "purrr", "tidyr", "readxl", "rsdmx", "tools",
+            "knitr", "scales", "viridis", "zoo", "lubridate",
+            "ggrepel", "curl", "rmarkdown", "rvest", "gt",
+            "quarto", "gtExtras"
+          ))
         shell: Rscript {0}
         
       - name: 🌍 Add fr_FR.UTF-8 locale
@@ -73,6 +83,17 @@ jobs:
   
       - name: 📤 Deploy to remote server via rsync
         run: |
-          rsync --exclude={'*.RData','*.Rmd','*.qmd','*.xlsx','*.xls','*.txt','*.zip','*.csv','*.sh','*.parquet'} \
-                -avr -e 'ssh -p65002 -oHostKeyAlgorithms=+ssh-rsa' ./ \
-                u597408863@147.79.103.253:~/domains/fgeerolf.com/public_html/
+          rsync --exclude-from=<(cat <<EOF
+            *.RData
+            *.Rmd
+            *.qmd
+            *.xlsx
+            *.xls
+            *.txt
+            *.zip
+            *.csv
+            *.sh
+            *.parquet
+          EOF
+          ) -avr -e 'ssh -p65002 -oHostKeyAlgorithms=+ssh-rsa' ./ \
+          u597408863@147.79.103.253:~/domains/fgeerolf.com/public_html/

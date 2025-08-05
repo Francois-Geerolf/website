@@ -15,50 +15,14 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-library(gt)
-library(gtExtras)
-library(lubridate)
-library(rvest)
-library(purrr)
-library(dplyr)
-library(tidyr)
-library(gt)
-library(stringr)
-library(knitr)
-library(countrycode)
 ## cd ~/iCloud/website/data; ./_update_data_themes.sh taux-dinteret.qmd
 ## cd ~/iCloud/website/data; ./_update_data_themes.sh interest-rates.qmd
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-dinteret.qmd")'
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
 ## sh ~/iCloud/website/website_short.sh
-ig_d <- function(source, dataset, file){
-  i_g(paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1.png"))
-}
-
-i_g <- function(path) {
-  new_path <- gsub("https://fgeerolf.com/", "", path)
-  new_path_pdf <- paste0(gsub(".png", "", new_path), ".pdf")
-  if (interactive()) {
-    if (file.exists(paste0("~/iCloud/website/", new_path))) {
-      return(knitr::include_graphics(paste0("~/iCloud/website/", new_path)))
-    } else{
-      return(knitr::include_graphics(paste0("~/iCloud/", new_path)))
-    }
-  } else if (knitr::is_latex_output()) {
-    if (file.exists(paste0("~/iCloud/website/", new_path_pdf))) {
-      return(knitr::include_graphics(paste0("~/iCloud/website/", new_path_pdf)))
-    } else if (file.exists(paste0("~/iCloud/website/", new_path))){
-      return(knitr::include_graphics(paste0("~/iCloud/website/", new_path)))
-    } else {
-      return(knitr::include_graphics(paste0("~/iCloud/", new_path)))
-    }
-  }
-    else {
-    return(knitr::include_graphics(paste0("https://fgeerolf.com/", new_path)))
-  }
-}
 
 knitr::opts_chunk$set(echo = T)
 `taux-dinteret` <- tribble(
