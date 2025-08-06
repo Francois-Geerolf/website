@@ -1,0 +1,342 @@
+---
+title: Overview of Public Debt Statistics
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+
+`public-debt` <- tribble(
+  ~source, ~dataset,
+  "eurostat",  "ei_mfir_m",
+  "eurostat",  "gov_10q_ggdebt",
+  "fred",  "r",
+  "fred",  "saving",
+  "gfd",  "debt",
+  "imf",  "FM",
+  "imf",  "HPDD",
+  "imf",  "GGXWDN_G01_GDP_PT",
+  "imf", "GGXONLB_G01_GDP_PT",
+  "imf", "GGXCNL_G01_GDP_PT",
+  "oecd", "QASA_TABLE7PSD",
+  "wdi",  "GC.XPN.INTP.ZS",
+  "wdi",  "GC.XPN.INTP.CN",
+  "wdi",  "GC.DOD.TOTL.GD.ZS",
+  "wdi",  "GC.XPN.INTP.RV.ZS") %>%
+  arrange(source, dataset)
+```
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("dette-publique.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("public-debt.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# Public debt data
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/imf; /usr/local/bin/Rscript --vanilla _download_one.R FM G_XWDG_G01_GDP_PT ; /usr/local/bin/R -e 'quarto::quarto_render("G_XWDG_G01_GDP_PT.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Fiscal Monitor
+
+```{r}
+ig_d("imf", "G_XWDG_G01_GDP_PT", "FRA-DEU-USA-ITA-JPN")
+```
+
+
+
+# U.S.
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "saving.R"; /usr/local/bin/R -e 'quarto::quarto_render("saving.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Public deficit
+
+### Last
+
+```{r}
+ig_d("fred", "saving", "surplus-gdp-1929-2020")
+```
+
+
+
+# Europe
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R gov_10q_ggdebt; /usr/local/bin/R -e 'quarto::quarto_render("gov_10q_ggdebt.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R ei_mfir_m; /usr/local/bin/R -e 'quarto::quarto_render("ei_mfir_m.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Debt to GDP ratios (years)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R gov_10q_ggdebt; /usr/local/bin/R -e 'quarto::quarto_render("gov_10q_ggdebt.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("gov_10q_ggdebt.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+### Last
+
+```{r}
+ig_d("eurostat", "gov_10q_ggdebt", "GD-US-UK-FR-JP-IT")
+```
+
+
+### 2015-
+
+```{r, out.width="100%"}
+ig_d("eurostat", "gov_10q_ggdebt", "GD-US-UK-FR-JP-IT-2015")
+```
+
+
+### 2015- (%)
+
+```{r, out.width="100%"}
+ig_d("eurostat", "gov_10q_ggdebt", "GD-US-UK-FR-JP-IT-2015-percent")
+```
+
+
+
+### Other countries
+
+```{r, out.width="100%"}
+ig_d("eurostat", "gov_10q_ggdebt", "NL-LU-DK-SE-FR")
+```
+
+## Deficits
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R gov_10dd_edpt1; /usr/local/bin/R -e 'quarto::quarto_render("gov_10dd_edpt1.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+### Portugal, Greece, Germany, Euro area
+
+#### All
+
+```{r}
+ig_d("eurostat", "gov_10dd_edpt1", "FR-DE-IT-ES-NL-B9")
+```
+
+
+
+## Interest rates
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R ei_mfir_m; /usr/local/bin/R -e 'quarto::quarto_render("ei_mfir_m.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+### Germany, Italy, France, Spain
+
+```{r}
+ig_d("eurostat", "ei_mfir_m", "MF-LTGBY-RT-FR-DE-IT-ES-2005")
+```
+
+
+### Portugal, Greece, Germany, Euro area
+
+```{r}
+ig_d("eurostat", "ei_mfir_m", "MF-LTGBY-RT-EA-DE-PT-EL-2014")
+```
+
+# IMF
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/imf; /usr/local/bin/Rscript --vanilla _download_one.R FM GGXCNL_G01_GDP_PT ; /usr/local/bin/R -e 'quarto::quarto_render("GGXCNL_G01_GDP_PT.qmd")'
+# cd ~/iCloud/website/data/imf; /usr/local/bin/Rscript --vanilla _download_one.R FM GGXONLB_G01_GDP_PT ; /usr/local/bin/R -e 'quarto::quarto_render("GGXONLB_G01_GDP_PT.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Primary and Total Deficits
+
+
+
+## Total deficit
+
+### United States, France, Europe
+
+```{r}
+ig_d("imf", "GGXCNL_G01_GDP_PT", "U2-US-FR-2010")
+```
+
+
+### United States, France, Europe
+
+```{r}
+ig_d("imf", "GGXCNL_G01_GDP_PT", "U2-US-FR-2010")
+```
+
+### Euopean countries, U.S.
+
+#### All
+
+```{r}
+ig_d("imf", "GGXCNL_G01_GDP_PT", "IT-FR-DE-ES-US")
+```
+
+
+
+#### 2010-
+
+```{r}
+ig_d("imf", "GGXCNL_G01_GDP_PT", "IT-FR-DE-ES-US-2010")
+```
+
+
+
+### France, Germany, U.S., E.U.
+
+#### All
+
+```{r}
+ig_d("imf", "GGXCNL_G01_GDP_PT", "FR-DE-US-U2")
+```
+
+
+
+#### 2005-
+
+```{r}
+ig_d("imf", "GGXCNL_G01_GDP_PT", "FR-DE-US-U2-2008")
+```
+
+
+
+## Primary deficit
+
+### Euopean countries, U.S.
+
+```{r}
+ig_d("imf", "GGXCNL_G01_GDP_PT", "IT-FR-DE-ES-US")
+```
+
+
+## Public Debt
+
+### Long Period
+
+```{r}
+ig_d("imf", "HPDD", "US-UK-FR-JP-IT")
+```
+
+
+
+### Long Period
+
+```{r}
+ig_d("imf", "HPDD", "US-UK-FR-JP-IT")
+```
+
+# OECD
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R QASA_TABLE7PSD; /usr/local/bin/R -e 'quarto::quarto_render("QASA_TABLE7PSD.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## France, United States
+
+```{r}
+ig_d("oecd", "QASA_TABLE7PSD", "SAFGD-CXCAR-FRA-USA-log")
+```
+
+
+## France, UK, Italy, Canada
+
+```{r}
+ig_d("oecd", "QASA_TABLE7PSD", "SAFGD-CXCAR-FRA-GBR-ITA-CAN")
+```
+
+# France
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("T_3201.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_compteapu_val.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Trajectory (Source: Oxford Economics)
+
+```{r}
+ig_b("debt", "france-trajectory-march2024")
+```
+
+
+## Charge d'intérêt
+
+```{r}
+ig_d("insee", "T_3201", "line7")
+```
+
+
+
+## Déficit primaire VS total
+
+### Tous
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF")
+```
+
+
+
+### 2005-
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-2005")
+```
+
+
+
+## Charge d'intérêt
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41")
+```
+
+# Rating agencies
+
+## Risk weights
+
+```{r}
+ig_b("bis", "CRE20", "sovereign-rating")
+```
+
+# Détention par les non-résidents de la dette / CAC40
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _download_one.R DET; /usr/local/bin/R -e 'quarto::quarto_render("DET.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## Detention
+
+```{r}
+ig_d("bdf", "DET", "detention-non-residents")
+```

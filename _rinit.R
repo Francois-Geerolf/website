@@ -19,6 +19,8 @@ packages <- c(
 # Load all packages
 invisible(lapply(packages, library, character.only = TRUE))
 
+knitr::opts_chunk$set(echo = T)
+
 # functions
 
 ig_d <- function(source, dataset, file){
