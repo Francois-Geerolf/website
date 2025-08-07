@@ -74,7 +74,7 @@ jobs:
           for (i in seq_along(pkgs)) {
             pkg <- pkgs[i]
             cat("⏳ Installing", pkg, "\n")
-            t <- system.time(install.packages(pkg, repos = "https://cloud.r-project.org"))
+            t <- system.time(install.packages(pkg, repos = "https://cloud.r-project.org", quiet = TRUE))
             times[i] <- t[3]
             cat("✅", pkg, "installed in", format_time(t[3]), "\n\n")
           }
