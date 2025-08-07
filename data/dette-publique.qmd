@@ -24,7 +24,6 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
 ## sh ~/iCloud/website/website_short.sh
 
-knitr::opts_chunk$set(echo = T)
 `dette-publique` <- tribble(
   ~source, ~dataset,
   "insee",  "COMPTES-ETAT",

@@ -7,7 +7,7 @@ packages <- c(
   "quarto", "readxl", "rsdmx", "tools",
   "knitr", "scales", "viridis", "zoo", "lubridate",
   "ggrepel", "curl", "rmarkdown", "rvest", "jsonlite",
-  "here", "i18n", "r2country", "eurostat"
+  "here", "i18n", "r2country", "eurostat", "ggimage"
 )
 
 # # Install any missing packages
