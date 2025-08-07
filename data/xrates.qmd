@@ -62,8 +62,6 @@ xrates <- tribble(
   "oecd", "REFSERIES_MSIT",
   "wdi", "PA.NUS.FCRF") |>
   arrange(source, dataset)
-
-save(xrates, file = "xrates.RData")
 ```
 
 
