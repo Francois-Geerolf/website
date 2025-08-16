@@ -48,7 +48,6 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ## Evolutions trimestrielles (%)
 
 ```{r echo = F}
-invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 "https://www.insee.fr/fr/statistiques/2830166" |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>

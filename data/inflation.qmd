@@ -15,8 +15,9 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
-source("../code/R-markdown/init_min.R")
-knitr::opts_chunk$set(echo = T)
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
 inflation <- tribble(
   ~source, ~dataset,
   "bis",  "CPI",
@@ -41,7 +42,6 @@ inflation <- tribble(
   "wdi",  "NY.GDP.DEFL.KD.ZG",
   "wdi",  "FP.CPI.TOTL.ZG") %>%
   arrange(source, dataset)
-save(inflation, file = "inflation.RData")
 ```
 
 # Info
@@ -52,41 +52,6 @@ save(inflation, file = "inflation.RData")
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~ theme,
-        "inflation",
-        "monetary-policy",
-        "interest-rates",
-        "xrates",
-        "housing") %>%
-  theme_file_updates()
-```
-
-## Data on [inflation](https://fgeerolf.com/data/inflation.html)
-
-```{r, echo = F}
-load_data("inflation.RData")
-inflation %>%
-  source_dataset_file_updates()
-```
-
-
-
-## Données sur l'[inflation](https://fgeerolf.com/data/inflation-france.html)
-
-```{r, echo = F}
-load_data("inflation-france.RData")
-`inflation-france` %>%
-  source_dataset_file_updates()
-```
-
-
-
-## LAST_COMPILE
-
-```{r, echo = F}
-tibble(LAST_COMPILE = Sys.Date()) %>%
-  print_table_conditional()
 ```
 
 # Related papers
@@ -133,11 +98,6 @@ tibble(LAST_COMPILE = Sys.Date()) %>%
 # cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "inflation.R"; /usr/local/bin/R -e 'quarto::quarto_render("inflation.qmd")'
 # cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "cpi.R"; /usr/local/bin/R -e 'quarto::quarto_render("cpi.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "oecd", "PRICES_CPI",
-        "fred", "inflation") %>% 
-  source_dataset_file_updates()
 ```
 
 ## France, Germany, EU, US (OECD)
@@ -186,11 +146,6 @@ ig_d("fred", "inflation", "CPIAUCSL-CUUR0000SA0L2-2-years")
 # cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "energy.R"; /usr/local/bin/R -e 'quarto::quarto_render("energy.qmd")'
 # cd ~/iCloud/website/data/ecb; /usr/local/bin/R -f "CES.R"; /usr/local/bin/R -e 'quarto::quarto_render("CES.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "fred", "energy",
-        "ecb", "CES") %>%
-  source_dataset_file_updates()
 ```
 
 ## Gas prices and Inflation expectations
@@ -228,12 +183,6 @@ ig_d("ecb", "CES", "c1220-mean")
 # cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R prc_hicp_manr; /usr/local/bin/R -e 'quarto::quarto_render("prc_hicp_manr.qmd")'
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "oecd", "PRICES_CPI",
-        "insee", "IPCH-2015",
-        "eurostat", "prc_hicp_midx") %>%
-  source_dataset_file_updates()
 ```
 
 ## France VS Insee
@@ -300,12 +249,6 @@ ig_d("eurostat", "prc_hicp_midx", "CP00-FR-DE")
 # cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R sts_inppd_m; /usr/local/bin/R -e 'quarto::quarto_render("sts_inppd_m.qmd")'
 # cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R sts_inppnd_m; /usr/local/bin/R -e 'quarto::quarto_render("sts_inppnd_m.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "eurostat", "sts_inpp_m",
-        "eurostat", "sts_inppd_m",
-        "eurostat", "sts_inppnd_m") %>%
-  source_dataset_file_updates()
 ```
 
 ## Manufacturing, All

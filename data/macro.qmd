@@ -86,7 +86,7 @@ macro <-tribble(
 ### All
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100")
+ig_d("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100")
 ```
 
 
@@ -96,7 +96,7 @@ i_g_p("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100")
 ### 2006-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100-2006")
+ig_d("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100-2006")
 ```
 
 
@@ -104,7 +104,7 @@ i_g_p("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100-2006")
 ### 2008-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100-2008")
+ig_d("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100-2008")
 ```
 
 
@@ -116,7 +116,7 @@ i_g_p("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100-2008")
 ### 1990-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.PP.KD", "US-XC-FR-base-100")
+ig_d("wdi", "NY.GDP.PCAP.PP.KD", "US-XC-FR-base-100")
 ```
 
 
@@ -124,7 +124,7 @@ i_g_p("wdi", "NY.GDP.PCAP.PP.KD", "US-XC-FR-base-100")
 ### 2008-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.PP.KD", "US-XC-FR-base-100-2008")
+ig_d("wdi", "NY.GDP.PCAP.PP.KD", "US-XC-FR-base-100-2008")
 ```
 
 
@@ -135,7 +135,7 @@ i_g_p("wdi", "NY.GDP.PCAP.PP.KD", "US-XC-FR-base-100-2008")
 ### 1960-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100")
+ig_d("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100")
 ```
 
 
@@ -144,7 +144,7 @@ i_g_p("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100")
 ### 1990-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100-1990")
+ig_d("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100-1990")
 ```
 
 
@@ -152,7 +152,7 @@ i_g_p("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100-1990")
 ### 2008-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100-2008")
+ig_d("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100-2008")
 ```
 
 
@@ -161,7 +161,7 @@ i_g_p("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100-2008")
 ### 1960-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100")
+ig_d("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100")
 ```
 
 
@@ -170,7 +170,7 @@ i_g_p("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100")
 ### 1990-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-1990")
+ig_d("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-1990")
 ```
 
 
@@ -178,7 +178,7 @@ i_g_p("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-1990")
 ### 2008-
 
 ```{r}
-i_g_p("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-2008")
+ig_d("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-2008")
 ```
 
 

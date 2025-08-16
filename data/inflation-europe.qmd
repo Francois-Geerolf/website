@@ -15,8 +15,9 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
-source("../code/R-markdown/init_min.R")
-knitr::opts_chunk$set(echo = T)
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 `inflation-europe` <- tribble(
   ~source, ~dataset,
   "ecb", "CES",
