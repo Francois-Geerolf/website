@@ -1,0 +1,153 @@
+---
+title: Data on stocks and indices
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+knitr::opts_chunk$set(echo = T)
+stocks <- tribble(
+  ~source, ~dataset,
+  "yahoo",  "stocks",
+  "yahoo",  "indices",
+  "yahoo",  "CAC40",
+  "yahoo",  "SP500") %>%
+  arrange(source, dataset)
+```
+
+# Major Indices
+
+```{r, echo = F, warning = F}
+# load_data("public-debt/rating.RData")
+"https://www.investing.com/indices/major-indices" %>%
+  rvest::read_html() %>%
+  rvest::html_table(header = T, fill = T) %>%
+  .[[1]] %>%
+  select(2, 3, 6) |>
+  gt::gt() |>
+  #gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), Ask ~ gt::px(100), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = T,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 10,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/indices/major-indices>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+# European stocks
+
+```{r, echo = F}
+# ?locales
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R hbs_str_t223; /usr/local/bin/R -e 'quarto::quarto_render("hbs_str_t223.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R SNA_TABLE5; /usr/local/bin/R -e 'quarto::quarto_render("SNA_TABLE5.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R HOUSING; /usr/local/bin/R -e 'quarto::quarto_render("HOUSING.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R prc_hicp_midx; /usr/local/bin/R -e 'quarto::quarto_render("prc_hicp_midx.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_co3_p3; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_co3_p3.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Indices
+
+```{r}
+ig_d("yahoo", "indices", "GDAXI-IBEX-FCHI-1995-bind")
+```
+
+## Profits
+
+```{r}
+ig_d("eurostat", "nasq_10_nf_tr", "B2A3G-S11-BE-DE-FR-EA20-SCA-GVA")
+```
+
+
+
+
+# US Stocks
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/yahoo; /usr/local/bin/R -f "indices.R"; /usr/local/bin/R -e 'quarto::quarto_render("indices.qmd")'
+# cd ~/iCloud/website/data/yahoo; /usr/local/bin/R -f "stocks.R"; /usr/local/bin/R -e 'quarto::quarto_render("stocks.qmd")'
+# cd ~/iCloud/website/data/yahoo; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Magnificent Seven: Nvidia, Meta, Tesla, Amazon, Alphabet, Microsoft, Apple
+
+### 1990-
+
+```{r}
+ig_d("yahoo", "stocks", "magnificent-7-1990-bind")
+```
+
+### 2010-
+
+```{r}
+ig_d("yahoo", "stocks", "magnificent-7-2010-bind")
+```
+
+
+## Nasdaq, S&P 500, Eurostoxx
+
+### 1995-
+
+```{r}
+ig_d("yahoo", "indices", "IXIC-GSPC-STOXX50E-1995-bind")
+```
+
+
+
+### 2007-
+
+```{r}
+ig_d("yahoo", "indices", "IXIC-GSPC-STOXX50E-2007-bind")
+```
+
+
+
+## Nasdaq, S&P 500
+
+### 1995-
+
+```{r}
+ig_d("yahoo", "indices", "IXIC-GSPC-1995-bind")
+```
+
+
+
+### 2002-
+
+```{r}
+ig_d("yahoo", "indices", "IXIC-GSPC-2002-bind")
+```
+
+
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("housing.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("stocks.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("immobilier.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/housing.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/immobilier.html
+# sh ~/iCloud/website/website_short.sh
+```
