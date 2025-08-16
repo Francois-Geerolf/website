@@ -39,7 +39,6 @@ knitr::opts_chunk$set(echo = T)
   "insee", "SERIES_LOYERS",
   "insee", "T_CONSO_EFF_FONCTION") %>%
   arrange(source, dataset)
-do.call(save, list("inflation-france", file = "inflation-france.RData"))
 ```
 
 
@@ -49,10 +48,6 @@ do.call(save, list("inflation-france", file = "inflation-france.RData"))
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPGD-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPGD-2015.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "IPGD-2015") %>% 
-  source_dataset_file_updates()
 ```
 
 ## Viandes, Boissons, Produits alimentaires de grande conso, Produits d'entretien, hygiène-beauté
@@ -78,11 +73,6 @@ ig_d("insee", "IPGD-2015", "produits-2022")
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPC-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPC-2015.qmd")'
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "IPCH-2015",
-        "insee", "IPC-2015") %>% 
-  source_dataset_file_updates()
 ```
 
 
@@ -169,11 +159,6 @@ ig_d("insee", "IPC-2015", "00-06-09-08-2ans")
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPC-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPC-2015.qmd")'
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "IPCH-2015",
-        "insee", "IPC-2015") %>% 
-  source_dataset_file_updates()
 ```
 
 ## 3 dernières années
@@ -253,10 +238,6 @@ ig_d("insee", "IPC-2015", "CADRE-OUVRIER-RETRAITE")
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPPI-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPPI-2015.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "IPPI-2015") %>% 
-  source_dataset_file_updates()
 ```
 
 ## 10-12
@@ -270,10 +251,6 @@ ig_d("insee", "IPPI-2015", "10-12-importation-2017")
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "IPCH-2015") %>% 
-  source_dataset_file_updates()
 ```
 
 ## Alimentation
@@ -300,10 +277,6 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-041")
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPC-PM-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPC-PM-2015.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "IPC-PM-2015") %>% 
-  source_dataset_file_updates()
 ```
 
 ## Energie: Pétrole, Fioul
@@ -318,10 +291,6 @@ ig_d("insee", "IPC-PM-2015", "essence-gazole-fioul-linear")
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-RDB; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-RDB.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "CNA-2014-RDB") %>% 
-  source_dataset_file_updates()
 ```
 
 ## Personne > UC > Ménage (Cotis)
@@ -341,23 +310,6 @@ ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~ theme,
-        "macro-france",
-        "inflation-france",
-        "pouvoir-achat",
-        "inflation",
-        "immobilier",
-        "housing") %>%
-  theme_file_updates()
-```
-
-## Données sur l'[inflation en France](https://fgeerolf.com/data/inflation-france.html)
-
-```{r, echo = F}
-load_data("inflation-france.RData")
-`inflation-france` %>%
-  source_dataset_title_file_updates()
 ```
 
 ## Info

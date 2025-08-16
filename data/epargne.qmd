@@ -248,6 +248,7 @@ ig_d("bdf", "CFT", "taux-epargne")
 ```{r, echo = F}
 # cd ~/iCloud/website/data/bdf; /usr/local/bin/R -e 'quarto::quarto_render("CFT.qmd")'
 # sh ~/iCloud/website/website_short.sh
+```
 
 ## Taux d'épargne financière
 

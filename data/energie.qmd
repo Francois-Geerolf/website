@@ -267,10 +267,6 @@ ig_d("insee", "bdf2017", "045-0451-0452-DECUC")
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPPMP-NF; /usr/local/bin/R -e 'quarto::quarto_render("IPPMP-NF.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "econ-gen-solde-ech-ext-2") %>%
-  source_dataset_file_updates()
 ```
 
 ## Energie, autres biens industriels, solde

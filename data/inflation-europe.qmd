@@ -29,11 +29,6 @@ knitr::opts_chunk$set(echo = T)
   "eurostat",  "prc_hicp_ctrb",
   "eurostat", "nama_10_co3_p3") %>%
   arrange(source, dataset)
-
-do.call(save, list("inflation-europe", file = "inflation-europe.RData"))
-load_data("inflation.RData")
-load_data("housing.RData")
-load_data("immobilier.RData")
 ```
 
 
@@ -46,32 +41,6 @@ load_data("immobilier.RData")
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-europe.qmd")'
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-europe.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~ theme,
-        "inflation-europe",
-        "inflation",
-        "immobilier",
-        "housing") %>%
-  theme_file_updates()
-```
-
-## Données sur l'[inflation en Europe](https://fgeerolf.com/data/inflation-europe.html)
-
-```{r, echo = F}
-load_data("inflation-europe.RData")
-`inflation-europe` %>%
-  source_dataset_title_file_updates()
-```
-
-
-
-
-## Data on [inflation](https://fgeerolf.com/data/inflation.html)
-
-```{r, echo = F}
-load_data("inflation.RData")
-inflation %>%
-  source_dataset_title_file_updates()
 ```
 
 # United States vs Europe
@@ -139,10 +108,6 @@ ig_d("eurostat", "prc_hicp_midx", "CP00-TOT-X-NRG-FOOD-standard-deviation-weight
 ```{r, echo = F}
 # cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R prc_hicp_manr; /usr/local/bin/R -e 'quarto::quarto_render("prc_hicp_manr.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "eurostat", "prc_hicp_manr") %>%
-  source_dataset_file_updates()
 ```
 
 
@@ -195,11 +160,6 @@ ig_d("eurostat", "prc_hicp_manr", "RCH-A-CP04521-FR-DE-BE-NL-2Y")
 # cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 # cd ~/iCloud/website/data/eurostat
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "eurostat", "prc_hicp_inw",
-        "eurostat", "nama_10_co3_p3") %>% 
-  source_dataset_file_updates()
 ```
 
 

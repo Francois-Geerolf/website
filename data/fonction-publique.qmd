@@ -15,53 +15,25 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
-source("../code/R-markdown/init_min.R")
-knitr::opts_chunk$set(echo = T)
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
 `fonction-publique` <- tribble(
   ~source, ~dataset,
   "dgafp", "FT12_FPE_FPH_FPT",
   "insee",  "EMPLOI-SALARIE-TRIM-NATIONAL",
   "insee",  "EMPLOI-BIT-TRIM") %>%
   arrange(source, dataset)
-
-do.call(save, list("fonction-publique", file = "fonction-publique.RData"))
 ```
 
 
 # Info
-
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("fonction-publique.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("emploi.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("finances-publiques.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("fonction-publique.qmd")'
-# sh ~/iCloud/website/website_short.sh
-
-tribble(~ theme,
-        "fonction-publique",
-        "finances-publiques",
-        "dette-publique",
-        "emploi") %>%
-  theme_file_updates()
-```
-
-## Données sur les [fonction publique](https://fgeerolf.com/data/fonction-publique.html)
-
-```{r, echo = F}
-load_data("fonction-publique.RData")
-`fonction-publique` %>%
-  source_dataset_title_file_updates()
-```
 
 # Part dans la fonction publique
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R EMPLOI-SALARIE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("EMPLOI-SALARIE-TRIM-NATIONAL.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "EMPLOI-SALARIE-TRIM-NATIONAL") %>% 
-  source_dataset_file_updates()
 ```
 
 
