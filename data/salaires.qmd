@@ -1,0 +1,333 @@
+---
+title: Analyse des Données de Salaires
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+
+salaires <- tribble(
+  ~source, ~dataset,
+  "dares", "les-indices-de-salaire-de-base",
+  "insee",  "CNA-2014-RDB",
+  "insee",  "CNT-2014-CSI",
+  "insee",  "ECRT2023",
+  "insee",  "if230",
+  "insee",  "INDICE-TRAITEMENT-FP",
+  "insee", "ir_salaires_SL_csv",
+  "insee", "ir_salaires_SL_23_csv",
+  "insee",  "SALAIRES-ANNUELS",
+  "insee",  "SALAIRES-ACEMO",
+  "insee",  "SALAIRES-ACEMO-2017",
+  "insee",  "t_7401",
+  "insee", "t_salaire_val") %>%
+  arrange(source, dataset)
+```
+
+# SMIC
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SMIC-COTISATIONS; /usr/local/bin/R -e 'quarto::quarto_render("SMIC-COTISATIONS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Tous
+
+```{r}
+ig_d("insee", "SMIC-COTISATIONS", "SMIC-2005")
+```
+
+
+
+## 2012-
+
+```{r}
+ig_d("insee", "SMIC-COTISATIONS", "SMIC-2012")
+```
+
+## 2020-
+
+```{r}
+ig_d("insee", "SMIC-COTISATIONS", "SMIC-2020")
+```
+
+# Salaire Moyen de Base (SMB)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SALAIRES-ANNUELS; /usr/local/bin/R -e 'quarto::quarto_render("SALAIRES-ANNUELS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Salaires VS IPC VS IPCH
+
+### 2017T2-
+
+```{r}
+ig_d("dares", "les-indices-de-salaire-de-base", "bind-2017T2")
+```
+
+### 2019T4-
+
+```{r}
+ig_d("dares", "les-indices-de-salaire-de-base", "bind-2019T4")
+```
+
+
+
+### 2020T4-
+
+```{r}
+ig_d("dares", "les-indices-de-salaire-de-base", "bind")
+```
+
+
+## Insee
+
+### 1999-
+
+```{r}
+ig_d("insee", "SALAIRES-ACEMO-2017", "ISMS-ITSHO-SALAIRES-ACEMO-2017-1999-100")
+```
+
+### 2017-
+
+```{r}
+ig_d("insee", "SALAIRES-ACEMO-2017", "ISMS-ITSHO")
+```
+
+### 1999-2017
+
+```{r}
+ig_d("insee", "SALAIRES-ACEMO", "ISMS-ITSHO")
+```
+
+
+## Ensemble
+
+
+### Tous
+
+```{r}
+ig_d("dares", "les-indices-de-salaire-de-base", "salaires")
+```
+
+### 2021T3-
+
+```{r}
+ig_d("dares", "les-indices-de-salaire-de-base", "salaires-2021T3")
+```
+
+
+## Cadres
+
+### Tous
+
+```{r}
+ig_d("dares", "les-indices-de-salaire-de-base", "salaires-cadres")
+```
+
+### 2021T3-
+
+```{r}
+ig_d("dares", "les-indices-de-salaire-de-base", "salaires-cadres-2021T3")
+```
+
+
+
+
+# Salaire Moyen Par Tête (SMPT)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SALAIRES-ANNUELS; /usr/local/bin/R -e 'quarto::quarto_render("SALAIRES-ANNUELS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## TOTAL, AZ, C
+
+### 1990-
+
+```{r}
+ig_d("insee", "t_salaire_val", "TOTAL-AZ-C-valeur-1990")
+```
+
+
+
+
+### 2021T3-
+
+```{r}
+ig_d("insee", "t_salaire_val", "TOTAL-AZ-C-2021T3")
+```
+
+## TOTAL, OQ
+
+### 2019T4-
+
+```{r}
+ig_d("insee", "t_salaire_val", "TOTAL-OQ-2019T4")
+```
+
+### 2021T3-
+
+```{r}
+ig_d("insee", "t_salaire_val", "TOTAL-OQ-2019T4")
+```
+
+
+
+## C2, C3, C4, C5
+
+### All
+
+```{r}
+ig_d("insee", "t_salaire_val", "C2-C3-C4-C5-valeur")
+```
+
+### 1990-
+
+```{r}
+ig_d("insee", "t_salaire_val", "C2-C3-C4-C5-valeur-1990")
+```
+
+# Depuis 1996
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SALAIRES-ANNUELS; /usr/local/bin/R -e 'quarto::quarto_render("SALAIRES-ANNUELS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## PCS
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice")
+```
+
+
+## PCS, Réel
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-CCE-4-6-IPC-IPCH-reel")
+```
+
+
+
+## Pas de hausse des inégalités ?
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice")
+```
+
+
+
+# Salaires
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SALAIRES-ANNUELS; /usr/local/bin/R -e 'quarto::quarto_render("SALAIRES-ANNUELS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Tous
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "010752373-010752366-1996")
+```
+
+
+
+
+## 1999-
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "010752373-010752366-1999")
+```
+
+
+
+
+# Indice de traitement de la fonction publique
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R INDICE-TRAITEMENT-FP; /usr/local/bin/R -e 'quarto::quarto_render("INDICE-TRAITEMENT-FP.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Tous
+
+```{r}
+ig_d("insee", "INDICE-TRAITEMENT-FP", "T-net-brut")
+```
+
+## Catégorie A
+
+```{r}
+ig_d("insee", "INDICE-TRAITEMENT-FP", "A-net-brut")
+```
+
+## Catégorie B
+
+```{r}
+ig_d("insee", "INDICE-TRAITEMENT-FP", "B-net-brut")
+```
+
+
+## Catégorie C
+
+```{r}
+ig_d("insee", "INDICE-TRAITEMENT-FP", "C-net-brut")
+```
+
+
+
+# Pour en savoir plus...
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("salaires.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("salaires.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("wages.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/salaires.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## Sources
+
+- Insee. L'essentiel sur... les salaires. <https://www.insee.fr/fr/statistiques/7457170>
+
+# Statistiques de court terme
+
+## Info
+
+- Blog INSEE. [html](https://blog.insee.fr/mesurer-l-evolution-des-salaires-a-court-terme/)
+
+```{r}
+ig_b("salaires", "blogInsee_2023_10-les_indicateurs_stats_pour_mesurer_les_salaires_a_court_terme-fig1")
+```
+
+
+```{r}
+ig_b("salaires", "blogInsee_2023_10-les_indicateurs_stats_pour_mesurer_les_salaires_a_court_terme-fig2")
+```
+
+
+## Bibliographie en lien
+
+### Français
+
+- "Inflation en France : IPC ou IPCH ?", F. Geerolf, Document de travail, Juillet 2024. [[html](https://fgeerolf.com/IPC-ou-IPCH.html)] [[pdf](https://fgeerolf.com/IPC-ou-IPCH.pdf)]
+

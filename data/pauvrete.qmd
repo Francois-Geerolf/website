@@ -1,0 +1,74 @@
+---
+title: Données Clés sur la Pauvreté
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source("../code/R-markdown/init_min.R")
+knitr::opts_chunk$set(echo = T)
+pauvrete <- tribble(
+  ~source, ~dataset,
+  "insee",  "ECRT2023") %>%
+  arrange(source, dataset)
+
+save(pauvrete, file = "pauvrete.RData")
+```
+
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pauvrete.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~ theme,
+        "pauvrete") %>%
+  theme_file_updates()
+```
+
+## Données sur la [pauvrete](https://fgeerolf.com/data/pauvrete.html)
+
+```{r, echo = F}
+load_data("pauvrete.RData")
+pauvrete %>%
+  source_dataset_title_file_updates()
+```
+
+# Taux de chômage BIT
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R TAUX-CHOMAGE; /usr/local/bin/R -e 'quarto::quarto_render("TAUX-CHOMAGE.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CHOMAGE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("CHOMAGE-TRIM-NATIONAL.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "insee", "TAUX-CHOMAGE",
+        "insee", "ECRT2023",
+        "insee", "reve-pauv-taux-seuil-60-activite") %>% 
+  source_dataset_file_updates()
+```
+
+# Seuils de pauvreté
+
+- Seuils de pauvreté mensuels - Données annuelles de 1975 à 2022. [html](https://www.insee.fr/fr/statistiques/2499760)
+
+# Pauvreté des retraités
+
+## 2024 (chiffres 2022)
+
+```{r}
+ig_b("insee", "FPS2024", "F18", "fig2")
+```

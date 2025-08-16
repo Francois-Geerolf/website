@@ -1,0 +1,72 @@
+---
+title: Exploring Italy's Economic Indicators
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+`italy` <-tribble(
+  ~source, ~dataset,
+  "oecd", "QNA",
+  "wdi", "NY.GDP.PCAP.PP.CD") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("italy.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("greece.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro-us.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro-france.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+# GDP
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Investment and saving
+
+```{r}
+ig_d("oecd", "QNA", "DEU-S-I-french")
+```
+
+## GDP Per capita
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA20-FRA-ITA-2000")
+```
+
+
+# Demography
+
+```{r}
+ig_d("eurostat", "demo_fmonth", "DE-FR-IT-1980-12months")
+```
+
+
+

@@ -1,0 +1,747 @@
+---
+title: Industry Data Overview
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+industry <- tribble(
+  ~source, ~dataset,
+  "ec", "INDUSTRY",
+  "eurostat", "nama_10_a64",
+  "eurostat", "nama_10_a64_e",
+  "eurostat", "namq_10_a10_e",
+  "eurostat", "htec_trd_group4",
+  "eurostat", "sts_inpr_m",
+  "eurostat", "sts_inppd_m",
+  "eurostat", "road_eqr_carmot",
+  "eurostat", "ei_isin_m",
+  "eurostat", "sts_intvnd_m",
+  "eurostat", "sts_inpp_m",
+  "fred",  "industry",
+  "oecd", "ALFS_EMP",
+  "oecd",  "MEI_REAL",
+  "oecd",  "GBARD_NABS2007",
+  "oecd",  "BERD_MA_SOF",
+  "oecd", "MSTI_PUB",
+  "oecd", "SNA_TABLE4",
+  "wdi", "NV.IND.EMPL.KD",
+  "wdi", "NV.IND.MANF.ZS",
+  "wdi", "NV.IND.MANF.CD",
+  "wdi", "NV.IND.TOTL.KD",
+  "wdi", "NV.IND.TOTL.ZS",
+  "wdi", "SL.IND.EMPL.ZS",
+  "wdi", "TX.VAL.MRCH.CD.WT") %>%
+  arrange(source, dataset)
+```
+
+
+# Key facts on industrial production
+
+## France vs. EU
+
+```{r}
+ig_d("eurostat", "sts_inpr_m", "FR-EU2027-2000")
+```
+
+
+
+# Percentage of manufacturing in World
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NV.IND.MANF.CD; /usr/local/bin/R -e 'quarto::quarto_render("NV.IND.MANF.CD.qmd")'
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## % of World manufacturing
+
+### Germany, France, Italy, United Kingdom, Spain
+
+```{r}
+ig_d("wdi", "NV.IND.MANF.CD", "DE-FR-IT-ES-GB")
+```
+
+### China, E.U., U.S.
+
+```{r}
+ig_d("wdi", "NV.IND.MANF.CD", "US-CN-EU")
+```
+
+## Data on R&D (from Eurostat)
+
+```{r}
+i_g("data/eurostat/rd_e_gerdtot_files/figure-html/table1.png")
+```
+
+
+
+# Value added per worker
+
+### US, UK, Spain
+
+```{r}
+ig_d("wdi", "NV.IND.EMPL.KD", "US-GB-ES-log")
+```
+
+# Industry (Competitive position in industry)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R SNA_TABLE3
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("SNA_TABLE3.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R ALFS_EMP
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("ALFS_EMP.qmd")'
+```
+
+## Competitive position according to Eurostat
+
+```{r}
+ig_d("ec", "INDUSTRY", "DE-B-competitive")
+```
+
+
+# Employment
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R SNA_TABLE3
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("SNA_TABLE3.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R ALFS_EMP
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("ALFS_EMP.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## OECD
+
+
+### France, Manufacture
+
+```{r}
+ig_d("oecd", "ALFS_EMP", "FRA-manufacturing")
+```
+
+
+### U.K., Manufacture
+
+```{r}
+ig_d("oecd", "ALFS_EMP", "GBR-manufacturing")
+```
+
+
+
+
+### U.S., Manufacture
+
+```{r}
+ig_d("fred", "industry", "MANEMP-presidents")
+```
+
+
+# Production indexes
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R MEI_REAL; /usr/local/bin/R -e 'quarto::quarto_render("MEI_REAL.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## Retail: an idea of consumption ? (since 1997 approximately !)
+
+### 1990-
+
+```{r}
+ig_d("oecd", "MEI_REAL", "SLRTTO01-FRA-DEU-ITA-USA-1990")
+```
+
+
+### 1975-
+
+```{r}
+ig_d("oecd", "MEI_REAL", "SLRTTO01-FRA-DEU-ITA-USA-1975")
+```
+
+
+
+## Manufacturing
+
+```{r}
+ig_d("oecd", "MEI_REAL", "PRMNTO01-FRA-DEU-ITA-USA-1995")
+```
+
+## Manufacturing
+
+```{r}
+ig_d("oecd", "MEI_REAL", "PRMNTO01-FRA-DEU-ITA-USA-1998")
+```
+
+
+## Passenger registration
+
+```{r}
+ig_d("eurostat", "road_eqr_carmot", "new-registrations")
+```
+
+
+
+# Balassa-Samuelson
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R MEI_REAL
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_one_var.R MEI_REAL
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("MEI_REAL.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## China: Development
+
+```{r}
+ig_d("wdi", "PA.NUS.PPPC.RF", "CN-FR-DE")
+```
+
+
+
+## Japan, Switzerland, Germany, South Korea
+
+```{r}
+ig_d("wdi", "PA.NUS.PPPC.RF", "JP-DE-CH")
+```
+
+## France, Germany, Switzerland (1960-)
+
+```{r}
+ig_d("oecd", "SNA_TABLE4", "PPPGDP-EXC-CHE-DEU-FRA")
+```
+
+## Saudi Arabia, South Africa, Colombia
+
+```{r}
+ig_d("oecd", "SNA_TABLE4", "PPPGDP-EXC-SAU-ZAF-COL")
+```
+
+
+
+# High Tech Exports
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R MSTI_PUB
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_one_var.R MSTI_PUB
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("MSTI_PUB.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## China, United States
+
+```{r}
+ig_d("oecd", "MSTI_PUB", "TDEAERO-TDECOMP-TDEDRUG-CHN-USA-log")
+```
+
+
+## China, United States, Germany, France
+
+```{r}
+ig_d("oecd", "MSTI_PUB", "TDEAERO-TDECOMP-TDEDRUG-CHN-USA-DEU-FRA-log")
+```
+
+
+# Industrial production
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f "DP_LIVE_7.R"
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("DP_LIVE.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Spain, Italy, France, Germany
+
+### All
+
+```{r}
+ig_d("oecd", "DP_LIVE", "INDPROD-MFG-ESP-ITA-FRA-DEU")
+```
+
+### 1990-
+
+```{r}
+ig_d("oecd", "DP_LIVE", "INDPROD-MFG-ESP-ITA-FRA-DEU-1990")
+```
+
+
+## France
+
+```{r}
+ig_d("oecd", "DP_LIVE", "INDPROD-FRA-1990")
+```
+
+## Germany
+
+```{r}
+ig_d("oecd", "DP_LIVE", "INDPROD-DEU-1990")
+```
+
+
+# Industry
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_a64; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Number of hours worked
+
+```{r}
+ig_d("eurostat", "nama_10_a64_e", "number-employees-industry")
+```
+
+# Manufacturing Value Added (NACE)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_a64; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## C
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C-TOTAL-FR-DE-IT-ES")
+```
+
+## C10-C12 - Food products
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C10-C12-TOTAL-FR-DE-IT-ES")
+```
+
+## C13-C15 - Textiles
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C13-C15-TOTAL-FR-DE-IT-ES")
+```
+
+## C16-C18 - Wood, Paper, Printing
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C16-C18-TOTAL-FR-DE-IT-ES")
+```
+
+## C29 - Motor vehicles
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C29-TOTAL-FR-DE-IT-ES")
+```
+
+## C29_C30 - Motor vehicles and other transport equipment
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C29-C30-TOTAL-FR-DE-IT-ES")
+```
+
+
+## C28 - Machinery and equipment
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C28-TOTAL-FR-DE-IT-ES")
+```
+
+# ILO
+
+## Industry
+
+```{r}
+ig_d("ilo", "EMP_2IND_NOC_RT_A", "industry-percent-CHE-DEU-FRA-USA")
+```
+
+# Eurostat
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R namq_10_gdp; /usr/local/bin/R -e 'quarto::quarto_render("namq_10_gdp.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_gdp; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_gdp.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_a64
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/eurostat
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Net Exports (Quarterly)
+
+```{r}
+ig_d("eurostat", "namq_10_gdp", "P6-P7-NSA-FR-DE-EA")
+```
+
+
+
+## Net Exports (Annual)
+
+```{r}
+ig_d("eurostat", "nama_10_gdp", "P6-P7-NSA-FR-DE-EA")
+```
+
+
+## Manufacturing
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C-TOTAL-FR-DE-IT")
+```
+
+## Manufacturing C
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "manufacturing-value-added-1995-2019")
+```
+
+## All countries
+
+
+# OECD - QNA
+
+## Germany, Italy, France
+
+```{r}
+ig_d("oecd", "QNA", "B1GVB-E-CQR-B1-GE-DEU-FRA-ITA-1995")
+```
+
+
+
+
+
+## Germany, Italy, France
+
+```{r}
+ig_d("oecd", "QNA_manufacturing", "B1GVC-CQR-B1-GE-DEU-FRA-JPN-CHN-GBR-IND")
+```
+
+## Germany, Italy, France
+
+```{r}
+ig_d("oecd", "QNA_manufacturing", "B1GVB-E-CQR-B1-GE-DEU-FRA-ITA-1995")
+```
+
+
+# IMF - Direction of Trade - Bilateral Surpluses
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/imf; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_a64
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_a64.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Germany Bilateral
+
+```{r}
+ig_d("imf", "DOT", "DE-TBG-USD-A-GDP-CN-US-E1-FR")
+```
+
+## France Bilateral
+
+```{r}
+ig_d("imf", "DOT", "FR-TBG-US-CN-ES-FR-A-GDP")
+```
+
+
+
+## US Bilateral
+
+```{r}
+ig_d("imf", "DOT", "US-TBG-US-CN-ES-FR-A-GDP")
+```
+
+
+## China Bilateral
+
+```{r}
+ig_d("imf", "DOT", "CN-TBG-USD-A-GDP-CN-US-E1-FR")
+```
+
+# WDI - Industry, value added (including construction) (NV.IND.TOTL.ZS)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one2.R NV.IND.TOTL.ZS
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("NV.IND.TOTL.ZS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France, Germany, OECD members
+
+```{r}
+ig_d("wdi", "NV.IND.TOTL.ZS", "FR-DE-OE")
+```
+
+
+## Italy, Portugal, Spain
+
+```{r}
+ig_d("wdi", "NV.IND.TOTL.ZS", "IT-PT-ES")
+```
+
+# WDI - Employment (SL.IND.EMPL.ZS)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one2.R SL.IND.EMPL.ZS
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("SL.IND.EMPL.ZS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Finland, Sweden, France
+
+```{r}
+ig_d("wdi", "SL.IND.EMPL.ZS", "FI-SE-FR")
+```
+
+## France, Germany, OECD members
+
+```{r}
+ig_d("wdi", "SL.IND.EMPL.ZS", "FR-DE-OE")
+```
+
+
+
+## China, India, France, Germany, Japan
+
+```{r}
+ig_d("wdi", "SL.IND.EMPL.ZS", "CN-FR-DE-IN-GB-US")
+```
+
+## China, France, Germany
+
+```{r}
+ig_d("wdi", "SL.IND.EMPL.ZS", "CN-FR-DE")
+```
+
+
+
+## Spain, United Kingdom, United States
+
+```{r}
+ig_d("wdi", "SL.IND.EMPL.ZS", "US-GB-ES")
+```
+
+
+## Italy, Portugal, Spain
+
+```{r}
+ig_d("wdi", "SL.IND.EMPL.ZS", "IT-PT-ES")
+```
+
+
+## Argentina, Chile, Venezuela
+
+```{r}
+ig_d("wdi", "SL.IND.EMPL.ZS", "AR-CL-VE")
+```
+
+
+# Value added in Manufacturing (NV.IND.MANF.ZS)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one2.R NV.IND.MANF.ZS
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("NV.IND.MANF.ZS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France, OECD, UK, US
+
+```{r}
+ig_d("wdi", "NV.IND.MANF.ZS", "EU-1W-FR-US-GB-1995-2021")
+```
+
+
+
+## France, Germany, OECD members, World
+
+```{r}
+ig_d("wdi", "NV.IND.MANF.ZS", "EU-1W-FR-DE-US-GB-1995-2021")
+```
+
+## France, Germany, OECD members, World
+
+```{r}
+ig_d("wdi", "NV.IND.MANF.ZS", "EU-1W-FR-DE")
+```
+
+## France, Germany, OECD members
+
+```{r}
+ig_d("wdi", "NV.IND.MANF.ZS", "CN-FR-DE-IN-GB-US-JP-1990")
+```
+
+
+
+
+## France, Germany, OECD members
+
+```{r}
+ig_d("wdi", "NV.IND.MANF.ZS", "FR-DE-OE")
+```
+
+
+## Italy, Portugal, Spain
+
+```{r}
+ig_d("wdi", "NV.IND.MANF.ZS", "IT-PT-ES")
+```
+
+
+## Italy, Portugal, Spain, Greece, France
+
+```{r}
+ig_d("wdi", "NV.IND.MANF.ZS", "IT-PT-ES-GR-FR-1995")
+```
+
+# WDI - Net exports (NE.RSB.GNFS.ZS)
+
+## Sweden
+
+```{r}
+ig_d("wdi", "NE.RSB.GNFS.ZS", "SE")
+```
+
+## Israel
+
+```{r}
+ig_d("wdi", "NE.RSB.GNFS.ZS", "IL")
+```
+
+## Germany
+
+```{r}
+ig_d("wdi", "NE.RSB.GNFS.ZS", "DE")
+```
+
+## Germany, France, Italy
+
+```{r}
+ig_d("wdi", "NE.RSB.GNFS.ZS", "DE-FR-IT-flags")
+```
+
+## Germany, France, Switzerland
+
+```{r}
+ig_d("wdi", "NE.RSB.GNFS.ZS", "DE-FR-CH-flags")
+```
+
+
+# SNA_TABLE6A
+
+## Luxembourg, Cyprus, Australia
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A", "LUX-CYP-AUS")
+```
+
+## Albania, Norway, Greece
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A", "ALB-NOR-GRC")
+```
+
+## Malta, Iceland, United Kingdom
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A", "MLT-ISL-GBR")
+```
+
+## Chile, Canada, France
+
+### All
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A", "CHL-CHL-FRA")
+```
+
+### 2007-
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A", "CHL-CHL-FRA-2007")
+```
+
+
+## New Zealand, Latvia, Brazil
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A", "NZL-LVA-BRA")
+```
+
+
+## Netherlands, United States, Costa Rica
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A", "NLD-USA-CRI")
+```
+
+## Spain, Colombia, Portugal
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A", "ESP-COL-PRT")
+```
+
+
+
+# SNA_TABLE6A_ARCHIVE
+
+## France, Germany, US
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A_ARCHIVE", "value-added-manuf-DEU-FRA-USA")
+```
+
+
+## Denmark, Switzerland, UK
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A_ARCHIVE", "value-added-manuf-GBR-DNK-CHE")
+```
+
+
+## Spain, Italy, Portugal
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A_ARCHIVE", "value-added-manuf-ESP-ITA-PRT")
+```
+
+
+## Finland, Sweden, Norway
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A_ARCHIVE", "value-added-manuf-FIN-SWE-NOR")
+```
+
+
+## Denmark, Switzerland, UK
+
+```{r}
+ig_d("oecd", "SNA_TABLE6A_ARCHIVE", "value-added-manuf-KOR-NZL-AUS")
+```
+
+# Basic Summary Stats on Manufacturing
+
+## 
+
+```{r}
+ig_d("oecd", "SNA_TABLE1", "B1GVC-B1-GE-USA-FRA-GBR-flags")
+```
+
+
+
+# Manufacturing - WDI
+
+
+## France, Germany, OECD
+
+```{r, out.width = "95%"}
+ig_d("wdi", "NV.IND.MANF.ZS", "FR-DE-OE")
+```
+
+

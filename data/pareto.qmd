@@ -1,0 +1,64 @@
+---
+title: Data on Pareto distributions
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# open https://fgeerolf.com/data/index.html
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pareto.qmd")'
+# open https://fgeerolf.com/data/pareto.html
+# sh ~/iCloud/website/website_short.sh
+pareto <-tribble(
+  ~source, ~dataset,
+  "insee", "ip1863",
+  "insee", "ip2020") %>%
+  arrange(source, dataset)
+```
+
+
+# Salaires, France
+
+## IP 2020
+
+### Toute la distribution
+
+```{r}
+ig_d("insee", "ip2020", "fig3")
+```
+
+### Top distribution
+
+```{r}
+ig_d("insee", "ip2020", "fig3-90")
+```
+
+
+
+## IP 1863
+
+### 1990-
+
+```{r}
+ig_d("insee", "ip1863", "fig3-90")
+```
+
+### Last 10 years
+
+```{r}
+ig_d("insee", "ip1863", "salaires-distribution-80")
+```

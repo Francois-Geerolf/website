@@ -1,0 +1,68 @@
+---
+title: Data on international finance 
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+
+`international-finance` <- tribble(
+  ~source, ~dataset,
+  "imf",  "BGS_BP6_USD",
+  "imf", "BCA_BP6_USD",
+  "imf",  "IFR_BP6_USD",
+  "oecd", "BOP") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("international-finance.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("saving.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/international-finance.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/saving.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+
+# Current Account
+
+## US vs. EU
+
+```{r}
+ig_d("oecd", "BOP", "CA-EU27-USA-1999")
+```
+
+
+# International Investment Position
+
+## IMF
+
+```{r}
+ig_d("imf", "IFR_BP6_USD", "US-ES-IT-DE-FR-GR")
+```
+
+## Eurostat
+
+```{r}
+ig_d("eurostat", "bop_iip6_q", "FANENDI-FR-DE-EA20-ES-NL-IT")
+```
+
+

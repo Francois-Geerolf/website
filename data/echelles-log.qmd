@@ -1,0 +1,130 @@
+---
+title: Echelles logarithmiques en économie
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+`echelles-log` <- tribble(
+  ~source, ~dataset,
+  "insee", "reve-niv-vie-pouv-achat-trim",
+  "insee", "marc-salair-net-moy-sexe") %>%
+  arrange(source, dataset)
+```
+
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("echelles-log.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("log-scales.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/log.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# Pouvoir d'achat
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -f reve-niv-vie-pouv-achat-trim.R; /usr/local/bin/R -e 'quarto::quarto_render("reve-niv-vie-pouv-achat-trim.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -f reve-conso-evo-dep-pa.R; /usr/local/bin/R -e 'quarto::quarto_render("reve-conso-evo-dep-pa.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## France, Portrait Social 2023
+
+### Originel
+
+```{r}
+ig_b("insee", "RPM2024", "F1", "fig3")
+```
+
+
+## Revenus et patrimoine des ménages, Edition 2024
+
+### Originel
+
+```{r}
+ig_b("insee", "RPM2024", "F1", "fig3")
+```
+
+### Répliqué
+
+```{r}
+ig_d("insee", "RPM2024-F1", "lineaire")
+```
+
+
+### Log
+
+```{r}
+ig_d("insee", "RPM2024-F1", "log")
+```
+
+### Les deux
+
+```{r}
+ig_d("insee", "RPM2024-F1", "both")
+```
+
+
+## PIB réel
+
+```{r}
+ig_d("insee", "CNA-2020-PIB", "france-tendance-step1-both")
+```
+
+
+
+## RDB
+
+```{r}
+ig_d("insee", "reve-niv-vie-pouv-achat-trim", "pouvoir-achat-both")
+```
+
+## RDB par UC
+
+```{r}
+ig_d("insee", "reve-niv-vie-pouv-achat-trim", "pouvoir-achat-UC-both")
+```
+
+## Salaire net à temps complet dans le privé
+
+```{r}
+ig_d("insee", "marc-salair-net-moy-sexe", "plot-bind")
+```
+
+# Indice des prix
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/shiller; /usr/local/bin/R -f data.R; /usr/local/bin/R -e 'quarto::quarto_render("data.qmd")'
+# cd ~/iCloud/website/data/shiller; /usr/local/bin/R -e 'quarto::quarto_render("cpi.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## Shiller
+
+```{r}
+ig_d("shiller", "cpi", "cpi-bind")
+```
+
+## Fred
+
+```{r}
+ig_d("fred", "cpi", "CPIAUCSL-bind")
+```

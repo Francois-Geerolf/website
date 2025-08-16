@@ -18,7 +18,6 @@ editor: source
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-knitr::opts_chunk$set(echo = T)
 `commodities` <- tribble(
   ~source, ~dataset,
   "bdf",  "FM",

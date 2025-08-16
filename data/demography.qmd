@@ -1,0 +1,72 @@
+---
+title: Data on demography
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+demography <- tribble(
+  ~source, ~dataset,
+  "eurostat", "demo_minfind",
+  "eurostat", "demo_minfind",
+  "oecd", "FAMILY") %>%
+  arrange(source, dataset)
+```
+
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R demo_fmonth; /usr/local/bin/R -e 'quarto::quarto_render("demo_fmonth.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("demography.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+# Births, Deaths
+
+## France, Germany, Italy
+
+```{r}
+ig_d("oecd", "FAMILY", "FAM1-DEU-FRA-ITA")
+```
+
+
+## France, Germany, Italy
+
+### OECD, Eurostat, INSEE
+
+```{r}
+ig_d("oecd", "FAMILY", "FAM16A-DEU-FRA-ITA-log")
+```
+
+### Eurostat
+
+```{r}
+ig_d("eurostat", "demo_minfind", "FR-DE-IT-ES-1996")
+```
+
+# Births
+
+```{r}
+ig_d("eurostat", "demo_fmonth", "DE-FR-IT-12months")
+```
+
+
+

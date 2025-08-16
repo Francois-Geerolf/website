@@ -1,0 +1,346 @@
+---
+title: Données au sujet de l'énergie
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+energie <- tribble(
+  ~source, ~dataset,
+  "cre", "TRV_electricite",
+  "cre", "TRV_gaz",
+  "sdes", "bilan_energetique",
+  "insee", "t_5404",
+  "insee", "econ-gen-solde-ech-ext-2",
+  "insee", "IPPMP-NF") %>%
+  arrange(source, dataset)
+```
+
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("energie.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("energy.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+# Prix de l'énergie
+
+## Prix des contrats à terme sur l'énergie
+
+```{r, echo = F}
+temp <- "https://fr.investing.com/commodities/energy" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) %>%
+  select(-1) %>%
+  select(1, 2, 3)
+
+temp |>
+  gt()|>
+    tab_options(
+      quarto.disable_processing = TRUE
+    ) |> 
+  cols_align(
+    align = "center") |>
+  fmt_number(
+    dec_mark = ",",
+    sep_mark = ".",
+    decimals = 2
+  ) |>
+  opt_interactive(
+    use_search = F,
+    use_pagination = F,
+    use_pagination_info = F,
+    use_compact_mode = T,
+    page_size_default = 20,
+    page_size_values = c(5, 10, 15, 20),
+    use_resizers = T,
+    use_highlight = T
+  # ) |>
+  # cols_width(
+  #   c("country_code_2") ~ px(40),
+  #   c("Current Rate") ~ px(120),
+  #   c("Next Meeting") ~ px(140),
+  #   c("Central Bank") ~ px(280),
+  #   everything() ~ px(200)
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://fr.investing.com/commodities/energy>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+## Cotations des Marchés Futures Americains
+
+
+
+```{r, echo = F}
+temp <- "https://fr.investing.com/commodities/energy" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) %>%
+  select(-1) %>%
+  select(1, 2, 3)
+
+temp |>
+  gt()|>
+    tab_options(
+      quarto.disable_processing = TRUE
+    ) |> 
+  cols_align(
+    align = "center") |>
+  fmt_number(
+    dec_mark = ",",
+    sep_mark = ".",
+    decimals = 2
+  ) |>
+  opt_interactive(
+    use_search = F,
+    use_pagination = F,
+    use_pagination_info = F,
+    use_compact_mode = T,
+    page_size_default = 20,
+    page_size_values = c(5, 10, 15, 20),
+    use_resizers = T,
+    use_highlight = T
+  # ) |>
+  # cols_width(
+  #   c("country_code_2") ~ px(40),
+  #   c("Current Rate") ~ px(120),
+  #   c("Next Meeting") ~ px(140),
+  #   c("Central Bank") ~ px(280),
+  #   everything() ~ px(200)
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://fr.investing.com/commodities/energy>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+# Prix
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPPMP-NF; /usr/local/bin/R -e 'quarto::quarto_render("IPPMP-NF.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Electricité
+
+### Euros
+
+#### Tous
+
+```{r}
+ig_d("cre", "TRV_electricite", "Base")
+```
+
+#### 2017-
+
+```{r}
+ig_d("cre", "TRV_electricite", "Base-2017")
+```
+
+
+
+### Indice 100
+
+#### Tous
+
+```{r}
+ig_d("cre", "TRV_electricite", "Base-9-HT-TTC")
+```
+
+
+## TTC vs HT
+
+```{r}
+ig_b("sdes", "datalab_essentiel_349_prix_electricite_france_ue_2023_juillet2024_v2", "graphique1")
+```
+
+
+
+
+## Electricité, Gaz, électricité + gaz
+
+### Mai 2017-
+
+```{r}
+ig_d("insee", "IPCH-2015", "041-045-01-00-mai2017")
+```
+
+### Janvier 2020-
+
+
+```{r}
+ig_d("insee", "IPCH-2015", "041-045-01-00-janvier2020")
+```
+
+### Juillet 2021-
+
+
+```{r}
+ig_d("insee", "IPCH-2015", "041-045-01-00-juillet2021")
+```
+
+## Pétrole
+
+### All
+
+```{r}
+ig_d("insee", "IPPMP-NF", "CIMP-41-valeur-log")
+```
+
+
+### 2004-
+
+```{r}
+ig_d("insee", "IPPMP-NF", "CIMP-41-valeur-log-2004")
+```
+
+
+### 2010-
+
+```{r}
+ig_d("insee", "IPPMP-NF", "CIMP-41-valeur-log-2010")
+```
+
+
+
+### 2 years
+
+```{r}
+ig_d("insee", "IPPMP-NF", "CIMP-41-valeur-log-2-years")
+```
+
+
+# Poids budgétaire
+
+## Electricité + gaz, carburants
+
+### % du revenu
+
+```{r}
+ig_d("insee", "bdf2017", "045-0722-revenu")
+```
+
+### % de la consommation
+
+```{r}
+ig_d("insee", "bdf2017", "045-0722")
+```
+
+
+
+## Electricité, Gaz, électricité + gaz
+
+### % du revenu
+
+```{r}
+ig_d("insee", "bdf2017", "045-0451-0452-DECUC-revenu")
+```
+
+### % de la consommation
+
+```{r}
+ig_d("insee", "bdf2017", "045-0451-0452-DECUC")
+```
+
+
+# Balance commerciale énergétique
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPPMP-NF; /usr/local/bin/R -e 'quarto::quarto_render("IPPMP-NF.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "insee", "econ-gen-solde-ech-ext-2") %>%
+  source_dataset_file_updates()
+```
+
+## Energie, autres biens industriels, solde
+
+```{r}
+ig_d("insee", "econ-gen-solde-ech-ext-2", "AUTR-ENER-SOLD")
+```
+
+# Consommation d'énergie
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPPMP-NF; /usr/local/bin/R -e 'quarto::quarto_render("IPPMP-NF.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Consommation finale
+
+```{r}
+ig_d("sdes", "bilan_energetique", "SY063TMR-SY064TMR-SY065TMR-SY066TMR")
+```
+
+
+
+## Gaz
+
+```{r}
+ig_d("sdes", "bilan_energetique", "GA022TMR-GA021TMR-GA026TFR-GA025TFR")
+```
+
+
+## Electricité
+
+```{r}
+ig_d("sdes", "bilan_energetique", "EL041TMR-EL042TMR-EL043TMR")
+```
+
+
+# Pour en savoir plus...
+
+
+## Bibliographie en lien
+
+### Français
+
+<!---
+- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+--->
+
+- "Les politiques économiques de lutte contre l’inflation en Europe." F. Geerolf, In L'économie européenne 2023-2024, La Découverte, p.42-56, septembre 2023. [[html](https://www.cairn.info/l-economie-europeenne-2023-2024--9782348079993-page-42.htm)]
+
+- "La politique économique en Europe face à l’inflation." F. Geerolf, Cahiers français n°432: Faire face à l'inflation, La Documentation française, mars 2023. [[html](https://www.vie-publique.fr/catalogue/288377-faire-face-linflation)🔒]
+
+- "Qui va payer cette facture énergétique ?" F. Geerolf, Interview a priori, décembre 2022. [[html](https://a-prioris.fr/hauteur-de-vue/francois-geerolf-qui-va-payer-cette-facture-energetique)]
+
+- "Inflation en Europe : les conséquences sociales de la guerre en Ukraine." G. Allègre, F. Geerolf, X. Timbeau, Blog de l'OFCE, juillet 2022. [[blog](https://www.ofce.sciences-po.fr/blog/inflation-en-europe-les-consequences-sociales-de-la-guerre-en-ukraine/)]
+
+- Inflation et pouvoir d'achat : it's the politics, stupid! F. Geerolf & P. Jacquet, Relançons le débat économique, juin 2022. [[pdf](https://lecercledeseconomistes.fr/wp-content/uploads/2022/07/rlde-2022-25-geerolfjacquet.pdf)] [[html](https://lecercledeseconomistes.fr/inflation-et-pouvoir-dachat-its-the-politics-stupid/)]
+
+
+### Anglais
+
+- "Are inflation dynamics different in the euro area and the United States?" C. Blot & F. Geerolf, Monetary Dialogue Paper, November 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/755706/IPOL_IDA(2023)755706_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/fr/document/IPOL_IDA(2023)755706)]
+
+- "The direct and indirect impacts of the war on inflation." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, March 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/741487/IPOL_IDA(2023)741487_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)741487)]
+
+- Geerolf, François. « The “Baqaee-Farhi approach” and a russian gas embargo », Revue de l'OFCE, vol. 179, no. 4, 2022, pp. 143-165. [[pdf](https://www.ofce.sciences-po.fr/pdf/revue/4-179OFCE.pdf)] [[slides](https://fgeerolf.com/russiangas-slides.pdf)] [[html](https://www.cairn.info/revue-de-l-ofce-2022-4-page-143.htm?contenu=article)]
+
+- "Heterogeneity of inflation in the euro area: more complicated than it seems." C. Blot, J. Creel, F. Geerolf & S. Levasseur, Monetary Dialogue Paper, November 2022, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2022/733999/IPOL_IDA(2022)733999_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2022)733999)]
+
+- "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[html](https://github.com/OFCE/SIWU)]

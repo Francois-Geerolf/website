@@ -1,0 +1,165 @@
+---
+title: "Data on saving"
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+
+saving <- tribble(
+  ~source, ~dataset,
+  "bdf",  "CFT",
+  "bea", "T50100",
+  "fred", "saving",
+  "oecd", "NAAG",
+  "wdi", "NY.GNS.ICTR.ZS",
+  "wdi", "NY.GDS.TOTL.ZS") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("epargne.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("saving.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/epargne.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/saving.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# U.S.
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "saving.R"
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "saving.R"; /usr/local/bin/R -e 'quarto::quarto_render("saving.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Public Deficit
+
+```{r}
+ig_d("fred", "saving", "surplus-gdp-1947-2020")
+```
+
+## Gross/net saving
+
+```{r}
+ig_d("bea", "T50100", "depreciation-net-saving")
+```
+
+
+## Gross/net saving
+
+```{r}
+ig_d("bea", "T50100", "depreciation-net-saving")
+```
+
+# Net saving rate (% of GDP)
+
+- **Disposable income.** [html] Disposable income is closest to the concept of income as generally understood in economics. Household disposable income is income available to households such as wages and salaries, income from self-employment and unincorporated enterprises, income from pensions and other social benefits, and income from financial investments (less any payments of tax, social insurance contributions and interest on financial liabilities). ‘Gross’ means that depreciation costs are not subtracted. For gross household disposable income per capita, growth rates (percentage change from previous period) are presented; these are ‘real’ growth rates adjusted to remove the effects of price changes. Information is also presented for gross household disposable income including social transfers in kind, such as health or education provided for free or at reduced prices by governments and not-for-profit organisations. This indicator is in US dollars per capita at current prices and PPPs. In the System of National Accounts, household disposable income including social transfers in kind is referred to as ‘adjusted household disposable income’. All OECD countries compile their data according to the 2008 System of National Accounts (SNA 2008).
+
+## France, Germany, United States, Japan
+
+```{r}
+ig_d("oecd", "NAAG", "B8NS-FRA-USA")
+```
+
+
+## Germany, France, Spain, Italy
+
+```{r}
+ig_d("oecd", "NAAG", "B8NS-ITA-ESP-FRA-DEU")
+```
+
+# Saving rate (%)
+
+## United States
+
+### Personal saving rate
+
+```{r}
+ig_d("fred", "saving", "PSAVERT")
+```
+
+
+### Net lending or borrowing
+
+```{r}
+ig_d("fred", "saving", "net-lending")
+```
+
+
+
+
+
+## France, Germany, Italy, Europe
+
+### Key indicators
+
+```{r}
+ig_d("eurostat", "nasq_10_ki", "SRGS14S15-FR-DE-IT-ES-EA20-2000")
+```
+
+### % of GDP
+
+```{r}
+ig_d("eurostat", "nasq_10_nf_tr", "B8G-FR-DE-IT-ES-2000")
+```
+
+
+### % of Disposable income
+
+```{r}
+ig_d("eurostat", "nasq_10_nf_tr", "B8G-B6G-FR-DE-IT-ES-2000")
+```
+
+## Bank of France
+
+### Saving Rate
+
+```{r}
+ig_d("bdf", "CFT", "B8G")
+```
+
+### Financial Saving Rate
+
+```{r}
+ig_d("bdf", "CFT", "B9Z")
+```
+
+# Net saving rate, % of NDI
+
+## OECD
+
+```{r}
+ig_d("oecd", "NAAG", "B8NS14S15SB6NS14-ITA-ESP-FRA-DEU")
+```
+
+
+
+
+# Investment rate (%)
+
+## France, Germany, Italy, Europe
+
+```{r}
+ig_d("eurostat", "nasq_10_ki", "IRGS11-FR-DE-IT-ES-EA20-2000")
+```
+
+
+
+

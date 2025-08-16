@@ -1,0 +1,557 @@
+---
+title: Analyse des Données du Secteur Immobilier
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+immobilier <- tribble(
+  ~source, ~dataset,
+  "acpr",  "as151",
+  "bdf",  "BSI1",
+  "bdf",  "FM",
+  "bdf",  "CPP",
+  "bdf",  "immobilier",
+  "bdf",  "MIR",
+  "bdf",  "MIR1",
+  "bdf",  "RPP",
+  "cgedd", "nombre-vente-maison-appartement-ancien",
+  "insee", "CONSTRUCTION-LOGEMENTS",
+  "insee", "ENQ-CONJ-PROMO-IMMO",
+  "insee", "ENQ-CONJ-ART-BAT",
+  "insee", "ENQ-CONJ-IND-BAT",
+  "insee", "ENQ-CONJ-TP",
+  "insee", "ILC-ILAT-ICC",
+  "insee", "INDICES_LOYERS",
+  "insee", "IPLA-IPLNA-2015",
+  "insee", "IRL",
+  "insee", "PARC-LOGEMENTS",
+  "insee", "SERIES_LOYERS",
+  "insee", "t_dpe_val",
+  "notaires", "arrdt",
+  "notaires", "dep") %>%
+  arrange(source, dataset)
+```
+
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("immobilier.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("housing.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+
+## Bibliographie en lien
+
+### Français
+
+<!---
+- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+--->
+
+- "L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques.", F. Geerolf, Blog de l'OFCE, décembre 2023. [[html](https://fgeerolf.com/inflation-par-categorie.html)] [[blog](https://www.ofce.sciences-po.fr/blog/lanalyse-de-linflation-par-categories-de-menages-quelques-problemes-methodologiques/)] [[pdf](https://fgeerolf.com/inflation-par-categorie.pdf)]
+
+- "Quelques remarques au sujet du Blog de l'Insee: Mais si, l'Insee prend bien en compte le logement dans l'inflation !", F. Geerolf, Document de travail, 22 février 2022. [[html](https://fgeerolf.com/blog-insee-IPC-loyers.html)] [[pdf](https://fgeerolf.com/blog-insee-IPC-loyers.pdf)]
+
+- "Le keynésianisme doit-il faire l'économie de la courbe de Phillips ?" F. Geerolf, In L'économie mondiale 2022, La Découverte, p.73-86, septembre 2021. [[pdf](http://www.cepii.fr/PDF_PUB/em/2022/em2022-05.pdf)] [[slides](http://www.cepii.fr/docs/files/reunions/communications/em2022/Economie%20Mondiale%202022_Geerolf.pdf)]
+
+- "La courbe de Phillips n'est pas celle que vous croyez." F. Geerolf, La Lettre du CEPII, n°417, avril 2021. [[pdf](http://www.cepii.fr/PDF_PUB/lettre/2021/let417.pdf)] [[html](http://www.cepii.fr/CEPII/fr/publications/lettre/abstract.asp?NoDoc=12974)]
+
+### Anglais
+
+<!---
+
+- Nominal rates matter, independent from real rates [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Wages and profits in a time of high inflation in the euro area. [[pdf](https://fgeerolf.com/wages-profits-euroarea.pdf)]
+
+--->
+
+
+- "The Phillips Curve: a Relation between Real Exchange Rate Growth and Unemployment." F. Geerolf, January 2020. [[pdf](https://fgeerolf.com/phillips.pdf)]
+
+# Nombre de logements, France
+
+- 37,8 millions de logements en France au 1er janvier 2023, Insee Focus N°309. [[html](https://www.insee.fr/fr/statistiques/7700305)]
+
+- Mises en chantier sur 12 mois = ~ 1% du stock. (300K-400K)
+
+## Répartition du parc de logements selon la catégorie
+
+- Logements vacants (2023): 8.2%.
+- Résidences secondaires: 9.8%.
+
+```{r}
+ig_b("insee", "if309", "figure1")
+```
+
+
+## Répartition des résidences principales selon le statut d'occupation
+
+```{r}
+ig_b("insee", "if309", "figure3")
+```
+
+
+## Selon le type d’habitat et la taille de l’unité urbaine au 1er janvier 2023
+
+### Répartition des logements
+
+```{r}
+ig_b("insee", "if309", "figure4a")
+```
+
+
+### Nombre de logements
+
+```{r}
+ig_b("insee", "if309", "figure4b")
+```
+
+## Proportion de propriétaires
+
+```{r}
+ig_d("insee", "PARC-LOGEMENTS", "residences-principales")
+```
+
+
+## Proportion de locataires
+
+```{r}
+ig_d("insee", "PARC-LOGEMENTS", "proportion-locataires")
+```
+
+
+# Crédit immobilier
+
+- Crédits aux particuliers. [html](https://www.banque-france.fr/statistiques/credit/credit/credits-aux-particuliers)
+
+- Panorama des prêts à l’habitat des ménages. [html](https://www.banque-france.fr/panorama-des-prets-lhabitat-des-menages)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _download_one.R MIR1; /usr/local/bin/R -e 'quarto::quarto_render("MIR1.qmd")'
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _metadata_one.R MIR1
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _metadata_one.R BSI1; /usr/local/bin/R -e 'quarto::quarto_render("BSI1.qmd")'
+# cd ~/iCloud/website/data/bdf
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/R -f "immobilier.R"; /usr/local/bin/R -e 'quarto::quarto_render("immobilier.qmd")'
+```
+
+## Volumes de crédit
+
+### All
+
+```{r}
+ig_d("bdf", "immobilier", "credits-nouveaux-habitat")
+```
+
+
+### 2015-
+
+```{r}
+ig_d("bdf", "MIR1", "credits-habitat")
+```
+
+### 2015-
+
+```{r}
+ig_d("bdf", "MIR1", "credits-habitat-2015")
+```
+
+## Adjusted loan growth (ECB)
+
+```{r}
+ig_d("ecb", "BSI", "adjusted-loans-households-FR")
+```
+
+
+
+## BCE et taux immobilier
+
+### 1998-
+
+```{r}
+ig_d("bdf", "immobilier", "habitat-BCE")
+```
+
+
+
+### 1998-
+
+
+- 4% vs. 1.5%, sur 15 ans:
+
+$$
+\frac{1}{i}\left(1-\frac{1}{(1+i)^d}\right)
+$$ 
+
+```{r}
+capacite_achat <- function(i, d){(1/i)*(1-1/(1+i)^d)}
+(capacite_achat(0.035, 25)/capacite_achat(0.01, 25)-1) %>%
+  scales::percent(acc = 0.1)
+```
+
+
+- Allongement sur 25 ans vs. 15 ans, à 4%:
+
+```{r}
+(capacite_achat(0.04, 25)/capacite_achat(0.04, 15)-1) %>%
+  scales::percent(acc = 0.1)
+```
+
+- 3.5% vs. 1.25% sur 15 ans:
+
+```{r}
+(capacite_achat(0.04, 25)/capacite_achat(0.04, 15)-1) %>%
+  scales::percent(acc = 0.1)
+```
+
+
+
+```{r}
+ig_d("bdf", "immobilier", "habitat-BCE-2-2021")
+```
+
+
+## Taux banque centrale
+
+```{r}
+ig_d("bdf", "FM", "taux-credits-habitats")
+```
+
+
+## Taux crédit habitat
+
+```{r}
+ig_d("bdf", "MIR1", "taux-credits-habitats")
+```
+
+## Part des renégociations
+
+```{r}
+ig_d("bdf", "MIR1", "part-renegociations")
+```
+
+# Remboursements de crédits immobiliers
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_3217.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-PIB; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-PIB.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## Remboursements
+
+```{r}
+ig_d("insee", "bdf2017", "132Z-0411-0412-DECUC")
+```
+
+## Loyers, remboursements
+
+```{r}
+ig_d("insee", "bdf2017", "132Z-0411-DECUC")
+```
+
+# Fiscalité
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_3217.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-PIB; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-PIB.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Taxe foncière
+
+### Montant
+
+```{r}
+ig_d("insee", "T_3217", "taxe-fonciere")
+```
+
+
+
+### Par centile
+
+```{r}
+ig_b("insee", "RPM2021", "F31", "table1")
+```
+
+## Droits de mutation, taxe foncière, taxe habitation
+
+```{r}
+ig_d("insee", "t_3217", "enregistrement-mutation-habitation-fonciere")
+```
+
+
+
+# Taux BC
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/R -f "FM.R"; /usr/local/bin/R -e 'quarto::quarto_render("FM.qmd")'
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/R -f "BSI1.R"; /usr/local/bin/R -e 'quarto::quarto_render("BSI1.qmd")'
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _metadata_one.R BSI1
+# cd ~/iCloud/website/data/bdf
+```
+
+
+
+## Encours de crédits à l'habitat
+
+```{r}
+ig_d("bdf", "BSI1", "encours-habitat")
+```
+
+
+
+## Encours de crédits à l'habitat
+
+```{r}
+ig_d("bdf", "BSI1", "encours-habitat-log")
+```
+
+
+
+## Taux d'effort
+
+```{r}
+ig_d("acpr", "as160", "taux-effort")
+```
+
+## Apport Personnel
+
+```{r}
+ig_d("acpr", "as160", "taux-apport-joli")
+```
+
+
+# Durée d'emprunt
+
+## ACPR
+
+```{r}
+ig_d("acpr", "as160", "duree-moyenne-des-prets")
+```
+
+## Friggit
+
+```{r}
+ig_b("igedd", "duree-credit-immo_cle211647-1", "graphique1")
+```
+
+
+# Prix Immobilier
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/R -f "RPP.R"; /usr/local/bin/R -e 'quarto::quarto_render("RPP.qmd")'
+```
+
+## Banque de France
+
+```{r}
+ig_d("bdf", "RPP", "ED-EF-2000")
+```
+
+
+## Banque de France
+
+```{r}
+ig_d("bdf", "RPP", "ED-EF-1998")
+```
+
+## Notaires - Arrondissements
+
+```{r}
+ig_d("notaires", "arrdt", "14e-5e-6e")
+```
+
+## Notaires - Départements
+
+```{r}
+ig_d("notaires", "dep", "Paris-Essonne-SeineetMarne-Em2")
+```
+
+
+## Taux BCE VS Immobilier
+
+```{r}
+ig_b("bdf", "prix-immobilier-taux")
+```
+
+# Loyers
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IRL; /usr/local/bin/R -e 'quarto::quarto_render("IRL.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R ILC-ILAT-ICC; /usr/local/bin/R -e 'quarto::quarto_render("ILC-ILAT-ICC.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## IRL
+
+```{r}
+ig_d("insee", "IRL", "variation")
+```
+
+## ILC (loyers commerciaux), ILAT (loyers des activités tertiaires)
+
+```{r}
+ig_d("insee", "ILC-ILAT-ICC", "variation")
+```
+
+## Réels vs. implicites
+
+```{r}
+ig_d("insee", "conso-eff-fonction", "04.1-04.2")
+```
+
+# Indice des prix
+
+```{r}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPLA-IPLNA-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPLA-IPLNA-2015.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Anciens vs. neufs
+
+```{r}
+ig_d("insee", "IPLA-IPLNA-2015", "IPLN-IPLNA-indice-2000")
+```
+
+
+
+# Construction
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CONSTRUCTION-LOGEMENTS; /usr/local/bin/R -e 'quarto::quarto_render("CONSTRUCTION-LOGEMENTS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Commencés, autorisés
+
+### 12 mois
+
+```{r}
+ig_d("insee", "CONSTRUCTION-LOGEMENTS", "france-logements")
+```
+
+
+### Mensuel
+
+```{r}
+ig_d("insee", "CONSTRUCTION-LOGEMENTS", "france-logements-mensuel")
+```
+
+## Nombre
+
+```{r}
+ig_d("insee", "CONSTRUCTION-LOGEMENTS", "type")
+```
+
+
+
+## Indice
+
+```{r}
+ig_d("insee", "CONSTRUCTION-LOGEMENTS", "type-indice-2016")
+```
+
+## Logements ordinaires, individuels purs
+
+```{r}
+ig_d("insee", "CONSTRUCTION-LOGEMENTS", "NLCR-101")
+```
+
+
+
+## Variation annuelle de l'ICC
+
+```{r}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R ILC-ILAT-ICC
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("ILC-ILAT-ICC.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+### All
+
+```{r}
+ig_d("insee", "ILC-ILAT-ICC", "VA-ICC-1990")
+```
+
+### 2008-
+
+```{r}
+ig_d("insee", "ILC-ILAT-ICC", "VA-ICC-2008")
+```
+
+# Immobilier commercial
+
+## 2008-
+
+```{r}
+ig_d("bdf", "CPP", "Q")
+```
+
+
+# Enquêtes de Conjoncture
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R ENQ-CONJ-TP; /usr/local/bin/R -e 'quarto::quarto_render("ENQ-CONJ-TP.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R ENQ-CONJ-PROMO-IMMO; /usr/local/bin/R -e 'quarto::quarto_render("ENQ-CONJ-PROMO-IMMO.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Promotion immobilière
+
+### Ensemble
+
+```{r}
+ig_d("insee", "ENQ-CONJ-PROMO-IMMO", "logements-neufs-ensemble")
+```
+
+### En fonction du financement
+
+```{r}
+ig_d("insee", "ENQ-CONJ-PROMO-IMMO", "logements-neufs-financement")
+```
+
+## Travaux publics
+
+```{r}
+ig_d("insee", "ENQ-CONJ-TP", "carnet-commandes")
+```
+
+
+## Artisanat dans le Bâtiment
+
+### Difficultés de recrutement, Apprentis
+
+```{r}
+ig_d("insee", "ENQ-CONJ-ART-BAT", "ECB-DREC-FAPPR")
+```
+
+## Industrie du Bâtiment
+
+### Difficultés de recrutement
+
+```{r}
+ig_d("insee", "ENQ-CONJ-IND-BAT", "ECB-DMAN-DQUA-DSPE-DTEC")
+```

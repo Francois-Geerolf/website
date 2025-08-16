@@ -1,0 +1,71 @@
+---
+title: Statistiques sur le patrimoine en France
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+patrimoine <- tribble(
+  ~source, ~dataset,
+  "bdf",  "CFT",
+  "insee",  "T_8201",
+  "insee",  "T_82XX") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("patrimoine.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("saving.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/patrimoine.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+# Comptes de patrimoine
+
+## Terrains
+
+```{r}
+ig_d("insee", "T_82XX", "terrains")
+```
+
+## Actifs on financiers
+
+```{r}
+ig_d("insee", "T_82XX", "AN-AN1-AN2-annees-PIB")
+```
+
+
+
+# Pour en savoir plus...
+
+## Bibliographie en lien
+
+### Français
+
+<!---
+- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+--->
+
+- "La taxe inflationniste, le pouvoir d’achat, le taux d’épargne et le déficit public", F. Geerolf, Document de travail, Juillet 2024. [[pdf](https://fgeerolf.com/taxe-inflationniste.pdf)]
+
+
+

@@ -1,0 +1,55 @@
+---
+title: Données sur la productivité
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source("../code/R-markdown/init_min.R")
+knitr::opts_chunk$set(echo = T)
+productivite <- tribble(
+  ~source, ~dataset,
+  "insee",  "EMPLOI-SALARIE-TRIM-NATIONAL",
+  "insee",  "ICA-2015-IND-CONS") %>%
+  arrange(source, dataset)
+
+do.call(save, list("productivite", file = "productivite.RData"))
+```
+
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("productivite.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("emploi.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("finances-publiques.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("productivite.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~ theme,
+        "productivite") %>%
+  theme_file_updates()
+```
+
+## Données sur la [productivité](https://fgeerolf.com/data/productivite.html)
+
+```{r, echo = F}
+load_data("productivite.RData")
+`productivite` %>%
+  source_dataset_title_file_updates()
+```
+
+
+
+
+

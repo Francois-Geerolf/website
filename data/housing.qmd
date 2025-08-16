@@ -1,0 +1,288 @@
+---
+title: Housing Market Insights
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+housing <- tribble(
+  ~source, ~dataset,
+  "bdf",  "RPP",
+  "bis",  "LONG_PP",
+  "bis",  "SELECTED_PP",
+  "ecb",  "RPP",
+  "eurostat",  "ei_hppi_q",
+  "eurostat", "hbs_str_t223",
+  "eurostat",  "prc_hpi_q",
+  "eurostat",  "prc_hicp_midx",
+  "fred",  "housing",
+  "insee", "IPLA-IPLNA-2015",
+  "oecd",  "housing",
+  "oecd",  "SNA_TABLE5") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data
+
+# sed -E 's|i_g\("data/([^/]+)/([^/]+)_files/figure-html/(.+)-1\.png"\)|ig_d("\1", "\2", "\3")|g' housing.qmd > housing2.qmd
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("housing.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("immobilier.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/housing.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/immobilier.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# Construction
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nasq_10_ki; /usr/local/bin/R -e 'quarto::quarto_render("nasq_10_ki.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Gross investment rate of households
+
+```{r}
+ig_d("eurostat", "nasq_10_ki", "IRGS14S15-FR-DE-EA20-2015")
+```
+
+
+
+# Implicit/imputed rents
+
+```{r, echo = F}
+# ?locales
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R hbs_str_t223; /usr/local/bin/R -e 'quarto::quarto_render("hbs_str_t223.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R SNA_TABLE5; /usr/local/bin/R -e 'quarto::quarto_render("SNA_TABLE5.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R HOUSING; /usr/local/bin/R -e 'quarto::quarto_render("HOUSING.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R prc_hicp_midx; /usr/local/bin/R -e 'quarto::quarto_render("prc_hicp_midx.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_co3_p3; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_co3_p3.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## By quintile
+
+```{r}
+ig_d("eurostat", "hbs_str_t223", "CP041-CP042-CP041042-DE-FR-IT-2015")
+```
+
+## Rents as % of Consumption
+
+```{r}
+ig_d("oecd", "SNA_TABLE5", "P31CP041-P31CP042-DEU-FRA-USA")
+```
+
+## Price Index
+
+```{r}
+ig_d("oecd", "HOUSING", "CP040200-FRA-USA-DEU-JPN")
+```
+
+
+## Quintile
+
+```{r}
+ig_d("eurostat", "hbs_str_t223", "CP041-CP042-DE-FR-IT-2015")
+```
+
+
+## Actual + imputed rentals
+
+```{r}
+ig_d("eurostat", "nama_10_co3_p3", "table1")
+```
+
+
+
+
+
+
+
+
+
+
+# Nominal House prices
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f SELECTED_PP.R; /usr/local/bin/R -e 'quarto::quarto_render("SELECTED_PP.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Since 2007 financial crisis
+
+```{r}
+ig_d("bis", "SELECTED_PP", "N-DEU-FRA-USA-EA-2007")
+```
+
+
+
+## Germany, France, Italy, Spain, Netherlands
+
+### 2000-
+
+```{r}
+ig_d("bis", "SELECTED_PP", "N-DEU-FRA-ITA-ESP-NLD-2000")
+```
+
+
+# Real House Prices, World
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bis; /usr/local/bin/R -f SELECTED_PP.R; /usr/local/bin/R -e 'quarto::quarto_render("SELECTED_PP.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## Eurostat
+
+```{r}
+ig_d("eurostat", "prc_hpi_ooq", "TOTAL-FR-IT-DE")
+```
+
+
+## Japan, South Korea, US
+
+```{r}
+ig_d("bis", "SELECTED_PP", "R-JPN-KOR-USA-1975")
+```
+
+## France, Germany, E.U., U.S.
+
+```{r}
+ig_d("bis", "SELECTED_PP", "R-DEU-FRA-USA-EA")
+```
+
+
+
+
+## France, Germany, E.U., U.S.
+
+```{r}
+ig_d("bis", "SELECTED_PP", "R-DEU-FRA-USA-EA-1990")
+```
+
+## France, Italy, Germany
+
+```{r}
+ig_d("bis", "SELECTED_PP", "R-DEU-FRA-ITA-1998")
+```
+
+
+## France, Italy, Germany, Spain, Netherlands
+
+### All
+
+```{r}
+ig_d("bis", "SELECTED_PP", "R-DEU-FRA-ITA-ESP-NLD-1990")
+```
+
+
+### 2000-
+
+```{r}
+ig_d("bis", "SELECTED_PP", "N-DEU-FRA-ITA-ESP-NLD-2000")
+```
+
+
+
+
+## France, Italy, Germany, Spain, Netherlands
+
+```{r}
+ig_d("bis", "SELECTED_PP", "N-DEU-FRA-ITA-ESP-NLD-1990")
+```
+
+
+# Household Debt
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _download_one.R CFT; /usr/local/bin/R -e 'quarto::quarto_render("CFT.qmd")'
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _metadata_one.R CFT
+# sh ~/iCloud/website/website_short.sh
+```
+
+## 2005-
+
+```{r}
+ig_d("bdf", "CFT", "DETT-S1M-FR-IT-DE-ES-JP-EU")
+```
+
+## Housing index
+
+
+```{r}
+ig_b("eurostat", "prc_hpi_ooinw_ex2")
+```
+
+# Europe
+
+## 2005-
+
+```{r}
+ig_d("eurostat", "prc_hpi_q", "TOTAL-EL-FR-ES-IT-DE")
+```
+
+
+# United States
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "housing.R"; /usr/local/bin/R -e 'quarto::quarto_render("housing.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## S&P/Case-Shiller
+
+```{r}
+ig_d("fred", "housing", "CPIAUCSL-CSUSHPINSA-index")
+```
+
+## Price of Houses
+
+```{r}
+ig_d("fred", "housing", "CPIAUCSL-MSPUS-index-2000")
+```
+
+
+## Regions
+
+```{r}
+ig_d("fhfa", "index", "los-angeles-las-vegas-denver")
+```
+
+
+# Rents
+
+```{r, echo = F}
+# ?locales
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R prc_hicp_midx; /usr/local/bin/R -e 'quarto::quarto_render("prc_hicp_midx.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France, Germany, Italy
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "CP041-FR-DE-EL-PT")
+```
+
+
+
+

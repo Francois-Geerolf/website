@@ -1,0 +1,99 @@
+---
+title: Analyse des Données sur les Finances Publiques
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+`finances-publiques` <- tribble(
+  ~source, ~dataset,
+  "insee",  "T_7301",
+  "insee", "T_3217") %>%
+  arrange(source, dataset)
+```
+
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("finances-publiques.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("public_debt.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+# Impôts
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("T_3217.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-PIB
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-PIB.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Prélèvements oligatoires
+
+```{r}
+ig_d("insee", "T_3217", "ensemble")
+```
+
+## Principaux impôts
+
+```{r}
+ig_d("insee", "T_3217", "TVA-produits-salaires-production-cotisations")
+```
+
+
+## IR, TVA, CSG
+
+```{r}
+ig_d("insee", "T_3217", "IR-TVA-CSG")
+```
+
+## Taxe Foncière
+
+```{r}
+ig_d("insee", "T_3217", "taxe-fonciere")
+```
+
+
+## Impôt sur les sociétés, IR, TICPE
+
+```{r}
+ig_d("insee", "T_3217", "IS-IR-TICPE")
+```
+
+# Dépenses publiques
+
+## Tous
+
+
+```{r}
+ig_d("insee", "T_3201", "3-20-1-19")
+```
+
+## 1981-
+
+
+```{r}
+ig_d("insee", "T_3201", "3-20-1-19-1981")
+```
+

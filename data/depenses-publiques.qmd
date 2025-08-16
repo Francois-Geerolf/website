@@ -1,0 +1,105 @@
+---
+title: Données sur les dépenses publiques
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+`depenses-publiques` <- tribble(
+  ~source, ~dataset,
+  "insee", "T_3201",
+  "insee", "T_7301") %>%
+  arrange(source, dataset)
+```
+
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("depenses-publiques.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+
+## Déficit primaire VS total
+
+### Tous
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF")
+```
+
+
+
+### 2005-
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-2005")
+```
+
+
+
+## Charge d'intérêt
+
+```{r}
+ig_d("insee", "t_compteapu_val", "PIB-D41")
+```
+
+
+
+
+## Détention par les non-résidents de la dette / CAC40
+
+```{r}
+ig_d("bdf", "DET", "detention-non-residents")
+```
+
+
+
+
+
+# Pour en savoir plus...
+
+
+## Bibliographie
+
+### En Français
+
+- La dette publique est-elle un problème ? F. Geerolf & P. Jacquet, Politique étrangère, vol. , no. 2, 2021, pp. 79-92. [[pdf](http://onala.free.fr/geerolf621.pdf)] [[html](https://www.cairn.info/revue-politique-etrangere-2021-2-page-79.htm)]
+
+- Inflation et pouvoir d'achat : it's the politics, stupid! F. Geerolf & P. Jacquet, Relançons le débat économique, juin 2022. [[pdf](https://lecercledeseconomistes.fr/wp-content/uploads/2022/07/rlde-2022-25-geerolfjacquet.pdf)] [[html](https://lecercledeseconomistes.fr/inflation-et-pouvoir-dachat-its-the-politics-stupid/)]
+
+<!---
+- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+--->
+
+### In English
+
+<!---
+
+- Nominal rates matter. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Wages and profits in a time of high inflation in the euro area. [[pdf](https://fgeerolf.com/wages-profits-euroarea.pdf)]
+
+--->
+
+- The Phillips Curve: a Relation between Real Exchange Rate Growth and Unemployment, January 2020. [[pdf](https://fgeerolf.com/phillips.pdf)]

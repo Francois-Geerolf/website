@@ -1,0 +1,499 @@
+---
+title: Indicateurs Macroéconomiques de la France
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+`macro-france` <-tribble(
+  ~source, ~dataset,
+  "bdf", "CFT",
+  "insee", "t_1101",
+  "insee", "t_1102",
+  "insee", "t_1105",
+  "insee", "CNA-2020-PIB",
+  "insee", "CNA-2020-CONSO-MEN",
+  "insee", "CNA-2014-CONSO-SI",
+  "insee", "CONSO-MENAGES-2020",
+  "insee", "CNA-2014-CSI",
+  "insee", "CNA-2014-RDB",
+  "insee",  "CNT-2014-CB",
+  "insee",  "CNT-2014-CSI",
+  "insee",  "CNT-2014-PIB-EQB-RF",
+  "insee",  "CNT-2014-OPERATIONS",
+  "insee",  "conso-mensuelle",
+  "insee", "CNA-2014-FBCF-BRANCHE",
+  "insee", "CNA-2014-FBCF-SI",
+  "insee", "ICA-2015-IND-CONS") %>%
+  arrange(source, dataset)
+```
+
+# PIB - Comparaisons internationales
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.PP.CD; /usr/local/bin/R -e 'quarto::quarto_render("NY.GDP.PCAP.PP.CD.qmd")'
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.CD; /usr/local/bin/R -e 'quarto::quarto_render("NY.GDP.PCAP.CD.qmd")'
+
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R; /usr/local/bin/R -e 'quarto::quarto_render("QNA.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# cd ~/iCloud/website/data/oecd
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## US, Euro area, France
+
+```{r}
+ig_d("wdi", "NY.GDP.PCAP.PP.KD", "US-XC-FR-base-100")
+```
+
+## France VS Allemagne
+
+```{r}
+ig_d("wdi", "NY.GDP.PCAP.PP.CD", "DE-FR-GDP-PPP")
+```
+
+## France VS Suisse
+
+```{r}
+ig_d("wdi", "NY.GDP.PCAP.PP.CD", "CH-FR-GDP-PPP")
+```
+
+
+# Indicateur de Chiffre d'Affaires
+
+```{r}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R ICA-2015-IND-CONS; /usr/local/bin/R -e 'quarto::quarto_render("ICA-2015-IND-CONS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Fabrication de boissons
+
+```{r}
+ig_d("insee", "ICA-2015-IND-CONS", "11-0-01-02-05-06-07-CVS-CJO")
+```
+
+
+# Consommation Mensuelle
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("conso-mensuelle.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CONSO-MENAGES-2020; /usr/local/bin/R -e 'quarto::quarto_render("CONSO-MENAGES-2020.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## Depuis décembre 2021
+
+```{r}
+ig_d("insee", "CONSO-MENAGES-2014", "BIENS-ALIMENTAIRE-ALIMENTAIRE-HORS-TABAC-dec-2021")
+```
+
+
+## Depuis février 2022
+
+```{r}
+ig_d("insee", "CONSO-MENAGES-2014", "BIENS-ALIMENTAIRE-feb-2022")
+```
+
+
+
+## Alimentation, Total, Mensuelle
+
+```{r}
+ig_d("insee", "CONSO-MENAGES-2020", "BIENS-ALIMENTAIRE")
+```
+
+
+## Alimentation, Fabriqués, Manufacturés, Energie
+
+```{r}
+ig_d("insee", "conso-mensuelle", "ALIM-ENERGIE-FABRIQUES-MANUFACTURES")
+```
+
+## Compta nat
+
+```{r}
+ig_d("insee", "t_conso_vol", "produits-agricoles")
+```
+
+
+# Investissement
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-FBCF-BRANCHE; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-FBCF-BRANCHE.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-FBCF-SI; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-FBCF-SI.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-PIB-EQB-RF; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-PIB-EQB-RF.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Secteur institutionnels
+
+```{r}
+ig_d("insee", "CNT-2014-PIB-EQB-RF", "P51-P51B-P51G-P51M-P51P-P51S-1980")
+```
+
+## MN, C4, C3, MB
+
+```{r}
+ig_d("insee", "CNA-2014-FBCF-SI", "MN-C4-C3-MB")
+```
+
+
+## NNTOTAL, BE, JZ, FZ
+
+```{r}
+ig_d("insee", "CNA-2014-FBCF-SI", "NNTOTAL-BE-JZ-FZ")
+```
+
+# Chômage
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CHOMAGE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("CHOMAGE-TRIM-NATIONAL.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R DEMANDES-EMPLOIS-NATIONALES; /usr/local/bin/R -e 'quarto::quarto_render("DEMANDES-EMPLOIS-NATIONALES.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R une_rt_m; /usr/local/bin/R -e 'quarto::quarto_render("une_rt_m.qmd")'
+
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Demandeurs d'emplois: A, B, C
+
+```{r}
+ig_d("insee", "DEMANDES-EMPLOIS-NATIONALES", "A-B-C")
+```
+
+
+## Age
+
+```{r}
+ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-Age")
+```
+
+## Comparaisons Européennes
+
+### France VS Zone €
+
+```{r}
+ig_d("eurostat", "une_rt_m", "EA-FR-1998")
+```
+
+
+
+### Autres pays européens
+
+#### All
+
+```{r}
+ig_d("eurostat", "une_rt_m", "FR-DE-IT-ES-NL-PT")
+```
+
+
+
+#### 1998-
+
+```{r}
+ig_d("eurostat", "une_rt_m", "FR-DE-IT-ES-NL-PT-1998")
+```
+
+#### 2014-
+
+```{r}
+ig_d("eurostat", "une_rt_m", "FR-DE-IT-ES-NL-PT-2014")
+```
+
+# Emploi
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R lfsq_ergaed; /usr/local/bin/R -e 'quarto::quarto_render("lfsq_ergaed.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R EMPLOI-SALARIE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("EMPLOI-SALARIE-TRIM-NATIONAL.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## 1er cycle de l'enseignement secondaire
+
+```{r}
+ig_d("eurostat", "lfsq_ergaed", "ED0-2-EL-DE-FR-ES-IT-1995")
+```
+
+## Construction, Tertiaire, Industrie
+
+### 2017-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU-2017-Q2")
+```
+
+
+### 1970-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU")
+```
+
+# Taux d'épargne (BDF)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _download_one.R CFT; /usr/local/bin/R -e 'quarto::quarto_render("CFT.qmd")'
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/Rscript --vanilla _metadata_one.R CFT
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Epargne vs. épargne financière
+
+```{r}
+ig_d("bdf", "CFT", "taux-epargne")
+```
+
+## Endettement des ménages
+
+### Tous
+
+- Remboursement prêts immobiliers ?
+
+```{r}
+ig_d("bdf", "CFT", "DETT-S1M-FR-IT-DE")
+```
+
+### 2013-
+
+```{r}
+ig_d("bdf", "CFT", "DETT-S1M-FR-IT-DE-2013")
+```
+
+
+
+# Taux de marge
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-CSI; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-CSI.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-CB; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-CB.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Excédent brut
+
+```{r}
+ig_d("insee", "CNT-2014-CSI", "B2-B1G-S11")
+```
+
+## Taux de marge et investissement
+
+### Investissement total
+
+```{r}
+ig_d("insee", "CNT-2014-CSI", "investissement-taux-marge")
+```
+
+
+### Investissement des SNF
+
+```{r}
+ig_d("insee", "CNT-2014-CSI", "investissement-taux-marge-SNF")
+```
+
+
+## Agro-alimentaire, Energie, Ensemble
+
+### Avec 0
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-B1-DE-C1-CNT-2010")
+```
+
+### Sans 0
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-B1-DE-C1-CNT-2010-sans-0")
+```
+
+
+
+
+## EBE
+
+### C1, C2, DE, HZ
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-gdp-C1-DE-HZ-C2-2000")
+```
+
+
+
+### Services, Industrie, Tertiaire marchand
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-gdp-DI-DIM-DS-DSM")
+```
+
+
+
+
+# Commerce Extérieur
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-OPERATIONS; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-OPERATIONS.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -f econ-gen-solde-ech-ext-2.R; /usr/local/bin/R -e 'quarto::quarto_render("econ-gen-solde-ech-ext-2.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -f t_zzz.R; /usr/local/bin/R -e 'quarto::quarto_render("t_zonexp_val.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Balance extérieure
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B9NF-RdM-APU-percent-PIB-12mois")
+```
+
+## Balance des biens: Douanes vs. BPM6
+
+- Différences: voir page 26. Méthodologie. La balance des paiements et la position extérieure de la France. [pdf](https://www.banque-france.fr/fr/system/files?file=2023-06/bdp-methodologie_072015.pdf)
+
+```{r}
+ig_d("bdf", "BPM6", "biens-douanes-vs-BPM6-M-cumul")
+```
+
+
+
+## Balance énergétique
+
+```{r}
+ig_d("insee", "econ-gen-solde-ech-ext-2", "ENER-SOLD")
+```
+
+## Par Zone
+
+```{r}
+ig_d("insee", "t_zonexp_val", "EXP-IMP-PIB")
+```
+
+
+
+## Exports et imports
+
+```{r}
+ig_d("insee", "CNT-2020-PIB-EQB-RF", "P6-P7-PIB")
+```
+
+## Solde commercial
+
+```{r}
+ig_d("insee", "CNT-2020-PIB-EQB-RF", "SOLDE-PIB")
+```
+
+## Balance commerciale
+
+### Biens, Services, B&S (manque tourisme)
+
+```{r}
+ig_d("insee", "CNT-2020-OPERATIONS", "NX-DS-DB-D")
+```
+
+
+
+
+### Tous
+
+```{r}
+ig_d("insee", "CNT-2020-OPERATIONS", "NX-DIM-DI")
+```
+
+### 1990-
+
+```{r}
+ig_d("insee", "CNT-2020-OPERATIONS", "NX-DIM-DI-1990")
+```
+
+## Exportations
+
+### 2017-
+
+```{r}
+ig_d("insee", "CNT-2020-OPERATIONS", "DIM-DI-DB-P6-2017")
+```
+
+## Importations
+
+### 2017-
+
+```{r}
+ig_d("insee", "CNT-2020-OPERATIONS", "DIM-DI-DB-P7-2017")
+```
+
+# Balance courante & compte financier
+
+## Biens, Services, B&S, Transactions courantes
+
+```{r}
+ig_d("bdf", "BPM6", "biens-services-biensetservices-M-cumul")
+```
+
+## Services
+
+```{r}
+ig_d("bdf", "BPM6", "services-S-SXD-SC-SD-M-cumul")
+```
+
+
+
+
+## Compte financier
+
+```{r}
+ig_d("bdf", "BPM6", "biens-services-biensetservices-M-cumul")
+```
+
+
+
+# Position Extérieure Nette
+
+- Actif: 10284748.8 / Passif: 11170548.7
+
+- IIP: -885799.9 ($ 900 Mds) = 30% du PIB
+
+## Présentation simplifiée
+
+```{r}
+ig_b("imf", "france-IIP-2023Q2")
+```
+
+## Actifs
+
+```{r}
+ig_b("imf", "france-IIP-2023T2-1")
+```
+
+
+## Passifs
+
+```{r}
+ig_b("imf", "france-IIP-2023T2-2")
+```
+
+
+## Actifs / Passifs
+
+```{r}
+ig_b("imf", "france-IIP-2023T2")
+```
+
+
+
+# Pour en savoir plus...
+
+## Economic Dashboard
+
+- Economic dashboard. [html](https://www.insee.fr/en/statistiques/2405582)

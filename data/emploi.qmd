@@ -1,0 +1,239 @@
+---
+title: Indicateurs et chiffres clés de l'emploi
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+knitr::opts_chunk$set(echo = T)
+emploi <- tribble(
+  ~source, ~dataset,
+  "insee",  "EMPLOI-SALARIE-TRIM-NATIONAL",
+  "insee",  "EMPLOI-BIT-TRIM",
+  "insee",  "TAUX-CHOMAGE",
+  "insee",  "CNA-2014-EMPLOI",
+  "insee",  "DEMANDES-EMPLOIS-NATIONALES",
+  "insee",  "TCRED-EMPLOI-SALARIE-TRIM",
+  "insee",  "CHOMAGE-TRIM-NATIONAL") %>%
+  arrange(source, dataset)
+```
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("emploi.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+# Taux de chômage BIT
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R TAUX-CHOMAGE; /usr/local/bin/R -e 'quarto::quarto_render("TAUX-CHOMAGE.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CHOMAGE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("CHOMAGE-TRIM-NATIONAL.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Chomage et halo autour du chomage
+
+```{r}
+ig_b("insee", "ECRT2023", "VE", "chomage-et-halo")
+```
+
+## National
+
+```{r}
+ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-tous")
+```
+
+## Par genre
+
+```{r}
+ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-T-H-F")
+```
+
+
+## Par âge
+
+### Tous
+
+```{r}
+ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-Age")
+```
+
+### Sans - de 25 ans
+
+```{r}
+ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-Age-moins-25ans")
+```
+
+
+## Hauts de Seine, Seine-Saint-Denis, Paris
+
+```{r}
+ig_d("insee", "TAUX-CHOMAGE", "92-93-75")
+```
+
+# Demandeurs d'emploi - Pôle Emploi
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R DEMANDES-EMPLOIS-NATIONALES; /usr/local/bin/R -e 'quarto::quarto_render("DEMANDES-EMPLOIS-NATIONALES.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## A, B, C
+
+```{r}
+ig_d("insee", "DEMANDES-EMPLOIS-NATIONALES", "A-B-C")
+```
+
+## Age
+
+```{r}
+ig_d("insee", "DEMANDES-EMPLOIS-NATIONALES", "age-00-25")
+```
+
+## Diplome
+
+```{r}
+ig_d("insee", "DEMANDES-EMPLOIS-NATIONALES", "diplome")
+```
+
+## Tous
+
+# Taux d'activité
+
+## Age
+
+```{r}
+ig_b("insee", "ECRT2023", "VE", "taux-activite")
+```
+
+# Taux d'emploi
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R EMPLOI-BIT-TRIM; /usr/local/bin/R -e 'quarto::quarto_render("EMPLOI-BIT-TRIM.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+
+
+## Tous
+
+```{r}
+ig_d("insee", "EMPLOI-BIT-TRIM", "taux-emploi-tous-TC-ETP")
+```
+
+## Taux d'emploi et d'activité
+
+```{r}
+ig_d("insee", "EMPLOI-BIT-TRIM", "taux-emploi-tous")
+```
+
+
+
+## 25-49
+
+```{r}
+ig_d("insee", "EMPLOI-BIT-TRIM", "taux-activite-25-49")
+```
+
+
+
+## 15-24
+
+```{r}
+ig_d("insee", "EMPLOI-BIT-TRIM", "taux-activite-15-24")
+```
+
+
+# Comparaisons Européennes
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R une_rt_m; /usr/local/bin/R -e 'quarto::quarto_render("une_rt_m.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France VS Zone Euro à 19
+
+```{r}
+ig_d("eurostat", "une_rt_m", "EA-FR-1998")
+```
+
+
+
+## Autres pays européens
+
+```{r}
+ig_d("eurostat", "une_rt_m", "FR-DE-IT-ES-NL-PT")
+```
+
+
+
+## Taux d'emploi, autres pays
+
+```{r}
+ig_b("insee", "ECRT2021", "F33", "table1")
+```
+
+
+# 1er cycle de l'enseignement secondaire
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R lfsq_ergaed; /usr/local/bin/R -e 'quarto::quarto_render("lfsq_ergaed.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R lfsa_ergaed; /usr/local/bin/R -e 'quarto::quarto_render("lfsa_ergaed.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _metadata_one_fr.R isced11
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France, Italie, Europe, Espagne, Allemagne
+
+### Trimestre
+
+```{r}
+ig_d("eurostat", "lfsq_ergaed", "ED0-2-EL-DE-FR-ES-IT-1995")
+```
+
+### Annuel
+
+```{r}
+ig_d("eurostat", "lfsa_ergaed", "ED0-2-EL-DE-FR-ES-IT-1995")
+```
+
+
+
+# Construction, Tertiaire, Industrie
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R EMPLOI-SALARIE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("EMPLOI-SALARIE-TRIM-NATIONAL.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## 2017-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU-2017-Q2")
+```
+
+
+## 1970-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU")
+```

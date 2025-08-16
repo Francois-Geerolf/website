@@ -1,0 +1,216 @@
+---
+title: Données sur la démographie
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+demographie <- tribble(
+  ~source, ~dataset,
+  "eurostat", "demo_minfind",
+  "ined",  "fm_t70_2019.fr",
+  "ined",  "fm_t70_2021.fr",
+  "ined", "p2d_2019.fr",
+  "insee", "NAISSANCES-FECONDITE",
+  "insee", "DECES-MORTALITE",
+  "oecd", "FAMILY") %>%
+  arrange(source, dataset)
+```
+
+
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("demographie.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# Indicateur (conjoncturel) de fécondité
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R FAMILY; /usr/local/bin/R -e 'quarto::quarto_render("FAMILY.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France, Germany, Italy
+
+```{r}
+ig_d("oecd", "FAMILY", "FAM1-DEU-FRA-ITA")
+```
+
+## France
+
+```{r}
+ig_d("insee", "NAISSANCES-FECONDITE", "fecondite")
+```
+
+## Par département
+
+```{r}
+ig_d("insee", "NAISSANCES-FECONDITE", "fecondite-dept")
+```
+
+
+## Par revenu
+
+### Selon le décile de niveau de vie
+
+#### Corrigé
+
+```{r}
+ig_b("insee", "ia72", "fig1")
+```
+
+
+
+#### Avant
+
+```{r}
+ig_b("insee", "ip1826", "figure1a")
+```
+
+### Par lieu de naissance
+
+```{r}
+ig_b("insee", "ip1826", "figure2a")
+```
+
+# Economie, fécondité, natalité
+
+"Jamais la diminution de la population n'a marqué une période heureuse pour les individus plus à l'aise dans leur cadre étroit"
+
+## Lien
+
+```{r}
+ig_b("insee", "FPORSOC15a", "EC1_fecondite", "encadre1")
+```
+
+
+## Problèmes de fécondité
+
+- Rapport sur les causes d’infertilité. [[pdf](https://www.vie-publique.fr/files/rapport/pdf/283956.pdf)] / [[html](https://www.vie-publique.fr/rapport/283956-rapport-sur-les-causes-d-infertilite)]
+
+# Naissances vs. Décès
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R DECES-MORTALITE; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("DECES-MORTALITE.qmd")'; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France Métropolitaine
+
+### Tous
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-dernier-chiffre")
+```
+
+
+
+### 2020-
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-2020")
+```
+
+
+
+### 2024-
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-2024")
+```
+
+
+## France Entiere
+
+### Tous
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE")
+```
+
+
+### 2024-
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-2024")
+```
+
+
+# Nombre de naissances vivantes
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Tous
+
+```{r}
+ig_d("insee", "NAISSANCES-FECONDITE", "naissances")
+```
+
+## 2000-
+
+```{r}
+ig_d("insee", "NAISSANCES-FECONDITE", "naissances-2000")
+```
+
+## 2012-
+
+```{r}
+ig_d("insee", "NAISSANCES-FECONDITE", "naissances-2012")
+```
+
+
+
+
+
+# Mortalité infantile
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Infantile, Néonatale, Néonatale précoce
+
+```{r}
+ig_d("ined", "fm_t70_2021.fr", "mortalite-1980-2")
+```
+
+
+
+## France, Germany, Italy
+
+### OECD, Eurostat, INSEE
+
+```{r}
+ig_d("oecd", "FAMILY", "FAM16A-DEU-FRA-ITA-log")
+```
+
+### Eurostat
+
+```{r}
+ig_d("eurostat", "demo_minfind", "FR-DE-IT-ES-1996")
+```
+

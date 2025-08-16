@@ -1,0 +1,335 @@
+---
+title: Insights into Inflation Statistics
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source("../code/R-markdown/init_min.R")
+knitr::opts_chunk$set(echo = T)
+inflation <- tribble(
+  ~source, ~dataset,
+  "bis",  "CPI",
+  "ecb", "CES",
+  "eurostat", "nama_10_co3_p3",
+  "eurostat",  "prc_hicp_manr",
+  "eurostat",  "prc_hicp_midx",
+  "eurostat",  "prc_hicp_mmor",
+  "eurostat",  "prc_hicp_inw",
+  "eurostat",  "prc_hicp_cow",
+  "eurostat",  "prc_ppp_ind",
+  "eurostat",  "prc_hicp_ctrb",
+  "eurostat",  "sts_inpp_m",
+  "eurostat",  "sts_inppd_m",
+  "eurostat",  "sts_inppnd_m",
+  "fred",  "cpi",
+  "fred",  "inflation",
+  "imf", "CPI",
+  "oecd",  "MEI_PRICES_PPI",
+  "oecd",  "PRICES_CPI",
+  "oecd", "PPP2017",
+  "wdi",  "NY.GDP.DEFL.KD.ZG",
+  "wdi",  "FP.CPI.TOTL.ZG") %>%
+  arrange(source, dataset)
+save(inflation, file = "inflation.RData")
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~ theme,
+        "inflation",
+        "monetary-policy",
+        "interest-rates",
+        "xrates",
+        "housing") %>%
+  theme_file_updates()
+```
+
+## Data on [inflation](https://fgeerolf.com/data/inflation.html)
+
+```{r, echo = F}
+load_data("inflation.RData")
+inflation %>%
+  source_dataset_file_updates()
+```
+
+
+
+## Données sur l'[inflation](https://fgeerolf.com/data/inflation-france.html)
+
+```{r, echo = F}
+load_data("inflation-france.RData")
+`inflation-france` %>%
+  source_dataset_file_updates()
+```
+
+
+
+## LAST_COMPILE
+
+```{r, echo = F}
+tibble(LAST_COMPILE = Sys.Date()) %>%
+  print_table_conditional()
+```
+
+# Related papers
+
+## English
+
+- "Are inflation dynamics different in the euro area and the United States?" C. Blot & F. Geerolf, Monetary Dialogue Paper, November 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/755706/IPOL_IDA(2023)755706_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/fr/document/IPOL_IDA(2023)755706)]
+
+- "The direct and indirect impacts of the war on inflation." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, March 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/741487/IPOL_IDA(2023)741487_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)741487)]
+
+- "Heterogeneity of inflation in the euro area: more complicated than it seems." C. Blot, J. Creel, F. Geerolf & S. Levasseur, Monetary Dialogue Paper, November 2022, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2022/733999/IPOL_IDA(2022)733999_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2022)733999)]
+
+- "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[html](https://github.com/OFCE/SIWU)]
+
+- "The Phillips Curve: a Relation between Real Exchange Rate Growth and Unemployment." F. Geerolf, January 2020. [[pdf](https://fgeerolf.com/phillips.pdf)]
+
+## French
+
+- "L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques", F. Geerolf, décembre 2023. [[html](https://fgeerolf.com/ofce/blog/2023-12-18.html)] [[blog](https://www.ofce.sciences-po.fr/blog/lanalyse-de-linflation-par-categories-de-menages-quelques-problemes-methodologiques/)] [[pdf](https://fgeerolf.com/inflation-par-categorie.pdf)]
+
+- "Les politiques économiques de lutte contre l’inflation en Europe." F. Geerolf, In L'économie européenne 2023-2024, La Découverte, p.42-56, septembre 2023. [[html](https://www.cairn.info/l-economie-europeenne-2023-2024--9782348079993-page-42.htm)]
+
+- "Une analyse macroéconomique de l'inflation.", C. Antonin & F. Geerolf, In la Jaune et la Rouge n°783, mars 2023. [[pdf](https://www.lajauneetlarouge.com/wp-content/uploads/2023/02/La_Jaune_et_la_Rouge_783_41-44.pdf)] [[html](https://www.lajauneetlarouge.com/analyse-macroeconomique-de-linflation-et-de-la-pertinence-de-nos-modeles/)]
+
+- "La politique économique en Europe face à l’inflation." F. Geerolf, Cahiers français n°432: Faire face à l'inflation, La Documentation française, mars 2023.
+
+- "Qui va payer cette facture énergétique ?" F. Geerolf, Interview a priori, décembre 2022. [[html](https://a-prioris.fr/hauteur-de-vue/francois-geerolf-qui-va-payer-cette-facture-energetique)]
+
+- "Inflation en Europe : les conséquences sociales de la guerre en Ukraine." G. Allègre, F. Geerolf, X. Timbeau, Blog de l'OFCE, juillet 2022. [[html](https://www.ofce.sciences-po.fr/blog/inflation-en-europe-les-consequences-sociales-de-la-guerre-en-ukraine/)]
+
+- Inflation et pouvoir d'achat : it's the politics, stupid! F. Geerolf & P. Jacquet, Relançons le débat économique, juin 2022. [[pdf](https://lecercledeseconomistes.fr/wp-content/uploads/2022/07/rlde-2022-25-geerolfjacquet.pdf)] [[html](https://lecercledeseconomistes.fr/inflation-et-pouvoir-dachat-its-the-politics-stupid/)]
+
+- "Quelques remarques au sujet du Blog de l'Insee: Mais si, l'Insee prend bien en compte le logement dans l'inflation !", F. Geerolf, février 2022. [[pdf](https://fgeerolf.com/blog-insee-IPC-loyers.pdf)]
+
+- "Le keynésianisme doit-il faire l'économie de la courbe de Phillips ?" F. Geerolf, In L'économie mondiale 2022, La Découverte, p.73-86, septembre 2021. [[pdf](http://www.cepii.fr/PDF_PUB/em/2022/em2022-05.pdf)] [[slides](http://www.cepii.fr/docs/files/reunions/communications/em2022/Economie%20Mondiale%202022_Geerolf.pdf)]
+
+- "La courbe de Phillips n'est pas celle que vous croyez." F. Geerolf, La Lettre du CEPII, n°417, avril 2021. [[pdf](http://www.cepii.fr/PDF_PUB/lettre/2021/let417.pdf)] [[html](http://www.cepii.fr/CEPII/fr/publications/lettre/abstract.asp?NoDoc=12974)]
+
+
+# Inflation
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f PRICES_CPI_5.R; /usr/local/bin/R -e 'quarto::quarto_render("PRICES_CPI.qmd")'
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "inflation.R"; /usr/local/bin/R -e 'quarto::quarto_render("inflation.qmd")'
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "cpi.R"; /usr/local/bin/R -e 'quarto::quarto_render("cpi.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "oecd", "PRICES_CPI",
+        "fred", "inflation") %>% 
+  source_dataset_file_updates()
+```
+
+## France, Germany, EU, US (OECD)
+
+### 2 years
+
+```{r}
+ig_d("oecd", "PRICES_CPI", "CPALTT01-GY-M-FRA-DEU-USA-EA20-2Y")
+```
+
+
+
+### 1 year
+
+```{r}
+ig_d("oecd", "PRICES_CPI", "CPALTT01-GY-M-FRA-DEU-USA-EA20-1Y")
+```
+
+
+
+## France vs. Germany
+
+### All
+
+```{r}
+ig_d("oecd", "PRICES_CPI", "CPALTT01-GY-M-FRA-DEU")
+```
+
+### 1 year
+
+```{r}
+ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-GY-M-FRA-DEU-1Y")
+```
+
+## United States
+
+### Importance of shelter
+
+```{r}
+ig_d("fred", "inflation", "CPIAUCSL-CUUR0000SA0L2-2-years")
+```
+
+# Inflation Expectations
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "energy.R"; /usr/local/bin/R -e 'quarto::quarto_render("energy.qmd")'
+# cd ~/iCloud/website/data/ecb; /usr/local/bin/R -f "CES.R"; /usr/local/bin/R -e 'quarto::quarto_render("CES.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "fred", "energy",
+        "ecb", "CES") %>%
+  source_dataset_file_updates()
+```
+
+## Gas prices and Inflation expectations
+
+### 1990-
+
+```{r}
+ig_d("fred", "energy", "GASREGW-MICH-1990")
+```
+
+### 1995-
+
+```{r}
+ig_d("fred", "energy", "GASREGW-MICH-1995")
+```
+
+## Consumer Expenditure Survey
+
+### 1-year
+
+```{r}
+ig_d("ecb", "CES", "c1020-mean")
+```
+
+### 3-year
+
+```{r}
+ig_d("ecb", "CES", "c1220-mean")
+```
+
+# Measures of inflation
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R prc_hicp_midx; /usr/local/bin/R -e 'quarto::quarto_render("prc_hicp_midx.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R prc_hicp_manr; /usr/local/bin/R -e 'quarto::quarto_render("prc_hicp_manr.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "oecd", "PRICES_CPI",
+        "insee", "IPCH-2015",
+        "eurostat", "prc_hicp_midx") %>%
+  source_dataset_file_updates()
+```
+
+## France VS Insee
+
+```{r}
+ig_d("oecd", "PRICES_CPI", "CPALTT01-FRA-USA-DEU-JPN-1996")
+```
+
+
+
+## Insee
+
+### 1996-
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996")
+```
+
+
+## GDP Deflator
+
+```{r}
+ig_d("eurostat", "namq_10_gdp", "B1GQ-NSA-PD15EUR-FR-DE-1996")
+```
+
+## Consumption Deflator
+
+```{r}
+ig_d("eurostat", "namq_10_gdp", "P3-NSA-PD15EUR-FR-DE-1996")
+```
+
+
+
+## OECD
+
+OECD: IPC de l'Insee
+
+```{r}
+ig_d("oecd", "PRICES_CPI", "CPALTT01-M-FRA-DEU-1996")
+```
+
+
+## Eurostat
+
+### All
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "CP00-FR-DE")
+```
+
+
+
+### 1999-
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "CP00-FR-DE")
+```
+
+
+# Producer price inflation
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R sts_inpp_m; /usr/local/bin/R -e 'quarto::quarto_render("sts_inpp_m.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R sts_inppd_m; /usr/local/bin/R -e 'quarto::quarto_render("sts_inppd_m.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R sts_inppnd_m; /usr/local/bin/R -e 'quarto::quarto_render("sts_inppnd_m.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "eurostat", "sts_inpp_m",
+        "eurostat", "sts_inppd_m",
+        "eurostat", "sts_inppnd_m") %>%
+  source_dataset_file_updates()
+```
+
+## Manufacturing, All
+
+### All
+
+#### Price Index
+
+```{r}
+ig_d("eurostat", "sts_inpp_m", "C-FR-DE-IT-2018")
+```
+
+#### % change compared to same period in previous year
+
+```{r}
+ig_d("eurostat", "sts_inpp_m", "C-PRON-FR-DE-IT-PCHSM-2018")
+```
+
+
+
+
+
+### Non Domestic
+
+```{r}
+ig_d("eurostat", "sts_inppnd_m", "C-FR-DE-IT-2018")
+```

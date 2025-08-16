@@ -1,0 +1,610 @@
+---
+title: Tableau de Bord de l'Industrie
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+industrie <- tribble(
+  ~source, ~dataset,
+  "eurostat", "mar_mg_am_cvh",
+  "eurostat", "namq_10_a10",
+  "insee",  "IPI-2021",
+  "insee",  "IPPI-2015",
+  "insee",  "ICA-2015-IND-CONS",
+  "insee",  "CNT-2014-CB",
+  "insee",  "ENQ-CONJ-ACT-IND",
+  "insee", "TCRED-EMPLOI-SALARIE-TRIM",
+  "insee", "CNT-2014-OPERATIONS",
+  "insee", "t_5407",
+  "insee", "CNA-2014-EMPLOI",
+  "oecd", "ALFS_EMP",
+  "oecd", "SNA_TABLE3") %>%
+  arrange(source, dataset)
+```
+
+# Production industrielle
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("industrie.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_a64_e; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_a64_e.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R lfsq_ergaed
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _metadata_one_fr.R isced11
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("lfsq_ergaed.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R namq_10_a10_e
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("namq_10_a10_e.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+# Chiffres de l'industrie
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPI-2021 ; /usr/local/bin/R -e 'quarto::quarto_render("IPI-2021.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Production industrielle
+
+### 2018
+
+```{r}
+ig_d("insee", "IPI-2021", "CZ-BE-2018")
+```
+
+
+### 2000-
+
+```{r}
+ig_d("insee", "IPI-2021", "CZ-BE-2000")
+```
+
+## En part de la Valeur Ajoutée dans la Zone Euro
+
+## Emplois
+
+### France vs. Allemagne
+
+```{r}
+ig_d("eurostat", "nama_10_a64_e", "C-TOTAL-FR-DE-1995-THSPER-valeur")
+```
+
+
+### Emplois industriels
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU")
+```
+
+# Conjoncture dans l'industrie
+
+```{r}
+ig_d("insee", "ENQ-CONJ-ACT-IND", "001586737")
+```
+
+
+# Production Industrielle par secteur
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPI-2021 ; /usr/local/bin/R -e 'quarto::quarto_render("IPI-2021.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+## A10
+
+### CZ, DE
+
+#### All
+
+```{r}
+ig_d("insee", "IPI-2021", "CZ-DE")
+```
+
+#### 2000-
+
+```{r}
+ig_d("insee", "IPI-2021", "CZ-BE-2000")
+```
+
+
+## A17
+
+### C4, C5
+
+```{r}
+ig_d("insee", "IPI-2021", "C4-C5")
+```
+
+
+
+### C1, C2, C3
+
+```{r}
+ig_d("insee", "IPI-2021", "C1-C2-C3")
+```
+
+
+## A38
+
+### BZ, DZ, EZ
+
+```{r}
+ig_d("insee", "IPI-2021", "BZ-DZ-EZ")
+```
+
+### CA, CB, CC
+
+```{r}
+ig_d("insee", "IPI-2021", "CA-CB-CC")
+```
+
+
+### CD, CE, CF
+
+```{r}
+ig_d("insee", "IPI-2021", "CD-CE-CF")
+```
+
+
+
+### CG, CH, CI
+
+```{r}
+ig_d("insee", "IPI-2021", "CG-CH-CI")
+```
+
+
+
+### CJ, CK, CM
+
+```{r}
+ig_d("insee", "IPI-2021", "CJ-CK-CL-CM")
+```
+
+
+
+### CL, CL1, CL2
+
+```{r}
+ig_d("insee", "IPI-2021", "CL-CL1-CL2")
+```
+
+## A88
+
+### 06, 08
+
+```{r}
+ig_d("insee", "IPI-2021", "06-08")
+```
+
+
+
+### 10, 11
+
+```{r}
+ig_d("insee", "IPI-2021", "10-11")
+```
+
+### 13, 14, 15
+
+```{r}
+ig_d("insee", "IPI-2021", "13-14-15")
+```
+
+
+### 16, 17, 18
+
+```{r}
+ig_d("insee", "IPI-2021", "16-17-18")
+```
+
+
+
+### 19, 20, 21
+
+```{r}
+ig_d("insee", "IPI-2021", "19-20-21")
+```
+
+
+
+### 22, 23, 24
+
+```{r}
+ig_d("insee", "IPI-2021", "22-23-24")
+```
+
+
+
+### 25, 26, 27
+
+```{r}
+ig_d("insee", "IPI-2021", "25-26-27")
+```
+
+
+### 28, 29, 30
+
+```{r}
+ig_d("insee", "IPI-2021", "28-29-30")
+```
+
+
+### 31, 32, 33
+
+```{r}
+ig_d("insee", "IPI-2021", "31-32-33")
+```
+
+
+
+### 35, 36
+
+```{r}
+ig_d("insee", "IPI-2021", "35-36")
+```
+
+
+
+
+
+# Emploi industriel - Nombre
+
+## Eurostat
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_a64_e; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_a64_e.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R lfsq_ergaed; /usr/local/bin/R -e 'quarto::quarto_render("lfsq_ergaed.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _metadata_one_fr.R isced11
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R namq_10_a10_e; /usr/local/bin/R -e 'quarto::quarto_render("namq_10_a10_e.qmd")'
+# cd ~/iCloud/website/data/eurostat
+# sh ~/iCloud/website/website_short.sh
+```
+
+### France, Allemagne
+
+#### Part de l'emploi
+
+```{r}
+ig_d("eurostat", "nama_10_a64_e", "C-TOTAL-FR-DE-1995")
+```
+
+#### Nombre d'emplois
+
+
+### Allemagne, Italie, France
+
+```{r}
+ig_d("eurostat", "namq_10_a10_e", "C-TOTAL-FR-DE-IT-1995-flags")
+```
+
+
+### Allemagne, Italie, France, Zone Euro, Espagne
+
+```{r}
+ig_d("eurostat", "namq_10_a10_e", "C-TOTAL-FR-DE-IT-ES-EA-1995-flags")
+```
+
+
+## OCDE
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R SNA_TABLE3
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("SNA_TABLE3.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R ALFS_EMP
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("ALFS_EMP.qmd")'
+```
+
+
+### France, Manufacture
+
+```{r}
+ig_d("oecd", "ALFS_EMP", "FRA-manufacturing")
+```
+
+### Manuf
+
+```{r}
+ig_d("oecd", "SNA_TABLE3", "EEM-EEMVC-PER-FRA")
+```
+
+### Industrie
+
+```{r}
+ig_d("oecd", "SNA_TABLE3", "EEM-EEM-B-E-PER-FRA")
+```
+
+
+### Industrie + Manuf
+
+```{r}
+ig_d("oecd", "SNA_TABLE3", "EEM-EEMVC-EEMVB-E-PER-FRA")
+```
+
+## INSEE, nombre d'emplois salariés
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R EMPLOI-SALARIE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("EMPLOI-SALARIE-TRIM-NATIONAL.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+### 1970-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE")
+```
+
+
+
+### 2017-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE")
+```
+
+
+
+
+## INSEE, base 100
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R EMPLOI-SALARIE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("EMPLOI-SALARIE-TRIM-NATIONAL.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+### 2017-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU-2017-Q2")
+```
+
+
+### 1970-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU")
+```
+
+
+### 2000-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU-2000-Q1")
+```
+
+### 2010-
+
+```{r}
+ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU-2010-Q1")
+```
+
+# Valeur ajoutée
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R ICA-2015-IND-CONS ; /usr/local/bin/R -e 'quarto::quarto_render("ICA-2015-IND-CONS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## INSEE - données mensuelles
+
+### C1
+
+```{r}
+ig_d("insee", "ICA-2015-IND-CONS", "C1")
+```
+
+### C2
+
+```{r}
+ig_d("insee", "ICA-2015-IND-CONS", "C2")
+```
+
+### CZ, C1, C3, C4, C5
+
+```{r}
+ig_d("insee", "ICA-2015-IND-CONS", "CZ-C1-C3-C4-C5")
+```
+
+
+# Investissement
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-FBCF-BRANCHE; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-FBCF-BRANCHE.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Industriel vs. Services
+
+```{r}
+ig_d("insee", "CNA-2014-FBCF-BRANCHE", "A5-less-GU")
+```
+
+## Eurostat
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R namq_10_a10; /usr/local/bin/R -e 'quarto::quarto_render("namq_10_a10.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_a64; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_a64.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R lfsq_ergaed; /usr/local/bin/R -e 'quarto::quarto_render("lfsq_ergaed.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _metadata_one_fr.R isced11
+# sh ~/iCloud/website/website_short.sh
+```
+
+### VA manufacturière vs Zone €
+
+```{r}
+ig_d("eurostat", "namq_10_a10", "manufacturing-value-added-1995-2019-SCA")
+```
+
+
+
+
+
+
+
+### VA manufacturière (% du PIB)
+
+
+#### All
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C-TOTAL-FR-DE-EL-IT-ES-PT")
+```
+
+
+#### 1995-
+
+```{r}
+ig_d("eurostat", "nama_10_a64", "C-TOTAL-FR-DE-EL-IT-ES-PT")
+```
+
+
+## OCDE
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R SNA_TABLE3
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f SNA_TABLE1_3.R;
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("SNA_TABLE1.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_manufacturing.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+### VA industrie
+
+```{r}
+ig_d("oecd", "QNA_manufacturing", "B1GVB-E-CQR-B1-GE-DEU-FRA-ITA-1995")
+```
+
+
+### VA manufacture, LNBQRSA
+
+```{r}
+ig_d("oecd", "QNA_manufacturing", "B1GVC-LNBQRSA-B1-GE-DEU-FRA-1995")
+```
+
+### France
+
+```{r}
+ig_d("oecd", "SNA_TABLE1", "B1GVC-B1GVB-E-B1-GE-FRA-2")
+```
+
+
+### US, UK, France
+
+```{r}
+ig_d("oecd", "SNA_TABLE1", "B1GVC-B1-GE-USA-FRA-GBR-flags-all")
+```
+
+
+
+### US, UK, France
+
+```{r}
+ig_d("oecd", "SNA_TABLE1", "B1GVC-B1-GE-USA-FRA-GBR-flags")
+```
+
+
+
+
+
+### France, germany, EU
+
+```{r}
+ig_d("oecd", "SNA_TABLE1", "B1GVC-B1-GE-DEU-FRA-EA19")
+```
+
+
+### Greece, Italy, Spain, Portugal
+
+```{r}
+ig_d("oecd", "SNA_TABLE1", "B1GVC-B1-GE-GRC-PRT-ESP-ITA")
+```
+
+### Norway
+
+```{r}
+ig_d("oecd", "SNA_TABLE1", "B1GVC-B1-GE-DNK-NLD-NOR-flags")
+```
+
+
+### Industrie (% du PIB)
+
+```{r}
+ig_d("oecd", "SNA_TABLE1", "B1GVB-E-B1-GE-FRA-ITA-DEU-ESP-GRC-EU19-USA-1995")
+```
+
+
+### Industrie manufacturière (% du PIB)
+
+```{r}
+ig_d("oecd", "SNA_TABLE1", "B1GVC-B1-GE-FRA-ITA-DEU-ESP-GRC-EU19-USA-1995")
+```
+
+# Emploi, 1er cycle
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R lfsq_ergaed; /usr/local/bin/R -e 'quarto::quarto_render("lfsq_ergaed.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _metadata_one_fr.R isced11
+# sh ~/iCloud/website/website_short.sh
+```
+
+## 1er cycle de l'enseignement secondaire
+
+```{r}
+ig_d("eurostat", "lfsq_ergaed", "ED0-2-EL-DE-FR-ES-IT-1995")
+```
+
+
+# Marges dans l'Industrie
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-CB; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-CB.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## En % de la VA
+
+### Global
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-B1-DI-DIM-DS")
+```
+
+### C3, C4, C5
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-B1-C2-C3-C5")
+```
+
+## En % du PIB
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-gdp-DI-DIM-DS-DSM")
+```
+
+
+# Pour en savoir plus...
+
+## Bibliographie
+
+-	Réindustrialisation : l’Union Européenne et les nations. In L’économie européenne 2025, La Découverte, septembre 2024. [[pdf](https://fgeerolf.com/reindustrialisation.pdf)] / [[html](https://shs.cairn.info/l-economie-europeenne-2025--9782348084799-page-45?lang=fr)]
+

@@ -1,0 +1,184 @@
+---
+title: Key Macroeconomic Indicators
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+macro <-tribble(
+  ~source, ~dataset,
+  "eurostat",  "nama_10_a10_e",
+  "eurostat",  "namq_10_a10_e",
+  "eurostat",  "nama_10_a10",
+  "eurostat",  "namq_10_a10",
+  "eurostat",  "nama_10_gdp",
+  "eurostat",  "namq_10_gdp",
+  "eurostat",  "nama_10_lp_ulc",
+  "eurostat",  "namq_10_lp_ulc",
+  "eurostat",  "namq_10_pc",
+  "eurostat", "nasa_10_nf_tr",
+  "eurostat", "nasq_10_nf_tr",
+  "fred",  "gdp",
+  "oecd",  "QNA",
+  "oecd",  "SNA_TABLE1",
+  "oecd",  "SNA_TABLE2",
+  "oecd",  "SNA_TABLE6A",
+  "oecd",  "SNA_TABLE14A",
+  "wdi",  "NY.GDP.MKTP.CD",
+  "wdi",  "NY.GDP.PCAP.PP.KD",
+  "wdi",  "NY.GDP.PCAP.PP.CD",
+  "wdi",  "NE.RSB.GNFS.ZS",
+  "wdi",  "NY.GDP.MKTP.PP.CD",
+  "wdi",  "NY.GDP.PCAP.CD",
+  "wdi",  "NY.GDP.PCAP.KD") %>%
+  arrange(source, dataset)
+```
+
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro-france.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+# US, Euro area, France
+
+```{r}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.PP.CD
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.CD
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R; /usr/local/bin/R -e 'quarto::quarto_render("QNA.qmd")'
+# NV.IND.MANF.CD
+
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("NY.GDP.PCAP.PP.CD.qmd")'
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## GDP per capita, PPP
+
+### All
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100")
+```
+
+
+
+
+
+### 2006-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100-2006")
+```
+
+
+
+### 2008-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.PP.CD", "US-XC-FR-base-100-2008")
+```
+
+
+
+
+
+## Real GDP per capita, PPP (constant 2017 international D)
+
+### 1990-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.PP.KD", "US-XC-FR-base-100")
+```
+
+
+
+### 2008-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.PP.KD", "US-XC-FR-base-100-2008")
+```
+
+
+
+
+## GDP per capita
+
+### 1960-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100")
+```
+
+
+
+
+### 1990-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100-1990")
+```
+
+
+
+### 2008-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.CD", "US-XC-FR-base-100-2008")
+```
+
+
+## Real GDP per capita
+
+### 1960-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100")
+```
+
+
+
+
+### 1990-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-1990")
+```
+
+
+
+### 2008-
+
+```{r}
+i_g_p("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-2008")
+```
+
+

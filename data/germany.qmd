@@ -1,0 +1,954 @@
+---
+title: Germany by the Numbers
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+`germany` <-tribble(
+  ~source, ~dataset,
+  "oecd", "QNA",
+  "wdi", "NY.GDP.PCAP.PP.CD") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("germany.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("greece.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro-us.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro-france.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+# Investment
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Investment and Saving
+
+```{r}
+ig_d("oecd", "QNA", "DEU-S-I-french")
+```
+
+
+## Total Economy
+
+```{r}
+ig_d("oecd", "SNA_TABLE14A", "NFP5P-DEU")
+```
+
+## Government
+
+```{r}
+ig_d("oecd", "SNA_TABLE14A", "NFK1R-NFP5P-S13-FRA-USA-DEU")
+```
+
+```{r}
+ig_d("oecd", "SNA_TABLE8A", "DEU")
+```
+
+
+# Current Accounts
+
+## CA, Goods, Goods and services
+
+```{r}
+ig_d("eurostat", "bop_c6_q", "DE-CA-GS-G")
+```
+
+
+## Net Exports
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_NATIO_CURR", "P6-P7-B1GQ-DEU")
+```
+
+
+
+
+# Employment
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.PP.CD
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.CD
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("NY.GDP.PCAP.PP.CD.qmd")'
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France, Germany
+
+```{r}
+ig_d("oecd", "DP_LIVE", "PARTEMP-DEU-FRA-french")
+```
+
+# GDP
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.PP.KD
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("NY.GDP.PCAP.PP.KD.qmd")'
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France VS Germany
+
+```{r}
+ig_d("wdi", "NY.GDP.PCAP.PP.KD", "FR-DE-index")
+```
+
+
+
+
+
+# Manufacturing
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R sts_intvnd_m
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("sts_intvnd_m.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Manufacturing
+
+```{r}
+ig_d("eurostat", "sts_intvnd_m", "C-DE-1995")
+```
+
+# Average Hours Worked Annually by Worker
+
+```{r ANHRS-TE}
+ig_d("oecd", "ANHRS", "TE-DEU-FRA-ITA")
+```
+
+# Competitiveness: General Indicators
+
+## CPIDR - Indicator of competitiveness based on relative consumer prices
+
+```{r CPIDR}
+ig_d("oecd", "EO", "CPIDR-FRA-DEU")
+```
+
+
+
+## ULCDR - Indicator of competitiveness based on relative unit labour costs in total economy
+
+```{r ULCDR}
+ig_d("oecd", "EO", "ULCDR-FRA-DEU")
+```
+
+# Competitiveness: Unit Labor cost
+
+## Total Economy
+
+```{r ULC-ANN-ULABUL99-01}
+ig_d("oecd", "ULC_ANN", "ULABUL99-01-FRA-DEU")
+```
+
+
+## Manufacturing
+
+```{r ULC-ANN-ULABUL99-02}
+ig_d("oecd", "ULC_ANN", "ULABUL99-02-FRA-DEU")
+```
+
+
+## Industry
+
+```{r ULC-ANN-ULABUL99-03}
+ig_d("oecd", "ULC_ANN", "ULABUL99-03-FRA-DEU")
+```
+
+
+## Construction
+
+```{r ULC-ANN-ULABUL99-04}
+ig_d("oecd", "ULC_ANN", "ULABUL99-04-FRA-DEU")
+```
+
+
+## Trade, transport and communication (G_I)
+
+```{r ULC-ANN-ULABUL99-05}
+ig_d("oecd", "ULC_ANN", "ULABUL99-05-FRA-DEU")
+```
+
+
+
+## Financial and business services
+
+```{r ULC-ANN-ULABUL99-06}
+ig_d("oecd", "ULC_ANN", "ULABUL99-06-FRA-DEU")
+```
+
+
+## Market services
+
+```{r ULC-ANN-ULABUL99-07}
+ig_d("oecd", "ULC_ANN", "ULABUL99-07-FRA-DEU")
+```
+
+
+## Business sector excl. Agriculture
+
+```{r ULC-ANN-ULABUL99-08}
+ig_d("oecd", "ULC_ANN", "ULABUL99-08-FRA-DEU")
+```
+
+
+# Competitiveness: Exchange Rate Adjusted ULC
+
+## Total Economy
+
+```{r ULC-ANN-ULAIEU99-01}
+ig_d("oecd", "ULC_ANN", "ULAIEU99-01-FRA-DEU")
+```
+
+
+## Manufacturing
+
+```{r ULC-ANN-ULAIEU99-02}
+ig_d("oecd", "ULC_ANN", "ULAIEU99-02-FRA-DEU")
+```
+
+
+## Industry
+
+```{r ULC-ANN-ULAIEU99-03}
+ig_d("oecd", "ULC_ANN", "ULAIEU99-03-FRA-DEU")
+```
+
+
+
+
+
+## Construction
+
+```{r ULC-ANN-ULAIEU99-04}
+ig_d("oecd", "ULC_ANN", "ULAIEU99-04-FRA-DEU")
+```
+
+
+## Trade, transport and communication (G_I)
+
+```{r ULC-ANN-ULAIEU99-05}
+ig_d("oecd", "ULC_ANN", "ULAIEU99-05-FRA-DEU")
+```
+
+
+
+## Financial and business services
+
+```{r ULC-ANN-ULAIEU99-06}
+ig_d("oecd", "ULC_ANN", "ULAIEU99-06-FRA-DEU")
+```
+
+
+## Market services
+
+```{r ULC-ANN-ULAIEU99-07}
+ig_d("oecd", "ULC_ANN", "ULAIEU99-07-FRA-DEU")
+```
+
+
+## Business sector excl. Agriculture
+
+```{r ULC-ANN-ULAIEU99-08}
+ig_d("oecd", "ULC_ANN", "ULAIEU99-08-FRA-DEU")
+```
+
+
+
+
+
+# Competitiveness: Labour Income Share (Real ULC)
+
+## Total Economy
+
+```{r ULC-ANN-ULAIRU99-01}
+ig_d("oecd", "ULC_ANN", "ULAIRU99-01-FRA-DEU")
+```
+
+
+## Manufacturing
+
+```{r ULC-ANN-ULAIRU99-02}
+ig_d("oecd", "ULC_ANN", "ULAIRU99-02-FRA-DEU")
+```
+
+
+## Industry
+
+```{r ULC-ANN-ULAIRU99-03}
+ig_d("oecd", "ULC_ANN", "ULAIRU99-03-FRA-DEU")
+```
+
+
+
+
+
+## Construction
+
+```{r ULC-ANN-ULAIRU99-04}
+ig_d("oecd", "ULC_ANN", "ULAIRU99-04-FRA-DEU")
+```
+
+
+## Trade, transport and communication (G_I)
+
+```{r ULC-ANN-ULAIRU99-05}
+ig_d("oecd", "ULC_ANN", "ULAIRU99-05-FRA-DEU")
+```
+
+
+
+## Financial and business services
+
+```{r ULC-ANN-ULAIRU99-06}
+ig_d("oecd", "ULC_ANN", "ULAIRU99-06-FRA-DEU")
+```
+
+
+## Market services
+
+```{r ULC-ANN-ULAIRU99-07}
+ig_d("oecd", "ULC_ANN", "ULAIRU99-07-FRA-DEU")
+```
+
+
+## Business sector excl. Agriculture
+
+```{r ULC-ANN-ULAIRU99-08}
+ig_d("oecd", "ULC_ANN", "ULAIRU99-08-FRA-DEU")
+```
+
+
+
+# Average Annual Wages
+
+## Current prices in NCU
+
+```{r AV-AN-WAGE-CPNCU}
+ig_d("oecd", "AV_AN_WAGE", "CPNCU-FRA-DEU")
+
+```
+
+
+## 2017 constant prices and NCU
+
+```{r AV-AN-WAGE-CNPNCU}
+ig_d("oecd", "AV_AN_WAGE", "CNPNCU-FRA-DEU")
+```
+
+# Current Account
+
+(ref:B6BLTT02) <span style="font-variant:small-caps;">Net Lending / Net Borrowing - Total Economy</span>
+
+```{r B6BLTT02, fig.cap="(ref:B6BLTT02)"}
+ig_d("oecd", "MEI_BOP6", "B6BLTT02-FRA-DEU")
+```
+
+
+
+# Saving
+
+## Net Saving - Total
+
+(ref:B8NS) <span style="font-variant:small-caps;">Net saving , TOTAL (% of GDP)</span>
+
+```{r B8NS, fig.cap="(ref:B8NS)"}
+ig_d("oecd", "NAAG", "B8NS-FRA-DEU")
+```
+
+
+## Net Saving of General Government
+
+(ref:B8NS13S) <span style="font-variant:small-caps;">Net saving of General Government (% of GDP)</span>
+
+```{r B8NS13S, fig.cap="(ref:B8NS13S)"}
+ig_d("oecd", "NAAG", "B8NS13S-FRA-DEU")
+```
+
+## Corporate Saving
+
+
+(ref:B9S14-S15S) <span style="font-variant:small-caps;">Corporate Saving</span>
+
+```{r B9S14-S15S, fig.cap="(ref:B9S14-S15S)"}
+ig_d("oecd", "NAAG", "B9S14-S15S-FRA-DEU")
+```
+
+
+
+## Net Lending / Net Borrowing - Total Economy
+
+(ref:B9S1S) <span style="font-variant:small-caps;">Net lending/net borrowing, Total economy</span>
+
+```{r B9S1S, fig.cap="(ref:B9S1S)"}
+ig_d("oecd", "NAAG", "B9S1S-FRA-DEU")
+```
+
+
+
+## Net lending/net borrowing, Corporations
+
+(ref:B9S11-S12S) <span style="font-variant:small-caps;">Net lending/net borrowing, Corporations</span>
+
+```{r B9S11-S12S, fig.cap="(ref:B9S11-S12S)"}
+ig_d("oecd", "NAAG", "B9S11-S12S-FRA-DEU")
+```
+
+
+
+# Slack in the Labor Market
+
+## Part Time Work
+
+```{r EMP5-AGE}
+ig_d("oecd", "GENDER_EMP", "EMP5-DEU-AGE")
+```
+
+
+
+## Involuntary Part Time Work
+
+```{r EMP6-AGE}
+ig_d("oecd", "GENDER_EMP", "EMP6-DEU-AGE")
+```
+
+
+## Involuntary Part Time Employment - WOMEN
+
+```{r EMP6-AGE-WOMEN}
+ig_d("oecd", "GENDER_EMP", "EMP6-DEU-AGE-WOMEN")
+```
+
+
+## Involuntary Part Time Employment - MEN
+
+```{r EMP6-AGE-MEN}
+ig_d("oecd", "GENDER_EMP", "EMP6-DEU-AGE-MEN")
+```
+
+## Labor Force Participation Rate
+
+```{r LFPR-2554}
+ig_d("oecd", "LFS_SEXAGE_I_R", "LFPR-2554")
+```
+
+
+
+```{r LFPR-1564}
+ig_d("oecd", "LFS_SEXAGE_I_R", "LFPR-1564")
+```
+
+## Labor Force Participation Rate - 65+
+
+```{r LFPR-6599}
+ig_d("oecd", "LFS_SEXAGE_I_R", "LFPR-6599")
+```
+
+
+```{r LFPR-6569}
+ig_d("oecd", "LFS_SEXAGE_I_R", "LFPR-6569")
+```
+
+
+
+```{r EPR-6569}
+ig_d("oecd", "LFS_SEXAGE_I_R", "EPR-6569")
+```
+
+## Employment / Population Ratio
+
+```{r EPR-2554}
+ig_d("oecd", "LFS_SEXAGE_I_R", "EPR-2554")
+```
+
+```{r EPR-2554-DEU}
+ig_d("oecd", "LFS_SEXAGE_I_R", "EPR-2554-DEU")
+```
+
+
+## Labor Force Participation - Women
+
+```{r LFPR-2554-WOMEN}
+ig_d("oecd", "LFS_SEXAGE_I_R", "LFPR-2554-WOMEN")
+```
+
+
+
+
+## Part Time Employment Rate - DP_LIVE
+
+```{r DP-LIVE-PARTEMP}
+ig_d("oecd", "DP_LIVE", "PARTEMP-DEU-JPN-NLD")
+```
+
+# Unemployment: Net Replacement Rates
+
+```{r NRR-unemployment}
+ig_d("oecd", "NRR", "DEU-AW-SINGLE-1")
+```
+
+# Pension Plans
+
+## Pension Funds
+
+
+```{r QASA-TABLE720R-RS129-LBF90NC}
+ig_d("oecd", "QASA_TABLE720R", "RS1-CAR-DEU")
+```
+
+## Pension plans managed by autonomous pension funds
+
+```{r}
+ig_d("oecd", "7HA_A_Q", "AF612-DEU")
+```
+
+
+## Gross Pension Replacement Rates - MEN
+
+```{r GPENSION-MEN}
+ig_d("oecd", "DP_LIVE", "GPENSION-MEN")
+```
+
+
+## Gross Pension Replacement Rates - WOMEN
+
+```{r GPENSION-WOMEN}
+ig_d("oecd", "DP_LIVE", "GPENSION-WOMEN")
+```
+
+
+
+
+# Eurostat - D10 / D1
+
+```{r ILC-DI01}
+ig_d("eurostat", "ilc_di01", "ILC-DI01")
+```
+
+
+
+
+```{r ILC-eurostat-D9D1}
+ig_d("eurostat", "ilc_di01", "ILC-eurostat-D9D1")
+```
+
+
+# Eurostat - poverty
+
+```{r LI-R-M60}
+ig_d("eurostat", "ilc_li02", "LI-R-M60")
+```
+
+```{r LI-R-M40}
+ig_d("eurostat", "ilc_li02", "LI-R-M40")
+```
+
+
+# Poverty
+
+## PVT5A
+
+```{r PVT5A}
+ig_d("oecd", "IDD", "PVT5A-DEU-FRA")
+```
+
+
+
+## PVT5B
+
+
+```{r PVT5B}
+ig_d("oecd", "IDD", "PVT5B-DEU-FRA")
+``` 
+
+
+
+
+## PALMA
+
+
+```{r PALMA}
+ig_d("oecd", "IDD", "PALMA-DEU-FRA")
+```
+
+
+
+## PVTAATOTAL
+
+```{r PVTAATOTAL}
+ig_d("oecd", "IDD", "PVTAATOTAL-DEU-FRA")
+```
+
+## GINIB
+
+```{r GINIB}
+ig_d("oecd", "IDD", "GINIB-DEU-FRA")
+```
+
+# Tax Rates
+
+## Corporate Income- Germany
+
+```{r statutory-corporate}
+ig_d("oecd", "CTS_CIT", "DEU")
+```
+
+
+
+## Effective Tax Rates on Increasing Labor Hours
+
+```{r effective-tax-rate-increase-labor}
+ig_d("oecd", "METR", "SINGLE-AW-0-DEU")
+```
+
+
+## Effective Tax Rates on Increasing Labor Hours (No Housing)
+
+```{r effective-tax-rate-increase-labor-no-housing}
+ig_d("oecd", "METR", "SINGLE-AW-1-DEU")
+```
+
+## Personal Income Tax Rates
+
+```{r}
+ig_d("oecd", "TABLE_I1", "DEU")
+```
+
+
+## Top Personal Income Tax Rates
+
+```{r PERS-ITAX, echo = T}
+ig_d("oecd", "TABLE_I7", "DEU")
+```
+
+
+
+## Overall Statutory Tax Rates on Dividend
+
+```{r}
+ig_d("oecd", "TABLE_II4", "DEU")
+```
+
+
+## Employee Social Contribution Rates
+
+```{r}
+ig_d("oecd", "TABLE_III1", "DEU")
+```
+
+
+# Growth in Internal Demand VS External Demand
+
+We decompose the growth in GDP between internal demand and external demand:
+
+
+```{r}
+ig_b("germany", "decompose-internal-external-FRA-GER")
+```
+
+
+
+# Funded Pensions Indicators (OECD)
+
+## Germany
+
+```{r}
+ig_b("germany", "funded-pensions-2")
+```
+
+
+# Inequality
+
+## All population
+
+```{r GINI}
+ig_d("oecd", "IDD", "GINI-FRA-DEU")
+```
+
+
+## Age group 76+: mean disposable income (current prices)
+
+```{r INCAC7}
+ig_d("oecd", "IDD", "INCAC7-FRA-DEU")
+```
+
+
+## Age group 66-75: mean disposable income (current prices)
+
+```{r INCAC6}
+ig_d("oecd", "IDD", "INCAC6-FRA-DEU")
+```
+
+
+
+## Age group 41-50: mean disposable income (current prices)
+
+```{r INCAC4}
+ig_d("oecd", "IDD", "INCAC4-FRA-DEU")
+```
+
+
+## Age group 26-40: mean disposable income (current prices)
+
+```{r INCAC3}
+ig_d("oecd", "IDD", "INCAC3-FRA-DEU")
+```
+
+##  INCHCTOTAL
+
+
+```{r INCHCTOTAL}
+ig_d("oecd", "IDD", "INCHCTOTAL-FRA-DEU")
+```
+
+## P90/P10 disposable income decile ratio
+
+```{r P90P10}
+ig_d("oecd", "IDD", "P90P10-FRA-DEU")
+```
+
+
+## P50/P10 disposable income decile ratio
+
+```{r P50P10}
+ig_d("oecd", "IDD", "P50P10-FRA-DEU")
+```
+
+## P90/P10 disposable income decile ratio
+
+```{r S80S20}
+ig_d("oecd", "IDD", "S80S20-FRA-DEU")
+```
+
+
+
+
+# Trade surpluses across the world: OECD
+
+Large absolute values of Trade Surpluses:
+
+```{r}
+ig_b("germany", "net-exports-QNA")
+```
+
+
+
+```{r}
+ig_b("germany", "net-exports-EO")
+```
+
+# Pension Data
+
+```{r}
+ig_b("germany", "SOCX_AGG_BRANCH_1")
+```
+
+## Old age - Cash benefits
+
+```{r SOCX-AGG-old-cash}
+ig_d("oecd", "SOCX_AGG", "old-cash")
+```
+
+
+
+```{r SOCX-AGG-old-cash2}
+ig_d("oecd", "SOCX_AGG", "old-cash2")
+```
+
+
+
+
+
+# Macroeconomic Aggregates
+
+## Total net worth of households
+
+```{r}
+ig_d("oecd", "NAAG", "TOTNETWORTHS14-S15NDI-FRA-DEU")
+```
+
+
+
+## Household housing consumption, percentage of households net adjusted disposable income
+
+```{r}
+ig_d("oecd", "NAAG", "P040B7NS14-S15-FRA-DEU")
+```
+
+## Household savings (% of household disposable income)
+
+```{r}
+ig_d("oecd", "NAAG", "B8NS14-S15SB6NS14-FRA-DEU")
+```
+
+
+# Total Outlays
+
+```{r EO-YPGTQ-FRA-DEU}
+ig_d("oecd", "EO", "YPGTQ-FRA-DEU")
+```
+
+
+
+# Reduced Social Expenditures
+
+## Old age - Cash benefits
+
+```{r}
+ig_d("oecd", "SOCX_AGG", "old-cash3")
+```
+
+
+
+## Total - Cash Benefits
+
+```{r}
+ig_d("oecd", "SOCX_AGG", "total-cash-DEU-FRA")
+```
+
+
+## Health - Total
+
+```{r}
+ig_d("oecd", "SOCX_AGG", "health-DEU-FRA")
+```
+
+
+## Family - Total
+
+```{r}
+ig_d("oecd", "SOCX_AGG", "family-DEU-FRA")
+```
+
+## Housing - Total
+
+```{r}
+ig_d("oecd", "SOCX_AGG", "housing-DEU-FRA")
+```
+
+
+## Unemployment - Cash Benefits 
+
+```{r SOCX-AGG-unemployment-cash}
+ig_d("oecd", "SOCX_AGG", "BRANCH-7-FRA-DEU-NLD")
+```
+
+## Old age - Cash benefits
+
+```{r SOCX-AGG-old-cash3}
+ig_d("oecd", "SOCX_AGG", "old-cash3")
+```
+
+
+
+```{r PAG-public-expenditure-pensions}
+ig_d("oecd", "PAG", "PEN25-FRA-DEU")
+```
+
+
+```{r PAG-gross-pension-replacement}
+ig_d("oecd", "PAG", "PEN3B-FRA-DEU")
+```
+
+
+
+
+
+```{r PAG-PEN5B}
+ig_d("oecd", "PAG", "PEN5B-FRA-DEU-1990")
+```
+
+
+
+```{r PAG-PEN10}
+ig_d("oecd", "PAG", "PEN10B-FRA-DEU-1990")
+```
+
+# Germany
+
+
+
+## Total Taxes (in Billions)
+
+(ref:DEU-TOTALTAX-95-04) <span style="font-variant:small-caps;">Total Taxes in Germany (1995-2004)</span>
+
+```{r DEU-TOTALTAX-95-04, fig.cap="(ref:DEU-TOTALTAX-95-04)"}
+ig_d("oecd", "REV", "DEU-TOTALTAX-95-04")
+```
+
+## Value Added Taxes (in Billions)
+
+(ref:DEU-5111-95-04) <span style="font-variant:small-caps;">Value Added Taxes in Germany (1995-2004)</span>
+
+```{r DEU-5111-95-04, fig.cap="(ref:DEU-5111-95-04)"}
+ig_d("oecd", "REV", "DEU-5111-95-04")
+```
+
+
+
+
+## Fuel Taxes (in Billions)
+
+(ref:DEU-5120-95-04) <span style="font-variant:small-caps;">Fuel Taxes in Germany (1995-2004)</span>
+
+```{r DEU-5120-95-04, fig.cap="(ref:DEU-5120-95-04)"}
+ig_d("oecd", "REV", "DEU-5120-95-04")
+```
+
+
+# Macroeconomic Aggregates
+
+
+## Exports and Imports in Germany
+
+(ref:DEU-X-M-95-04) <span style="font-variant:small-caps;">Exports and Imports in Germany (1995-2004)</span>
+
+```{r DEU-X-M-95-04, fig.cap="(ref:DEU-X-M-95-04)"}
+ig_d("oecd", "QNA", "DEU-X-M-95-04")
+```
+
+
+## Net Exports
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_NATIO_CURR", "P6-P7-B1GQ-DEU")
+```
+
+
+
+
+

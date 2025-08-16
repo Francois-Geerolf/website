@@ -1,0 +1,433 @@
+---
+title: Statistiques de l'épargne en France
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+knitr::opts_chunk$set(echo = T)
+
+epargne <- tribble(
+  ~source, ~dataset,
+  "bdf",  "CFT",
+  "insee",  "bdf2017",
+  "insee",  "ip1815",
+  "insee", "T_7401",
+  "insee", "t_men_val",
+  "insee", "t_recapAgent_val",
+  "insee", "t_pouvachat_val") %>%
+  arrange(source, dataset)
+```
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; compile index.qmd; update website
+# cd ~/iCloud/website/data; compile epargne.qmd
+# cd ~/iCloud/website/data; compile saving.qmd
+# cd ~/iCloud/website/data; compile pouvoir-achat.qmd
+# update website; open https://fgeerolf.com/data/epargne.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+# Info
+
+```{r, echo = F}
+## cd ~/iCloud/website/data; ./_update_data_themes.sh epargne.qmd
+## cd ~/iCloud/website/data; update saving.qmd
+## sh ~/iCloud/website/website_short.sh
+```
+
+## Définitions
+
+- L’épargne des ménages peut être utilisée soit pour l’investissement, soit pour des placements financiers ou des remboursements d’emprunt. La capacité de financement des ménages correspond au solde de l’épargne et de l’investissement. Le taux d’épargne financière est le rapport de la capacité de financement au revenu disponible. ([Source](https://www.insee.fr/fr/statistiques/5432493?sommaire=5435421))
+
+## Ordre de grandeur
+
+### Annuel
+
+
+- RDB = 1774.4
+
+- Epargne = 301
+
+```{r, echo = T}
+scales::percent(301/1774.4, acc = 0.1)
+```
+
+- Taux épargne = 17%
+
+- 14% -> 18% 
+
+```{r, echo = T}
+0.04*1774.4
+```
+
+- 70 milliards d'euros d'épargne supplémentaires...
+
+- Fiscalité: 10 milliards taxe d'habitation top 20%. Suppression ISF, Flat Tax: disons 10 milliards. Revenus patrimoine dynamiques:
+
+### Trimestriel
+
+- Consommation Totale 2023T2 = 356,6 Mds€ / trimestre.
+
+```{r, echo = T}
+scales::percent(1-356.6/439.2, acc = 0.1)
+```
+
+- Revenu Disponible Brut 2023T2 = 439,2 Mds€ / trimestre.
+
+- Epargne = 82,6 Mds€ / trimestre.
+
+- Taux d'épargne 2023T2: 82,6 / 439,2 = 18.8 %
+
+```{r, echo = T}
+scales::percent(1-356.6/439.2, acc = 0.1)
+```
+
+
+# Taux d'épargne
+
+## Quelques "détails" institutionnels
+
+- "Taux d'épargne" exprimé usuellement est brut, c'est à dire inclut la dépréciation du capital, l'investissement des ménages, et les frais de notaire ainsi que les frais d'agence. (?)
+
+- Taux d'épargne (brute): 18% du RDB, 11.5% du PIB (brut).
+
+- Taux d'épargne (nette):  (moins la dépréciation)
+
+- Capacité de financement: 9% du RDB, 5.5% du PIB (brut).
+
+## Pouvoir d'achat, % du PIB
+
+Pouvoir d'achat = 63.5% du PIB.
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B6-B7")
+```
+
+
+## Trimestriel
+
+### Tous-
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "taux-epargne")
+```
+
+
+### 2012-
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "taux-epargne-2012")
+```
+
+
+### 2017T2-
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "taux-epargne-2017T2")
+```
+
+
+## Avec investissement
+
+### % du RDB
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B8-B9NF-P51-P6")
+```
+
+
+### % du PIB
+
+#### Tous
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B8-B9NF-P51")
+```
+
+### Annuel: Epargne nette et brute
+
+#### Tous
+
+```{r}
+ig_d("insee", "T_7401", "B8G-B8N-P51C")
+```
+
+#### 1978-
+
+```{r}
+ig_d("insee", "T_7401", "B8G-B8N-P51C-1978")
+```
+
+
+
+## Dépréciation du capital immobilier total
+
+
+
+```{r}
+ig_d("insee", "T_6461", "A10-LZ-BE")
+```
+
+
+
+
+## Besoin ou capacité de financement
+
+### APU et RdM
+
+#### Trimestriel
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B9NF-RdM-APU-percent-PIB")
+```
+
+#### Sur 12 mois
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B9NF-RdM-APU-percent-PIB-12mois")
+```
+
+### Ménages, Reste du Monde
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2017-bis2")
+```
+
+
+
+
+
+### Tous secteurs
+
+#### Tous
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2000")
+```
+
+
+
+#### 2013-
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2013")
+```
+
+#### 2017-
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2017-bis")
+```
+
+
+
+
+### Cumulé sur 4 trimestres
+
+```{r}
+ig_d("bdf", "CFT", "taux-epargne")
+```
+
+
+# France, Italie, Allemagne
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/R -e 'quarto::quarto_render("CFT.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+## Taux d'épargne financière
+
+Le taux d’épargne financière est le rapport de la capacité de financement au revenu disponible.
+
+```{r}
+ig_d("bdf", "CFT", "B9Z-FR-IT-DE")
+```
+
+## Taux d'épargne
+
+```{r}
+ig_d("bdf", "CFT", "B8G-FR-IT-DE")
+```
+
+
+
+# Actifs / Passifs des ménages, Encours
+
+## Encours, actifs
+
+### Table, 2023T4
+
+```{r}
+ig_b("bdf", "FR_Stat_info_-_Epargne_des_menages_-_2024T2", "detail-des-placements-financiers")
+```
+
+### Graphique
+
+```{r}
+ig_d("bdf", "CFT", "encours-plus-gros")
+```
+
+## Produits de taux
+
+```{r}
+ig_d("bdf", "CFT", "PDTX")
+```
+
+
+## Produits de fonds propres
+
+```{r}
+ig_d("bdf", "CFT", "PDTX")
+```
+
+
+
+## Dette des ménages
+
+```{r}
+ig_d("bdf", "CFT", "dettes-france")
+```
+
+# Données Insee Première
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("ip1815.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Age
+
+### Fonction de consommation
+
+```{r}
+ig_d("insee", "ip1815", "fig6-age")
+```
+
+### Taux d'épargne
+
+```{r}
+ig_d("insee", "ip1815", "fig6-age-taux")
+```
+
+### Taux d'éparge net, plus récent
+
+```{r}
+ig_b("insee", "if338", "IF_Conso_2022_Taux_epargne_nette_en_2022")
+```
+
+## Quintile
+
+### Fonction de consommation
+
+```{r}
+ig_d("insee", "ip1815", "fig6-quintile")
+```
+
+
+### Taux d'épargne
+
+```{r}
+ig_d("insee", "ip1815", "fig6-quintile-taux")
+```
+
+## Déciles
+
+### Taux d'épargne
+
+```{r}
+ig_d("insee", "bdf2017", "EPARGNE-revenu")
+```
+
+
+
+## Tous
+
+### Fonction de consommation
+
+```{r}
+ig_d("insee", "ip1815", "fig6")
+```
+
+Revenu rapporté aux Unités de Consommation (UC): 
+-- 1 UC pour le premier adulte du ménage,
+-- 0,5 UC pour les autres personnes de 14 ans ou plus,
+-- 0,3 UC pour les enfants de moins de 14 ans.
+
+Cette échelle d’équivalence (dite de l’OCDE) tient compte des économies d’échelle au sein du ménage. En effet, les besoins d'un ménage ne s'accroissent pas en stricte proportion de sa taille. Lorsque plusieurs personnes vivent ensemble, il n'est pas nécessaire de multiplier tous les biens de consommation (en particulier, les biens de consommation durables) par le nombre de personnes pour garder le même niveau de vie.
+
+### Taux d'épargne
+
+```{r}
+ig_d("insee", "ip1815", "fig6-taux")
+```
+
+## Composition de la dépense de consommation
+
+```{r}
+ig_b("insee", "ip1815", "bind")
+```
+
+## Taux d'épargne par quintile
+
+```{r}
+ig_b("insee", "ip1815", "fig5")
+```
+
+## Revenu permanent
+
+```{r}
+ig_b("GarbintiLamarche2014", "graphique3")
+```
+
+
+
+# Grands agrégats
+
+## RDB vs. conso
+
+```{r}
+ig_d("insee", "T_7401", "B6g-D11")
+```
+
+## Salaires nets
+
+```{r}
+ig_d("insee", "T_7401", "D1-D11-rdb")
+```
+
+
+
+
+# Pour en savoir plus...
+
+
+
+## Bibliographie en lien
+
+### Français
+
+<!---
+- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+--->
+
+- "La taxe inflationniste, le pouvoir d’achat, le taux d’épargne et le déficit public", F. Geerolf, Document de travail, Juillet 2024. [[pdf](https://fgeerolf.com/taxe-inflationniste.pdf)]
+
+
+

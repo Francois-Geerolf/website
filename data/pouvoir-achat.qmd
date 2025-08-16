@@ -1,0 +1,492 @@
+---
+title: Les chiffres du pouvoir d'achat
+lang: fr
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+bibliography: cv.bib
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+
+```{r, echo = FALSE, message = FALSE}
+source("../code/R-markdown/init_min.R")
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
+## sh ~/iCloud/website/website_short.sh
+knitr::opts_chunk$set(echo = T)
+`pouvoir-achat` <- tribble(
+  ~source, ~dataset,
+  "insee",  "CNA-2014-RDB",
+  "insee",  "CNT-2014-CSI",
+  "insee",  "conso-eff-fonction",
+  "insee", "reve-niv-vie-individu-activite",
+  "insee", "reve-niv-vie-pouv-achat-trim",
+  "insee", "reve-conso-evo-dep-pa",
+  "insee", "t_men_val",
+  "insee", "t_pouvachat_val",
+  "insee", "econ-gen-revenu-dispo-pouv-achat-2",
+  "insee", "t_salaire_val",
+  "insee", "t_recapAgent_val",
+  "oecd",  "HH_DASH",
+  "insee",  "T_7401") %>%
+  arrange(source, dataset)
+
+do.call(save, list("pouvoir-achat", file = "pouvoir-achat.RData"))
+```
+
+# Chiffres officiels de l'Insee
+
+
+## Evolutions trimestrielles (%)
+
+```{r echo = F}
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+"https://www.insee.fr/fr/statistiques/2830166" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(Indicateur ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830166#tableau-figure1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+## Evolutions annuelles (%)
+
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2830244" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(Indicateur ~ gt::px(300), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830244#tableau-figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+
+
+# Retraites, Point d'indice (net)
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_pouvachat_val.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "insee", "t_pouvachat_val") %>%
+  source_dataset_file_updates()
+```
+
+## Revalorisation retraites
+
+```{r, echo = F}
+tribble(~source, ~ dataset,
+        "ipp", "revalorisation_pension") %>%
+  source_dataset_file_updates()
+ig_d("ipp", "revalorisation_pension", "reval-1999-reel")
+```
+
+
+## Revalorisation retraites
+
+```{r}
+ig_d("ipp", "revalorisation_pension", "reval-1999-reel")
+```
+
+
+## Indice de la fonction publique
+
+### 1999-
+
+```{r}
+ig_d("ipp", "indicefp", "indicefp-reel-1999-cpih-percent-net-brut-mensuel")
+```
+
+
+
+### 2017-
+
+```{r}
+ig_d("ipp", "indicefp", "indicefp-reel-2017-cpih-percent-net-brut-mensuel")
+```
+
+### 2017T2-
+
+```{r}
+ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
+```
+
+
+
+# Evolution du pouvoir d'achat
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_men_val.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_pouvachat_val.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "insee", "t_pouvachat_val",
+        "insee", "t_men_val") %>%
+  source_dataset_file_updates()
+```
+
+## 1999-
+
+```{r}
+ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-1999")
+```
+
+
+## 2019-
+
+```{r}
+ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2019")
+```
+
+
+
+## Evolution du RDB vs. déflateur de la conso
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "P3prix-B6-B7-GA-1990")
+```
+
+## Comparer déflateur
+
+### 1990-
+
+```{r}
+ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-1990")
+```
+
+### 1999-
+
+```{r}
+ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-1999")
+```
+
+
+
+## Pouvoir d'achat du RDB
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "pouvoir-achat-GA")
+```
+
+
+## RDB, RDB moins capital
+
+```{r}
+ig_d("insee", "t_men_val", "RDB-RDBmoinsK")
+```
+
+
+
+# Types de revenus
+
+## Revenus de la propriété
+
+### Trimestriel
+
+```{r}
+ig_d("insee", "t_men_val", "B2S14-D4-log-1995")
+```
+
+
+
+### Annuel
+
+```{r}
+ig_d("insee", "T_7401", "D4-D42-D44-1995")
+```
+
+
+
+# Depuis 1996
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SALAIRES-ANNUELS; /usr/local/bin/R -e 'quarto::quarto_render("SALAIRES-ANNUELS.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "insee", "SALAIRES-ANNUELS",
+        "insee", "IPCH-2015") %>%
+  source_dataset_file_updates()
+```
+
+## PCS
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice")
+```
+
+
+
+## Pas de hausse des inégalités ?
+
+### Nominal
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice")
+```
+
+
+
+### Reel
+
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel")
+```
+
+
+# Depuis 2008
+
+
+## Pas de hausse des inégalités ?
+
+### Réel
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2008")
+```
+
+
+
+
+# Pouvoir d'achat
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-RDB; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-RDB.qmd")'
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~source, ~ dataset,
+        "insee", "CNA-2014-RDB") %>%
+  source_dataset_file_updates()
+```
+
+## Evolution depuis 1996
+
+```{r}
+ig_d("insee", "reve-niv-vie-individu-activite", "1996-2008-2019-moy")
+```
+
+## Personne > UC > Ménage
+
+Dernier chiffre RDB/ménage (2022): -0.6% 
+
+```{r}
+ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
+```
+
+
+# Population, unités de consommation
+
+## 1959-
+
+```{r}
+ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "demographie")
+```
+
+
+
+## 1999-
+
+```{r}
+ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "demographie-1999")
+```
+
+
+
+# Détail du RDB
+
+## Salaires
+
+```{r}
+ig_d("insee", "T_7401", "18-26-42-montant-log-1995")
+```
+
+
+
+## Dividendes, Ménages
+
+### Mds € (montants trimestriels)
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "D42-menages")
+```
+
+
+
+### % du PIB
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "D42-menages-percent-PIB")
+```
+
+
+
+## Dividendes
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "D42-nets-percent-PIB")
+```
+
+# Revenu disponible
+
+Dernier chiffre RDB/ménage (2022): -0.6% 
+
+## Par ménage, par personne, par UC
+
+```{r}
+ig_d("insee", "CNA-2014-RDB", "menage-personne-UC")
+```
+
+# Comparaisons internationales
+
+## GDI
+
+### 1999-
+
+```{r}
+ig_d("eurostat", "nasq_10_nf_tr", "B6G-FR-DE-IT-ES-NL-1999")
+```
+
+
+
+## GDI, real, per person
+
+### 1999-
+
+```{r}
+ig_d("eurostat", "nasq_10_nf_tr", "B6G-R-HAB-FR-DE-IT-ES-NL-1999")
+```
+
+### OECD
+
+```{r}
+ig_d("oecd", "NAAG", "B6NS14S15DEF-ITA-ESP-FRA-DEU-1999")
+```
+
+
+
+### 2017-
+
+```{r}
+ig_d("eurostat", "nasq_10_nf_tr", "B6G-R-HAB-FR-DE-IT-ES-NL-2017")
+```
+
+## Quelle inflation ?
+
+### CPI vs. HICP
+
+```{r}
+ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-1996")
+```
+
+
+# Pour en savoir plus...
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/pouvoir-achat.html
+# sh ~/iCloud/website/website_short.sh
+
+tribble(~ theme,
+        "pouvoir-achat",
+        "inflation-france",
+        "salaires") %>%
+  theme_file_updates()
+```
+
+## Données sur le [pouvoir d'achat](https://fgeerolf.com/data/pouvoir-achat.html)
+
+```{r, echo = F}
+load_data("pouvoir-achat.RData")
+`pouvoir-achat` %>%
+  source_dataset_title_file_updates()
+```
+
+
+
+## Bibliographie en lien
+
+### Français
+
+<!---
+- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+--->
+
+
+- "Mesurer « le » pouvoir d'achat", F. Geerolf, Document de travail, Juillet 2024. [[html](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.html)] [[pdf](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.pdf)]
+
+- "Inflation en France : IPC ou IPCH ?", F. Geerolf, Document de travail, Juillet 2024. [[html](https://fgeerolf.com/IPC-ou-IPCH.html)] [[pdf](https://fgeerolf.com/IPC-ou-IPCH.pdf)]
+
+- "La taxe inflationniste, le pouvoir d’achat, le taux d’épargne et le déficit public", F. Geerolf, Document de travail, Juillet 2024. [[html](https://fgeerolf.com/taxe-inflationniste.html)] [[pdf](https://fgeerolf.com/taxe-inflationniste.pdf)]
+
+- "L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques.", F. Geerolf, Blog de l'OFCE, décembre 2023. [[html](https://fgeerolf.com/inflation-par-categorie.html)] [[blog](https://www.ofce.sciences-po.fr/blog/lanalyse-de-linflation-par-categories-de-menages-quelques-problemes-methodologiques/)] [[pdf](https://fgeerolf.com/inflation-par-categorie.pdf)]
+
+- "Les politiques économiques de lutte contre l’inflation en Europe." F. Geerolf, In L'économie européenne 2023-2024, La Découverte, p.42-56, septembre 2023. [[html](https://www.cairn.info/l-economie-europeenne-2023-2024--9782348079993-page-42.htm)]
+
+- "Les incidences économiques de l'action pour le climat. Rapport thématique: inflation." S. Dees, E. Bellevrat, A. de Gaye, F. Geerolf, M. Lequien, R. Schweizer, A. Tettaravou, O. Wegner. France Stratégie, mai 2023. [[pdf](https://www.strategie.gouv.fr/sites/strategie.gouv.fr/files/atoms/files/fs-2023-les_incidences_economiques_de_laction_pour_le_climat-thematique-inflation.pdf)]
+
+- "La politique économique en Europe face à l’inflation." F. Geerolf, Cahiers français n°432: Faire face à l'inflation, La Documentation française, mars 2023. [[html](https://www.vie-publique.fr/catalogue/288377-faire-face-linflation)🔒]
+
+- "Qui va payer cette facture énergétique ?" F. Geerolf, Interview a priori, décembre 2022. [[html](https://a-prioris.fr/hauteur-de-vue/francois-geerolf-qui-va-payer-cette-facture-energetique)]
+
+- "Inflation en Europe : les conséquences sociales de la guerre en Ukraine." G. Allègre, F. Geerolf, X. Timbeau, Blog de l'OFCE, juillet 2022. [[html]()] [[blog](https://www.ofce.sciences-po.fr/blog/inflation-en-europe-les-consequences-sociales-de-la-guerre-en-ukraine/)]
+
+- Inflation et pouvoir d'achat : it's the politics, stupid! F. Geerolf & P. Jacquet, Relançons le débat économique, juin 2022. [[pdf](https://lecercledeseconomistes.fr/wp-content/uploads/2022/07/rlde-2022-25-geerolfjacquet.pdf)] [[html](https://lecercledeseconomistes.fr/inflation-et-pouvoir-dachat-its-the-politics-stupid/)]
+
+- "Quelques remarques au sujet du Blog de l'Insee: Mais si, l'Insee prend bien en compte le logement dans l'inflation !", F. Geerolf, Document de travail, 22 février 2022. [[pdf](https://fgeerolf.com/blog-insee-IPC-loyers.pdf)]
+
+### Anglais
+
+<!---
+
+- Nominal rates matter, independent from real rates [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+
+- Wages and profits in a time of high inflation in the euro area. [[pdf](https://fgeerolf.com/wages-profits-euroarea.pdf)]
+
+--->
+
+
+- "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[html](https://github.com/OFCE/SIWU)]
