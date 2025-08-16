@@ -44,6 +44,7 @@ temp <- "https://fr.investing.com/commodities/real-time-futures" |>
 temp |>
   filter(Nom %in% c("Pétrole brut WTI derived", "Pétrole Brent derived",
                     "XAU/USD", "Or derived")) |>
+  select(1, 2, 3, 7) |>
   gt()|>
     tab_options(
       quarto.disable_processing = TRUE
