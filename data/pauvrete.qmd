@@ -15,14 +15,14 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
-source("../code/R-markdown/init_min.R")
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
 knitr::opts_chunk$set(echo = T)
 pauvrete <- tribble(
   ~source, ~dataset,
   "insee",  "ECRT2023") %>%
   arrange(source, dataset)
-
-save(pauvrete, file = "pauvrete.RData")
 ```
 
 
@@ -33,19 +33,8 @@ save(pauvrete, file = "pauvrete.RData")
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pauvrete.qmd")'
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~ theme,
-        "pauvrete") %>%
-  theme_file_updates()
 ```
 
-## Données sur la [pauvrete](https://fgeerolf.com/data/pauvrete.html)
-
-```{r, echo = F}
-load_data("pauvrete.RData")
-pauvrete %>%
-  source_dataset_title_file_updates()
-```
 
 # Taux de chômage BIT
 
@@ -53,12 +42,6 @@ pauvrete %>%
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R TAUX-CHOMAGE; /usr/local/bin/R -e 'quarto::quarto_render("TAUX-CHOMAGE.qmd")'
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CHOMAGE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("CHOMAGE-TRIM-NATIONAL.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "TAUX-CHOMAGE",
-        "insee", "ECRT2023",
-        "insee", "reve-pauv-taux-seuil-60-activite") %>% 
-  source_dataset_file_updates()
 ```
 
 # Seuils de pauvreté

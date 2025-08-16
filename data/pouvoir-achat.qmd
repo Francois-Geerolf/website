@@ -18,11 +18,12 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
-source("../code/R-markdown/init_min.R")
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
 ## sh ~/iCloud/website/website_short.sh
-knitr::opts_chunk$set(echo = T)
 `pouvoir-achat` <- tribble(
   ~source, ~dataset,
   "insee",  "CNA-2014-RDB",
@@ -39,8 +40,6 @@ knitr::opts_chunk$set(echo = T)
   "oecd",  "HH_DASH",
   "insee",  "T_7401") %>%
   arrange(source, dataset)
-
-do.call(save, list("pouvoir-achat", file = "pouvoir-achat.RData"))
 ```
 
 # Chiffres officiels de l'Insee
@@ -99,18 +98,11 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_pouvachat_val.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "t_pouvachat_val") %>%
-  source_dataset_file_updates()
 ```
 
 ## Revalorisation retraites
 
 ```{r, echo = F}
-tribble(~source, ~ dataset,
-        "ipp", "revalorisation_pension") %>%
-  source_dataset_file_updates()
 ig_d("ipp", "revalorisation_pension", "reval-1999-reel")
 ```
 
@@ -152,11 +144,6 @@ ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
 # cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_men_val.qmd")'
 # cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_pouvachat_val.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "t_pouvachat_val",
-        "insee", "t_men_val") %>%
-  source_dataset_file_updates()
 ```
 
 ## 1999-
@@ -237,11 +224,6 @@ ig_d("insee", "T_7401", "D4-D42-D44-1995")
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SALAIRES-ANNUELS; /usr/local/bin/R -e 'quarto::quarto_render("SALAIRES-ANNUELS.qmd")'
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "SALAIRES-ANNUELS",
-        "insee", "IPCH-2015") %>%
-  source_dataset_file_updates()
 ```
 
 ## PCS
@@ -289,10 +271,6 @@ ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2008")
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-RDB; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-RDB.qmd")'
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~source, ~ dataset,
-        "insee", "CNA-2014-RDB") %>%
-  source_dataset_file_updates()
 ```
 
 ## Evolution depuis 1996
@@ -426,23 +404,7 @@ ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-1996")
 # sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
 # sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/pouvoir-achat.html
 # sh ~/iCloud/website/website_short.sh
-
-tribble(~ theme,
-        "pouvoir-achat",
-        "inflation-france",
-        "salaires") %>%
-  theme_file_updates()
 ```
-
-## Données sur le [pouvoir d'achat](https://fgeerolf.com/data/pouvoir-achat.html)
-
-```{r, echo = F}
-load_data("pouvoir-achat.RData")
-`pouvoir-achat` %>%
-  source_dataset_title_file_updates()
-```
-
-
 
 ## Bibliographie en lien
 
