@@ -32,7 +32,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   arrange(source, dataset)
 ```
 
-{{< include ../cv/publications/Geerolf2024a.qmd >}}cv
+{{< include cv/publications/Geerolf2024a.qmd >}}
 
 
 # Comparatif IPC vs. IPCH
