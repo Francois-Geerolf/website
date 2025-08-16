@@ -1,0 +1,89 @@
+---
+title: Analyse de la Conjoncture Économique
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+knitr::opts_chunk$set(echo = T)
+`conjoncture` <-tribble(
+  ~source, ~dataset,
+  "insee",  "conso-mensuelle",
+  "insee", "CNA-2014-FBCF-BRANCHE",
+  "insee", "CNA-2014-FBCF-SI",
+  "insee", "ICA-2015-IND-CONS",
+  "insee", "IPI-2021") %>%
+  arrange(source, dataset)
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("conjoncture.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/conjoncture.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+# Indicateurs macro
+
+## Production industrielle
+
+```{r}
+ig_d("insee", "IPI-2021", "CZ-BE-mai-2017")
+```
+
+
+
+
+## Défaillances d'entreprises
+
+```{r}
+ig_d("bdf", "DIREN", "PE-IG-TP3")
+```
+
+
+
+
+
+
+# Indicateur du climat
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CLIMAT-AFFAIRES; /usr/local/bin/R -e 'quarto::quarto_render("CLIMAT-AFFAIRES.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Emploi, Affaires
+
+```{r}
+ig_d("insee", "CLIMAT-AFFAIRES", "CLIMAT-EMPLOI")
+```
+
+
+## Indicateur de retournement
+
+```{r}
+ig_d("insee", "CLIMAT-AFFAIRES", "CLIMAT-RETOURNEMENT-2006")
+```
+
+
+
+# Info
+
+
+# Ressources
+
+- Les mots de la conjoncture. [pdf](https://www.insee.fr/fr/statistiques/fichier/1408431/Lexique_062013.pdf)
+

@@ -1,0 +1,69 @@
+---
+title: Statistiques sur le chômage et l'emploi
+lang: fr
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+knitr::opts_chunk$set(echo = T)
+chomage <- tribble(
+  ~source, ~dataset,
+  "insee", "DEMANDES-EMPLOIS-NATIONALES",
+  "insee", "CHOMAGE-TRIM-NATIONAL",
+  "oecd", "FAMILY") %>%
+  arrange(source, dataset)
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("chomage.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# Sources
+
+## Pôle Emploi
+
+```{r}
+ig_d("insee", "DEMANDES-EMPLOIS-NATIONALES", "A-B-C-2005")
+```
+
+## Halo du chômage
+
+```{r}
+ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "halo-chomage-france")
+```
+
+## Nombre de chômeurs
+
+```{r}
+ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "CTCHC-tous")
+```
+
+
+
+## Taux de chômage
+
+```{r}
+ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-tous")
+```
+
+
+# Pour en savoir plus...
+
+## Info
+
+- Insee. L'essentiel sur... le chômage. <https://www.insee.fr/fr/statistiques/4805248>
+
