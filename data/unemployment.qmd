@@ -1,0 +1,100 @@
+---
+title: Insights into Unemployment Rates
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+unemployment <- tribble(
+  ~source, ~dataset,
+  "bls", "jt",
+  "bls", "la",
+  "bls", "ln",
+  "eurostat", "une_rt_m",
+  "oecd", "STLABOUR",
+  "oecd", "LFS_SEXAGE_I_R",
+  "oecd", "ALFS_EMP",
+  "oecd", "EPL_T",
+  "oecd", "NRR") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("emploi.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("unemployment.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("industrie.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("industry.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# Unemployment
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R une_rt_m; /usr/local/bin/R -e 'quarto::quarto_render("une_rt_m.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f STLABOUR_7.R; /usr/local/bin/R -e 'quarto::quarto_render("STLABOUR.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France, Europe, US
+
+### Annual
+
+```{r}
+ig_d("oecd", "STLABOUR", "LRHUTTTT-A-USA-EA20-FRA")
+```
+
+
+```{r}
+ig_d("oecd", "STLABOUR", "LRHUTTTT-M-USA-EA20-FRA-2005")
+```
+
+
+
+
+
+## France, US, Germany
+
+```{r}
+ig_d("oecd", "STLABOUR", "LRHUTTTT-Q-DEU-FRA-USA")
+```
+
+## France, Europe
+
+```{r}
+ig_d("eurostat", "une_rt_m", "EA-FR-1998")
+```
+
+## France, Germany, Italy, Spain, Netherlands
+
+```{r}
+ig_d("eurostat", "une_rt_m", "FR-DE-IT-ES-NL-PT")
+```
+
+
+
+## France, Germany, Italy, Spain, Europe
+
+
+```{r}
+ig_d("eurostat", "une_rt_m", "FR-DE-IT-ES-NL-EA20")
+```
+
+

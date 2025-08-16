@@ -1,0 +1,87 @@
+---
+title: Themes
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
+# sh ~/iCloud/website/website_short.sh
+themes <- list.files(pattern = "\\.qmd$") %>%
+  as_tibble() %>%
+  rename(theme = value) %>%
+  mutate(theme = gsub("\\.qmd$", "", theme)) %>%
+  filter(theme != "api", theme != "index", !grepl("_update", theme))
+```
+
+# By Language
+
+## English
+
+```{r}
+themes %>%
+  mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
+  mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
+         Compile = glue::glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")) %>%
+  filter(textcat(Title) == "english") %>%
+  gt::gt()|>
+  gt::fmt_markdown(columns = "Compile") |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_compact_mode = T
+  )
+```
+
+
+## Français
+
+```{r}
+themes %>%
+  mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
+  mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
+         Compile = glue::glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")) %>%
+  filter(textcat(Title) == "french") %>%
+  gt::gt()|>
+  gt::fmt_markdown(columns = "Compile") |>
+  gt::opt_interactive(use_search = T, use_resizers = T, use_compact_mode = T)
+```
+
+
+# All
+
+## Javascript
+
+```{r}
+list <- themes %>%
+  mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
+  mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
+         Compile = glue::glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")) %>%
+  gt::gt()
+
+list |>
+  gt::fmt_markdown(columns = "Compile") |>
+  gt::opt_interactive(use_search = T, use_resizers = T, use_compact_mode = T)
+```
+
+## Flat
+
+```{r}
+list |>
+  gt::fmt_markdown(columns = "Compile")
+```
+

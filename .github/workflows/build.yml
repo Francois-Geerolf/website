@@ -59,7 +59,7 @@ jobs:
             "quarto", "readxl", "rsdmx", "tools",
             "knitr", "scales", "viridis", "zoo", "lubridate",
             "ggrepel", "curl", "rmarkdown", "rvest", "jsonlite",
-            "here", "i18n", "r2country", "eurostat"
+            "here", "i18n", "r2country", "eurostat", "textcat"
           )
       
           format_time <- function(seconds) {

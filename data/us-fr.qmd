@@ -1,0 +1,62 @@
+---
+title: Comparing the United States and Europe
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+knitr::opts_chunk$set(echo = T)
+`us-fr` <- tribble(
+  ~source, ~dataset,
+  "bis", "CBPOL_D",
+  "oecd", "BOP",
+  "oecd",  "QNA_EXPENDITURE_CAPITA",
+  "wdi", "NY.GDP.PCAP.CD",
+  "wdi", "NY.GDP.PCAP.PP.CD",
+  "wdi", "NY.GDP.MKTP.PP.CD") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("us-eu.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("salaires.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("wages.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/us-eu.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-us.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+# GDP Data
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_new.R OECD.SDD.NAD DSD_NAMAIN1 QNA_EXPENDITURE_CAPITA; /usr/local/bin/R -e 'quarto::quarto_render(input = "QNA_EXPENDITURE_CAPITA.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## In volume
+
+```{r}
+ig_d("wdi", "NY.GDP.PCAP.PP.CD", "US-FR-XC-GDP-PPP-1999")
+```
+
+

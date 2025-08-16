@@ -1,0 +1,295 @@
+---
+title: Wage Data
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+wages <- tribble(
+  ~source, ~dataset,
+  "eurostat",  "earn_mw_cur",
+  "eurostat", "tps00155",
+  "eurostat",  "ei_lmlc_q",
+  "eurostat",  "lc_lci_lev",
+  "eurostat",  "lc_lci_r2_q",
+  "eurostat",  "nama_10_lp_ulc",
+  "eurostat",  "namq_10_lp_ulc",
+  "fred",  "wage",
+  "ilo",  "EAR_XEES_SEX_ECO_NB_Q",
+  "ilo",  "EAR_4MTH_SEX_ECO_CUR_NB_A",
+  "oecd",  "AV_AN_WAGE",
+  "oecd",  "HH_DASH",
+  "oecd",  "EAR_MEI",
+  "oecd",  "AWCOMP",
+  "oecd",  "MIN2AVE",
+  "oecd",  "RMW",
+  "oecd",  "ULC_EEQ") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("wages.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("salaires.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("wages.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+
+
+# OECD Data
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R EAR_MEI; /usr/local/bin/R -e 'quarto::quarto_render("EAR_MEI.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f PRICES_CPI_5.R; /usr/local/bin/R -e 'quarto::quarto_render("PRICES_CPI.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## US, EU, UK
+
+### 1996-
+
+```{r}
+ig_d("oecd", "EAR_MEI", "LCEAPRIXOBSA-USA-EA19-GBR-1996-real")
+```
+
+
+### 2015-
+
+```{r}
+ig_d("oecd", "EAR_MEI", "LCEAPRIXOBSA-USA-EA19-GBR-FRA-2015-real")
+```
+
+## France, Germany, Italy, Belgium, Spain, Portugal, Austria
+
+### 2015-
+
+```{r}
+ig_d("oecd", "EAR_MEI", "LCEAPRIXOBSA-FRA-DEU-ITA-BEL-ESP-PRT-AUT-2015-real")
+```
+
+
+
+### 2019Q4-
+
+```{r}
+ig_d("oecd", "EAR_MEI", "LCEAPRIXOBSA-FRA-DEU-ITA-BEL-ESP-PRT-AUT-2015-real")
+```
+
+# United States vs. Euro area
+
+
+
+# United States
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f wage.R
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f cpi.R
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -e 'quarto::quarto_render("wage.qmd")'
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -e 'quarto::quarto_render("cpi.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Employment cost Index
+
+### All
+
+```{r}
+ig_d("fred", "wage", "ECI")
+```
+
+
+### 2019-
+
+```{r}
+ig_d("fred", "wage", "ECI-2019")
+```
+
+
+
+## U.S. Real Wages
+
+### All
+
+```{r}
+ig_d("fred", "wage", "real-wages")
+```
+
+### 1970-
+
+```{r}
+ig_d("fred", "wage", "real-wages-1970")
+```
+
+# Europe wages
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R lc_lci_r2_q; /usr/local/bin/R -e 'quarto::quarto_render("lc_lci_r2_q.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R EAR_MEI; /usr/local/bin/R -e 'quarto::quarto_render("EAR_MEI.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## Negociated wages
+
+- Definition. [pdf](https://www.ecb.europa.eu/pub/pdf/other/mb200209_focus05.en.pdf)
+
+```{r}
+ig_d("ecb", "STS", "M-I8-N-UNEH-RTT000-4-000-2017")
+```
+
+
+
+## Wages and salaries
+
+### 2017T2-2024T2
+
+```{r}
+ig_d("eurostat", "lc_lci_r2_q", "FR-B-S-SCA-D11-2017T2")
+```
+
+
+
+### Growth
+
+```{r}
+ig_d("eurostat", "lc_lci_r2_q", "FR-DE-ES-IT-B-S-D11-2020")
+```
+
+### Growth
+
+```{r}
+ig_d("eurostat", "lc_lci_r2_q", "FR-DE-ES-IT-B-S-D11-2020")
+```
+
+## Labour costs other than wages and salaries
+
+```{r}
+ig_d("eurostat", "lc_lci_r2_q", "FR-DE-ES-IT-B-S-D12D4MD5-2020")
+```
+
+
+## Labour costs other than wages and salaries
+
+```{r}
+ig_d("eurostat", "lc_lci_r2_q", "FR-DE-ES-IT-B-S-D12D4MD5-2020")
+```
+
+
+
+
+## Labour costs for LCI
+
+```{r}
+ig_d("eurostat", "lc_lci_r2_q", "FR-DE-ES-IT-B-S-D1D4MD5-2020")
+```
+
+
+
+## Minimum wages
+
+```{r}
+ig_d("oecd", "EAR_MEI", "LCEAPRIXOBSA-USA-EA19-GBR-FRA-2015-real")
+```
+
+# Real minimum wages - OECD
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R RMW; /usr/local/bin/R -e 'quarto::quarto_render("RMW.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f PRICES_CPI_5.R
+# cd ~/iCloud/website/data/oecd
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("EAR_MEI.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## US, France, Germany, Italy
+
+```{r}
+ig_d("oecd", "RMW", "PPP-H-FRA-USA-DEU-ITA-ESP")
+```
+
+
+# France Example: Differences
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_lp_ulc; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_lp_ulc.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Compensation, Nominal unit labour cost, Real labour productivity
+
+```{r}
+ig_d("eurostat", "nama_10_lp_ulc", "RLPRPER-D1SALPER-NULCPER-FR-values")
+```
+
+
+
+## Compensation, Nominal unit labour cost, Real labour productivity
+
+```{r}
+ig_d("eurostat", "nama_10_lp_ulc", "RLPRPER-D1SALPER-NULCPER-FR-values")
+```
+
+
+
+# Wages in the Long Run
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R namq_10_lp_ulc
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _metadata_one.R direct
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_lp_ulc; /usr/local/bin/R -e 'quarto::quarto_render("nasq_10_nf_tr.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_lp_ulc.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("namq_10_lp_ulc.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France
+
+```{r}
+ig_d("eurostat", "nama_10_lp_ulc", "D1-SAL-HW-FR")
+```
+
+
+
+## Poland, Hungary, Croatia
+
+```{r}
+ig_d("eurostat", "nama_10_lp_ulc", "D1-SAL-HW-HR-PL-HU-NAC-index")
+```
+
+
+
+
+
+## Poland, Hungary, Croatia
+
+```{r}
+ig_d("eurostat", "nama_10_lp_ulc", "D1-SAL-HW-HR-PL-HU-NAC-index")
+```
+
+

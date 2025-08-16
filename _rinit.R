@@ -1,13 +1,13 @@
 # Define the package list
 
 packages <- c(
-  "countrycode", "httr", "gt", "gtExtras",
+  "ggimage", "countrycode", "httr", "gt", "gtExtras",
   "ggplot2", "dplyr", "tidyr", "readr",
   "purrr", "tibble", "stringr", "forcats",
   "quarto", "readxl", "rsdmx", "tools",
   "knitr", "scales", "viridis", "zoo", "lubridate",
   "ggrepel", "curl", "rmarkdown", "rvest", "jsonlite",
-  "here", "i18n", "r2country", "eurostat", "ggimage"
+  "here", "i18n", "r2country", "eurostat", "textcat"
 )
 
 # # Install any missing packages
