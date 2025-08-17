@@ -5,7 +5,7 @@
 quiet <- FALSE
 
 # Aller à la racine du dépôt GitHub
-setwd(Sys.getenv("GITHUB_WORKSPACE"))
+# setwd(Sys.getenv("GITHUB_WORKSPACE"))
 
 # Fonction utilitaire pour formater un temps en minutes + secondes
 formater_temps <- function(secondes) {
