@@ -49,7 +49,12 @@ jobs:
 
       - name: 📦 Install Pandoc
         uses: r-lib/actions/setup-pandoc@v2
-
+        
+      - name: 🔎 Debug path
+        run: |
+          echo "Workspace: $GITHUB_WORKSPACE"
+          ls -R $GITHUB_WORKSPACE | head -n 200
+          
       - name: 📦 Install required packages with timing and checks
         run: |
           pkgs <- c(
