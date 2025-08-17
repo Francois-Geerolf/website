@@ -1,26 +1,7 @@
 #!/usr/bin/env Rscript
 
-# Option : commenter si tu veux voir l'avalanche de warnings R en fin de script
-# options(warn = -1)
-
-# -------- utilitaires --------
-formater_temps <- function(secondes) {
-  minutes <- floor(secondes / 60)
-  sec <- round(secondes %% 60)
-  sprintf("%dm %02ds", minutes, sec)
-}
-
-find_quarto <- function() {
-  # Essaie via le package, puis via PATH
-  p <- tryCatch(quarto::quarto_path(), error = function(e) "")
-  if (nzchar(p)) return(p)
-  p <- Sys.which("quarto")
-  if (nzchar(p)) return(p)
-  stop("Quarto CLI introuvable. Installez Quarto et/ou ajoutez-le au PATH.")
-}
-
-# -------- compilation par fichier (via CLI) --------
-compiler_qmd <- function(fichier, log_tail_n = 40, quiet = TRUE) {
+# -------- compilation par fichier (capture logs; retry sans --quiet) --------
+compiler_qmd <- function(fichier, log_tail_n = 50) {
   if (!file.exists(fichier)) {
     return(list(
       file = fichier, success = FALSE, elapsed = NA_real_,
@@ -28,46 +9,85 @@ compiler_qmd <- function(fichier, log_tail_n = 40, quiet = TRUE) {
     ))
   }
   
-  # log par fichier
-  log_path <- tempfile(pattern = paste0(gsub("[^A-Za-z0-9_-]", "_", basename(fichier)), "_"), fileext = ".log")
+  # Trouver le binaire Quarto
+  find_quarto <- function() {
+    p <- tryCatch(quarto::quarto_path(), error = function(e) "")
+    if (nzchar(p)) return(p)
+    p <- Sys.which("quarto")
+    if (nzchar(p)) return(p)
+    stop("Quarto CLI introuvable. Installez Quarto et/ou ajoutez-le au PATH.")
+  }
+  cmd <- find_quarto()
   
-  # se placer dans le dossier du fichier pour gérer les chemins relatifs
+  # On travaille dans le dossier du .qmd (chemins relatifs)
   owd <- getwd()
   on.exit(setwd(owd), add = TRUE)
   setwd(dirname(fichier))
+  input_base <- basename(fichier)
   
-  cmd <- find_quarto()
-  args <- c("render", basename(fichier))
-  if (quiet) args <- c(args, "--quiet")
+  run_once <- function(quiet_flag = TRUE) {
+    # log temporaire unique par tentative
+    log_path <- tempfile(pattern = paste0(gsub("[^A-Za-z0-9_-]", "_", input_base), "_"), fileext = ".log")
+    args <- c("render", input_base)
+    if (quiet_flag) args <- c(args, "--quiet")
+    
+    t0 <- Sys.time()
+    if (requireNamespace("processx", quietly = TRUE)) {
+      res <- tryCatch(
+        processx::run(
+          cmd, args,
+          stderr_to_stdout = TRUE, echo = FALSE,
+          error_on_status = FALSE, windows_verbatim_args = TRUE,
+          env = c("QUARTO_DONT_PRETTY" = "1") # force sortie "brute"
+        ),
+        error = function(e) NULL
+      )
+      if (!is.null(res)) {
+        writeLines(res$stdout %||% "", log_path)
+        status <- as.integer(res$status %||% 999L)
+      } else {
+        status <- tryCatch(system2(cmd, args, stdout = log_path, stderr = log_path, wait = TRUE),
+                           error = function(e) 999L)
+      }
+    } else {
+      status <- tryCatch(system2(cmd, args, stdout = log_path, stderr = log_path, wait = TRUE),
+                         error = function(e) 999L)
+    }
+    t1 <- Sys.time()
+    
+    list(status = status,
+         elapsed = as.numeric(difftime(t1, t0, units = "secs")),
+         log_path = log_path,
+         log_lines = if (file.exists(log_path)) readLines(log_path, warn = FALSE) else character())
+  }
   
-  start <- Sys.time()
-  status <- tryCatch(
-    system2(cmd, args, stdout = log_path, stderr = log_path, wait = TRUE),
-    error = function(e) 999L
-  )
-  end <- Sys.time()
+  # 1) tentative silencieuse
+  a <- run_once(quiet_flag = TRUE)
   
-  success <- is.numeric(status) && status == 0L
-  log_lines <- if (file.exists(log_path)) readLines(log_path, warn = FALSE) else character()
+  # 2) si échec ET log vide, on relance sans --quiet pour obtenir le détail
+  need_retry <- (a$status != 0L) && (length(a$log_lines) == 0L)
+  b <- if (need_retry) run_once(quiet_flag = FALSE) else NULL
+  res <- if (is.null(b)) a else b
   
-  # extrait d'erreur synthétique (dernière ligne "parlante")
+  success <- is.numeric(res$status) && res$status == 0L
+  
+  # extraction d'un message d'erreur synthétique
   err_lines <- grep(
-    pattern = "(^!|^x\\s|^Error\\b|^Erreur\\b|^error\\b|Execution halted|pandoc error|LaTeX Error)",
-    x = log_lines, value = TRUE, ignore.case = TRUE
+    "(^!|^x\\s|^Error\\b|^Erreur\\b|^error\\b|Execution halted|pandoc error|LaTeX Error)",
+    res$log_lines, value = TRUE, ignore.case = TRUE
   )
   brief <- if (length(err_lines)) trimws(tail(err_lines, 1)) else NA_character_
-  
-  elapsed <- if (success) as.numeric(difftime(end, start, units = "secs")) else NA_real_
   
   list(
     file = fichier,
     success = success,
-    elapsed = elapsed,
+    elapsed = if (success) res$elapsed else NA_real_,
     error = brief,
-    log_tail = tail(log_lines, log_tail_n),
-    log_path = log_path
+    log_tail = tail(res$log_lines, log_tail_n),
+    log_path = res$log_path
   )
 }
+
 
 # -------- trouver les .qmd --------
 fichiers <- list.files(
