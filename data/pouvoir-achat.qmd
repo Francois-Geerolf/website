@@ -5,7 +5,6 @@ subtitle: Data
 author:
   - name: François Geerolf
     url: https://fgeerolf.com
-bibliography: cv.bib
 format:
   html:
     code-fold: false
