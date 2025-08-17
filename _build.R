@@ -1,5 +1,9 @@
 #!/usr/bin/env Rscript
 
+# quiet = TRUE pour réduire le bruit
+# quiet = FALSE pour le débugging
+quiet <- FALSE
+
 # Fonction utilitaire pour formater un temps en minutes + secondes
 formater_temps <- function(secondes) {
   minutes <- floor(secondes / 60)
@@ -13,7 +17,7 @@ compiler_qmd <- function(fichier) {
     message("📄 Compilation de ", fichier)
     start <- Sys.time()
     ok <- tryCatch({
-      quarto::quarto_render(input = fichier, quiet = TRUE)  # quiet = TRUE pour réduire le bruit
+      quarto::quarto_render(input = fichier, quiet = quiet)
       TRUE
     }, error = function(e) {
       message("❌ Erreur compilation : ", e$message)
