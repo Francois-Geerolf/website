@@ -32,7 +32,7 @@ themes <- list.files(pattern = "\\.qmd$") %>%
 
 ## English
 
-```{r}
+```{r, echo = F}
 themes %>%
   mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
   mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
@@ -50,7 +50,7 @@ themes %>%
 
 ## Français
 
-```{r}
+```{r, echo = F}
 themes %>%
   mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
   mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
@@ -66,7 +66,7 @@ themes %>%
 
 ## Javascript
 
-```{r}
+```{r, echo = F}
 list <- themes %>%
   mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
   mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
@@ -80,7 +80,7 @@ list |>
 
 ## Flat
 
-```{r}
+```{r, echo = F}
 list |>
   gt::fmt_markdown(columns = "Compile")
 ```
