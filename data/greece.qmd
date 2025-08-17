@@ -95,3 +95,14 @@ ig_d("oecd", "QNA_live", "GDP-per-capita-USA-FRA-GRC-DEU-1999-2021")
 ```{r}
 ig_d("oecd", "QNA_live", "GDP-per-capita-USA-FRA-GRC-DEU-1999-2021-base-2001")
 ```
+
+
+# Balance of payments
+
+## France vs. Greece
+
+```{r}
+ig_d("oecd", "BOP", "GRC-FRA-USA-1999-smoothed")
+```
+
+
