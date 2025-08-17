@@ -4,6 +4,9 @@
 # quiet = FALSE pour le débugging
 quiet <- FALSE
 
+# Aller à la racine du dépôt GitHub
+setwd(Sys.getenv("GITHUB_WORKSPACE"))
+
 # Fonction utilitaire pour formater un temps en minutes + secondes
 formater_temps <- function(secondes) {
   minutes <- floor(secondes / 60)
