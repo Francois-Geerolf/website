@@ -1,0 +1,95 @@
+---
+title: List of APIs
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+api <- tribble(
+  ~source, ~dataset,
+  "bea",  "api",
+  "bdf",  "api",
+  "bis",  "api",
+  "bls",  "api",
+  "ecb",  "api",
+  "eurostat",  "api",
+  "imf", "api",
+  "insee", "api",
+  "oecd", "api",
+  "dbnomics",  "api",
+  "wdi",  "api") %>%
+  arrange(source, dataset)
+```
+
+# List
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
+# cd ~/iCloud/website/data/bea; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
+# cd ~/iCloud/website/data/bdf; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
+# cd ~/iCloud/website/data/ecb; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
+# cd ~/iCloud/website/data/imf; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
+# cd ~/iCloud/website/data/rdb; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+
+# `getSDMXServiceProviders`
+
+An Application Programming Interface (API) is an interface or communication protocol between different parts of a computer program intended to simplify the implementation and maintenance of software. Nowadays, many institutionally provided database are available through APIs. Below, I introduce you to some of these APIs, but there are actually many more you can use. 
+
+SDMX is the Statistical Data and Metadata eXchange initiative, which is sponsored by BIS, ECB, Eurostat, IMF, OECD, UNSD and the World Bank.
+
+We will use the ``rsdmx`` package to read in SDMX data into R statistics:
+
+- `rsdmx` quickstart guide. [html](https://cran.r-project.org/web/packages/rsdmx/vignettes/quickstart.html)
+
+- The official site for the SDMX community. [html](https://sdmx.org)
+
+- Eurostat explains SDMX. [html](https://ec.europa.eu/eurostat/web/sdmx-infospace/trainings-tutorials)
+
+- SDMX REST API: Developers' documentation. [html](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/index.md) / [Cheatsheet](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/rest_cheat_sheet.pdf?raw=true)
+
+# List of Providers
+
+You can easily get a list of providers through `getSDMXServiceProviders`:
+
+## Javascript
+
+```{r}
+rsdmx::getSDMXServiceProviders() %>%
+  as_tibble %>%
+  {if (is_html_output()) datatable(., filter = 'top', rownames = F, escape = F) else .}
+```
+
+# Examples from providers
+
+## OECD
+
+```{r}
+ig_d("oecd", "api", "IRLTLT01-FRA-JPN-DEU-GBR-GRC-USA")
+```
+
+## Eurostat
+
+```{r}
+ig_d("eurostat", "api", "example1")
+```
+
