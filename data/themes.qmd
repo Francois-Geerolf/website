@@ -18,14 +18,11 @@ editor: source
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
-# sh ~/iCloud/website/website_short.sh
 themes <- list.files(pattern = "\\.qmd$") %>%
   as_tibble() %>%
   rename(theme = value) %>%
   mutate(theme = gsub("\\.qmd$", "", theme)) %>%
-  filter(theme != "api", theme != "index", !grepl("_update", theme))
+  filter(theme != "api", theme != "index", theme != "themes", !grepl("_update", theme))
 ```
 
 # By Language
