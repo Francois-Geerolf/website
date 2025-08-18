@@ -2,7 +2,7 @@
 
 packages <- c(
   "ggimage", "countrycode", "httr", "gt", "gtExtras",
-  "ggplot2", "dplyr", "tidyr", "readr",
+  "ggplot2", "dplyr", "tidyr", "readr", "DT",
   "purrr", "tibble", "stringr", "forcats",
   "quarto", "readxl", "rsdmx", "tools",
   "knitr", "scales", "viridis", "zoo", "lubridate",
