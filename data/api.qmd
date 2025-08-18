@@ -35,43 +35,35 @@ api <- tribble(
   arrange(source, dataset)
 ```
 
-# List
+# About APIs
 
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
-# cd ~/iCloud/website/data/bea; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
-# cd ~/iCloud/website/data/bdf; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
-# cd ~/iCloud/website/data/ecb; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
-# cd ~/iCloud/website/data/imf; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
-# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
-# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
-# cd ~/iCloud/website/data/rdb; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
+An Application Programming Interface (API) is an interface or communication protocol between different parts of a computer program intended to simplify the implementation and maintenance of software. Nowadays, many institutionally provided database are available through APIs.
 
+Below, I introduce you to some of these APIs, but there are actually many more you can use.
 
+# SDMX
 
-# `getSDMXServiceProviders`
+## What is SDMX ?
 
-An Application Programming Interface (API) is an interface or communication protocol between different parts of a computer program intended to simplify the implementation and maintenance of software. Nowadays, many institutionally provided database are available through APIs. Below, I introduce you to some of these APIs, but there are actually many more you can use. 
+SDMX is the Statistical Data and Metadata eXchange initiative, which is sponsored by BIS, ECB, Eurostat, IMF, OECD, UNSD and the World Bank. Data disseminated in this way is supposed to be structured in similar ways.
 
-SDMX is the Statistical Data and Metadata eXchange initiative, which is sponsored by BIS, ECB, Eurostat, IMF, OECD, UNSD and the World Bank.
+## SDMX in R
 
-We will use the ``rsdmx`` package to read in SDMX data into R statistics:
+We shall use the ``rsdmx`` package to read in SDMX data into R statistics:
 
-- `rsdmx` quickstart guide. [html](https://cran.r-project.org/web/packages/rsdmx/vignettes/quickstart.html)
+- See the `rsdmx` quickstart guide. [html](https://cran.r-project.org/web/packages/rsdmx/vignettes/quickstart.html)
 
-- The official site for the SDMX community. [html](https://sdmx.org)
+## Other resources
 
 - Eurostat explains SDMX. [html](https://ec.europa.eu/eurostat/web/sdmx-infospace/trainings-tutorials)
 
+- The official site for the SDMX community. [html](https://sdmx.org)
+
 - SDMX REST API: Developers' documentation. [html](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/index.md) / [Cheatsheet](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/rest_cheat_sheet.pdf?raw=true)
 
-# List of Providers
+## List of SDMX Providers
 
 You can easily get a list of providers through `getSDMXServiceProviders`:
-
-## Javascript
 
 ```{r}
 rsdmx::getSDMXServiceProviders() %>%

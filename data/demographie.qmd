@@ -33,20 +33,7 @@ demographie <- tribble(
 
 
 
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("demographie.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
-
 # Indicateur (conjoncturel) de fécondité
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_data.R FAMILY; /usr/local/bin/R -e 'quarto::quarto_render("FAMILY.qmd")'
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
 
 ## France, Germany, Italy
 

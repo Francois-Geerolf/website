@@ -27,13 +27,6 @@ knitr::opts_chunk$set(echo = T)
   "insee", "ICA-2015-IND-CONS",
   "insee", "IPI-2021") %>%
   arrange(source, dataset)
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("conjoncture.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/conjoncture.html
-# sh ~/iCloud/website/website_short.sh
 ```
 
 # Indicateurs macro
@@ -59,11 +52,6 @@ ig_d("bdf", "DIREN", "PE-IG-TP3")
 
 
 # Indicateur du climat
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CLIMAT-AFFAIRES; /usr/local/bin/R -e 'quarto::quarto_render("CLIMAT-AFFAIRES.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
 
 ## Emploi, Affaires
 

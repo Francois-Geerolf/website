@@ -26,9 +26,6 @@ chomage <- tribble(
   "insee", "CHOMAGE-TRIM-NATIONAL",
   "oecd", "FAMILY") %>%
   arrange(source, dataset)
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("chomage.qmd")'
-# sh ~/iCloud/website/website_short.sh
 ```
 
 
