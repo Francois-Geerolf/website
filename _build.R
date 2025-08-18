@@ -48,6 +48,9 @@ fichiers <- list.files(
   full.names = TRUE
 )
 
+# Move "./themes.qmd" to last
+fichiers <- c(setdiff(fichiers, "./themes.qmd"), "./themes.qmd")
+
 # Mesure du temps total
 debut_total <- Sys.time()
 resultats <- lapply(fichiers, compiler_qmd)
