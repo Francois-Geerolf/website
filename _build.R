@@ -6,7 +6,6 @@ quiet <- FALSE
 
 # Aller à la racine du dépôt GitHub
 setwd(Sys.getenv("GITHUB_WORKSPACE"))
-setwd("data")
 
 # Fonction utilitaire pour formater un temps en minutes + secondes
 formater_temps <- function(secondes) {
@@ -42,8 +41,8 @@ compiler_qmd <- function(fichier) {
 }
 
 # Trouver tous les fichiers .qmd dans le dossier "data" et ses sous-dossiers
+setwd("data")
 fichiers <- list.files(
-  path = "data", 
   pattern = "\\.qmd$", 
   recursive = TRUE, 
   full.names = TRUE
