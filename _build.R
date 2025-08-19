@@ -41,15 +41,16 @@ compiler_qmd <- function(fichier) {
 }
 
 # Trouver tous les fichiers .qmd dans le dossier "data" et ses sous-dossiers
-setwd("data")
+# setwd("data")
 fichiers <- list.files(
+  path = "data",
   pattern = "\\.qmd$", 
   recursive = TRUE, 
   full.names = TRUE
 )
 
 # Move "./themes.qmd" to last
-fichiers <- c(setdiff(fichiers, "./themes.qmd"), "./themes.qmd")
+fichiers <- c(setdiff(fichiers, "data/themes.qmd"), "data/themes.qmd")
 
 # Mesure du temps total
 debut_total <- Sys.time()
