@@ -1,0 +1,472 @@
+---
+title: List of Datasets - Data
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+
+
+# main_datasets -------
+
+main_datasets <- tibble(id = c("ameco",
+                               "bea",
+                               "bis",
+                               "bls",
+                               "boe",
+                               "buba",
+                               "cbp",
+                               "census",
+                               "comtrade",
+                               "crosswalks",
+                               "dallas-fed",
+                               "destatis",
+                               "ec",
+                               "ecb",
+                               "eurostat",
+                               "fhfa",
+                               "frb",
+                               "frb-ny",
+                               "freddie",
+                               "gfd",
+                               "ilo",
+                               "imf",
+                               "investing",
+                               "john-fernald-tfp",
+                               "maddison",
+                               "oecd",
+                               "ons",
+                               "pwt",
+                               "statjp",
+                               "uk",
+                               "un",
+                               "us",
+                               "wb",
+                               "wdi",
+                               "wid",
+                               "yahoo",
+                               "zillow"),
+                        label = c("Annual Macro-Economic database of the European COmmission - AMECO",
+                                  "Bureau of Economic Analysis - BEA",
+                                  "Bureau of International Settlements - BIS",
+                                  "Bureau of Labor Statistics - BLS",
+                                  "Bank of England - BOE",
+                                  "Bundesbank - BUBA",
+                                  "County Business Patterns - CBP",
+                                  "Census Bureau - census",
+                                  "UN Comtrade Database - comtrade",
+                                  "Crosswalks",
+                                  "Federal Reserve Bank of Dallas - Dallas Fed",
+                                  "Statistisches Bundesamt - destatis",
+                                  "European Commission - EC",
+                                  "European Central Bank - ECB",
+                                  "European Statistical Office - Eurostat",
+                                  "Federal Housing Finance Agency - fhfa",
+                                  "Federal Reserve Board - FRB",
+                                  "Federal Reserve Bank of New York - frb-ny",
+                                  "Freddie Mac House Price Index - Freddie",
+                                  "Global Financial Data - GFD",
+                                  "International Labour Organization - ILO",
+                                  "International Monetary Fund - IMF",
+                                  "Financial Data from investing.com - investing",
+                                  "John Fernald TFP - john-fernard-tfp",
+                                  "Maddison Data - maddison",
+                                  "Organization of Economic Cooperation and Development - OECD",
+                                  "Office for National Statisics - ONS",
+                                  "Penn World Tables - PWT",
+                                  "Statistics Japan, Statistics Bureau, Ministry of Internal Affairs and Communication - statjp",
+                                  "Other U.K. Data - uk",
+                                  "United Nations - UN",
+                                  "Other U.S. Data - us",
+                                  "World Bank - WB",
+                                  "World Development Indicators - WDI",
+                                  "World Income Database - WID",
+                                  "Yahoo! Finance - yahoo",
+                                  "Housing Data - Zillow Research - zillow"))
+
+
+# api -------
+
+api <- tibble(id = c("bea",
+                     "compustat",
+                     "crsp",
+                     "dbnomics",
+                     "ecb",
+                     "imf",
+                     "insee",
+                     "oecd",
+                     "wrds"),
+              label =c("Bureau of Economic Analysis Datasets - BEA",
+                       "Compustat - compustat",
+                       "Center for Research for Security Prices - crsp",
+                       "DBnomics - The World's Economic Database - dbnomics",
+                       "European Central Bank - ECB",
+                       "International Monetary Fund - IMF",
+                       "Institut National de la Statistique et des Etudes Economiques - INSEE",
+                       "Organization of Economic Cooperation and Development - OECD",
+                       "Wharton Research Data Services - WRDS"))
+
+# france -------
+
+france <- tibble(id = c("acoss",
+                        "acpr",
+                        "bdf",
+                        "cepii",
+                        "citepa",
+                        "cre",
+                        "dares",
+                        "douanes",
+                        "drees",
+                        "dvf",
+                        "france",
+                        "immobilier",
+                        "ined",
+                        "insee",
+                        "ipp",
+                        "meteo",
+                        "mtes",
+                        "olap",
+                        "rei",
+                        "sdes"),
+                 label = c("Agence centrale des organismes de sécurité sociale - ACOSS",
+                           "Autorité de Contrôle Prudentiel et de Résolution - ACPR",
+                           "Banque de France - BDF",
+                           "Centre d’Etudes Prospectives et d’Informations Internationales - CEPII",
+                           "Centre technique de référence en matière de pollution atmosphérique et de changement climatique - citepa",
+                           "Commission de Régulation de l’Energie - CRE",
+                           "Direction de l'Animation de la recherche, des Études et des Statistiques (Ministère du Travail) - DARES",
+                           "Douanes - douanes",
+                           "Direction de la recherche, des études, de l'évaluation et des statistiques (Ministère de la Santé) - DREES",
+                           "Déclarations de Valeurs Foncières - DVF",
+                           "France - france",
+                           "Données Immobilières, France - Immobilier",
+                           "Institut National d'Etudes Démographiques - INED",
+                           "Institut National de la Statistique et des Etudes Economiques - INSEE",
+                           "Institut des Politiques Publiques - IPP",
+                           "Données météorologiques",
+                           "Ministère de la Transition Ecologique et Solidaire - MTES",
+                           "Observatoire des Loyers de l’Agglomération Parisienne - OLAP",
+                           "Relevé des Elements d'Imposition - REI",
+                           "Service des Données et des Etudes Statistiques - SDES"))
+
+save(france, file = "france.RData")
+
+# databanks -------
+
+databanks <- tibble(id = c("fred",
+                           "quandl",
+                           "rdb"),
+                    label = c("Federal Reserve bank of Saint Louis - fred",
+                              "Quandl - Financial, Economic and Alternative Data",
+                              "DBnomics - The World's Economic Database - rdb"))
+
+
+# us_geographies -------
+
+us_geographies <- tibble(id = c("cbsa",
+                                "country",
+                                "county",
+                                "date",
+                                "state",
+                                "zipcode"),
+                         label = c("CBSA Level Datasets (U.S.)",
+                                   "Cross-Country Datasets",
+                                   "County Level Datasets (U.S.)",
+                                   "Time Series Datasets",
+                                   "State Level Datasets (U.S.)",
+                                   "Zipcode Level Datasets (U.S.)"))
+
+# microeconomic_datasets -------
+
+microeconomic_datasets <- tibble(id = c("compustat",
+                                        "crsp"),
+                                 label = c("Compustat - compustat",
+                                           "Center for Research for Security Prices - crsp"))
+
+
+themes <- list.files(pattern = "\\.qmd$") %>%
+  as_tibble() %>%
+  rename(theme = value) %>%
+  mutate(theme = gsub("\\.qmd$", "", theme)) %>%
+  filter(theme != "api", theme != "index", theme != "themes", !grepl("_update", theme))
+```
+
+I created this website for our [2nd year PhD class](https://fgeerolf.com/econ221) "Evidence-Based Macroeconomics and Finance", to help you find macroeconomic datasets. You should find the main sources for macroeconomic datasets out there (as well as a selection of series in each), but this list is by no means not exhaustive. You may find more available at the [UCLA Rosenfeld Library dictionary of databases](https://www.anderson.ucla.edu/rosenfeld-library/databases/business-databases-by-name).
+
+
+# [Themes](https://fgeerolf.com/data/themes.html)
+
+## Javascript
+
+### English
+
+```{r}
+themes %>%
+  mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
+  mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
+         Compile = glue::glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")) %>%
+  filter(textcat(Title) == "english") %>%
+  gt::gt() |>
+  gt::fmt_markdown(columns = "Compile") |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_compact_mode = T
+  )
+```
+
+
+
+### Français
+
+```{r}
+themes %>%
+  mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
+  mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
+         Compile = glue::glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")) %>%
+  filter(textcat(Title) == "french") %>%
+  gt::gt() |>
+  gt::fmt_markdown(columns = "Compile") |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_compact_mode = T
+  )
+```
+
+
+### Other
+
+```{r}
+themes %>%
+  mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
+  mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
+         Compile = glue::glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")) %>%
+  filter(!(textcat(Title) %in% c("french", "english"))) %>%
+  gt::gt()|>
+  gt::fmt_markdown(columns = "Compile") |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_compact_mode = T
+  )
+```
+
+## Flat
+
+```{r}
+themes %>%
+  mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
+  mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
+         Compile = glue::glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")) %>%
+  gt::gt() |>
+  gt::fmt_markdown(columns = "Compile")
+```
+
+# Main Datasets
+
+- Update.qmd. [html](https://fgeerolf.com/data/_update.qmd.html)
+
+- Link. [html](https://fgeerolf.com/data/main.html)
+
+## Javascript
+
+```{r}
+main_datasets %>%
+  gt::gt()  |>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_compact_mode = T
+  )
+```
+
+## Flat
+
+```{r}
+main_datasets %>%
+  gt::gt()
+```
+
+
+
+
+# WRDS - Microeconomic Data
+
+Probably the greatest resource for macro / finance data is provided through Wharton Research Data Services. It includes for example Compustat, CRSP, BlockHolders, TRACE, ExecuComp, I/B/E/S, Markit, and many more... All these resources are available through APIs. I provide only some examples below.
+
+
+
+## Javascript
+
+```{r}
+microeconomic_datasets %>%
+  mutate(`.html` = as.Date(file.info(paste0(id, "/index.html"))$mtime),
+         `.html` = glue::glue("[{.html}](https://fgeerolf.com/data/{id}/index.html)")) %>%
+  gt::gt()|>
+  gt::fmt_markdown(columns = ".html")|>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_compact_mode = T
+  )
+```
+
+## Flat
+
+```{r}
+microeconomic_datasets %>%
+  mutate(`.html` = as.Date(file.info(paste0(id, "/index.html"))$mtime),
+         `.html` = glue::glue("[{.html}](https://fgeerolf.com/data/{id}/index.html)")) %>%
+  gt::gt()|>
+  gt::fmt_markdown(columns = ".html")
+```
+
+
+
+
+
+# Databanks
+
+## Javascript
+
+```{r}
+databanks %>%
+  gt::gt()|>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_compact_mode = T
+  )
+```
+
+## Flat
+
+```{r}
+databanks %>%
+  gt::gt()
+```
+
+
+
+
+
+# France
+
+
+## Javascript
+
+```{r}
+france %>%
+  gt::gt()|>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_compact_mode = T
+  )
+```
+
+## Flat
+
+```{r}
+france %>%
+  gt::gt()
+```
+
+
+
+# All Datasets
+
+## Javascript
+
+```{r}
+main_datasets %>%
+  bind_rows(microeconomic_datasets) %>%
+  bind_rows(databanks) %>%
+  bind_rows(france) %>%
+  add_row(id = "flags", label = "Flag Colors - flags") %>%
+  arrange(id) %>%
+  gt::gt()|>
+  gt::opt_interactive(
+    use_search = T,
+    use_resizers = T,
+    use_compact_mode = T
+  )
+```
+
+## Flat
+
+```{r}
+main_datasets %>%
+  bind_rows(microeconomic_datasets) %>%
+  bind_rows(databanks) %>%
+  bind_rows(france) %>%
+  add_row(id = "flags", label = "Flag Colors - flags") %>%
+  arrange(id) %>%
+  gt::gt()
+```
+
+
+# APIs - Application Programming Interfaces
+
+- Link. [html](https://fgeerolf.com/data/api.html)
+
+## List
+
+```{r}
+api %>%
+  gt::gt()
+```
+
+## `getSDMXServiceProviders`
+
+An Application Programming Interface (API) is an interface or communication protocol between different parts of a computer program intended to simplify the implementation and maintenance of software. Nowadays, many institutionally provided database are available through APIs. Below, I introduce you to some of these APIs, but there are actually many more you can use. 
+
+We will use the ``rsdmx`` package to read in SDMX data into R statistics:
+
+- `rsdmx` quickstart guide. [html](https://cran.r-project.org/web/packages/rsdmx/vignettes/quickstart.html)
+
+You can easily get a list of providers through `getSDMXServiceProviders`:
+
+```{r}
+rsdmx::getSDMXServiceProviders() %>%
+  as.data.frame %>%
+  select(agencyId, name) %>%
+  gt::gt()
+```
+
+
+<!---
+# Other Datasets
+
+- **Chinn-Ito Openness Index**. [R](kaopen.R)
+- **Comtrade**. [API](../api/comtrade.html)
+- **NBER Macro History Database**. [R](pwt.R) / [Info](http://www.nber.org/databases/macrohistory/contents/)
+- **Political Database (DPI)**. [R](dpi.R)
+
+- **BEA State Level.** [R](bea/bea-regional.R) / [List](bea/index.html) / [BEA Website](https://apps.bea.gov/regional/downloadzip.cfm)
+- **CBP**. [R](cbp.R)
+- **Census**. [R](census.R) / [html](census.html)
+- **Census-STC**. [R](census-stc.R)
+- **Crosswalks**. [R](crosswalks.R)
+- **Elasticities**. [R](elasticity.R)
+- **FRB-NY**. [R](frb-ny/frb-ny.R)
+- **IRS**. [R](irs.R) / [R-pre-2010](irs-pre-2010.R) / [Info](https://www.irs.gov/statistics/soi-tax-stats-county-data)
+- **Fernald TFP**. [R](us/fernald_2013_data.R)
+
+--->
+
+

@@ -178,6 +178,14 @@ ig_b("sdes", "datalab_essentiel_349_prix_electricite_france_ue_2023_juillet2024_
 
 ## Electricité, Gaz, électricité + gaz
 
+### Janvier 2008
+
+```{r}
+ig_d("insee", "IPCH-2015", "041-045-01-00-janvier2008")
+```
+
+
+
 ### Mai 2017-
 
 ```{r}
