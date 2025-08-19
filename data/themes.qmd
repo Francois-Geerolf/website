@@ -15,14 +15,27 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
+# Load standard init
 source(here::here("_rinit.R"))
+
+# Scope locale & timezone just for this script
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-themes <- list.files(pattern = "\\.qmd$") %>%
-  as_tibble() %>%
-  rename(theme = value) %>%
-  mutate(theme = gsub("\\.qmd$", "", theme)) %>%
-  filter(theme != "api", theme != "index", theme != "themes", !grepl("_update", theme))
+
+# Directory to search (current dir by default — change if needed)
+root <- "."
+
+# Collect *.qmd, drop extensions, and exclude unwanted names
+themes <- tibble::tibble(
+  theme = tools::file_path_sans_ext(
+    list.files(path = root, pattern = "\\.qmd$", full.names = FALSE, ignore.case = TRUE)
+  )
+) |>
+  dplyr::filter(
+    !theme %in% c("api", "index", "themes"),
+    !grepl("_update", theme, perl = TRUE)
+  ) |>
+  dplyr::arrange(theme)
 ```
 
 # By Language

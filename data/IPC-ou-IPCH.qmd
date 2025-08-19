@@ -32,7 +32,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   arrange(source, dataset)
 ```
 
-{{< include cv/publications/Geerolf2024a.qmd >}}
+{{< include ../cv/publications/Geerolf2024a.qmd >}}
 
 
 # Comparatif IPC vs. IPCH
@@ -261,11 +261,11 @@ ig_d("ipp", "indicefp", "indicefp-reel-1999-cpih-percent-net-brut-mensuel")
 
 --->
 
-{{< include ../../cv/publications/Geerolf2024a.qmd >}}
+{{< include ../cv/publications/Geerolf2024a.qmd >}}
 
-{{< include ../../cv/publications/Geerolf2024c.qmd >}}
+{{< include ../cv/publications/Geerolf2024c.qmd >}}
 
-{{< include ../../cv/publications/Geerolf2024b.qmd >}}
+{{< include ../cv/publications/Geerolf2024b.qmd >}}
 
 
 - "L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques.", F. Geerolf, Blog de l'OFCE, décembre 2023. [[html](https://fgeerolf.com/inflation-par-categorie.html)] [[blog](https://www.ofce.sciences-po.fr/blog/lanalyse-de-linflation-par-categories-de-menages-quelques-problemes-methodologiques/)] [[pdf](https://fgeerolf.com/inflation-par-categorie.pdf)]
