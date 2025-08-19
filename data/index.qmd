@@ -211,7 +211,7 @@ I created this website for our [2nd year PhD class](https://fgeerolf.com/econ221
 
 ### English
 
-```{r}
+```{r, echo = FALSE}
 themes %>%
   mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
   mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
@@ -230,7 +230,7 @@ themes %>%
 
 ### Français
 
-```{r}
+```{r, echo = FALSE}
 themes %>%
   mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
   mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
@@ -248,7 +248,7 @@ themes %>%
 
 ### Other
 
-```{r}
+```{r, echo = FALSE}
 themes %>%
   mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
   mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
@@ -265,7 +265,7 @@ themes %>%
 
 ## Flat
 
-```{r}
+```{r, echo = FALSE}
 themes %>%
   mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
   mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
@@ -282,7 +282,7 @@ themes %>%
 
 ## Javascript
 
-```{r}
+```{r, echo = FALSE}
 main_datasets %>%
   gt::gt()  |>
   gt::opt_interactive(
@@ -294,7 +294,7 @@ main_datasets %>%
 
 ## Flat
 
-```{r}
+```{r, echo = FALSE}
 main_datasets %>%
   gt::gt()
 ```
@@ -310,7 +310,7 @@ Probably the greatest resource for macro / finance data is provided through Whar
 
 ## Javascript
 
-```{r}
+```{r, echo = FALSE}
 microeconomic_datasets %>%
   mutate(`.html` = as.Date(file.info(paste0(id, "/index.html"))$mtime),
          `.html` = glue::glue("[{.html}](https://fgeerolf.com/data/{id}/index.html)")) %>%
@@ -325,7 +325,7 @@ microeconomic_datasets %>%
 
 ## Flat
 
-```{r}
+```{r, echo = FALSE}
 microeconomic_datasets %>%
   mutate(`.html` = as.Date(file.info(paste0(id, "/index.html"))$mtime),
          `.html` = glue::glue("[{.html}](https://fgeerolf.com/data/{id}/index.html)")) %>%
@@ -341,7 +341,7 @@ microeconomic_datasets %>%
 
 ## Javascript
 
-```{r}
+```{r, echo = FALSE}
 databanks %>%
   gt::gt()|>
   gt::opt_interactive(
@@ -353,7 +353,7 @@ databanks %>%
 
 ## Flat
 
-```{r}
+```{r, echo = FALSE}
 databanks %>%
   gt::gt()
 ```
@@ -367,7 +367,7 @@ databanks %>%
 
 ## Javascript
 
-```{r}
+```{r, echo = FALSE}
 france %>%
   gt::gt()|>
   gt::opt_interactive(
@@ -379,7 +379,7 @@ france %>%
 
 ## Flat
 
-```{r}
+```{r, echo = FALSE}
 france %>%
   gt::gt()
 ```
@@ -390,7 +390,7 @@ france %>%
 
 ## Javascript
 
-```{r}
+```{r, echo = FALSE}
 main_datasets %>%
   bind_rows(microeconomic_datasets) %>%
   bind_rows(databanks) %>%
@@ -407,7 +407,7 @@ main_datasets %>%
 
 ## Flat
 
-```{r}
+```{r, echo = FALSE}
 main_datasets %>%
   bind_rows(microeconomic_datasets) %>%
   bind_rows(databanks) %>%
@@ -424,7 +424,7 @@ main_datasets %>%
 
 ## List
 
-```{r}
+```{r, echo = FALSE}
 api %>%
   gt::gt()
 ```
@@ -439,7 +439,7 @@ We will use the ``rsdmx`` package to read in SDMX data into R statistics:
 
 You can easily get a list of providers through `getSDMXServiceProviders`:
 
-```{r}
+```{r, echo = FALSE}
 rsdmx::getSDMXServiceProviders() %>%
   as.data.frame %>%
   select(agencyId, name) %>%
