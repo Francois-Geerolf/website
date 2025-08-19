@@ -162,8 +162,6 @@ france <- tibble(id = c("acoss",
                            "Relevé des Elements d'Imposition - REI",
                            "Service des Données et des Etudes Statistiques - SDES"))
 
-save(france, file = "france.RData")
-
 # databanks -------
 
 databanks <- tibble(id = c("fred",
