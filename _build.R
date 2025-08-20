@@ -1,16 +1,32 @@
 #!/usr/bin/env Rscript
 
-# quiet = TRUE pour réduire le bruit
-# quiet = FALSE pour le débugging
-quiet <- FALSE
+# Update OECD Databases
+base_path <- here("data", "oecd")
+scripts   <- list.files(base_path, pattern = "\\.R$", full.names = TRUE)
 
+# Global timer
+global_start <- Sys.time()
 
-setwd("data/oecd")
+for (script in scripts) {
+  if (file.exists(script)) {
+    start <- Sys.time()
+    tryCatch({
+      source(script, local = TRUE)
+      elapsed <- difftime(Sys.time(), start, units = "secs")
+      message("✅  Sourced: ", basename(script), 
+              " (", round(elapsed, 2), "s)")
+    }, error = function(e) {
+      message("❌  Failed: ", basename(script), 
+              " — ", e$message)
+    })
+  } else {
+    message("❌  File not found: ", basename(script))
+  }
+}
 
-source("BOP.R")
-
-
-setwd(Sys.getenv("GITHUB_WORKSPACE"))
+# Global elapsed time
+global_elapsed <- difftime(Sys.time(), global_start, units = "secs")
+message("\n⏱️  Total time: ", round(global_elapsed, 2), "s")
 
 # Aller à la racine du dépôt GitHub
 # setwd(Sys.getenv("GITHUB_WORKSPACE"))
