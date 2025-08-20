@@ -78,7 +78,7 @@ add_flags <- ggimage::geom_image(
     area_candidates <- c(
       "Ref_area","ref_area",
       "Geo","geo","GEO",
-      "country","Country","COUNTRY"
+      "country","Country","COUNTRY", "Location"
     )
     area_col <- area_candidates[area_candidates %in% names(df)][1]
     

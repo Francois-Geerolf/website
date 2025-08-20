@@ -150,7 +150,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Financial Account") +
-  scale_color_identity() + add_4flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1949, 2100, 5)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = seq(-10000, 10000, 500)) +
@@ -179,7 +179,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Financial Account") +
-  scale_color_identity() + add_4flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1999, 2100, 5)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = seq(-10000, 10000, 500)) +
@@ -214,7 +214,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_2flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1990, 2100, 2)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -250,7 +250,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_4flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1990, 2100, 2)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -288,7 +288,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_5flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1990, 2100, 2)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -321,7 +321,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_2flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1990, 2100, 2)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -357,7 +357,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_3flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1990, 2100, 2)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -388,7 +388,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_2flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = seq(1920, 2100, 5) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -417,7 +417,7 @@ BOP %>%
   filter(date >= as.Date("2013-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_2flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = seq(1920, 2100, 1) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -448,7 +448,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_2flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = seq(1920, 2100, 5) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -478,7 +478,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_2flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1990, 2100, 2)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -512,7 +512,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_3flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1997, 2100, 5), seq(1999, 2100, 5)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -545,7 +545,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_4flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1949, 2100, 5)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -576,7 +576,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_4flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1997, 2100, 2)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -610,7 +610,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue_roll4, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_4flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1997, 2100, 2)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -643,7 +643,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_4flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1949, 2100, 5)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
@@ -672,7 +672,7 @@ BOP %>%
   #filter(date <= as.Date("2021-01-01")) %>%
   ggplot(.) + geom_line(aes(x = date, y = obsValue, color = color)) + 
   theme_minimal() + xlab("") + ylab("Current Account, % of GDP") +
-  scale_color_identity() + add_3flags +
+  scale_color_identity() + add_flags +
   scale_x_date(breaks = c(seq(1997, 2100, 5), seq(1999, 2100, 5)) %>% paste0("-01-01") %>% as.Date,
                labels = date_format("%Y")) +
   scale_y_continuous(breaks = 0.01*seq(-60, 60, 1),
