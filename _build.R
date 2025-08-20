@@ -97,9 +97,3 @@ for (i in seq_along(fichiers)) {
   }
 }
 message("\n🕒 Temps total de compilation : ", formater_temps(temps_total_sec))
-
-
-
-setwd("data/oecd")
-
-source("BOP.R")

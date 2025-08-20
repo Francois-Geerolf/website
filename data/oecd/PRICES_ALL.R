@@ -1,7 +1,5 @@
-library("tidyr")
-library("dplyr")
-library("data.table")
-library("rsdmx")
+
+source(here::here("_rinit.R"))
 
 # PRICES_ALL --------
 
