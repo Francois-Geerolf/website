@@ -1,5 +1,12 @@
 #!/usr/bin/env Rscript
 
+# Fonction utilitaire pour formater un temps en minutes + secondes
+formater_temps <- function(secondes) {
+  minutes <- floor(secondes / 60)
+  sec <- round(secondes %% 60)
+  sprintf("%dm %02ds", minutes, sec)
+}
+
 # Update OECD Databases
 base_path <- here::here("data", "oecd")
 scripts   <- list.files(base_path, pattern = "\\.R$", full.names = TRUE)
@@ -14,7 +21,7 @@ for (script in scripts) {
       source(script, local = TRUE)
       elapsed <- difftime(Sys.time(), start, units = "secs")
       message("✅  Sourced: ", basename(script), 
-              " (", round(elapsed, 2), "s)")
+              " (", formater_temps(elapsed), ")")
     }, error = function(e) {
       message("❌  Failed: ", basename(script), 
               " — ", e$message)
@@ -26,17 +33,10 @@ for (script in scripts) {
 
 # Global elapsed time
 global_elapsed <- difftime(Sys.time(), global_start, units = "secs")
-message("\n⏱️  Total time: ", round(global_elapsed, 2), "s")
+message("\n⏱️  Total time: ", formater_temps(global_elapsed))
 
 # Aller à la racine du dépôt GitHub
 # setwd(Sys.getenv("GITHUB_WORKSPACE"))
-
-# Fonction utilitaire pour formater un temps en minutes + secondes
-formater_temps <- function(secondes) {
-  minutes <- floor(secondes / 60)
-  sec <- round(secondes %% 60)
-  sprintf("%dm %02ds", minutes, sec)
-}
 
 # Fonction pour compiler un fichier .qmd, s’il existe, avec mesure du temps
 compiler_qmd <- function(fichier) {
