@@ -62,190 +62,244 @@ ig_b <- function(source = "", folder = "", folder2 = "", folder3 = "", file = ""
   i_g(path)
 }
 
+# add_flags ------
 
-add_flags <- function(number = 2){
-  if (number == 2){
-    geom_image(data = . %>%
-                 group_by(date) %>%
-                 filter(n() == 2) %>%
-                 arrange(values) %>%
-                 mutate(dist = values[2]-values[1]) %>%
-                 arrange(-dist, date) %>%
-                 head(2) %>%
-                 mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-               aes(x = date, y = values, image = image), asp = 1.5)
-  } else if (number == 3){
-    geom_image(data = . %>%
-                 group_by(date) %>%
-                 filter(n() == 3) %>%
-                 arrange(values) %>%
-                 mutate(dist = min(values[2]-values[1],values[3]-values[2])) %>%
-                 arrange(-dist, date) %>%
-                 head(3) %>%
-                 mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-               aes(x = date, y = values, image = image), asp = 1.5)
-  } else if (number == 4) {
-    geom_image(data = . %>%
-                 group_by(date) %>%
-                 filter(n() == 4) %>%
-                 arrange(values) %>%
-                 mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3])) %>%
-                 arrange(-dist, date) %>%
-                 head(4) %>%
-                 mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-               aes(x = date, y = values, image = image), asp = 1.5)
-  } else if (number == 5) {
-    geom_image(data = . %>%
-                 group_by(date) %>%
-                 filter(n() == 5) %>%
-                 arrange(values) %>%
-                 mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                   values[5]-values[4])) %>%
-                 arrange(-dist, date) %>%
-                 head(5) %>%
-                 mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-               aes(x = date, y = values, image = image), asp = 1.5)
-  } else if (number == 6) {
-    geom_image(data = . %>%
-                 group_by(date) %>%
-                 filter(n() == 6) %>%
-                 arrange(values) %>%
-                 mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                   values[5]-values[4],values[6]-values[5])) %>%
-                 arrange(-dist, date) %>%
-                 head(6) %>%
-                 mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-               aes(x = date, y = values, image = image), asp = 1.5)
-  } else if (number == 7) {
-    geom_image(data = . %>%
-                 group_by(date) %>%
-                 filter(n() == 7) %>%
-                 arrange(values) %>%
-                 mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                   values[5]-values[4],values[6]-values[5],values[7]-values[6])) %>%
-                 arrange(-dist, date) %>%
-                 head(7) %>%
-                 mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-               aes(x = date, y = values, image = image), asp = 1.5)
-  } else if (number == 8) {
-    geom_image(data = . %>%
-                 group_by(date) %>%
-                 filter(n() == 8) %>%
-                 arrange(values) %>%
-                 mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                   values[5]-values[4],values[6]-values[5],values[7]-values[6],
-                                   values[8]-values[7])) %>%
-                 arrange(-dist, date) %>%
-                 head(8) %>%
-                 mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-               aes(x = date, y = values, image = image), asp = 1.5)
-  } else if (number == 9) {
-    geom_image(data = . %>%
-                 group_by(date) %>%
-                 filter(n() == 9) %>%
-                 arrange(values) %>%
-                 mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                   values[5]-values[4],values[6]-values[5],values[7]-values[6],
-                                   values[8]-values[7],values[9]-values[8])) %>%
-                 arrange(-dist, date) %>%
-                 head(9) %>%
-                 mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-               aes(x = date, y = values, image = image), asp = 1.5)
-  } else if (number == 10) {
-    geom_image(data = . %>%
-                 group_by(date) %>%
-                 filter(n() == 10) %>%
-                 arrange(values) %>%
-                 mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                   values[5]-values[4],values[6]-values[5],values[7]-values[6],
-                                   values[8]-values[7],values[9]-values[8],values[10]-values[9])) %>%
-                 arrange(-dist, date) %>%
-                 head(10) %>%
-                 mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-               aes(x = date, y = values, image = image), asp = 1.5)
+add_flags <- ggimage::geom_image(
+  data = function(df) {
+    # Guard empty/invalid
+    if (is.null(df) || nrow(df) == 0) return(df[0, , drop = FALSE])
+    df <- tibble::as_tibble(df) %>% dplyr::ungroup()
+    
+    # --- Find the y/value column (first match wins)
+    y_candidates <- c("obsValue", "OBS_VALUE", "values", "value")
+    y_col <- y_candidates[y_candidates %in% names(df)][1]
+    
+    # --- Find the area column (Ref_area, Geo, country, etc.)
+    area_candidates <- c(
+      "Ref_area","ref_area",
+      "Geo","geo","GEO",
+      "country","Country","COUNTRY"
+    )
+    area_col <- area_candidates[area_candidates %in% names(df)][1]
+    
+    # Need: date, area, and a y column
+    if (is.na(y_col) || is.na(area_col) || !"date" %in% names(df))
+      return(df[0, , drop = FALSE])
+    
+    # Standardize to .y__ and .area__
+    df <- df %>%
+      dplyr::mutate(
+        .y__ = .data[[y_col]],
+        .area__ = as.character(.data[[area_col]])
+      )
+    
+    # Largest group size across dates
+    n_max <- max(dplyr::count(df, date, name = "n")$n, na.rm = TRUE)
+    if (!is.finite(n_max) || n_max < 1) return(df[0, , drop = FALSE])
+    
+    # Pick the date with the best separation in y (to avoid overlaps)
+    per_date <- df %>%
+      dplyr::group_by(date) %>%
+      dplyr::filter(dplyr::n() == n_max) %>%
+      dplyr::arrange(.y__, .by_group = TRUE) %>%
+      dplyr::summarise(
+        dist = if (n_max > 1) min(diff(.y__), na.rm = TRUE) else Inf,
+        .groups = "drop"
+      )
+    if (nrow(per_date) == 0) return(df[0, , drop = FALSE])
+    
+    best_date <- per_date %>%
+      dplyr::arrange(dplyr::desc(dist), date) %>%
+      dplyr::slice_head(n = 1) %>%
+      dplyr::pull(date)
+    
+    # Helper: slugify area to file name
+    slugify <- function(x) {
+      # transliterate accents to ASCII where possible
+      x <- iconv(x, from = "", to = "ASCII//TRANSLIT")
+      x <- tolower(x)
+      x <- gsub("'", "", x)                 # drop apostrophes
+      x <- gsub("[^a-z0-9]+", "-", x)       # non-alnum -> hyphen
+      x <- gsub("^-+|-+$", "", x)           # trim hyphens
+      x
+    }
+    
+    # Keep rows from that best date and build image path from area
+    df %>%
+      dplyr::filter(date %in% best_date) %>%
+      dplyr::arrange(.y__) %>%
+      dplyr::mutate(
+        image = file.path(
+          "../../icon/flag/round",
+          paste0(slugify(.area__), ".png")
+        )
+      )
+  },
+  mapping = ggplot2::aes(x = date, y = .y__, image = image),
+  asp = 1.5,
+  inherit.aes = FALSE
+)
+
+print_table_long <- . %>%
+  gt::gt() %>%
+  gt::fmt_markdown(., columns = one_of(c("source", "dataset", "theme"))) %>%
+  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::tab_options(column_labels.font.weight = "bold")
+
+print_table <- . %>%
+  knitr::kable(align = "c", booktabs = T, linesep = "", longtable = T, escape = F) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                            latex_options = c("striped", "hold_position", "repeat_header"))
+
+print_table2 <- . %>%
+  gt::gt() %>%
+  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::fmt_markdown(., columns = one_of(c("source", "dataset", "theme", "id"))) %>%
+  gt::tab_options(column_labels.font.weight = "bold")
+
+
+print_table_no_escape <- . %>%
+  knitr::kable(align = "c", booktabs = T, linesep = "", longtable = T, escape = F) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                            latex_options = c("striped", "hold_position", "repeat_header"))
+
+
+print_table_noname <- . %>%
+  knitr::kable(align = "c", booktabs = T, linesep = "", longtable = T, col.names = NULL) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                            latex_options = c("striped", "hold_position", "repeat_header"))
+
+source_dataset_file_updates <- . %>%
+  mutate(type = map(source, ~ tibble(type = c(".RData", ".html")))) %>%
+  unnest %>%
+  mutate(date = paste0("~/iCloud/website/data/", source, "/", dataset, type) %>% file.info %>% pluck("mtime") %>% as.Date()) %>%
+  spread(type, date) %>%
+  mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
+         dataset = map(dataset, gt::md),
+         source = glue::glue("[{source}](https://fgeerolf.com/data/{source})"),
+         source = map(source, gt::md)) %>%
+  gt::gt() %>%
+  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::tab_options(column_labels.font.weight = "bold")
+
+source_dataset_title_file_updates <- . %>%
+  mutate(type = map(source, ~ tibble(type = c(".RData", ".html")))) %>%
+  unnest %>%
+  mutate(date = paste0("~/iCloud/website/data/", source, "/", dataset, type) %>% file.info %>% pluck("mtime") %>% as.Date()) %>%
+  spread(type, date) %>%
+  mutate(Title = read_lines(paste0("~/iCloud/website/data/", source, "/",dataset, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
+  select(Title, everything()) %>%
+  mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
+         dataset = map(dataset, gt::md),
+         source = glue::glue("[{source}](https://fgeerolf.com/data/{source})"),
+         source = map(source, gt::md)) %>%
+  gt::gt() %>%
+  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::tab_options(column_labels.font.weight = "bold")
+
+theme_file_updates <- . %>%
+  mutate(type = map(theme, ~ tibble(type = c(".html")))) %>%
+  unnest %>%
+  mutate(date = paste0("~/iCloud/website/data/", theme, type) %>% file.info %>% pluck("mtime") %>% as.Date()) %>%
+  spread(type, date) %>%
+  mutate(Title = read_lines(paste0("~/iCloud/website/data/", theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
+  select(theme, Title, everything()) %>%
+  mutate(theme = glue::glue("[{theme}](https://fgeerolf.com/data/{theme}.html)"),
+         theme = map(theme, gt::md)) %>%
+  gt::gt() %>%
+  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::tab_options(column_labels.font.weight = "bold")
+
+
+
+print_table_conditional <- function(data){
+  if (dim(data)[1] > 30){
+    if (knitr::is_html_output()) DT::datatable(data, filter = 'top', rownames = F) else data
   } else{
-    warning("Provide an integer between 1 and 10")
+    if (knitr::is_html_output()) print_table(data) else data
+  }
+}
+
+print_table_conditional2 <- function(data){
+  if (dim(data)[1] > 30){
+    if (knitr::is_html_output()) DT::datatable(data, filter = 'top', rownames = F) else data
+  } else{
+    if (knitr::is_html_output()) print_table2(data) else data
   }
 }
 
 
-add_2flags <- geom_image(data = . %>%
-                           group_by(date) %>%
-                           filter(n() == 2) %>%
-                           arrange(values) %>%
-                           mutate(dist = values[2]-values[1]) %>%
-                           arrange(-dist, date) %>%
-                           head(2) %>%
-                           mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-                         aes(x = date, y = values, image = image), asp = 1.5)
 
-add_3flags <- geom_image(data = . %>%
-                           group_by(date) %>%
-                           filter(n() == 3) %>%
-                           arrange(values) %>%
-                           mutate(dist = min(values[2]-values[1],values[3]-values[2])) %>%
-                           arrange(-dist, date) %>%
-                           head(3) %>%
-                           mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-                         aes(x = date, y = values, image = image), asp = 1.5)
+print_table_conditional_10 <- function(data){
+  if (dim(data)[1] > 10){
+    if (knitr::is_html_output()) DT::datatable(data, filter = 'top', rownames = F) else data
+  } else{
+    if (knitr::is_html_output()) print_table(data) else data
+  }
+}
 
+print_table_conditional_20 <- function(data){
+  if (dim(data)[1] > 20){
+    if (knitr::is_html_output()) DT::datatable(data, filter = 'top', rownames = F) else data
+  } else{
+    if (knitr::is_html_output()) print_table(data) else data
+  }
+}
 
-add_4flags <- geom_image(data = . %>%
-                           group_by(date) %>%
-                           filter(n() == 4) %>%
-                           arrange(values) %>%
-                           mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3])) %>%
-                           arrange(-dist, date) %>%
-                           head(4) %>%
-                           mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-                         aes(x = date, y = values, image = image), asp = 1.5)
+print_table_conditional_30 <- function(data){
+  if (dim(data)[1] > 30){
+    if (knitr::is_html_output()) DT::datatable(data, filter = 'top', rownames = F) else data
+  } else{
+    if (knitr::is_html_output()) print_table(data) else data
+  }
+}
 
-
-add_5flags <- geom_image(data = . %>%
-                           group_by(date) %>%
-                           filter(n() == 5) %>%
-                           arrange(values) %>%
-                           mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                             values[5]-values[4])) %>%
-                           arrange(-dist, date) %>%
-                           head(5) %>%
-                           mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-                         aes(x = date, y = values, image = image), asp = 1.5)
+print_table_conditional_100 <- function(data){
+  if (dim(data)[1] > 100){
+    if (knitr::is_html_output()) DT::datatable(data, filter = 'top', rownames = F) else data
+  } else{
+    if (knitr::is_html_output()) print_table(data) else data
+  }
+}
 
 
-add_6flags <- geom_image(data = . %>%
-                           group_by(date) %>%
-                           filter(n() == 6) %>%
-                           arrange(values) %>%
-                           mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                             values[5]-values[4],values[6]-values[5])) %>%
-                           arrange(-dist, date) %>%
-                           head(6) %>%
-                           mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-                         aes(x = date, y = values, image = image), asp = 1.5)
+
+metadata_load <- function(code, CL_code, data = QNA_EXPENDITURE_CAPITA_var){
+  assign(code, as.data.frame(data@codelists, codelistId = CL_code) %>%
+           select(id, label.en) %>%
+           setNames(c(code, str_to_title(code))),
+         envir = .GlobalEnv)
+}
+
+metadata_load_fr <- function(code, CL_code, data = QNA_EXPENDITURE_CAPITA_var){
+  assign(code, as.data.frame(data@codelists, codelistId = CL_code) %>%
+           select(id, label.fr) %>%
+           setNames(c(code, str_to_title(code))),
+         envir = .GlobalEnv)
+}
+
+code_names <- function(data = QNA_EXPENDITURE_CAPITA_var){
+  assign("code_names",
+         data@codelists@codelists %>%
+           vapply(., function(x) x@id, "character") %>%
+           as_tibble %>%
+           arrange(value) %>%
+           mutate(empty = 1) %>%
+           spread(value, empty),
+         envir = .GlobalEnv)
+}
 
 
-add_7flags <- geom_image(data = . %>%
-                           group_by(date) %>%
-                           filter(n() == 7) %>%
-                           arrange(values) %>%
-                           mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                             values[5]-values[4],values[6]-values[5],values[7]-values[6])) %>%
-                           arrange(-dist, date) %>%
-                           head(7) %>%
-                           mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-                         aes(x = date, y = values, image = image), asp = 1.5)
 
-
-add_8flags <- geom_image(data = . %>%
-                           group_by(date) %>%
-                           filter(n() == 8) %>%
-                           arrange(values) %>%
-                           mutate(dist = min(values[2]-values[1],values[3]-values[2],values[4]-values[3],
-                                             values[5]-values[4],values[6]-values[5],values[7]-values[6],
-                                             values[8]-values[7])) %>%
-                           arrange(-dist, date) %>%
-                           head(8) %>%
-                           mutate(image = paste0("../../icon/flag/round/", str_to_lower(gsub(" ", "-", Geo)), ".png")),
-                         aes(x = date, y = values, image = image), asp = 1.5)
-
+code_names_unique <- function(data = QNA_EXPENDITURE_CAPITA_var){
+  assign("code_names_unique",
+         data %>%
+           select(-obsTime, -obsValue) %>%
+           select_if(~ n_distinct(.) > 1) %>%
+           names(.) %>%
+           as_tibble %>%
+           arrange(value) %>%
+           mutate(empty = 1) %>%
+           spread(value, empty),
+         envir = .GlobalEnv)
+}

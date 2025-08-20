@@ -4,6 +4,14 @@
 # quiet = FALSE pour le débugging
 quiet <- FALSE
 
+
+setwd("data/oecd")
+
+source("BOP.R")
+
+
+setwd(Sys.getenv("GITHUB_WORKSPACE"))
+
 # Aller à la racine du dépôt GitHub
 # setwd(Sys.getenv("GITHUB_WORKSPACE"))
 
@@ -74,3 +82,8 @@ for (i in seq_along(fichiers)) {
 }
 message("\n🕒 Temps total de compilation : ", formater_temps(temps_total_sec))
 
+
+
+setwd("data/oecd")
+
+source("BOP.R")
