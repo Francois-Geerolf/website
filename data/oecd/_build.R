@@ -1,4 +1,5 @@
 #!/usr/bin/env Rscript
+quiet <- FALSE
 
 # Fonction utilitaire pour formater un temps en minutes + secondes
 formater_temps <- function(secondes) {
@@ -11,6 +12,7 @@ formater_temps <- function(secondes) {
 base_path <- here::here("data", "oecd")
 scripts   <- list.files(base_path, pattern = "\\.R$", full.names = TRUE)
 scripts <- setdiff(scripts, "_build.R")
+scripts <- scripts[basename(scripts) != "_build.R"]
 
 # Global timer
 global_start <- Sys.time()
