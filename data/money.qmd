@@ -47,9 +47,6 @@ ig_d("ecb", "BSI", "M3-M2-E")
 # Info
 
 
-
-
-
 ## Related papers
 
 ### English
