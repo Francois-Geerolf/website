@@ -1,1 +1,1 @@
-- "Analyzing inflation by household categories: some methodological issues", F. Geerolf, décembre 2023. [[html](https://fgeerolf.com/inflation-by-category.html)]  [[pdf](https://fgeerolf.com/inflation-by-category.pdf)] [[github](https://github.com/Francois-Geerolf/inflation-by-category)]
+- "Analyzing inflation by household categories: some methodological issues", F. Geerolf, december 2023. [[html](https://fgeerolf.com/inflation-by-category.html)]  [[pdf](https://fgeerolf.com/inflation-by-category.pdf)] [[github](https://github.com/Francois-Geerolf/inflation-by-category)]
