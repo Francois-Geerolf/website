@@ -12,7 +12,10 @@ formater_temps <- function(secondes) {
 base_path <- here::here("data", "oecd")
 scripts   <- list.files(base_path, pattern = "\\.R$", full.names = TRUE)
 scripts <- setdiff(scripts, "_build.R")
-scripts <- scripts[basename(scripts) != "_build.R"]
+scripts <- scripts[basename(scripts) != "_build.R",
+                   basename(scripts) != "PRICES_ALL.R"]
+
+scripts
 
 # Global timer
 global_start <- Sys.time()
