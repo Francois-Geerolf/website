@@ -40,7 +40,7 @@ knitr::opts_chunk$set(echo = T)
 
 - "25 ans d'union monétaire: la zone euro à travers les crises" E. Aurissergues, C. Blot, E. Carpentier-Charléty, M. Dauvin, F. Geerolf, E. Heyer, P. Plane, OFCE Policy brief 130, juin 2024. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2024/OFCEpbrief130.pdf)]
 
-- "L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques.", F. Geerolf, Blog de l'OFCE, décembre 2023. [[html](https://fgeerolf.com/inflation-par-categorie.html)] [[blog](https://www.ofce.sciences-po.fr/blog/lanalyse-de-linflation-par-categories-de-menages-quelques-problemes-methodologiques/)] [[pdf](https://fgeerolf.com/inflation-par-categorie.pdf)]
+{{< include ../publications/fr/Geerolf2023c.qmd >}}
 
 - "Les politiques économiques de lutte contre l’inflation en Europe." F. Geerolf, In L'économie européenne 2023-2024, La Découverte, p.42-56, septembre 2023. [[pdf](https://www.ofce.sciences-po.fr/pdf/ouvrage/2024-EE-04.pdf)] [[html](https://www.cairn.info/l-economie-europeenne-2023-2024--9782348079993-page-42.htm)] [[github](https://github.com/Francois-Geerolf/EE2024-inflation)]
 
@@ -67,6 +67,8 @@ knitr::opts_chunk$set(echo = T)
 {{< include ../publications/en/Geerolf2024a.qmd >}}
 
 - "25 years of monetary union: The eurozone through its crises" E. Aurissergues, C. Blot, E. Carpentier-Charléty, M. Dauvin, F. Geerolf, E. Heyer, P. Plane, OFCE Policy brief 133, june 2024. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2024/OFCEpbrief133.pdf)]
+
+{{< include ../publications/en/Geerolf2023c.qmd >}}
 
 - "Are inflation dynamics different in the euro area and the United States?" C. Blot & F. Geerolf, Monetary Dialogue Paper, November 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/755706/IPOL_IDA(2023)755706_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/fr/document/IPOL_IDA(2023)755706)] [[github](https://github.com/Francois-Geerolf/MD2023-11-EA-vs-US)]
 
