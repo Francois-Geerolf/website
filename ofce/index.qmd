@@ -54,7 +54,7 @@ knitr::opts_chunk$set(echo = T)
 
 - "L'Europe, de réelles avancées mais des choix à assumer" J. Creel, F. Geerolf, S. Levasseur, X. Ragot, F. Saraceno, OFCE Policy brief 101, 24 février 2022. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2022/OFCEpbrief101.pdf)]
 
-- "Quelques remarques au sujet du Blog de l'Insee: Mais si, l'Insee prend bien en compte le logement dans l'inflation !", F. Geerolf, Document de travail, 22 février 2022. [[html](https://fgeerolf.com/blog-insee-IPC-loyers.html)] [[pdf](https://fgeerolf.com/blog-insee-IPC-loyers.pdf)] [[github](https://github.com/Francois-Geerolf/blog-insee-IPC-loyers)]
+{{< include ../publications/fr/Geerolf2022.qmd >}}
 
 ## Anglais
 
@@ -81,6 +81,8 @@ knitr::opts_chunk$set(echo = T)
 - "Heterogeneity of inflation in the euro area: more complicated than it seems." C. Blot, J. Creel, F. Geerolf & S. Levasseur, Monetary Dialogue Paper, November 2022, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2022/733999/IPOL_IDA(2022)733999_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2022)733999)] [[github](https://github.com/Francois-Geerolf/MD2022-11-heterogeneity)]
 
 - "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[github](https://github.com/Francois-Geerolf/SIWU)] [[shiny](https://ofce.shinyapps.io/siwu/)]
+
+{{< include ../publications/en/Geerolf2022.qmd >}}
 
 
 # Débat public
