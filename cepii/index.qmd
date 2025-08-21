@@ -15,11 +15,9 @@ editor: source
 
 
 ```{r, echo = FALSE, message = FALSE}
-source("../code/R-markdown/init_min.R")
-knitr::opts_chunk$set(echo = T)
-# cd ~/iCloud/website/cepii; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")';
-# sh ~/iCloud/website/website_short.sh
-# cd ~/iCloud/website/cepii; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'; sh ~/iCloud/website/website_short.sh
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
 ```
 
 Travaux réalisés pour le CEPII lorsque j'étais _Conseiller Scientifique_ au CEPII et _Assistant Professor_ à UCLA.
