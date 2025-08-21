@@ -80,7 +80,7 @@ inflation <- tribble(
 
 {{< include ../publications/fr/Geerolf2023c.qmd >}}
 
-- "Les politiques économiques de lutte contre l’inflation en Europe." F. Geerolf, In L'économie européenne 2023-2024, La Découverte, p.42-56, septembre 2023. [[html](https://www.cairn.info/l-economie-europeenne-2023-2024--9782348079993-page-42.htm)]
+{{< include ../publications/fr/Geerolf2023b.qmd >}}
 
 - "Une analyse macroéconomique de l'inflation.", C. Antonin & F. Geerolf, In la Jaune et la Rouge n°783, mars 2023. [[pdf](https://www.lajauneetlarouge.com/wp-content/uploads/2023/02/La_Jaune_et_la_Rouge_783_41-44.pdf)] [[html](https://www.lajauneetlarouge.com/analyse-macroeconomique-de-linflation-et-de-la-pertinence-de-nos-modeles/)]
 
