@@ -1,1 +1,1 @@
-- "Inflation en France : IPC ou IPCH ?", F. Geerolf, Document de travail, Juillet 2024. [[html](https://fgeerolf.com/IPC-ou-IPCH.html)] [[pdf](https://fgeerolf.com/IPC-ou-IPCH.pdf)]
+- "Inflation en France : IPC ou IPCH ?", F. Geerolf, Document de travail, juillet 2024. [[html](https://fgeerolf.com/IPC-ou-IPCH.html)] [[pdf](https://fgeerolf.com/IPC-ou-IPCH.pdf)] [[github](https://github.com/Francois-Geerolf/IPC-ou-IPCH)]

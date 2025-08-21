@@ -1,1 +1,1 @@
-- "Mesurer « le » pouvoir d'achat", F. Geerolf, Document de travail, Juillet 2024. [[html](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.html)] [[pdf](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.pdf)]
+- "Mesurer « le » pouvoir d'achat", F. Geerolf, Document de travail, juillet 2024. [[html](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.html)] [[pdf](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.pdf)] [[github](https://github.com/Francois-Geerolf/mesurer-le-pouvoir-d-achat)]

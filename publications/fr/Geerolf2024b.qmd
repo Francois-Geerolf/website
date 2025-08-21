@@ -1,1 +1,1 @@
-- "La taxe inflationniste, le pouvoir d’achat, le taux d’épargne et le déficit public", F. Geerolf, Document de travail, Juillet 2024. [[html](https://fgeerolf.com/taxe-inflationniste.html)] [[pdf](https://fgeerolf.com/taxe-inflationniste.pdf)]
+- "La taxe inflationniste, le pouvoir d’achat, le taux d’épargne et le déficit public", F. Geerolf, Document de travail, juillet 2024. [[html](https://fgeerolf.com/taxe-inflationniste.html)] [[pdf](https://fgeerolf.com/taxe-inflationniste.pdf)] [[github](https://github.com/Francois-Geerolf/taxe-inflationniste)]

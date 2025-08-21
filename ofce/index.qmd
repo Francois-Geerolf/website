@@ -32,11 +32,11 @@ knitr::opts_chunk$set(echo = T)
 
 - "Réindustrialisation : l’Union européenne et les nations." F. Geerolf, In L'économie européenne 2025, La Découverte, p.45-59, septembre 2024. [[pdf](https://fgeerolf.com/reindustrialisation.pdf)] [[html](https://shs.cairn.info/l-economie-europeenne-2025--9782348084799-page-45?lang=fr)] [[github](https://github.com/Francois-Geerolf/EE2025-industrie)]
 
-- "Mesurer « le » pouvoir d'achat", F. Geerolf, Document de travail, juillet 2024. [[html](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.html)] [[pdf](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.pdf)] [[github](https://github.com/Francois-Geerolf/mesurer-le-pouvoir-d-achat)]
+{{< include ../publications/fr/Geerolf2024c.qmd >}}
 
-- "Inflation en France : IPC ou IPCH ?", F. Geerolf, Document de travail, juillet 2024. [[html](https://fgeerolf.com/IPC-ou-IPCH.html)] [[pdf](https://fgeerolf.com/IPC-ou-IPCH.pdf)] [[github](https://github.com/Francois-Geerolf/IPC-ou-IPCH)]
+{{< include ../publications/fr/Geerolf2024b.qmd >}}
 
-- "La taxe inflationniste, le pouvoir d’achat, le taux d’épargne et le déficit public", F. Geerolf, Document de travail, juillet 2024. [[html](https://fgeerolf.com/taxe-inflationniste.html)] [[pdf](https://fgeerolf.com/taxe-inflationniste.pdf)] [[github](https://github.com/Francois-Geerolf/taxe-inflationniste)]
+{{< include ../publications/fr/Geerolf2024a.qmd >}}
 
 - "25 ans d'union monétaire: la zone euro à travers les crises" E. Aurissergues, C. Blot, E. Carpentier-Charléty, M. Dauvin, F. Geerolf, E. Heyer, P. Plane, OFCE Policy brief 130, juin 2024. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2024/OFCEpbrief130.pdf)]
 
