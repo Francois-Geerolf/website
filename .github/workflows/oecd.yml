@@ -3,23 +3,12 @@ name: Build OECD
 on:
   push:
     paths:
-      - '**.R'
-      - '**.Rmd'
-      - '**.qmd'
-      - '**.yml'
-      - '_build.R'
+      - 'oecd'
   pull_request:
     paths:
-      - '**.R'
-      - '**.Rmd'
-      - '**.qmd'
-      - '**.yml'
-      - '_build.R'
+      - 'oecd'
   schedule:
     - cron: '0 5 * * *'   # tous les jours à 05:00 UTC
-    - cron: '0 11 * * *'  # every day at 11:00 UTC
-    - cron: '0 17 * * *'  # every day at 17:00 UTC
-    - cron: '0 23 * * *'  # every day at 23:00 UTC
 
 jobs:
   build:
