@@ -3,18 +3,10 @@ name: Build Themes
 on:
   push:
     paths:
-      - '**.R'
-      - '**.Rmd'
-      - '**.qmd'
-      - '**.yml'
-      - '_build.R'
+      - 'data/**'
   pull_request:
     paths:
-      - '**.R'
-      - '**.Rmd'
-      - '**.qmd'
-      - '**.yml'
-      - '_build.R'
+      - 'data/**'
   schedule:
     - cron: '0 5 * * *'   # tous les jours à 05:00 UTC
     - cron: '0 11 * * *'  # every day at 11:00 UTC

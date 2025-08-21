@@ -3,10 +3,10 @@ name: Build CEPII
 on:
   push:
     paths:
-      - 'cepii'
+      - 'cepii/**'
   pull_request:
     paths:
-      - 'cepii'
+      - 'cepii/**'
   schedule:
     - cron: '0 5 * * *'   # tous les jours à 05:00 UTC
 
