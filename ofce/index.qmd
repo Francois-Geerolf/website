@@ -93,12 +93,11 @@ knitr::opts_chunk$set(echo = T)
 
 - "Sur l’évolution du pouvoir d’achat, un diagnostic de plus en plus biaisé", Le Monde, P. Concialdi, F. Geerolf, F. Jany-Catrice, avril 2025. [[html](https://www.lemonde.fr/idees/article/2025/04/18/sur-l-evolution-du-pouvoir-d-achat-un-diagnostic-de-plus-en-plus-biaise_6597278_3232.html)]
 
-
 {{< include ../public-debate/fr/Geerolf2025.qmd >}}
 
 ## Interviews
 
-- "La hausse du pouvoir d'achat est fortement surestimée !" F. Geerolf, L'opinion, février 2024.  [[html](https://www.lopinion.fr/economie/la-hausse-du-pouvoir-dachat-est-fortement-surestimee)]
+{{< include ../public-debate/fr/Geerolf2024a.qmd >}}
 
 - "Il se passe dans la réalité l’inverse de ce que prévoient les modèles." F. Geerolf, GRS, décembre 2022. [[html](https://g-r-s.fr/francois-geerolf-il-se-passe-dans-la-realite-linverse-de-ce-que-prevoient-les-modeles/)]
 
@@ -107,6 +106,6 @@ knitr::opts_chunk$set(echo = T)
 
 ## Autres interventions (sélection)
 
-- Débat avec François Ecalle dans Le Monde, janvier 2025: "La dette publique est-elle vraiment alarmante ? L’avis contrasté de deux experts." [[pdf](https://fipeco.fr/pdf/Le%20Monde%2012.01.2025.pdf)]
+{{< include ../public-debate/fr/EcalleGeerolf2025.qmd >}}
 
-- « Le rapport Draghi, une avancée indéniable mais inaboutie dans la réflexion sur les défis structurels de l’Union européenne ». Colloque de la Fondation Res Publica, novembre 2024. [[pdf](https://fondation-res-publica.org/wp-content/uploads/2025/04/Texte-colloque-156.pdf)]
+{{< include ../public-debate/fr/Geerolf2024b.qmd >}}
