@@ -74,6 +74,8 @@ inflation <- tribble(
 
 - "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[html](https://github.com/OFCE/SIWU)]
 
+{{< include ../publications/en/Geerolf2022.qmd >}}
+
 - "The Phillips Curve: a Relation between Real Exchange Rate Growth and Unemployment." F. Geerolf, January 2020. [[pdf](https://fgeerolf.com/phillips.pdf)]
 
 ## French
@@ -98,7 +100,7 @@ inflation <- tribble(
 
 - Inflation et pouvoir d'achat : it's the politics, stupid! F. Geerolf & P. Jacquet, Relançons le débat économique, juin 2022. [[pdf](https://lecercledeseconomistes.fr/wp-content/uploads/2022/07/rlde-2022-25-geerolfjacquet.pdf)] [[html](https://lecercledeseconomistes.fr/inflation-et-pouvoir-dachat-its-the-politics-stupid/)]
 
-- "Quelques remarques au sujet du Blog de l'Insee: Mais si, l'Insee prend bien en compte le logement dans l'inflation !", F. Geerolf, février 2022. [[pdf](https://fgeerolf.com/blog-insee-IPC-loyers.pdf)]
+{{< include ../publications/fr/Geerolf2022.qmd >}}
 
 - "Le keynésianisme doit-il faire l'économie de la courbe de Phillips ?" F. Geerolf, In L'économie mondiale 2022, La Découverte, p.73-86, septembre 2021. [[pdf](http://www.cepii.fr/PDF_PUB/em/2022/em2022-05.pdf)] [[slides](http://www.cepii.fr/docs/files/reunions/communications/em2022/Economie%20Mondiale%202022_Geerolf.pdf)]
 

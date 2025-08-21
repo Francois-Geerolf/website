@@ -1,0 +1,101 @@
+---
+title: OFCE - Observatoire français des conjonctures économiques
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+
+```{r, echo = FALSE, message = FALSE}
+source("../code/R-markdown/init_min.R")
+knitr::opts_chunk$set(echo = T)
+# cd ~/iCloud/website/ofce; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")';
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/ofce; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'; sh ~/iCloud/website/website_short.sh
+```
+
+# Articles
+
+## Français
+
+- "L’Europe face au retour de l’énergie chère." F. Geerolf, In L'économie européenne 2026, La Découverte, p.45-59, septembre 2025. [[github](https://github.com/Francois-Geerolf/EE2026-energie)]
+
+- "L’orientation de la politique monétaire de la BCE à l’épreuve de l’incertitude économique" C. Blot, J. Creel, F. Geerolf, G. Ricco, D. Romelli, OFCE Policy brief 147, juillet 2025. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2025/OFCEpbrief147.pdf)] [[github](https://github.com/Francois-Geerolf/MD2025-06-stance/blob/main/README_fr.md)]
+
+- "Réindustrialisation : l’Union européenne et les nations." F. Geerolf, In L'économie européenne 2025, La Découverte, p.45-59, septembre 2024. [[pdf](https://fgeerolf.com/reindustrialisation.pdf)] [[html](https://shs.cairn.info/l-economie-europeenne-2025--9782348084799-page-45?lang=fr)] [[github](https://github.com/Francois-Geerolf/EE2025-industrie)]
+
+- "Mesurer « le » pouvoir d'achat", F. Geerolf, Document de travail, juillet 2024. [[html](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.html)] [[pdf](https://fgeerolf.com/mesurer-le-pouvoir-d-achat.pdf)] [[github](https://github.com/Francois-Geerolf/mesurer-le-pouvoir-d-achat)]
+
+- "Inflation en France : IPC ou IPCH ?", F. Geerolf, Document de travail, juillet 2024. [[html](https://fgeerolf.com/IPC-ou-IPCH.html)] [[pdf](https://fgeerolf.com/IPC-ou-IPCH.pdf)] [[github](https://github.com/Francois-Geerolf/IPC-ou-IPCH)]
+
+- "La taxe inflationniste, le pouvoir d’achat, le taux d’épargne et le déficit public", F. Geerolf, Document de travail, juillet 2024. [[html](https://fgeerolf.com/taxe-inflationniste.html)] [[pdf](https://fgeerolf.com/taxe-inflationniste.pdf)] [[github](https://github.com/Francois-Geerolf/taxe-inflationniste)]
+
+- "25 ans d'union monétaire: la zone euro à travers les crises" E. Aurissergues, C. Blot, E. Carpentier-Charléty, M. Dauvin, F. Geerolf, E. Heyer, P. Plane, OFCE Policy brief 130, juin 2024. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2024/OFCEpbrief130.pdf)]
+
+- "L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques.", F. Geerolf, Blog de l'OFCE, décembre 2023. [[html](https://fgeerolf.com/inflation-par-categorie.html)] [[blog](https://www.ofce.sciences-po.fr/blog/lanalyse-de-linflation-par-categories-de-menages-quelques-problemes-methodologiques/)] [[pdf](https://fgeerolf.com/inflation-par-categorie.pdf)]
+
+- "Les politiques économiques de lutte contre l’inflation en Europe." F. Geerolf, In L'économie européenne 2023-2024, La Découverte, p.42-56, septembre 2023. [[pdf](https://www.ofce.sciences-po.fr/pdf/ouvrage/2024-EE-04.pdf)] [[html](https://www.cairn.info/l-economie-europeenne-2023-2024--9782348079993-page-42.htm)] [[github](https://github.com/Francois-Geerolf/EE2024-inflation)]
+
+- "Les incidences économiques de l'action pour le climat. Rapport thématique: inflation." S. Dees, E. Bellevrat, A. de Gaye, F. Geerolf, M. Lequien, R. Schweizer, A. Tettaravou, O. Wegner. France Stratégie, mai 2023. [[pdf](https://www.strategie.gouv.fr/sites/strategie.gouv.fr/files/atoms/files/fs-2023-les_incidences_economiques_de_laction_pour_le_climat-thematique-inflation.pdf)] [[github](https://github.com/Francois-Geerolf/effets-qualite-PisaniMahfouz2023)]
+
+- "La politique économique en Europe face à l’inflation." F. Geerolf, Cahiers français n°432: Faire face à l'inflation, La Documentation française, mars 2023. [[html](https://www.vie-publique.fr/catalogue/288377-faire-face-linflation)🔒]
+
+- "Inflation en Europe : les conséquences sociales de la guerre en Ukraine." G. Allègre, F. Geerolf, X. Timbeau, Blog de l'OFCE, juillet 2022. [[html](https://www.ofce.sciences-po.fr/blog/inflation-en-europe-les-consequences-sociales-de-la-guerre-en-ukraine/)] [[github](https://github.com/Francois-Geerolf/SIWU)]
+
+- Inflation et pouvoir d’achat : it’s the politics, stupid! F. Geerolf & P. Jacquet, Relançons le débat économique, juin 2022. [[html](https://lecercledeseconomistes.fr/articles/finance/inflation-et-pouvoir-dachat-its-the-politics-stupid/)] [[pdf](https://lecercledeseconomistes.fr/wp-content/uploads/2024/10/RLDE-2022-25-GeerolfJacquet.pdf)]
+
+- "L'Europe, de réelles avancées mais des choix à assumer" J. Creel, F. Geerolf, S. Levasseur, X. Ragot, F. Saraceno, OFCE Policy brief 101, 24 février 2022. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2022/OFCEpbrief101.pdf)]
+
+- "Quelques remarques au sujet du Blog de l'Insee: Mais si, l'Insee prend bien en compte le logement dans l'inflation !", F. Geerolf, Document de travail, 22 février 2022. [[html](https://fgeerolf.com/blog-insee-IPC-loyers.html)] [[pdf](https://fgeerolf.com/blog-insee-IPC-loyers.pdf)] [[github](https://github.com/Francois-Geerolf/blog-insee-IPC-loyers)]
+
+## Anglais
+
+- "The ECB’s monetary policy stance in an uncertain environment" C. Blot, J. Creel, F. Geerolf, G. Ricco & D. Romelli, Monetary Dialogue Paper, June 2025, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/cmsdata/296425/MD_OFCE%20June%202025_FINAL.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/ECTI_STU(2025)764390)] [[github](https://github.com/Francois-Geerolf/MD2025-06-stance)]
+
+- "25 years of monetary union: The eurozone through its crises" E. Aurissergues, C. Blot, E. Carpentier-Charléty, M. Dauvin, F. Geerolf, E. Heyer, P. Plane, OFCE Policy brief 133, june 2024. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2024/OFCEpbrief133.pdf)]
+
+- "Are inflation dynamics different in the euro area and the United States?" C. Blot & F. Geerolf, Monetary Dialogue Paper, November 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/755706/IPOL_IDA(2023)755706_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/fr/document/IPOL_IDA(2023)755706)] [[github](https://github.com/Francois-Geerolf/MD2023-11-EA-vs-US)]
+
+- "Excess liquidity in the euro area? Assessment and possible ways forward." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, September 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/ATAG/2023/747868/IPOL_ATA(2023)747868_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_ATA(2023)747868)] [[github](https://github.com/Francois-Geerolf/MD2023-09-excess-liquidity)]
+
+- "Is monetary tightening a threat to financial stability?" C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, June 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/747843/IPOL_IDA(2023)747843_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)747843)] [[github](https://github.com/Francois-Geerolf/MD2023-06-financial-stability)]
+
+- "The direct and indirect impacts of the war on inflation." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, March 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/741487/IPOL_IDA(2023)741487_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)741487)] [[github](https://github.com/Francois-Geerolf/MD2023-03-war)]
+
+- "The “Baqaee-Farhi approach” and a russian gas embargo", Revue de l'OFCE, vol. 179, no. 4, 2022, pp. 143-165. [[pdf](https://www.ofce.sciences-po.fr/pdf/revue/4-179OFCE.pdf)] [[slides](https://fgeerolf.com/russiangas-slides.pdf)] [[html](https://www.cairn.info/revue-de-l-ofce-2022-4-page-143.htm?contenu=article)]
+
+- "Heterogeneity of inflation in the euro area: more complicated than it seems." C. Blot, J. Creel, F. Geerolf & S. Levasseur, Monetary Dialogue Paper, November 2022, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2022/733999/IPOL_IDA(2022)733999_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2022)733999)] [[github](https://github.com/Francois-Geerolf/MD2022-11-heterogeneity)]
+
+- "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[github](https://github.com/Francois-Geerolf/SIWU)] [[shiny](https://ofce.shinyapps.io/siwu/)]
+
+
+# Débat public
+
+## Tribunes
+
+- "Sur l’évolution du pouvoir d’achat, un diagnostic de plus en plus biaisé", Le Monde, P. Concialdi, F. Geerolf, F. Jany-Catrice, avril 2025. [[html](https://www.lemonde.fr/idees/article/2025/04/18/sur-l-evolution-du-pouvoir-d-achat-un-diagnostic-de-plus-en-plus-biaise_6597278_3232.html)]
+
+- "La charge d’intérêt sur la dette publique, ou le mythe du gouffre financier", Marianne, F. Geerolf, janvier 2025. [[html](https://www.marianne.net/agora/tribunes-libres/francois-geerolf-la-charge-dinteret-sur-la-dette-publique-ou-le-mythe-du-gouffre-financier)]
+
+## Interviews
+
+- "La hausse du pouvoir d'achat est fortement surestimée !" F. Geerolf, L'opinion, février 2024.  [[html](https://www.lopinion.fr/economie/la-hausse-du-pouvoir-dachat-est-fortement-surestimee)]
+
+- "Il se passe dans la réalité l’inverse de ce que prévoient les modèles." F. Geerolf, GRS, décembre 2022. [[html](https://g-r-s.fr/francois-geerolf-il-se-passe-dans-la-realite-linverse-de-ce-que-prevoient-les-modeles/)]
+
+- "Qui va payer cette facture énergétique ?" F. Geerolf, Interview a priori, décembre 2022. [[html](https://a-prioris.fr/hauteur-de-vue/francois-geerolf-qui-va-payer-cette-facture-energetique)]
+
+
+## Autres interventions (sélection)
+
+- Débat avec François Ecalle dans Le Monde, janvier 2025: "La dette publique est-elle vraiment alarmante ? L’avis contrasté de deux experts." [[pdf](https://fipeco.fr/pdf/Le%20Monde%2012.01.2025.pdf)]
+
+- « Le rapport Draghi, une avancée indéniable mais inaboutie dans la réflexion sur les défis structurels de l’Union européenne ». Colloque de la Fondation Res Publica, novembre 2024. [[pdf](https://fondation-res-publica.org/wp-content/uploads/2025/04/Texte-colloque-156.pdf)]

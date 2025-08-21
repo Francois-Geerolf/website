@@ -1,0 +1,43 @@
+---
+title: CEPII - Centre d'études prospectives et d'informations internationales
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+
+
+```{r, echo = FALSE, message = FALSE}
+source("../code/R-markdown/init_min.R")
+knitr::opts_chunk$set(echo = T)
+# cd ~/iCloud/website/cepii; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")';
+# sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/cepii; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'; sh ~/iCloud/website/website_short.sh
+```
+
+Travaux réalisés pour le CEPII lorsque j'étais _Conseiller Scientifique_ au CEPII et _Assistant Professor_ à UCLA.
+
+# Articles
+
+- "Le keynésianisme doit-il faire l'économie de la courbe de Phillips ?", F. Geerolf. In L'économie mondiale 2022, La Découverte, p.73-86, septembre 2021. [[pdf](https://www.cepii.fr/PDF_PUB/em/2022/em2022-05.pdf)] [[slides](https://www.cepii.fr/docs/files/reunions/communications/em2022/Economie%20Mondiale%202022_Geerolf.pdf)] [[html](https://shs.cairn.info/l-economie-mondiale-2022--9782348069840-page-73?lang=fr)]
+
+- "La courbe de Phillips n'est pas celle que vous croyez", F. Geerolf, La Lettre du CEPII, n°417, avril 2021. [[pdf](https://www.cepii.fr/PDF_PUB/lettre/2021/let417.pdf)] [[html](http://www.cepii.fr/CEPII/fr/publications/lettre/abstract.asp?NoDoc=12974)]
+
+- "Rééquilibrage de la zone euro : plus facile avec le bon diagnostic !", F. Geerolf, T. Grjebine, La Lettre du CEPII, n°411, octobre 2020. [[pdf](https://www.cepii.fr/PDF_PUB/lettre/2020/let411.pdf)] [[html](https://www.cepii.fr/CEPII/fr/publications/lettre/abstract.asp?NoDoc=12768)]
+
+- "Désindustrialisation (accélérée) : le rôle des politiques macroéconomiques", F. Geerolf, T. Grjebine, In L'économie mondiale 2021, La Découverte, p.41-54, septembre 2020. [[pdf](https://www.cepii.fr/PDF_PUB/em/2021/em2021-03.pdf)] [[html](https://shs.cairn.info/l-economie-mondiale-2021--9782348064111-page-41?lang=fr)]
+
+
+# Débat public
+
+- "On peut rechercher le plein-emploi sans craindre de déclencher une spirale inflationniste", Le Monde, I. Bensidoun, F. Geerolf, avril 2021. [[html](https://www.lemonde.fr/idees/article/2021/04/28/on-peut-rechercher-le-plein-emploi-sans-craindre-de-declencher-une-spirale-inflationniste_6078318_3232.html)]
+
+- "Coronavirus : « L’Europe doit cesser son jeu de dupes »", Le Monde, F. Geerolf, T. Grjebine, avril 2020. [[html](https://www.lemonde.fr/idees/article/2020/04/10/coronavirus-l-europe-doit-cesser-son-jeu-de-dupes_6036243_3232.html)]
+
