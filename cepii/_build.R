@@ -13,7 +13,7 @@ compiler_qmd <- function(fichier) {
     message("📄 Compilation de ", fichier)
     start <- Sys.time()
     ok <- tryCatch({
-      quarto::quarto_render(input = fichier, quiet = quiet)
+      quarto::quarto_render(input = fichier, quiet = FALSE)
       TRUE
     }, error = function(e) {
       message("❌ Erreur compilation : ", e$message)

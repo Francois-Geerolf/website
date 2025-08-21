@@ -1,4 +1,4 @@
-name: Build Themes
+name: Build OFCE
 
 on:
   push:
