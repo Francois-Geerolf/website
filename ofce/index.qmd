@@ -93,7 +93,8 @@ knitr::opts_chunk$set(echo = T)
 
 - "Sur l’évolution du pouvoir d’achat, un diagnostic de plus en plus biaisé", Le Monde, P. Concialdi, F. Geerolf, F. Jany-Catrice, avril 2025. [[html](https://www.lemonde.fr/idees/article/2025/04/18/sur-l-evolution-du-pouvoir-d-achat-un-diagnostic-de-plus-en-plus-biaise_6597278_3232.html)]
 
-- "La charge d’intérêt sur la dette publique, ou le mythe du gouffre financier", Marianne, F. Geerolf, janvier 2025. [[html](https://www.marianne.net/agora/tribunes-libres/francois-geerolf-la-charge-dinteret-sur-la-dette-publique-ou-le-mythe-du-gouffre-financier)]
+
+{{< include ../public-debate/fr/Geerolf2025.qmd >}}
 
 ## Interviews
 
