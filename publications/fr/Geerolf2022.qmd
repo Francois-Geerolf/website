@@ -1,0 +1,1 @@
+- "Some remarks on Insee’s February 4, 2020 blog post ‘Yes, Insee does take housing into account in inflation!’", F. Geerolf, February 2022. [[pdf](https://fgeerolf.com/blog-insee-CPI-rents.pdf)] [[html](https://fgeerolf.com/blog-insee-CPI-rents.html)] [[github](https://github.com/Francois-Geerolf/blog-insee-CPI-rents)]
