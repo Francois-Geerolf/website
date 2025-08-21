@@ -78,6 +78,12 @@ inflation <- tribble(
 
 ## French
 
+{{< include ../publications/fr/Geerolf2024c.qmd >}}
+
+{{< include ../publications/fr/Geerolf2024b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2024a.qmd >}}
+
 {{< include ../publications/fr/Geerolf2023c.qmd >}}
 
 {{< include ../publications/fr/Geerolf2023b.qmd >}}
