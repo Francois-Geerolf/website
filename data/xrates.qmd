@@ -78,11 +78,12 @@ xrates <- tribble(
 # Current xrates
 
 ```{r, echo = F, warning = F}
-# load_data("public-debt/rating.RData")
-"https://www.investing.com/currencies/streaming-forex-rates-majors"|>
+data_investing <- "https://www.investing.com/currencies/streaming-forex-rates-majors"|>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
-  pluck(1) |>
+  pluck(1)
+
+data_investing |>
   select(2:4) |>
   #dplyr::left_join(currencycode_countrycode|>
   #                   setNames(c("currencycode1", "countrycode1")),
@@ -124,6 +125,51 @@ xrates <- tribble(
 
 ## Euros
 
+### Main
+
+```{r, echo = F, warning = F}
+data_investing |>
+  select(2:4) |>
+  filter(grepl("^EUR", Pair)) |>
+  #dplyr::left_join(currencycode_countrycode|>
+  #                   setNames(c("currencycode1", "countrycode1")),
+  #                 by = c("currencycode1")) |>
+  #dplyr::left_join(currencycode_countrycode|>
+  #                   setNames(c("currencycode2", "countrycode2")),
+  #                 by = c("currencycode2")) |>
+  mutate(Pair2 = str_replace_all(Pair, "(\\w{2})\\w", "\\1"),
+         Pair2 = str_replace(Pair2, "/", ",")) |>
+  mutate(Pair3 = Pair) |>
+  separate(Pair3, into = c("currencycode1", "currencycode2"), sep = "/") |>
+  dplyr::left_join(currencies|>
+                     select(currencycode1 = currency_code, symbol1 = currency_symbol),
+                   by = c("currencycode1")) |>
+  dplyr::left_join(currencies|>
+                     select(currencycode2 = currency_code, symbol2 = currency_symbol),
+                   by = c("currencycode2")) |>
+  select(-currencycode1, -currencycode2) |>
+  mutate(symbol1 = paste0("1 ", symbol1, " = ")) |>
+  #select(Pair2, symbol1, Bid, symbol2, Pair, Ask) |>
+  select(Pair2, symbol1, Bid, symbol2, Pair) |>
+  gt::gt() |>
+  gt::fmt_flag(columns = Pair2) |>
+  gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), everything() ~ gt::px(60)) |>
+  #gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), Ask ~ gt::px(100), everything() ~ gt::px(60)) |>
+  gt::cols_label(Pair2 = "", Pair = "", symbol1 = "", symbol2 = "") |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+### More...
+
 ```{r, echo = F}
 "https://www.x-rates.com/table/?from=EUR&amount=1"|>
   rvest::read_html() |>
@@ -145,6 +191,53 @@ xrates <- tribble(
 
 
 ## Dollars
+
+### Main
+
+
+
+```{r, echo = F, warning = F}
+data_investing |>
+  select(2:4) |>
+  filter(grepl("^EUR", Pair)) |>
+  #dplyr::left_join(currencycode_countrycode|>
+  #                   setNames(c("currencycode1", "countrycode1")),
+  #                 by = c("currencycode1")) |>
+  #dplyr::left_join(currencycode_countrycode|>
+  #                   setNames(c("currencycode2", "countrycode2")),
+  #                 by = c("currencycode2")) |>
+  mutate(Pair2 = str_replace_all(Pair, "(\\w{2})\\w", "\\1"),
+         Pair2 = str_replace(Pair2, "/", ",")) |>
+  mutate(Pair3 = Pair) |>
+  separate(Pair3, into = c("currencycode1", "currencycode2"), sep = "/") |>
+  dplyr::left_join(currencies|>
+                     select(currencycode1 = currency_code, symbol1 = currency_symbol),
+                   by = c("currencycode1")) |>
+  dplyr::left_join(currencies|>
+                     select(currencycode2 = currency_code, symbol2 = currency_symbol),
+                   by = c("currencycode2")) |>
+  select(-currencycode1, -currencycode2) |>
+  mutate(symbol1 = paste0("1 ", symbol1, " = ")) |>
+  #select(Pair2, symbol1, Bid, symbol2, Pair, Ask) |>
+  select(Pair2, symbol1, Bid, symbol2, Pair) |>
+  gt::gt() |>
+  gt::fmt_flag(columns = Pair2) |>
+  gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), everything() ~ gt::px(60)) |>
+  #gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), Ask ~ gt::px(100), everything() ~ gt::px(60)) |>
+  gt::cols_label(Pair2 = "", Pair = "", symbol1 = "", symbol2 = "") |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+### More...
 
 ```{r, echo = F}
 "https://www.x-rates.com/table/?from=USD&amount=1"|>
