@@ -13,7 +13,7 @@ format:
     embed-resources: false
 editor: source
 filters:
-  - genderize-fr.lua
+  - ../code/genderize-fr.lua
 ---
 
 
