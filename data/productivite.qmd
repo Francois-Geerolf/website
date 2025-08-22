@@ -29,6 +29,12 @@ productivite <- tribble(
 ```
 
 
+# Bases de données
+
+```{r, echo = F}
+`productivite` |>
+  source_dataset_file_updates()
+```
 
 
 

@@ -88,3 +88,10 @@ ig_d("ipp", "revalorisation_pension", "merge-indicefp-2017")
 
 
 
+# Bases de données
+
+```{r, echo = F}
+`retraites` |>
+  source_dataset_file_updates()
+```
+

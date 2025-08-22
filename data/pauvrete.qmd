@@ -58,3 +58,15 @@ pauvrete <- tribble(
 ```{r}
 ig_b("insee", "FPS2024", "F18", "fig2")
 ```
+
+
+# Bases de données
+
+```{r, echo = F}
+`pauvrete` |>
+  source_dataset_file_updates()
+```
+
+
+
+

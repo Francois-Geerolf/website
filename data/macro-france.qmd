@@ -500,3 +500,12 @@ ig_b("imf", "france-IIP-2023T2")
 ## Economic Dashboard
 
 - Economic dashboard. [html](https://www.insee.fr/en/statistiques/2405582)
+
+
+
+# Bases de données
+
+```{r, echo = F}
+`macro-france` |>
+  source_dataset_file_updates()
+```

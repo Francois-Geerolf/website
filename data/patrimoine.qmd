@@ -53,22 +53,21 @@ ig_d("insee", "T_82XX", "terrains")
 ig_d("insee", "T_82XX", "AN-AN1-AN2-annees-PIB")
 ```
 
-
-
 # Pour en savoir plus...
 
 ## Bibliographie en lien
 
 ### Français
 
-<!---
-- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
-
-- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
-
---->
-
 - "La taxe inflationniste, le pouvoir d’achat, le taux d’épargne et le déficit public", F. Geerolf, Document de travail, Juillet 2024. [[pdf](https://fgeerolf.com/taxe-inflationniste.pdf)]
+
+
+# Bases de données
+
+```{r, echo = F}
+`patrimoine` |>
+  source_dataset_file_updates()
+```
 
 
 

@@ -334,3 +334,12 @@ ig_b("salaires", "blogInsee_2023_10-les_indicateurs_stats_pour_mesurer_les_salai
 
 - "Inflation en France : IPC ou IPCH ?", F. Geerolf, Document de travail, Juillet 2024. [[html](https://fgeerolf.com/IPC-ou-IPCH.html)] [[pdf](https://fgeerolf.com/IPC-ou-IPCH.pdf)]
 
+
+
+
+# Bases de données
+
+```{r, echo = F}
+`salaires` |>
+  source_dataset_file_updates()
+```

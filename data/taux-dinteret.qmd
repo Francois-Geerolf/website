@@ -294,6 +294,12 @@ ig_d("bdf", "MIR1", "taux-livrets-reglementes-2018")
 ```
 
 
+# Bases de données
+
+```{r, echo = F}
+taux-dinteret |>
+  source_dataset_file_updates()
+```
 
 
 

@@ -68,14 +68,6 @@ knitr::opts_chunk$set(echo = T)
   arrange(source, dataset)
 ```
 
-# Info
-
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-de-change.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
 
 # Taux de change actuels
 
@@ -298,17 +290,11 @@ ig_d("ecb", "EXR", "USD-CHF-GBP-2-years")
 ig_d("ecb", "EXR", "USD-CHF-GBP-1-month")
 ```
 
-# Info
+
+# Bases de données
 
 ```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("public-debt.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("monetary-policy.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("industry.qmd")'
-# sh ~/iCloud/website/website_short.sh
+`taux-de-change` |>
+  source_dataset_file_updates()
 ```
-
 

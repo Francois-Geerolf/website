@@ -70,18 +70,16 @@ ig_d("insee", "CLIMAT-AFFAIRES", "CLIMAT-RETOURNEMENT-2006")
 ```
 
 
+
+# Info
+
+- Les mots de la conjoncture. [pdf](https://www.insee.fr/fr/statistiques/fichier/1408431/Lexique_062013.pdf)
+
+
 # Bases de données
 
 ```{r, echo = F}
 conjoncture |>
   source_dataset_file_updates()
 ```
-
-
-# Info
-
-
-## Ressources
-
-- Les mots de la conjoncture. [pdf](https://www.insee.fr/fr/statistiques/fichier/1408431/Lexique_062013.pdf)
 
