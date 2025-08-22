@@ -8,12 +8,12 @@ format_time <- function(seconds) {
   sprintf("%dm %.1fs", minutes, seconds)
 }
 
-times <- numeric(length(pkgs))
-names(times) <- pkgs
+times <- numeric(length(packages))
+names(times) <- packages
 total_time <- proc.time()[3]
 
-for (i in seq_along(pkgs)) {
-  pkg <- pkgs[i]
+for (i in seq_along(packages)) {
+  pkg <- packages[i]
   if (!requireNamespace(pkg, quietly = TRUE)) {
     cat("⏳ Installing", pkg, "\n")
     t <- tryCatch(

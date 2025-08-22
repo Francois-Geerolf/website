@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-pkgs <- c(
+packages <- c(
   "ggimage", "countrycode", "httr", "gt", "gtExtras",
   "ggplot2", "dplyr", "tidyr", "readr", "DT",
   "purrr", "tibble", "stringr", "forcats", "glue",
