@@ -1,8 +1,10 @@
 ---
 title: OFCE - Observatoire français des conjonctures économiques
+lang: fr
 author:
   - name: François Geerolf
     url: https://fgeerolf.com
+    gender: male
 format:
   html:
     code-fold: false
@@ -10,6 +12,8 @@ format:
     theme: flatly
     embed-resources: false
 editor: source
+filters:
+  - genderize-fr.lua
 ---
 
 
