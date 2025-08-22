@@ -1,6 +1,6 @@
 # Define the package list
 
-source("_packages.R")
+source(here::here("_packages.R"))
 
 # # Install any missing packages
 # installed <- packages %in% rownames(installed.packages())
