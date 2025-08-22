@@ -108,7 +108,7 @@ xrates <- tribble(
   gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), everything() ~ gt::px(60)) |>
   #gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), Ask ~ gt::px(100), everything() ~ gt::px(60)) |>
   gt::cols_label(Pair2 = "", Pair = "", symbol1 = "", symbol2 = "") |>
-  gt::opt_interactive(use_search = F,
+  gt::opt_interactive(use_search = T,
                       use_pagination = T,
                       use_pagination_info = F,
                       use_compact_mode = T,
@@ -129,7 +129,7 @@ xrates <- tribble(
   rvest::html_table(header = T, fill = T) |>
   pluck(2) |>
   gt::gt() |>
-  gt::opt_interactive(use_search = F,
+  gt::opt_interactive(use_search = T,
                       use_pagination = T,
                       use_pagination_info = F,
                       use_compact_mode = T,
@@ -151,7 +151,7 @@ xrates <- tribble(
   rvest::html_table(header = T, fill = T) |>
   pluck(2) |>
   gt::gt() |>
-  gt::opt_interactive(use_search = F,
+  gt::opt_interactive(use_search = T,
                       use_pagination = T,
                       use_pagination_info = F,
                       use_compact_mode = T,
