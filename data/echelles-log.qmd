@@ -1,6 +1,9 @@
 ---
 title: Echelles logarithmiques en économie
 subtitle: Data
+lang: fr
+filters:
+  - ../code/genderize-fr.lua
 author:
   - name: François Geerolf
     url: https://fgeerolf.com

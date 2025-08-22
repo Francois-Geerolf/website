@@ -1,6 +1,8 @@
 ---
 title: Statistiques sur le chômage et l'emploi
 lang: fr
+filters:
+  - ../code/genderize-fr.lua
 subtitle: Data
 author:
   - name: François Geerolf
