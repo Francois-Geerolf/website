@@ -75,7 +75,7 @@ xrates <- tribble(
 ```
 
 
-# Current exchange rates
+# Current xrates
 
 ```{r, echo = F, warning = F}
 # load_data("public-debt/rating.RData")
