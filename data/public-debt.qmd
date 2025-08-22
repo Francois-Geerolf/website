@@ -215,7 +215,20 @@ ig_d("imf", "G_XWDG_G01_GDP_PT", "FRA-DEU-USA-ITA-JPN")
 ### Last
 
 ```{r}
-ig_d("fred", "saving", "surplus-gdp-1929-2020")
+ig_d("fred", "saving", "US-deficit-GDP")
+```
+
+
+### 1947-
+
+```{r}
+ig_d("fred", "saving", "US-deficit-GDP-1947")
+```
+
+### 1999-
+
+```{r}
+ig_d("fred", "saving", "US-deficit-GDP-1999")
 ```
 
 
