@@ -1,0 +1,1 @@
+- "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[github](https://github.com/Francois-Geerolf/SIWU)] [[shiny](https://ofce.shinyapps.io/siwu/)]

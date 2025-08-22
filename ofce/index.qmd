@@ -58,7 +58,7 @@ source(here::here("_rinit.R"))
 
 ## Anglais
 
-- "The ECB’s monetary policy stance in an uncertain environment" C. Blot, J. Creel, F. Geerolf, G. Ricco & D. Romelli, Monetary Dialogue Paper, June 2025, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/cmsdata/296425/MD_OFCE%20June%202025_FINAL.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/ECTI_STU(2025)764390)] [[github](https://github.com/Francois-Geerolf/MD2025-06-stance)]
+{{< include ../publications/en/Blot2025.qmd >}}
 
 {{< include ../publications/en/Geerolf2024c.qmd >}}
 
@@ -66,23 +66,23 @@ source(here::here("_rinit.R"))
 
 {{< include ../publications/en/Geerolf2024a.qmd >}}
 
-- "25 years of monetary union: The eurozone through its crises" E. Aurissergues, C. Blot, E. Carpentier-Charléty, M. Dauvin, F. Geerolf, E. Heyer, P. Plane, OFCE Policy brief 133, june 2024. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2024/OFCEpbrief133.pdf)]
+{{< include ../publications/en/Aurissergues2024.qmd >}}
 
 {{< include ../publications/en/Geerolf2023c.qmd >}}
 
-- "Are inflation dynamics different in the euro area and the United States?" C. Blot & F. Geerolf, Monetary Dialogue Paper, November 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/755706/IPOL_IDA(2023)755706_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/fr/document/IPOL_IDA(2023)755706)] [[github](https://github.com/Francois-Geerolf/MD2023-11-EA-vs-US)]
+{{< include ../publications/en/Blot2023d.qmd >}}
 
-- "Excess liquidity in the euro area? Assessment and possible ways forward." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, September 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/ATAG/2023/747868/IPOL_ATA(2023)747868_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_ATA(2023)747868)] [[github](https://github.com/Francois-Geerolf/MD2023-09-excess-liquidity)]
+{{< include ../publications/en/Blot2023c.qmd >}}
 
-- "Is monetary tightening a threat to financial stability?" C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, June 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/747843/IPOL_IDA(2023)747843_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)747843)] [[github](https://github.com/Francois-Geerolf/MD2023-06-financial-stability)]
+{{< include ../publications/en/Blot2023b.qmd >}}
 
-- "The direct and indirect impacts of the war on inflation." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, March 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/741487/IPOL_IDA(2023)741487_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)741487)] [[github](https://github.com/Francois-Geerolf/MD2023-03-war)]
+{{< include ../publications/en/Blot2023a.qmd >}}
 
-- "The “Baqaee-Farhi approach” and a russian gas embargo", Revue de l'OFCE, vol. 179, no. 4, 2022, pp. 143-165. [[pdf](https://www.ofce.sciences-po.fr/pdf/revue/4-179OFCE.pdf)] [[slides](https://fgeerolf.com/russiangas-slides.pdf)] [[html](https://www.cairn.info/revue-de-l-ofce-2022-4-page-143.htm?contenu=article)]
+{{< include ../publications/en/Geerolf2022c.qmd >}}
 
-- "Heterogeneity of inflation in the euro area: more complicated than it seems." C. Blot, J. Creel, F. Geerolf & S. Levasseur, Monetary Dialogue Paper, November 2022, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2022/733999/IPOL_IDA(2022)733999_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2022)733999)] [[github](https://github.com/Francois-Geerolf/MD2022-11-heterogeneity)]
+{{< include ../publications/en/Blot2022.qmd >}}
 
-- "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[github](https://github.com/Francois-Geerolf/SIWU)] [[shiny](https://ofce.shinyapps.io/siwu/)]
+{{< include ../publications/en/Geerolf2022b.qmd >}}
 
 {{< include ../publications/en/Geerolf2022.qmd >}}
 
