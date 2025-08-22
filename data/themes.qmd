@@ -45,16 +45,23 @@ themes <- tibble::tibble(
 
 ```{r, echo = F}
 themes %>%
-  mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
-  mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
-         Compile = glue::glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")) %>%
-  filter(textcat(Title) == "english") %>%
-  gt::gt()|>
-  gt::fmt_markdown(columns = "Compile") |>
-  gt::opt_interactive(
-    use_search = T,
-    use_resizers = T,
-    use_compact_mode = T
+  mutate(
+    file_qmd = paste0(theme, ".qmd"),
+    meta = map(file_qmd, ~ tryCatch(yaml_front_matter(.x), error = function(e) list())),
+    Title = map_chr(meta, ~ purrr::pluck(.x, "title", .default = NA_character_)),
+    Lang  = map_chr(meta, ~ purrr::pluck(.x, "lang",  .default = NA_character_)),
+    Compile = "Link",
+    Compile = glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")
+  ) %>%
+  # keep English only based on YAML `lang`
+  filter(!is.na(Lang) & grepl("^en($|[-_])", Lang, ignore.case = TRUE)) %>%
+  select(theme, Title, Compile) %>%
+  gt() %>%
+  fmt_markdown(columns = "Compile") %>%
+  opt_interactive(
+    use_search = TRUE,
+    use_resizers = TRUE,
+    use_compact_mode = TRUE
   )
 ```
 
@@ -63,13 +70,24 @@ themes %>%
 
 ```{r, echo = F}
 themes %>%
-  mutate(Title = read_lines(paste0(theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
-  mutate(Compile = as.Date(file.info(paste0(theme, ".html"))$mtime),
-         Compile = glue::glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")) %>%
-  filter(textcat(Title) == "french") %>%
-  gt::gt()|>
-  gt::fmt_markdown(columns = "Compile") |>
-  gt::opt_interactive(use_search = T, use_resizers = T, use_compact_mode = T)
+  mutate(
+    file_qmd = paste0(theme, ".qmd"),
+    meta = map(file_qmd, ~ tryCatch(yaml_front_matter(.x), error = function(e) list())),
+    Title = map_chr(meta, ~ purrr::pluck(.x, "title", .default = NA_character_)),
+    Lang  = map_chr(meta, ~ purrr::pluck(.x, "lang",  .default = NA_character_)),
+    Compile = "Link",
+    Compile = glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")
+  ) %>%
+  # keep English only based on YAML `lang`
+  filter(!is.na(Lang) & grepl("^fr($|[-_])", Lang, ignore.case = TRUE)) %>%
+  select(theme, Title, Compile) %>%
+  gt() %>%
+  fmt_markdown(columns = "Compile") %>%
+  opt_interactive(
+    use_search = TRUE,
+    use_resizers = TRUE,
+    use_compact_mode = TRUE
+  )
 ```
 
 

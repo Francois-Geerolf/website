@@ -1,14 +1,6 @@
 # Define the package list
 
-packages <- c(
-  "ggimage", "countrycode", "httr", "gt", "gtExtras",
-  "ggplot2", "dplyr", "tidyr", "readr", "DT",
-  "purrr", "tibble", "stringr", "forcats",
-  "quarto", "readxl", "rsdmx", "tools", "kableExtra",
-  "knitr", "scales", "viridis", "zoo", "lubridate",
-  "ggrepel", "curl", "rmarkdown", "rvest", "jsonlite",
-  "here", "i18n", "r2country", "eurostat", "textcat"
-)
+source("_packages.R")
 
 # # Install any missing packages
 # installed <- packages %in% rownames(installed.packages())
@@ -18,7 +10,6 @@ packages <- c(
 
 # Load all packages
 invisible(lapply(packages, library, character.only = TRUE))
-
 knitr::opts_chunk$set(echo = T)
 
 # functions
