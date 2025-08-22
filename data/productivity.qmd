@@ -1,6 +1,7 @@
 ---
 title: Data on productivity
 subtitle: Data
+lang: en
 author:
   - name: François Geerolf
     url: https://fgeerolf.com

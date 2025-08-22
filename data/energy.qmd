@@ -1,6 +1,7 @@
 ---
 title: Data on energy
 subtitle: Data
+lang: en
 author:
   - name: François Geerolf
     url: https://fgeerolf.com

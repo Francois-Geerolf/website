@@ -1,6 +1,9 @@
 ---
 title: "Inflation en France: IPC ou IPCH ?"
 subtitle: Data
+lang: fr
+filters:
+  - ../code/genderize-fr.lua
 author:
   - name: François Geerolf
     url: https://fgeerolf.com

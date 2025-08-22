@@ -1,6 +1,7 @@
 ---
 title: Insights into Unemployment Rates
 subtitle: Data
+lang: en
 author:
   - name: François Geerolf
     url: https://fgeerolf.com

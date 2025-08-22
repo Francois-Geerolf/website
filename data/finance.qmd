@@ -1,6 +1,7 @@
 ---
 title: Data on finance / stock market indices
 subtitle: Data
+lang: en
 author:
   - name: François Geerolf
     url: https://fgeerolf.com
