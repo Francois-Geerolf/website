@@ -139,7 +139,7 @@ data_investing |>
 
 
 
-## Dollars
+## US Dollars
 
 ### Main
 
@@ -148,7 +148,7 @@ data_investing |>
 ```{r, echo = F, warning = F}
 data_investing |>
   select(2:4) |>
-  filter(grepl("^EUR", Pair)) |>
+  filter(grepl("^USD", Pair)) |>
   #dplyr::left_join(currencycode_countrycode|>
   #                   setNames(c("currencycode1", "countrycode1")),
   #                 by = c("currencycode1")) |>
