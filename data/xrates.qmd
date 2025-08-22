@@ -29,12 +29,14 @@ country_calling_code <- country_calling_code
 codelist <- codelist|>
   transmute(countryname = country.name.en, country_code_2 = fips)
 
-currencycode_countrycode <- country_money|>
+currencycode_countrycode <- country_money |>
   left_join(country_names, by = "ID") |>
   left_join(country_calling_code, by = "ID") |>
   rename(countryname = name) |>
   left_join(codelist, by = "countryname") |>
   transmute(currencycode = isocode, countrycode = country_code_2)
+
+currencycode_countrycode2 <- currencycode_countrycode
 
 currencycode_countrycode <- tribble(~ currencycode, ~ countrycode,
                                     "USD", "US",
@@ -142,8 +144,6 @@ data_investing |>
 ## US Dollars
 
 ### Main
-
-
 
 ```{r, echo = F, warning = F}
 data_investing |>
@@ -517,15 +517,11 @@ ig_d("oecd", "REFSERIES_MSIT", "FRA-DEU-ITA-ESP-GRC")
 ig_d("wdi", "PA.NUS.FCRF", "FR-DE-IT-ES-GR")
 ```
 
+# Datasets
+
 ```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("public-debt.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("monetary-policy.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("industry.qmd")'
-# sh ~/iCloud/website/website_short.sh
+xrates |>
+  source_dataset_file_updates()
 ```
 
 

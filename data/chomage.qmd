@@ -59,7 +59,16 @@ ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-tous")
 ```
 
 
+
+
 # Pour en savoir plus...
+
+## Bases de données
+
+```{r, echo = F}
+chomage |>
+  source_dataset_file_updates()
+```
 
 ## Info
 

@@ -22,7 +22,6 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 demography <- tribble(
   ~source, ~dataset,
   "eurostat", "demo_minfind",
-  "eurostat", "demo_minfind",
   "oecd", "FAMILY") %>%
   arrange(source, dataset)
 ```
@@ -71,3 +70,9 @@ ig_d("eurostat", "demo_fmonth", "DE-FR-IT-12months")
 
 
 
+# Datasets
+
+```{r, echo = F}
+demography |>
+  source_dataset_file_updates()
+```
