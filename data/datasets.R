@@ -21,11 +21,6 @@ header <- c(
   "```{r, echo = F, warnings = F}",
   "source(here::here(\"_rinit.R\"))",
   "knitr::opts_chunk$set(echo = F)",
-  "```\n\n",
-  "# All\n",
-  "```{r}",
-  "datasets %>%",
-  "  source_dataset_file_updates3()",
   "```\n\n"
 )
 
@@ -46,8 +41,16 @@ sections <- datasets %>%
     )
   })
 
+footer <- c(
+  "# All\n",
+  "```{r}",
+  "datasets %>%",
+  "  source_dataset_file_updates3()",
+  "```\n\n"
+)
+
 # Combine everything
-qmd_content <- c(header, unlist(sections))
+qmd_content <- c(header, unlist(sections), footer)
 
 # Write to file
 writeLines(qmd_content, "datasets.qmd")

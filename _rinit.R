@@ -1,4 +1,4 @@
-# Define the package list
+# Load packages --------
 
 source(here::here("_packages.R"))
 
@@ -10,11 +10,19 @@ load(here::here("data", "_datasets.RData"))
 #   install.packages(packages[!installed], dependencies = TRUE)
 # }
 
-# Load all packages
-invisible(lapply(packages, library, character.only = TRUE))
+# Load all packages# Load all packages silently
+invisible(
+  suppressMessages(
+    suppressWarnings(
+      lapply(packages, library, character.only = TRUE)
+    )
+  )
+)
+
+# Echo = T
 knitr::opts_chunk$set(echo = T)
 
-# functions
+# functions -----
 
 ig_d <- function(source, dataset, file){
   i_g(paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1.png"))
@@ -54,8 +62,6 @@ ig_b <- function(source = "", folder = "", folder2 = "", folder3 = "", file = ""
   }
   i_g(path)
 }
-
-# add_flags ------
 
 add_flags <- ggimage::geom_image(
   data = function(df) {

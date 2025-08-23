@@ -275,11 +275,20 @@ themes %>%
   gt::fmt_markdown(columns = "Compile")
 ```
 
+# All Datasets
+
+## By Source
+
+- Datasets by source. [html](https://fgeerolf.com/data/datasets.html)
+
+## All sources
+
+```{r}
+datasets %>%
+  source_dataset_file_updates3()
+```
+
 # Main Datasets
-
-- Update.qmd. [html](https://fgeerolf.com/data/_update.qmd.html)
-
-- Link. [html](https://fgeerolf.com/data/main.html)
 
 ## Javascript
 
