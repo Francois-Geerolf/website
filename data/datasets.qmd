@@ -28,14 +28,6 @@ datasets %>%
 ```
 
 
-# _archives
-
-```{r}
-datasets %>%
-  filter(source == "_archives") %>%
-  source_dataset_file_updates2()
-```
-
 # acpr
 
 ```{r}
