@@ -35,7 +35,7 @@ Travaux réalisés pour le CEPII lorsque j'étais _Conseiller Scientifique_ au C
 
 # Débat public
 
-{{< include ../public-debate/fr/Bendisoun2021.qmd >}}
+{{< include ../public-debate/fr/Bensidoun2021.qmd >}}
 
 {{< include ../public-debate/fr/Geerolf2020.qmd >}}
 
