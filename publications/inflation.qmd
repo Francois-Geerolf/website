@@ -26,7 +26,7 @@
 
 {{< include ../publications/en/Geerolf2022.qmd >}}
 
-- "The Phillips Curve: a Relation between Real Exchange Rate Growth and Unemployment." F. Geerolf, January 2020. [[pdf](https://fgeerolf.com/phillips.pdf)]
+{{< include ../working-papers/en/Geerolf2020.qmd >}}
 
 ## French
 

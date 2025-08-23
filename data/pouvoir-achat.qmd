@@ -406,51 +406,9 @@ ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-1996")
 # sh ~/iCloud/website/website_short.sh
 ```
 
-## Bibliographie en lien
+# Bibliographie
 
-### Français
-
-<!---
-- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
-
-- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
-
---->
-
-
-
-{{< include ../publications/fr/Geerolf2024a.qmd >}}
-
-{{< include ../publications/fr/Geerolf2024c.qmd >}}
-
-{{< include ../publications/fr/Geerolf2024b.qmd >}}
-
-- "L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques.", F. Geerolf, Blog de l'OFCE, décembre 2023. [[html](https://fgeerolf.com/inflation-par-categorie.html)] [[blog](https://www.ofce.sciences-po.fr/blog/lanalyse-de-linflation-par-categories-de-menages-quelques-problemes-methodologiques/)] [[pdf](https://fgeerolf.com/inflation-par-categorie.pdf)]
-
-- "Les politiques économiques de lutte contre l’inflation en Europe." F. Geerolf, In L'économie européenne 2023-2024, La Découverte, p.42-56, septembre 2023. [[html](https://www.cairn.info/l-economie-europeenne-2023-2024--9782348079993-page-42.htm)]
-
-- "Les incidences économiques de l'action pour le climat. Rapport thématique: inflation." S. Dees, E. Bellevrat, A. de Gaye, F. Geerolf, M. Lequien, R. Schweizer, A. Tettaravou, O. Wegner. France Stratégie, mai 2023. [[pdf](https://www.strategie.gouv.fr/sites/strategie.gouv.fr/files/atoms/files/fs-2023-les_incidences_economiques_de_laction_pour_le_climat-thematique-inflation.pdf)]
-
-- "La politique économique en Europe face à l’inflation." F. Geerolf, Cahiers français n°432: Faire face à l'inflation, La Documentation française, mars 2023. [[html](https://www.vie-publique.fr/catalogue/288377-faire-face-linflation)🔒]
-
-- "Qui va payer cette facture énergétique ?" F. Geerolf, Interview a priori, décembre 2022. [[html](https://a-prioris.fr/hauteur-de-vue/francois-geerolf-qui-va-payer-cette-facture-energetique)]
-
-- "Inflation en Europe : les conséquences sociales de la guerre en Ukraine." G. Allègre, F. Geerolf, X. Timbeau, Blog de l'OFCE, juillet 2022. [[html]()] [[blog](https://www.ofce.sciences-po.fr/blog/inflation-en-europe-les-consequences-sociales-de-la-guerre-en-ukraine/)]
-
-- Inflation et pouvoir d'achat : it's the politics, stupid! F. Geerolf & P. Jacquet, Relançons le débat économique, juin 2022. [[pdf](https://lecercledeseconomistes.fr/wp-content/uploads/2022/07/rlde-2022-25-geerolfjacquet.pdf)] [[html](https://lecercledeseconomistes.fr/inflation-et-pouvoir-dachat-its-the-politics-stupid/)]
-
-- "Quelques remarques au sujet du Blog de l'Insee: Mais si, l'Insee prend bien en compte le logement dans l'inflation !", F. Geerolf, Document de travail, 22 février 2022. [[pdf](https://fgeerolf.com/blog-insee-IPC-loyers.pdf)]
-
-### Anglais
-
-{{< include ../publications/en/Geerolf2024a.qmd >}}
-
-{{< include ../publications/en/Geerolf2024c.qmd >}}
-
-{{< include ../publications/en/Geerolf2024b.qmd >}}
-
-
-- "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[html](https://github.com/OFCE/SIWU)]
+{{< include ../publications/pouvoir-dachat.qmd >}}
 
 
 # Bases de données
