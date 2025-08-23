@@ -2,6 +2,8 @@
 
 source(here::here("_packages.R"))
 
+load(here::here("data", "_datasets.RData"))
+
 # # Install any missing packages
 # installed <- packages %in% rownames(installed.packages())
 # if (any(!installed)) {
@@ -161,10 +163,7 @@ print_table_noname <- . %>%
                             latex_options = c("striped", "hold_position", "repeat_header"))
 
 source_dataset_file_updates <- . %>%
-  mutate(type = map(source, ~ tibble(type = c(".RData", ".html")))) %>%
-  unnest %>%
-  mutate(date = paste0("~/iCloud/website/data/", source, "/", dataset, type) %>% file.info %>% pluck("mtime") %>% as.Date()) %>%
-  spread(type, date) %>%
+  left_join(datasets, by = c("source", "dataset")) %>%
   mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
          dataset = map(dataset, gt::md),
          source = glue::glue("[{source}](https://fgeerolf.com/data/{source})"),
