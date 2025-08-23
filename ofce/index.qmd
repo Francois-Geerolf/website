@@ -12,14 +12,12 @@ format:
     toc: true
     theme: flatly
     embed-resources: false
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 editor: source
 ---
 
-
-
-```{r, echo = FALSE, message = FALSE}
-source(here::here("_rinit.R"))
-```
 
 # Articles
 
