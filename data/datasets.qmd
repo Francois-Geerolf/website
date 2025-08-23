@@ -2,8 +2,9 @@
 title: "Datasets Overview"
 subtitle: Data
 lang: en
-name: François Geerolf
-url: https://fgeerolf.com
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
 format: html
 toc: true
 theme: flatly
@@ -11,10 +12,11 @@ embed-resources: false
 editor: source
 ---
 
-```{r}
+```{r, echo = F, warnings = F}
 library(dplyr)
 library(gt)
 source(here::here("_rinit.R"))
+knitr::opts_chunk$set(echo = F)
 ```
 
 
