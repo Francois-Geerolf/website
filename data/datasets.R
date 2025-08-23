@@ -24,6 +24,11 @@ header <- c(
   "library(dplyr)",
   "library(gt)",
   "source(here::here(\"_rinit.R\"))",
+  "```\n\n",
+  "# All\n",
+  "```{r}",
+  "datasets %>%",
+  "  source_dataset_file_updates3()",
   "```\n\n"
 )
 
@@ -35,7 +40,7 @@ sections <- datasets %>%
   unique() %>%
   map(function(ds) {
     glue(
-      "## {ds}\n\n",
+      "# {ds}\n\n",
       "```{{r}}\n",
       "datasets %>%\n",
       "  filter(source == \"{ds}\") %>%\n",
@@ -48,4 +53,4 @@ sections <- datasets %>%
 qmd_content <- c(header, unlist(sections))
 
 # Write to file
-writeLines(qmd_content, "datasets_overview.qmd")
+writeLines(qmd_content, "datasets.qmd")

@@ -181,6 +181,21 @@ source_dataset_file_updates2 <- . %>%
   gt::cols_align(align = "center", columns = everything()) %>% 
   gt::tab_options(column_labels.font.weight = "bold")
 
+
+source_dataset_file_updates3 <- . %>%
+  mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
+         source = glue::glue("[{source}](https://fgeerolf.com/data/{source})")) %>%
+  gt::gt() %>%
+  fmt_markdown(columns = c("dataset", "source")) %>%
+  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::tab_options(column_labels.font.weight = "bold") %>% 
+  gt::opt_interactive(use_search = T,
+                      use_pagination = T,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20))
+
 source_dataset_title_file_updates <- . %>%
   mutate(type = map(source, ~ tibble(type = c(".RData", ".html")))) %>%
   unnest %>%

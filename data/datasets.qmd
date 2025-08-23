@@ -18,7 +18,15 @@ source(here::here("_rinit.R"))
 ```
 
 
-## _archives
+# All
+
+```{r}
+datasets %>%
+  source_dataset_file_updates3()
+```
+
+
+# _archives
 
 ```{r}
 datasets %>%
@@ -26,7 +34,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## acpr
+# acpr
 
 ```{r}
 datasets %>%
@@ -34,7 +42,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## ademe
+# ademe
 
 ```{r}
 datasets %>%
@@ -42,7 +50,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## aft
+# aft
 
 ```{r}
 datasets %>%
@@ -50,7 +58,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## ameco
+# ameco
 
 ```{r}
 datasets %>%
@@ -58,7 +66,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## bdf
+# bdf
 
 ```{r}
 datasets %>%
@@ -66,7 +74,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## bea
+# bea
 
 ```{r}
 datasets %>%
@@ -74,7 +82,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## bis
+# bis
 
 ```{r}
 datasets %>%
@@ -82,7 +90,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## boe
+# boe
 
 ```{r}
 datasets %>%
@@ -90,7 +98,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## buba
+# buba
 
 ```{r}
 datasets %>%
@@ -98,7 +106,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## census
+# census
 
 ```{r}
 datasets %>%
@@ -106,7 +114,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## cepii
+# cepii
 
 ```{r}
 datasets %>%
@@ -114,7 +122,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## cgedd
+# cgedd
 
 ```{r}
 datasets %>%
@@ -122,7 +130,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## comtrade
+# comtrade
 
 ```{r}
 datasets %>%
@@ -130,7 +138,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## cre
+# cre
 
 ```{r}
 datasets %>%
@@ -138,7 +146,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## crosswalks
+# crosswalks
 
 ```{r}
 datasets %>%
@@ -146,7 +154,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## dares
+# dares
 
 ```{r}
 datasets %>%
@@ -154,7 +162,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## dbnomics
+# dbnomics
 
 ```{r}
 datasets %>%
@@ -162,7 +170,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## destatis
+# destatis
 
 ```{r}
 datasets %>%
@@ -170,7 +178,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## dgafp
+# dgafp
 
 ```{r}
 datasets %>%
@@ -178,7 +186,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## douanes
+# douanes
 
 ```{r}
 datasets %>%
@@ -186,7 +194,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## dvf
+# dvf
 
 ```{r}
 datasets %>%
@@ -194,7 +202,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## ec
+# ec
 
 ```{r}
 datasets %>%
@@ -202,7 +210,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## ecb
+# ecb
 
 ```{r}
 datasets %>%
@@ -210,7 +218,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## elasticity
+# elasticity
 
 ```{r}
 datasets %>%
@@ -218,7 +226,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## eurostat
+# eurostat
 
 ```{r}
 datasets %>%
@@ -226,7 +234,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## frb
+# frb
 
 ```{r}
 datasets %>%
@@ -234,7 +242,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## fred
+# fred
 
 ```{r}
 datasets %>%
@@ -242,7 +250,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## freddie
+# freddie
 
 ```{r}
 datasets %>%
@@ -250,7 +258,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## gfd
+# gfd
 
 ```{r}
 datasets %>%
@@ -258,7 +266,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## iea
+# iea
 
 ```{r}
 datasets %>%
@@ -266,7 +274,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## ilo
+# ilo
 
 ```{r}
 datasets %>%
@@ -274,7 +282,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## imf
+# imf
 
 ```{r}
 datasets %>%
@@ -282,7 +290,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## ined
+# ined
 
 ```{r}
 datasets %>%
@@ -290,7 +298,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## insee
+# insee
 
 ```{r}
 datasets %>%
@@ -298,7 +306,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## investing
+# investing
 
 ```{r}
 datasets %>%
@@ -306,7 +314,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## ipp
+# ipp
 
 ```{r}
 datasets %>%
@@ -314,7 +322,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## log
+# log
 
 ```{r}
 datasets %>%
@@ -322,7 +330,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## meteo
+# meteo
 
 ```{r}
 datasets %>%
@@ -330,7 +338,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## notaires
+# notaires
 
 ```{r}
 datasets %>%
@@ -338,7 +346,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## oecd
+# oecd
 
 ```{r}
 datasets %>%
@@ -346,7 +354,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## olap
+# olap
 
 ```{r}
 datasets %>%
@@ -354,7 +362,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## ons
+# ons
 
 ```{r}
 datasets %>%
@@ -362,7 +370,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## opendata
+# opendata
 
 ```{r}
 datasets %>%
@@ -370,7 +378,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## pareto
+# pareto
 
 ```{r}
 datasets %>%
@@ -378,7 +386,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## pouvoir-achat
+# pouvoir-achat
 
 ```{r}
 datasets %>%
@@ -386,7 +394,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## pwt
+# pwt
 
 ```{r}
 datasets %>%
@@ -394,7 +402,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## quandl
+# quandl
 
 ```{r}
 datasets %>%
@@ -402,7 +410,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## rba
+# rba
 
 ```{r}
 datasets %>%
@@ -410,7 +418,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## sdes
+# sdes
 
 ```{r}
 datasets %>%
@@ -418,7 +426,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## shiller
+# shiller
 
 ```{r}
 datasets %>%
@@ -426,7 +434,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## statjp
+# statjp
 
 ```{r}
 datasets %>%
@@ -434,7 +442,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## un
+# un
 
 ```{r}
 datasets %>%
@@ -442,7 +450,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## us
+# us
 
 ```{r}
 datasets %>%
@@ -450,7 +458,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## wb
+# wb
 
 ```{r}
 datasets %>%
@@ -458,7 +466,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## wdi
+# wdi
 
 ```{r}
 datasets %>%
@@ -466,7 +474,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## yahoo
+# yahoo
 
 ```{r}
 datasets %>%
@@ -474,7 +482,7 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-## zillow
+# zillow
 
 ```{r}
 datasets %>%
