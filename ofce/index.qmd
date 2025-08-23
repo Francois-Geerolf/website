@@ -27,7 +27,7 @@ editor: source
 
 {{< include ../publications/fr/Blot2025.qmd >}}
 
-- "Réindustrialisation : l’Union européenne et les nations." F. Geerolf, In L'économie européenne 2025, La Découverte, p.45-59, septembre 2024. [[pdf](https://fgeerolf.com/reindustrialisation.pdf)] [[html](https://shs.cairn.info/l-economie-europeenne-2025--9782348084799-page-45?lang=fr)] [[github](https://github.com/Francois-Geerolf/EE2025-industrie)]
+{{< include ../publications/fr/Geerolf2024d.qmd >}}
 
 {{< include ../publications/fr/Geerolf2024c.qmd >}}
 
@@ -35,13 +35,13 @@ editor: source
 
 {{< include ../publications/fr/Geerolf2024a.qmd >}}
 
-- "25 ans d'union monétaire: la zone euro à travers les crises" E. Aurissergues, C. Blot, E. Carpentier-Charléty, M. Dauvin, F. Geerolf, E. Heyer, P. Plane, OFCE Policy brief 130, juin 2024. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2024/OFCEpbrief130.pdf)]
+{{< include ../publications/fr/Aurissergues2024.qmd >}}
 
 {{< include ../publications/fr/Geerolf2023c.qmd >}}
 
 - "Les politiques économiques de lutte contre l’inflation en Europe." F. Geerolf, In L'économie européenne 2023-2024, La Découverte, p.42-56, septembre 2023. [[pdf](https://www.ofce.sciences-po.fr/pdf/ouvrage/2024-EE-04.pdf)] [[html](https://www.cairn.info/l-economie-europeenne-2023-2024--9782348079993-page-42.htm)] [[github](https://github.com/Francois-Geerolf/EE2024-inflation)]
 
-- "Les incidences économiques de l'action pour le climat. Rapport thématique: inflation." S. Dees, E. Bellevrat, A. de Gaye, F. Geerolf, M. Lequien, R. Schweizer, A. Tettaravou, O. Wegner. France Stratégie, mai 2023. [[pdf](https://www.strategie.gouv.fr/sites/strategie.gouv.fr/files/atoms/files/fs-2023-les_incidences_economiques_de_laction_pour_le_climat-thematique-inflation.pdf)] [[github](https://github.com/Francois-Geerolf/effets-qualite-PisaniMahfouz2023)]
+{{< include ../publications/fr/Dees2023.qmd >}}
 
 - "La politique économique en Europe face à l’inflation." F. Geerolf, Cahiers français n°432: Faire face à l'inflation, La Documentation française, mars 2023. [[html](https://www.vie-publique.fr/catalogue/288377-faire-face-linflation)🔒]
 
