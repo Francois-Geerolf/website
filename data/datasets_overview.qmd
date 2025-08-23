@@ -1,0 +1,484 @@
+---
+title: "Datasets Overview"
+subtitle: Data
+lang: en
+name: François Geerolf
+url: https://fgeerolf.com
+format: html
+toc: true
+theme: flatly
+embed-resources: false
+editor: source
+---
+
+```{r}
+library(dplyr)
+library(gt)
+source(here::here("_rinit.R"))
+```
+
+
+## _archives
+
+```{r}
+datasets %>%
+  filter(source == "_archives") %>%
+  source_dataset_file_updates2()
+```
+
+## acpr
+
+```{r}
+datasets %>%
+  filter(source == "acpr") %>%
+  source_dataset_file_updates2()
+```
+
+## ademe
+
+```{r}
+datasets %>%
+  filter(source == "ademe") %>%
+  source_dataset_file_updates2()
+```
+
+## aft
+
+```{r}
+datasets %>%
+  filter(source == "aft") %>%
+  source_dataset_file_updates2()
+```
+
+## ameco
+
+```{r}
+datasets %>%
+  filter(source == "ameco") %>%
+  source_dataset_file_updates2()
+```
+
+## bdf
+
+```{r}
+datasets %>%
+  filter(source == "bdf") %>%
+  source_dataset_file_updates2()
+```
+
+## bea
+
+```{r}
+datasets %>%
+  filter(source == "bea") %>%
+  source_dataset_file_updates2()
+```
+
+## bis
+
+```{r}
+datasets %>%
+  filter(source == "bis") %>%
+  source_dataset_file_updates2()
+```
+
+## boe
+
+```{r}
+datasets %>%
+  filter(source == "boe") %>%
+  source_dataset_file_updates2()
+```
+
+## buba
+
+```{r}
+datasets %>%
+  filter(source == "buba") %>%
+  source_dataset_file_updates2()
+```
+
+## census
+
+```{r}
+datasets %>%
+  filter(source == "census") %>%
+  source_dataset_file_updates2()
+```
+
+## cepii
+
+```{r}
+datasets %>%
+  filter(source == "cepii") %>%
+  source_dataset_file_updates2()
+```
+
+## cgedd
+
+```{r}
+datasets %>%
+  filter(source == "cgedd") %>%
+  source_dataset_file_updates2()
+```
+
+## comtrade
+
+```{r}
+datasets %>%
+  filter(source == "comtrade") %>%
+  source_dataset_file_updates2()
+```
+
+## cre
+
+```{r}
+datasets %>%
+  filter(source == "cre") %>%
+  source_dataset_file_updates2()
+```
+
+## crosswalks
+
+```{r}
+datasets %>%
+  filter(source == "crosswalks") %>%
+  source_dataset_file_updates2()
+```
+
+## dares
+
+```{r}
+datasets %>%
+  filter(source == "dares") %>%
+  source_dataset_file_updates2()
+```
+
+## dbnomics
+
+```{r}
+datasets %>%
+  filter(source == "dbnomics") %>%
+  source_dataset_file_updates2()
+```
+
+## destatis
+
+```{r}
+datasets %>%
+  filter(source == "destatis") %>%
+  source_dataset_file_updates2()
+```
+
+## dgafp
+
+```{r}
+datasets %>%
+  filter(source == "dgafp") %>%
+  source_dataset_file_updates2()
+```
+
+## douanes
+
+```{r}
+datasets %>%
+  filter(source == "douanes") %>%
+  source_dataset_file_updates2()
+```
+
+## dvf
+
+```{r}
+datasets %>%
+  filter(source == "dvf") %>%
+  source_dataset_file_updates2()
+```
+
+## ec
+
+```{r}
+datasets %>%
+  filter(source == "ec") %>%
+  source_dataset_file_updates2()
+```
+
+## ecb
+
+```{r}
+datasets %>%
+  filter(source == "ecb") %>%
+  source_dataset_file_updates2()
+```
+
+## elasticity
+
+```{r}
+datasets %>%
+  filter(source == "elasticity") %>%
+  source_dataset_file_updates2()
+```
+
+## eurostat
+
+```{r}
+datasets %>%
+  filter(source == "eurostat") %>%
+  source_dataset_file_updates2()
+```
+
+## frb
+
+```{r}
+datasets %>%
+  filter(source == "frb") %>%
+  source_dataset_file_updates2()
+```
+
+## fred
+
+```{r}
+datasets %>%
+  filter(source == "fred") %>%
+  source_dataset_file_updates2()
+```
+
+## freddie
+
+```{r}
+datasets %>%
+  filter(source == "freddie") %>%
+  source_dataset_file_updates2()
+```
+
+## gfd
+
+```{r}
+datasets %>%
+  filter(source == "gfd") %>%
+  source_dataset_file_updates2()
+```
+
+## iea
+
+```{r}
+datasets %>%
+  filter(source == "iea") %>%
+  source_dataset_file_updates2()
+```
+
+## ilo
+
+```{r}
+datasets %>%
+  filter(source == "ilo") %>%
+  source_dataset_file_updates2()
+```
+
+## imf
+
+```{r}
+datasets %>%
+  filter(source == "imf") %>%
+  source_dataset_file_updates2()
+```
+
+## ined
+
+```{r}
+datasets %>%
+  filter(source == "ined") %>%
+  source_dataset_file_updates2()
+```
+
+## insee
+
+```{r}
+datasets %>%
+  filter(source == "insee") %>%
+  source_dataset_file_updates2()
+```
+
+## investing
+
+```{r}
+datasets %>%
+  filter(source == "investing") %>%
+  source_dataset_file_updates2()
+```
+
+## ipp
+
+```{r}
+datasets %>%
+  filter(source == "ipp") %>%
+  source_dataset_file_updates2()
+```
+
+## log
+
+```{r}
+datasets %>%
+  filter(source == "log") %>%
+  source_dataset_file_updates2()
+```
+
+## meteo
+
+```{r}
+datasets %>%
+  filter(source == "meteo") %>%
+  source_dataset_file_updates2()
+```
+
+## notaires
+
+```{r}
+datasets %>%
+  filter(source == "notaires") %>%
+  source_dataset_file_updates2()
+```
+
+## oecd
+
+```{r}
+datasets %>%
+  filter(source == "oecd") %>%
+  source_dataset_file_updates2()
+```
+
+## olap
+
+```{r}
+datasets %>%
+  filter(source == "olap") %>%
+  source_dataset_file_updates2()
+```
+
+## ons
+
+```{r}
+datasets %>%
+  filter(source == "ons") %>%
+  source_dataset_file_updates2()
+```
+
+## opendata
+
+```{r}
+datasets %>%
+  filter(source == "opendata") %>%
+  source_dataset_file_updates2()
+```
+
+## pareto
+
+```{r}
+datasets %>%
+  filter(source == "pareto") %>%
+  source_dataset_file_updates2()
+```
+
+## pouvoir-achat
+
+```{r}
+datasets %>%
+  filter(source == "pouvoir-achat") %>%
+  source_dataset_file_updates2()
+```
+
+## pwt
+
+```{r}
+datasets %>%
+  filter(source == "pwt") %>%
+  source_dataset_file_updates2()
+```
+
+## quandl
+
+```{r}
+datasets %>%
+  filter(source == "quandl") %>%
+  source_dataset_file_updates2()
+```
+
+## rba
+
+```{r}
+datasets %>%
+  filter(source == "rba") %>%
+  source_dataset_file_updates2()
+```
+
+## sdes
+
+```{r}
+datasets %>%
+  filter(source == "sdes") %>%
+  source_dataset_file_updates2()
+```
+
+## shiller
+
+```{r}
+datasets %>%
+  filter(source == "shiller") %>%
+  source_dataset_file_updates2()
+```
+
+## statjp
+
+```{r}
+datasets %>%
+  filter(source == "statjp") %>%
+  source_dataset_file_updates2()
+```
+
+## un
+
+```{r}
+datasets %>%
+  filter(source == "un") %>%
+  source_dataset_file_updates2()
+```
+
+## us
+
+```{r}
+datasets %>%
+  filter(source == "us") %>%
+  source_dataset_file_updates2()
+```
+
+## wb
+
+```{r}
+datasets %>%
+  filter(source == "wb") %>%
+  source_dataset_file_updates2()
+```
+
+## wdi
+
+```{r}
+datasets %>%
+  filter(source == "wdi") %>%
+  source_dataset_file_updates2()
+```
+
+## yahoo
+
+```{r}
+datasets %>%
+  filter(source == "yahoo") %>%
+  source_dataset_file_updates2()
+```
+
+## zillow
+
+```{r}
+datasets %>%
+  filter(source == "zillow") %>%
+  source_dataset_file_updates2()
+```
+
