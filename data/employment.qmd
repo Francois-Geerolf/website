@@ -148,3 +148,12 @@ ig_d("eurostat", "une_rt_m", "FR-DE-IT-ES-NL-EA20")
 ig_d("oecd", "FTPT_COMMON_INC", "FRA-NLD-DEU-EA20")
 ```
 
+
+
+
+# Datasets
+
+```{r, echo = F}
+`employment` |>
+  source_dataset_file_updates()
+```

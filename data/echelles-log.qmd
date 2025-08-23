@@ -131,3 +131,14 @@ ig_d("shiller", "cpi", "cpi-bind")
 ```{r}
 ig_d("fred", "cpi", "CPIAUCSL-bind")
 ```
+
+
+
+
+
+# Bases de données
+
+```{r, echo = F}
+`echelles-log` |>
+  source_dataset_file_updates()
+```

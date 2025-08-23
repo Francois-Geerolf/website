@@ -56,3 +56,9 @@ ig_d("eurostat", "nasq_10_nf_tr", "B2A3G-S11-BE-DE-FR-EA20-SCA-GVA")
 
 
 
+# Datasets
+
+```{r, echo = F}
+`finance` |>
+  source_dataset_file_updates()
+```

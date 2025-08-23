@@ -348,3 +348,13 @@ ig_d("eurostat", "namq_10_gdp", "P6-P7-SCA-FR-DE-IT-EA-ES-1998")
 ```{r}
 ig_d("eurostat", "tipsbp20", "mean-sd-EU27-FR-DE")
 ```
+
+
+
+
+# Datasets
+
+```{r, echo = F}
+`europe` |>
+  source_dataset_file_updates()
+```

@@ -274,3 +274,13 @@ ig_d("eurostat", "nrg_pc_204", "DE-KWH-EUR")
 ```{r}
 ig_d("eurostat", "nrg_pc_204", "FR-KWH-EUR")
 ```
+
+
+
+
+# Datasets
+
+```{r, echo = F}
+`energy` |>
+  source_dataset_file_updates()
+```
