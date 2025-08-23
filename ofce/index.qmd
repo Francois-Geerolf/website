@@ -27,7 +27,7 @@ source(here::here("_rinit.R"))
 
 - "L’Europe face au retour de l’énergie chère." F. Geerolf, In L'économie européenne 2026, La Découverte, p.45-59, septembre 2025. [[github](https://github.com/Francois-Geerolf/EE2026-energie)]
 
-- "L’orientation de la politique monétaire de la BCE à l’épreuve de l’incertitude économique" C. Blot, J. Creel, F. Geerolf, G. Ricco, D. Romelli, OFCE Policy brief 147, juillet 2025. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2025/OFCEpbrief147.pdf)] [[github](https://github.com/Francois-Geerolf/MD2025-06-stance/blob/main/README_fr.md)]
+{{< include ../publications/fr/Blot2025.qmd >}}
 
 - "Réindustrialisation : l’Union européenne et les nations." F. Geerolf, In L'économie européenne 2025, La Découverte, p.45-59, septembre 2024. [[pdf](https://fgeerolf.com/reindustrialisation.pdf)] [[html](https://shs.cairn.info/l-economie-europeenne-2025--9782348084799-page-45?lang=fr)] [[github](https://github.com/Francois-Geerolf/EE2025-industrie)]
 

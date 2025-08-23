@@ -1,6 +1,7 @@
 ---
 title: Key Macroeconomic Indicators
 subtitle: Data
+lang: en
 author:
   - name: François Geerolf
     url: https://fgeerolf.com
@@ -182,3 +183,9 @@ ig_d("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-2008")
 ```
 
 
+# Datasets
+
+```{r, echo = F}
+macro |>
+  source_dataset_file_updates()
+```
