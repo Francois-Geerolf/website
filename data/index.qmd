@@ -283,7 +283,7 @@ themes %>%
 
 ## All sources
 
-```{r}
+```{r, echo = F}
 datasets %>%
   source_dataset_file_updates3()
 ```
