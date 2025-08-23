@@ -21,26 +21,14 @@ invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 `commodities` <- tribble(
   ~source, ~dataset,
-  "bdf",  "FM",
-  "bdf",  "MIR",
-  "bdf",  "MIR1",
-  "bis",  "CBPOL_D",
-  "bis",  "CBPOL_M",
-  "ecb",  "FM",
-  "ecb",  "MIR",
-  "eurostat", "ei_mfir_m",
-  "eurostat", "irt_st_m",
-  "eurostat", "irt_lt_mcby_d",
-  "fred",  "r",
-  "oecd",  "MEI",
-  "oecd",  "MEI_FIN",
-  "wdi",  "FR.INR.RINR") %>%
+  "yahoo", "commodities",
+  "fred",  "energy",
+  "yahoo",  "energy",
+  "wb", "CMO") %>%
   arrange(source, dataset)
 ```
 
 # Current
-
-## All commodities
 
 ```{r, echo = F}
 temp <- "https://fr.investing.com/commodities/real-time-futures" |>
@@ -84,6 +72,105 @@ temp |>
   gt::tab_options(table.width = "100%")
 ```
 
+
+
+
+# Bitcoin
+
+## Euro
+
+```{r}
+ig_d("yahoo", "commodities", "BTC-EUR-log-2021")
+```
+
+
+
+# TTF
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/yahoo; /usr/local/bin/R -f "energy.R"; /usr/local/bin/R -e 'quarto::quarto_render("energy.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## All
+
+```{r}
+ig_d("yahoo", "energy", "TTF")
+```
+
+## 2021-
+
+```{r}
+ig_d("yahoo", "energy", "TTF-2021")
+```
+
+
+
+## Log
+
+```{r}
+ig_d("yahoo", "energy", "TTF-log")
+```
+
+## Log, 2021-
+
+```{r}
+ig_d("yahoo", "energy", "TTF-log-2021")
+```
+
+# Weekly Oil prices, Europe
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "energy.R"; /usr/local/bin/R -e 'quarto::quarto_render("energy.qmd")'
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+```
+
+## All
+
+```{r}
+ig_d("fred", "energy", "MHHNGSP-PNGASEUUSDM-1990")
+```
+
+
+## 2017-
+
+
+# Natural Gas
+
+## Fred
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "energy.R"; /usr/local/bin/R -e 'quarto::quarto_render("energy.qmd")'
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+### 1990-
+
+```{r}
+ig_d("fred", "energy", "MHHNGSP-PNGASEUUSDM-1990")
+```
+
+### Last 10 years
+
+```{r}
+ig_d("fred", "energy", "MHHNGSP-PNGASEUUSDM-last-10-years")
+```
+
+
+
+## World Bank
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/wb; /usr/local/bin/R -f "CMO.R"; /usr/local/bin/R -e 'quarto::quarto_render("CMO.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+### 2000-
+
+```{r}
+ig_d("wb", "CMO", "natural-gas-nominal-log-2000")
+```
 
 
 # Datasets
