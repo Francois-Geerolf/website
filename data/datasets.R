@@ -1,9 +1,6 @@
-library(dplyr)
-library(glue)
-library(gt)
-
+source(here::here("_rinit.R"))
+setwd(here::here("data"))
 load("_datasets.RData")
-
 
 # Quarto header
 header <- c(
@@ -22,8 +19,6 @@ header <- c(
   "---",
   "",
   "```{r, echo = F, warnings = F}",
-  "library(dplyr)",
-  "library(gt)",
   "source(here::here(\"_rinit.R\"))",
   "knitr::opts_chunk$set(echo = F)",
   "```\n\n",

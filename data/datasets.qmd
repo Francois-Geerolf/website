@@ -13,8 +13,6 @@ editor: source
 ---
 
 ```{r, echo = F, warnings = F}
-library(dplyr)
-library(gt)
 source(here::here("_rinit.R"))
 knitr::opts_chunk$set(echo = F)
 ```
