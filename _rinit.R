@@ -195,12 +195,15 @@ source_dataset_file_updates3 <- . %>%
   fmt_markdown(columns = c("dataset", "source")) %>%
   gt::cols_align(align = "center", columns = everything()) %>% 
   gt::tab_options(column_labels.font.weight = "bold") %>% 
+  # Interactive gt
   gt::opt_interactive(use_search = T,
                       use_pagination = T,
                       use_pagination_info = F,
                       use_compact_mode = T,
+                      use_resizers = TRUE,
                       page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20))
+                      page_size_values = c(5, 10, 15, 20)) %>%
+  cols_width(everything() ~ px(NA))
 
 source_dataset_title_file_updates <- . %>%
   mutate(type = map(source, ~ tibble(type = c(".RData", ".html")))) %>%
