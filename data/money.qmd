@@ -1,6 +1,7 @@
 ---
 title: Data on money
 subtitle: Data
+lang: en
 author:
   - name: François Geerolf
     url: https://fgeerolf.com
@@ -44,24 +45,11 @@ ig_d("ecb", "BSI", "M3-M2-E")
 
 
 
-# Info
 
 
-## Related papers
+# Related papers
 
-### English
-
-- "Are inflation dynamics different in the euro area and the United States?" C. Blot & F. Geerolf, Monetary Dialogue Paper, November 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/755706/IPOL_IDA(2023)755706_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/fr/document/IPOL_IDA(2023)755706)]
-
-- "Excess liquidity in the euro area? Assessment and possible ways forward." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, September 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/ATAG/2023/747868/IPOL_ATA(2023)747868_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_ATA(2023)747868)]
-
-- "Is monetary tightening a threat to financial stability?" C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, June 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/747843/IPOL_IDA(2023)747843_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)747843)]
-
-- "The direct and indirect impacts of the war on inflation." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, March 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/741487/IPOL_IDA(2023)741487_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)741487)]
-
-- "Heterogeneity of inflation in the euro area: more complicated than it seems." C. Blot, J. Creel, F. Geerolf & S. Levasseur, Monetary Dialogue Paper, November 2022, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2022/733999/IPOL_IDA(2022)733999_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2022)733999)]
-
-### Français
+{{< include ../publications/monetary-policy.qmd >}}
 
 
 
