@@ -9,6 +9,9 @@ format:
     toc: true
     theme: flatly
     embed-resources: false
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 editor: source
 ---
 
@@ -30,10 +33,9 @@ Travaux réalisés pour le CEPII lorsque j'étais _Conseiller Scientifique_ au C
 
 {{< include ../publications/fr/Geerolf2020a.qmd >}}
 
-
 # Débat public
 
-- "On peut rechercher le plein-emploi sans craindre de déclencher une spirale inflationniste", Le Monde, I. Bensidoun, F. Geerolf, avril 2021. [[html](https://www.lemonde.fr/idees/article/2021/04/28/on-peut-rechercher-le-plein-emploi-sans-craindre-de-declencher-une-spirale-inflationniste_6078318_3232.html)]
+{{< include ../public-debate/fr/Bendisoun2021.qmd >}}
 
-- "Coronavirus : « L’Europe doit cesser son jeu de dupes »", Le Monde, F. Geerolf, T. Grjebine, avril 2020. [[html](https://www.lemonde.fr/idees/article/2020/04/10/coronavirus-l-europe-doit-cesser-son-jeu-de-dupes_6036243_3232.html)]
+{{< include ../public-debate/fr/Geerolf2020.qmd >}}
 
