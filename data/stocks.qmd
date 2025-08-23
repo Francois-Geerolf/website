@@ -172,3 +172,10 @@ ig_d("yahoo", "indices", "GDAXI-IBEX-FCHI-1995-bind")
 ig_d("eurostat", "nasq_10_nf_tr", "B2A3G-S11-BE-DE-FR-EA20-SCA-GVA")
 ```
 
+
+# Datasets
+
+```{r, echo = F}
+`stocks` |>
+  source_dataset_file_updates()
+```

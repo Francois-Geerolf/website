@@ -61,3 +61,9 @@ ig_d("wdi", "NY.GDP.PCAP.PP.CD", "US-FR-XC-GDP-PPP-1999")
 ```
 
 
+# Datasets
+
+```{r, echo = F}
+`us-fr` |>
+  source_dataset_file_updates()
+```

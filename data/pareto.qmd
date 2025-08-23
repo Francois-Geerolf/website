@@ -63,3 +63,12 @@ ig_d("insee", "ip1863", "fig3-90")
 ```{r}
 ig_d("insee", "ip1863", "salaires-distribution-80")
 ```
+
+
+
+# Datasets
+
+```{r, echo = F}
+`pareto` |>
+  source_dataset_file_updates()
+```
