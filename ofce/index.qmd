@@ -43,6 +43,8 @@ editor: source
 
 {{< include ../publications/fr/Dees2023.qmd >}}
 
+{{< include ../publications/fr/Antonin2023.qmd >}}
+
 {{< include ../publications/fr/Geerolf2023a.qmd >}}
 
 {{< include ../publications/fr/Allegre2022.qmd >}}
