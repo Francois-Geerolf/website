@@ -1,0 +1,1 @@
+- "Bubbles and Asset Supply", F. Geerolf, Ph.D Dissertation, July 2013. Referees: M. Emmanuel Farhi,  M. Jean Tirole. President: M. Pierre-Olivier Gourinchas. Advisor: M. Philippe Martin. [[<i class="fas fa-file-pdf"></i> pdf](https://fgeerolf.com/thesis.pdf)]
