@@ -199,7 +199,7 @@ themes <- list.files(pattern = "\\.qmd$") %>%
   as_tibble() %>%
   rename(theme = value) %>%
   mutate(theme = gsub("\\.qmd$", "", theme)) %>%
-  filter(theme != "api", theme != "index", theme != "themes", !grepl("_update", theme))
+  filter(theme != "api", theme != "index", theme != "themes", theme != "datasets", !grepl("_update", theme))
 ```
 
 I created this website for our [2nd year PhD class](https://fgeerolf.com/econ221) "Evidence-Based Macroeconomics and Finance", to help you find macroeconomic datasets. You should find the main sources for macroeconomic datasets out there (as well as a selection of series in each), but this list is by no means not exhaustive. You may find more available at the [UCLA Rosenfeld Library dictionary of databases](https://www.anderson.ucla.edu/rosenfeld-library/databases/business-databases-by-name).
