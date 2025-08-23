@@ -494,3 +494,15 @@ ig_b("bis", "CRE20", "sovereign-rating")
 ```{r}
 ig_d("bdf", "DET", "detention-non-residents")
 ```
+
+
+
+# Datasets
+
+```{r, echo = F}
+`public-debt` |>
+  source_dataset_file_updates()
+```
+
+
+

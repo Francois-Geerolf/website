@@ -70,3 +70,14 @@ ig_d("eurostat", "tec00114", "EL-PL-HU")
 ```{r}
 ig_d("eurostat", "tec00114", "FR-DE-IT-ES-EL-PL-HU")
 ```
+
+
+
+# Datasets
+
+```{r, echo = F}
+`poland` |>
+  source_dataset_file_updates()
+```
+
+

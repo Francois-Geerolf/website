@@ -84,3 +84,12 @@ ig_d("eurostat", "phillips", "nama-10-lp-ulc-EL")
 ```{r}
 ig_d("eurostat", "phillips", "nama-10-lp-ulc-FR")
 ```
+
+
+
+# Datasets
+
+```{r, echo = F}
+`phillips` |>
+  source_dataset_file_updates()
+```
