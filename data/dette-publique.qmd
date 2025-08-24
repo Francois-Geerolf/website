@@ -39,19 +39,6 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ```
 
 
-# Bibliographie
-
-## En Français
-
-{{< include ../publications/fr/Geerolf2022c.qmd >}}
-
-
-## En Anglais
-
-{{< include ../working-papers/en/Geerolf2018a.qmd >}}
-
-{{< include ../publications/en/Geerolf2013.qmd >}}
-
 # Données récentes
 
 ## Taux souverains
@@ -504,7 +491,18 @@ ig_d("bdf", "DET", "detention-non-residents")
 
 
 
+# Bibliographie
 
+## En Français
+
+{{< include ../publications/fr/Geerolf2022c.qmd >}}
+
+
+## En Anglais
+
+{{< include ../working-papers/en/Geerolf2018a.qmd >}}
+
+{{< include ../publications/en/Geerolf2013.qmd >}}
 
 
 
