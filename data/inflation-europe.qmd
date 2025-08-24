@@ -11,6 +11,9 @@ format:
     toc: true
     theme: flatly
     embed-resources: false
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 editor: source
 ---
 
@@ -34,16 +37,6 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 ```
 
 
-# Info
-
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")';
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-europe.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-europe.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
 
 # United States vs Europe
 
@@ -186,3 +179,8 @@ ig_d("eurostat", "nama_10_co3_p3", "FR-CP04-CP07-CP01-CPMEUR")
 ```
 
 
+
+# Bibliography
+
+
+{{< include ../publications/inflation.qmd >}}

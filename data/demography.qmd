@@ -27,16 +27,6 @@ demography <- tribble(
 ```
 
 
-# Info
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R demo_fmonth; /usr/local/bin/R -e 'quarto::quarto_render("demo_fmonth.qmd")'
-# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("demography.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
 
 
 # Births, Deaths
