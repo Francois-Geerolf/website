@@ -202,8 +202,7 @@ source_dataset_file_updates3 <- . %>%
                       use_compact_mode = T,
                       use_resizers = TRUE,
                       page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) %>%
-  cols_width(everything() ~ px(NA))
+                      page_size_values = c(5, 10, 15, 20))
 
 source_dataset_title_file_updates <- . %>%
   mutate(type = map(source, ~ tibble(type = c(".RData", ".html")))) %>%
