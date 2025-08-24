@@ -11,12 +11,37 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
 pensions <- tribble(
   ~source, ~dataset,
+  "buba", "BBASV",
   "oecd",  "PAG",
   "oecd", "PNN_NEW",
   "oecd", "PNNI_NEW",
   "oecd", "SOCX_AGG",
   "eurostat", "spr_exp_pens") %>%
   arrange(source, dataset)
+```
+
+# Germany
+
+## BUBA data 
+
+```{r}
+ig_d("buba", "BBASV", "unnamed-chunk-7")
+```
+
+# Eurostat data
+
+## All pensions
+
+```{r}
+ig_d("eurostat", "spr_exp_pens", "TOTAL-TOTAL-PC-GDP-DE-FR-IT")
+```
+
+
+
+## Old age
+
+```{r}
+ig_d("eurostat", "spr_exp_pens", "SCPOLDPEN-TOTAL-PC-GDP-DE-FR-IT")
 ```
 
 
