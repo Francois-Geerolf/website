@@ -28,7 +28,7 @@ pensions <- tribble(
 ig_d("buba", "BBASV", "unnamed-chunk-7")
 ```
 
-# Eurostat data
+# France, Germany, Italy
 
 ## All pensions
 
@@ -43,6 +43,16 @@ ig_d("eurostat", "spr_exp_pens", "TOTAL-TOTAL-PC-GDP-DE-FR-IT")
 ```{r}
 ig_d("eurostat", "spr_exp_pens", "SCPOLDPEN-TOTAL-PC-GDP-DE-FR-IT")
 ```
+
+# Germany, France, Italy, Greece, Portugal
+
+## Total spending
+
+```{r}
+ig_d("eurostat", "spr_exp_pens", "TOTAL-TOTAL-PC-GDP-DE-FR-IT-EL-PT")
+```
+
+
 
 
 # Datasets
