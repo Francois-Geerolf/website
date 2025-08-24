@@ -20,6 +20,24 @@ editor: source
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
+
+knitr::opts_chunk$set(echo = T)
+`taux-de-change` <- tribble(
+  ~source, ~dataset,
+  "bdf",  "EXR",
+  "bis",  "EER",
+  "bis", "EER_D", 
+  "bis",  "XRU",
+  "bis",  "XRU_D",
+  "ecb",  "EXR",
+  "eurostat", "ert_bil_eur_d",
+  "eurostat", "ert_h_eur_d",
+  "fred",  "xrates",
+  "gfd",  "xrates",
+  "oecd", "SNA_TABLE4",
+  "oecd", "REFSERIES_MSIT",
+  "wdi", "PA.NUS.FCRF") |>
+  arrange(source, dataset)
 ## cd ~/iCloud/website/data; ./_update_data_themes.sh xrates.qmd
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-de-change.qmd")'
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("xrates.qmd")'
@@ -49,23 +67,6 @@ currencies <- currencies|>
 
 currencies <- currencies|>
   filter(locale == "en")
-knitr::opts_chunk$set(echo = T)
-`taux-de-change` <- tribble(
-  ~source, ~dataset,
-  "bdf",  "EXR",
-  "bis",  "EER",
-  "bis", "EER_D", 
-  "bis",  "XRU",
-  "bis",  "XRU_D",
-  "ecb",  "EXR",
-  "eurostat", "ert_bil_eur_d",
-  "eurostat", "ert_h_eur_d",
-  "fred",  "xrates",
-  "gfd",  "xrates",
-  "oecd", "SNA_TABLE4",
-  "oecd", "REFSERIES_MSIT",
-  "wdi", "PA.NUS.FCRF") |>
-  arrange(source, dataset)
 ```
 
 

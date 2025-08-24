@@ -19,6 +19,29 @@ editor: source
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+money <- tribble(
+  ~source, ~dataset,
+  "bdf",  "FM",
+  "bdf",  "MIR",
+  "bdf",  "MIR1",
+  "bis",  "CBPOL",
+  "ecb", "BSI",
+  "ecb", "BSI_PUB",
+  "ecb",  "FM",
+  "ecb", "ILM",
+  "ecb", "ILM_PUB",
+  "ecb", "liq_daily",
+  "ecb",  "MIR",
+  "ecb", "RAI",
+  "ecb",  "SUP",
+  "ecb",  "YC",
+  "ecb",  "YC_PUB",
+  "eurostat", "ei_mfir_m",
+  "eurostat", "irt_st_m",
+  "fred",  "r",
+  "oecd",  "MEI",
+  "oecd",  "MEI_FIN") %>%
+  arrange(source, dataset)
 ```
 
 
