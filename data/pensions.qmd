@@ -1,0 +1,39 @@
+---
+title: "Data on pensions"
+subtitle: Data
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+
+pensions <- tribble(
+  ~source, ~dataset,
+  "oecd",  "PAG",
+  "oecd", "PNN_NEW",
+  "oecd", "PNNI_NEW",
+  "oecd", "SOCX_AGG",
+  "eurostat", "spr_exp_pens") %>%
+  arrange(source, dataset)
+```
+
+
+# Datasets
+
+```{r, echo = F}
+`pensions` |>
+  source_dataset_file_updates()
+```
+
+
