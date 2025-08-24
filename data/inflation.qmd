@@ -55,11 +55,6 @@ inflation <- tribble(
 # sh ~/iCloud/website/website_short.sh
 ```
 
-# Related papers
-
-
-{{< include ../publications/inflation.qmd >}}
-
 
 # Inflation
 
@@ -246,3 +241,11 @@ ig_d("eurostat", "sts_inpp_m", "C-PRON-FR-DE-IT-PCHSM-2018")
 ```{r}
 ig_d("eurostat", "sts_inppnd_m", "C-FR-DE-IT-2018")
 ```
+
+
+
+
+# Related papers
+
+
+{{< include ../publications/inflation.qmd >}}
