@@ -495,7 +495,7 @@ ig_d("bdf", "DET", "detention-non-residents")
 
 ## En Français
 
-{{< include ../publications/fr/Geerolf2022c.qmd >}}
+{{< include ../publications/fr/Geerolf2021c.qmd >}}
 
 
 ## En Anglais
