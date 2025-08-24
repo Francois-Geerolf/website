@@ -1,22 +1,7 @@
 ---
-title: Les chiffres du pouvoir d'achat
-subtitle: Data
-lang: fr
-filters:
-  - ../code/genderize-fr.lua
-author:
-  - name: François Geerolf
-    url: https://fgeerolf.com
-format:
-  html:
-    code-fold: false
-    toc: true
-    theme: flatly
-    embed-resources: false
-    include-in-header:
-      - text: |
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-editor: source
+title: Données sur l'évolution du pouvoir d'achat
+metadata-files: 
+  - _common_fr.yml
 ---
 
 
@@ -47,7 +32,6 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ```
 
 # Chiffres officiels de l'Insee
-
 
 ## Evolutions trimestrielles (%)
 
@@ -409,10 +393,6 @@ ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-1996")
 # sh ~/iCloud/website/website_short.sh
 ```
 
-# Bibliographie
-
-{{< include ../publications/pouvoir-dachat.qmd >}}
-
 
 # Bases de données
 
@@ -420,3 +400,7 @@ ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-1996")
 `pouvoir-achat` |>
   source_dataset_file_updates()
 ```
+
+# Bibliographie
+
+{{< include ../publications/pouvoir-dachat.qmd >}}

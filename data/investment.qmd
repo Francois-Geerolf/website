@@ -1,17 +1,7 @@
 ---
-title: Data on investment 
-subtitle: Data
-lang: en
-author:
-  - name: François Geerolf
-    url: https://fgeerolf.com
-format:
-  html:
-    code-fold: false
-    toc: true
-    theme: flatly
-    embed-resources: false
-editor: source
+title: Data on investment
+metadata-files: 
+  - _common.yml
 ---
 
 

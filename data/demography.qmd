@@ -1,17 +1,7 @@
 ---
 title: Data on demography
-subtitle: Data
-lang: en
-author:
-  - name: François Geerolf
-    url: https://fgeerolf.com
-format:
-  html:
-    code-fold: false
-    toc: true
-    theme: flatly
-    embed-resources: false
-editor: source
+metadata-files: 
+  - _common.yml
 ---
 
 

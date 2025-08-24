@@ -1,19 +1,7 @@
 ---
 title: Données sur la productivité
-subtitle: Data
-lang: fr
-filters:
-  - ../code/genderize-fr.lua
-author:
-  - name: François Geerolf
-    url: https://fgeerolf.com
-format:
-  html:
-    code-fold: false
-    toc: true
-    theme: flatly
-    embed-resources: false
-editor: source
+metadata-files: 
+  - _common_fr.yml
 ---
 
 
