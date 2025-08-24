@@ -1,0 +1,88 @@
+---
+title: Bibliography
+lang: en
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+editor: source
+---
+
+
+```{r, echo = FALSE, message = FALSE, warning = F}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+load("_bibliography.RData")
+```
+
+# All
+
+```{r, echo = F, warning = F}
+# Render interactive gt table with icons
+bibliography %>%
+  gt() %>%
+  fmt_markdown(columns = c(PDF, HTML, GitHub)) %>%  # render the <i> icons/links
+  cols_align(align = "center", columns = c(PDF, HTML, GitHub)) %>%
+  cols_width(
+    PDF    ~ px(40),
+    HTML   ~ px(40),
+    GitHub ~ px(40)
+  ) %>%
+  opt_interactive(
+    use_search       = TRUE,
+    use_resizers     = TRUE,
+    use_compact_mode = TRUE
+  )
+```
+
+
+
+# Français
+
+```{r, echo = F, warning = F}
+# Render interactive gt table with icons
+bibliography %>%
+  filter(str_detect(File, "/fr/")) %>%
+  gt() %>%
+  fmt_markdown(columns = c(PDF, HTML, GitHub)) %>%  # render the <i> icons/links
+  cols_align(align = "center", columns = c(PDF, HTML, GitHub)) %>%
+  cols_width(
+    PDF    ~ px(40),
+    HTML   ~ px(40),
+    GitHub ~ px(40)
+  ) %>%
+  opt_interactive(
+    use_search       = TRUE,
+    use_resizers     = TRUE,
+    use_compact_mode = TRUE
+  )
+```
+
+
+
+# English
+
+```{r, echo = F, warning = F}
+# Render interactive gt table with icons
+bibliography %>%
+  filter(str_detect(File, "/en/")) %>%
+  gt() %>%
+  fmt_markdown(columns = c(PDF, HTML, GitHub)) %>%  # render the <i> icons/links
+  cols_align(align = "center", columns = c(PDF, HTML, GitHub)) %>%
+  cols_width(
+    PDF    ~ px(40),
+    HTML   ~ px(40),
+    GitHub ~ px(40)
+  ) %>%
+  opt_interactive(
+    use_search       = TRUE,
+    use_resizers     = TRUE,
+    use_compact_mode = TRUE
+  )
+```

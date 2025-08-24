@@ -10,27 +10,64 @@ folders <- c("publications", "public-debate", "working-papers")
 roots <- as.vector(outer(folders, langs, paste, sep = "/"))
 roots
 
-# Helper: read file, collapse, strip links
-read_qmd <- function(file) {
-  read_file(file) %>%
-    str_squish() %>%
-    # remove [[...](...)] style links
-    str_remove_all("\\[\\[[^\\]]*\\]\\([^\\)]*\\)\\]") %>%
-    # remove normal markdown links [..](..)
-    str_remove_all("\\[[^\\]]*\\]\\([^\\)]*\\)")
+#--- Helpers to extract icon-tagged links --------------------------------------
+
+# PDF link (<i class="fas fa-file-pdf"></i>)
+extract_pdf_link <- function(x) {
+  m <- str_match(x, "(?is)\\[\\[\\s*<i[^>]*fa[- ]file[- ]pdf[^>]*>\\s*</i>[^\\]]*\\]\\(([^)]+)\\)\\]")
+  m[,2]
 }
 
-# Collect all .qmd files
+# HTML link (<i class="fas fa-globe"></i>)
+extract_html_link <- function(x) {
+  m <- str_match(x, "(?is)\\[\\[\\s*<i[^>]*fa[- ]globe[^>]*>\\s*</i>[^\\]]*\\]\\(([^)]+)\\)\\]")
+  m[,2]
+}
+
+# GitHub link (<i class="fab fa-github"></i>)
+extract_github_link <- function(x) {
+  m <- str_match(x, "(?is)\\[\\[\\s*<i[^>]*fa[^\">]*github[^>]*>\\s*</i>[^\\]]*\\]\\(([^)]+)\\)\\]")
+  m[,2]
+}
+
+# Read, clean content (remove links), and extract icon links
+parse_qmd <- function(file) {
+  raw <- read_file(file)
+  
+  tibble(
+    File    = file,
+    PDF     = extract_pdf_link(raw),
+    HTML    = extract_html_link(raw),
+    GitHub  = extract_github_link(raw),
+    Content = raw %>%
+      str_squish() %>%
+      # remove [[...](...)] links
+      str_remove_all("(?is)\\[\\[[^\\]]*\\]\\([^\\)]*\\)\\]") %>%
+      # remove single-bracket markdown links
+      str_remove_all("(?is)\\[[^\\]]*\\]\\([^\\)]*\\)")
+  )
+}
+
+#--- Collect files and build the tibble ----------------------------------------
+
 qmd_files <- map(roots, ~list.files(.x, pattern = "\\.qmd$", full.names = TRUE, recursive = TRUE)) %>%
   unlist()
 
-# Build tibble: Path + Content
-bibliography <- tibble(
-  File    = qmd_files,
-  Content = map_chr(qmd_files, read_qmd)
-)
+bibliography <- map_dfr(qmd_files, parse_qmd) %>%
+  mutate(
+    PDF   = if_else(!is.na(PDF)   & PDF   != "",
+                    glue('<a href="{PDF}" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i></a>'),
+                    ""),
+    HTML  = if_else(!is.na(HTML)  & HTML  != "",
+                    glue('<a href="{HTML}" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i></a>'),
+                    ""),
+    GitHub= if_else(!is.na(GitHub)& GitHub!= "",
+                    glue('<a href="{GitHub}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>'),
+                    "")
+  ) %>%
+  select(File, Content, PDF, HTML, GitHub)
 
-bibliography
 
 save(bibliography, file = "_bibliography.RData")
+
 
