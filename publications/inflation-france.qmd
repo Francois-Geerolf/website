@@ -1,0 +1,56 @@
+
+## Français
+
+{{< include ../publications/fr/Geerolf2024c.qmd >}}
+
+{{< include ../publications/fr/Geerolf2024b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2024a.qmd >}}
+
+{{< include ../publications/fr/Geerolf2023c.qmd >}}
+
+{{< include ../publications/fr/Geerolf2023b.qmd >}}
+
+{{< include ../publications/fr/Antonin2023.qmd >}}
+
+{{< include ../publications/fr/Geerolf2023a.qmd >}}
+
+{{< include ../publications/fr/Allegre2022.qmd >}}
+
+{{< include ../publications/fr/Geerolf2022b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2022.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021a.qmd >}}
+
+## Anglais
+
+{{< include ../publications/en/Blot2025.qmd >}}
+
+{{< include ../publications/en/Geerolf2024c.qmd >}}
+
+{{< include ../publications/en/Geerolf2024b.qmd >}}
+
+{{< include ../publications/en/Geerolf2024a.qmd >}}
+
+{{< include ../publications/en/Geerolf2023c.qmd >}}
+
+{{< include ../publications/en/Blot2023d.qmd >}}
+
+{{< include ../publications/en/Blot2023c.qmd >}}
+
+{{< include ../publications/en/Blot2023b.qmd >}}
+
+{{< include ../publications/en/Blot2023a.qmd >}}
+
+{{< include ../publications/en/Blot2022.qmd >}}
+
+{{< include ../publications/en/Geerolf2022b.qmd >}}
+
+{{< include ../publications/en/Geerolf2022.qmd >}}
+
+{{< include ../working-papers/en/Geerolf2020.qmd >}}
+
+

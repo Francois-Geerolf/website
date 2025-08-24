@@ -319,66 +319,8 @@ ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
 
 - Insee. L'essentiel sur... l'inflation. <https://www.insee.fr/fr/statistiques/4268033>
 
-## Bibliographie en lien
 
-### Français
+# Bibliographie
 
-<!---
-- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
-
-- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
-
---->
-
-
-{{< include ../publications/fr/Geerolf2024c.qmd >}}
-
-{{< include ../publications/fr/Geerolf2024b.qmd >}}
-
-{{< include ../publications/fr/Geerolf2024a.qmd >}}
-
-- "L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques.", F. Geerolf, Blog de l'OFCE, décembre 2023. [[html](https://fgeerolf.com/inflation-par-categorie.html)] [[blog](https://www.ofce.sciences-po.fr/blog/lanalyse-de-linflation-par-categories-de-menages-quelques-problemes-methodologiques/)] [[pdf](https://fgeerolf.com/inflation-par-categorie.pdf)]
-
-- "Les politiques économiques de lutte contre l’inflation en Europe." F. Geerolf, In L'économie européenne 2023-2024, La Découverte, p.42-56, septembre 2023. [[pdf](https://www.ofce.sciences-po.fr/pdf/ouvrage/2024-EE-04.pdf)] [[html](https://www.cairn.info/l-economie-europeenne-2023-2024--9782348079993-page-42.htm)]
-
-- "Les incidences économiques de l'action pour le climat. Rapport thématique: inflation." S. Dees, E. Bellevrat, A. de Gaye, F. Geerolf, M. Lequien, R. Schweizer, A. Tettaravou, O. Wegner. France Stratégie, mai 2023. [[pdf](https://www.strategie.gouv.fr/sites/strategie.gouv.fr/files/atoms/files/fs-2023-les_incidences_economiques_de_laction_pour_le_climat-thematique-inflation.pdf)]
-
-- "Une analyse macroéconomique de l'inflation.", C. Antonin & F. Geerolf, In la Jaune et la Rouge n°783, mars 2023. [[pdf](https://www.lajauneetlarouge.com/wp-content/uploads/2023/02/La_Jaune_et_la_Rouge_783_41-44.pdf)] [[html](https://www.lajauneetlarouge.com/analyse-macroeconomique-de-linflation-et-de-la-pertinence-de-nos-modeles/)🔒]
-
-- "La politique économique en Europe face à l’inflation." F. Geerolf, Cahiers français n°432: Faire face à l'inflation, La Documentation française, mars 2023. [[html](https://www.cairn.info/magazine-cahiers-francais-2023-2-page-64.htm)🔒]
-
-- "Qui va payer cette facture énergétique ?" F. Geerolf, Interview a priori, décembre 2022. [[html](https://a-prioris.fr/hauteur-de-vue/francois-geerolf-qui-va-payer-cette-facture-energetique)]
-
-- "Inflation en Europe : les conséquences sociales de la guerre en Ukraine." G. Allègre, F. Geerolf, X. Timbeau, Blog de l'OFCE, juillet 2022. [[blog](https://www.ofce.sciences-po.fr/blog/inflation-en-europe-les-consequences-sociales-de-la-guerre-en-ukraine/)]
-
-- Inflation et pouvoir d'achat : it's the politics, stupid! F. Geerolf & P. Jacquet, Relançons le débat économique, juin 2022. [[pdf](https://fgeerolf.com/RLDE-2022-25-GeerolfJacquet.pdf)] [[html](https://lecercledeseconomistes.fr/inflation-et-pouvoir-dachat-its-the-politics-stupid/)]
-
-- "Quelques remarques au sujet du Blog de l'Insee: Mais si, l'Insee prend bien en compte le logement dans l'inflation !", F. Geerolf, Document de travail, 22 février 2022. [[html](https://fgeerolf.com/blog-insee-IPC-loyers.html)] [[pdf](https://fgeerolf.com/blog-insee-IPC-loyers.pdf)]
-
-- "Le keynésianisme doit-il faire l'économie de la courbe de Phillips ?" F. Geerolf, In L'économie mondiale 2022, La Découverte, p.73-86, septembre 2021. [[pdf](http://www.cepii.fr/PDF_PUB/em/2022/em2022-05.pdf)] [[slides](http://www.cepii.fr/docs/files/reunions/communications/em2022/Economie%20Mondiale%202022_Geerolf.pdf)]
-
-- « On peut rechercher le plein-emploi sans craindre de déclencher une spirale inflationniste », I. Bensidoun & F. Geerolf, Le Monde, 28 avril 2021. [[html](https://www.lemonde.fr/idees/article/2021/04/28/on-peut-rechercher-le-plein-emploi-sans-craindre-de-declencher-une-spirale-inflationniste_6078318_3232.html)🔒]
-
-- "La courbe de Phillips n'est pas celle que vous croyez." F. Geerolf, La Lettre du CEPII, n°417, avril 2021. [[pdf](http://www.cepii.fr/PDF_PUB/lettre/2021/let417.pdf)] [[html](http://www.cepii.fr/CEPII/fr/publications/lettre/abstract.asp?NoDoc=12974)]
-
-### Anglais
-
-<!---
-
-- Nominal rates matter, independent from real rates [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
-
-- Wages and profits in a time of high inflation in the euro area. [[pdf](https://fgeerolf.com/wages-profits-euroarea.pdf)]
-
---->
-
-
-- "Are inflation dynamics different in the euro area and the United States?" C. Blot & F. Geerolf, Monetary Dialogue Paper, November 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/755706/IPOL_IDA(2023)755706_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/fr/document/IPOL_IDA(2023)755706)]
-
-- "The direct and indirect impacts of the war on inflation." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, March 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/741487/IPOL_IDA(2023)741487_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)741487)]
-
-- "Heterogeneity of inflation in the euro area: more complicated than it seems." C. Blot, J. Creel, F. Geerolf & S. Levasseur, Monetary Dialogue Paper, November 2022, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2022/733999/IPOL_IDA(2022)733999_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2022)733999)]
-
-- "Social Impact of the War in Ukraine (SIWU)." F. Geerolf, X. Timbeau & G. Allègre, OFCE Github repo, July 2022. [[html](https://github.com/OFCE/SIWU)]
-
-- "The Phillips Curve: a Relation between Real Exchange Rate Growth and Unemployment." F. Geerolf, January 2020. [[pdf](https://fgeerolf.com/phillips.pdf)]
+{{< include ../publications/inflation-france.qmd >}}
 
