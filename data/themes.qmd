@@ -29,56 +29,6 @@ themes <- tibble::tibble(
   dplyr::arrange(theme)
 ```
 
-# By Language
-
-## English
-
-```{r, echo = F}
-themes %>%
-  mutate(
-    file_qmd = paste0(theme, ".qmd"),
-    meta = map(file_qmd, ~ tryCatch(yaml_front_matter(.x), error = function(e) list())),
-    Title = map_chr(meta, ~ purrr::pluck(.x, "title", .default = NA_character_)),
-    Lang  = map_chr(meta, ~ purrr::pluck(.x, "lang",  .default = NA_character_)),
-    Compile = "Link",
-    Compile = glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")
-  ) %>%
-  # keep English only based on YAML `lang`
-  filter(!is.na(Lang) & grepl("^en($|[-_])", Lang, ignore.case = TRUE)) %>%
-  select(theme, Title, Compile) %>%
-  gt() %>%
-  fmt_markdown(columns = "Compile") %>%
-  opt_interactive(
-    use_search = TRUE,
-    use_resizers = TRUE,
-    use_compact_mode = TRUE
-  )
-```
-
-
-## Français
-
-```{r, echo = F}
-themes %>%
-  mutate(
-    file_qmd = paste0(theme, ".qmd"),
-    meta = map(file_qmd, ~ tryCatch(yaml_front_matter(.x), error = function(e) list())),
-    Title = map_chr(meta, ~ purrr::pluck(.x, "title", .default = NA_character_)),
-    Lang  = map_chr(meta, ~ purrr::pluck(.x, "lang",  .default = NA_character_)),
-    Compile = "Link",
-    Compile = glue("[{Compile}](https://fgeerolf.com/data/{theme}.html)")
-  ) %>%
-  # keep English only based on YAML `lang`
-  filter(!is.na(Lang) & grepl("^fr($|[-_])", Lang, ignore.case = TRUE)) %>%
-  select(theme, Title, Compile) %>%
-  gt() %>%
-  fmt_markdown(columns = "Compile") %>%
-  opt_interactive(
-    use_search = TRUE,
-    use_resizers = TRUE,
-    use_compact_mode = TRUE
-  )
-```
 
 
 # All
