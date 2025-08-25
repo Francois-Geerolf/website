@@ -178,6 +178,13 @@ data_investing |>
   rename(Currency = Euro) |>
   left_join(currencies_countrycode, by = "Currency") |>
   select(countrycode, everything()) |>
+  mutate(across(where(is.numeric),
+                ~ case_when(. >= 1000 ~ round(., 1),
+                          . >= 1 ~ round(., 2),
+                          TRUE ~ signif(., 3)
+                          )
+                )
+         ) |>
   gt::gt() |>
   gt::fmt_flag(columns = countrycode) |>
   gt::opt_interactive(use_search = F,
@@ -251,6 +258,13 @@ data_investing |>
   rename(Currency = `US Dollar`) |>
   left_join(currencies_countrycode, by = "Currency") |>
   select(countrycode, everything()) |>
+  mutate(across(where(is.numeric),
+                ~ case_when(. >= 1000 ~ round(., 1),
+                          . >= 1 ~ round(., 2),
+                          TRUE ~ signif(., 3)
+                          )
+                )
+         ) |>
   gt::gt() |>
   gt::fmt_flag(columns = countrycode) |>
   gt::opt_interactive(use_search = F,
