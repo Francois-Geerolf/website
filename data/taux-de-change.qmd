@@ -279,11 +279,24 @@ ig_d("ecb", "EXR", "USD-CHF-GBP-2-years")
 ig_d("ecb", "EXR", "USD-CHF-GBP-1-month")
 ```
 
-
 # Bases de données
 
 ```{r, echo = F}
 `taux-de-change` |>
   source_dataset_file_updates()
 ```
+
+
+# Bibliography
+
+## Français
+
+{{< include ../publications/fr/Geerolf2021b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021a.qmd >}}
+
+## Anglais
+
+{{< include ../working-papers/en/Geerolf2020.qmd >}}
+
 
