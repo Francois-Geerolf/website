@@ -8,6 +8,34 @@ formater_temps <- function(secondes) {
   sprintf("%dm %02ds", minutes, sec)
 }
 
+
+# Fonction pour compiler un fichier .qmd, s’il existe, avec mesure du temps
+compiler_qmd <- function(fichier) {
+  if (file.exists(fichier)) {
+    message("📄 Compilation de ", fichier)
+    start <- Sys.time()
+    ok <- tryCatch({
+      quarto::quarto_render(input = fichier, quiet = quiet)
+      TRUE
+    }, error = function(e) {
+      message("❌ Erreur compilation : ", e$message)
+      FALSE
+    })
+    end <- Sys.time()
+    elapsed_sec <- as.numeric(difftime(end, start, units = "secs"))
+    if (ok) {
+      message("✅ Succès (", formater_temps(elapsed_sec), ")")
+      return(list(success = TRUE, time = elapsed_sec))
+    } else {
+      return(list(success = FALSE, time = NA))
+    }
+  } else {
+    message("❌ Fichier ", fichier, " introuvable")
+    return(list(success = FALSE, time = NA))
+  }
+}
+
+
 # Trouver tous les fichiers .qmd dans le dossier "data" et ses sous-dossiers
 # setwd("data")
 fichiers <- list.files(
