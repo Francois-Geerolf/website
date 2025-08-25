@@ -61,7 +61,7 @@ bibliography %>%
   )
 ```
 
-# Français
+# French
 
 ```{r, echo = F, warning = F}
 bibliography %>%
