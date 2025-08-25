@@ -20,25 +20,6 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 load("_bibliography.RData")
 ```
 
-# Tous
-
-```{r, echo = F, warning = F}
-bibliography %>%
-  gt() %>%
-  fmt_markdown(columns = c(PDF, HTML, GitHub)) %>%  # render the <i> icons/links
-  cols_align(align = "center", columns = c(PDF, HTML, GitHub)) %>%
-  cols_width(
-    PDF    ~ px(40),
-    HTML   ~ px(40),
-    GitHub ~ px(40)
-  ) %>%
-  opt_interactive(
-    use_search       = TRUE,
-    use_resizers     = TRUE,
-    use_compact_mode = TRUE
-  )
-```
-
 
 # Français
 
@@ -79,5 +60,26 @@ bibliography %>%
     use_compact_mode = TRUE
   )
 ```
+
+
+# Tous
+
+```{r, echo = F, warning = F}
+bibliography %>%
+  gt() %>%
+  fmt_markdown(columns = c(PDF, HTML, GitHub)) %>%  # render the <i> icons/links
+  cols_align(align = "center", columns = c(PDF, HTML, GitHub)) %>%
+  cols_width(
+    PDF    ~ px(40),
+    HTML   ~ px(40),
+    GitHub ~ px(40)
+  ) %>%
+  opt_interactive(
+    use_search       = TRUE,
+    use_resizers     = TRUE,
+    use_compact_mode = TRUE
+  )
+```
+
 
 
