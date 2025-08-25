@@ -30,6 +30,8 @@
 
 ## French
 
+{{< include ../publications/fr/Blot2025.qmd >}}
+
 {{< include ../publications/fr/Geerolf2024c.qmd >}}
 
 {{< include ../publications/fr/Geerolf2024b.qmd >}}
