@@ -17,6 +17,9 @@ fichiers <- list.files(
   full.names = TRUE
 )
 
+# Remove index.qmd
+fichiers <- setdiff(fichiers, "./index.qmd")
+
 # Mesure du temps total
 debut_total <- Sys.time()
 resultats <- lapply(fichiers, compiler_qmd)
