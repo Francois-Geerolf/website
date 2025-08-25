@@ -69,7 +69,7 @@ temp|>
                  `Central Bank`  ~ gt::px(300),
                  `Current Rate`  ~ gt::px(100),
                  `Next Meeting`  ~ gt::px(150),
-                 `Last Change`  ~ gt::px(200),)|>
+                 `Last Change`  ~ gt::px(200))|>
     tab_options(
       quarto.disable_processing = TRUE
     ) |> 

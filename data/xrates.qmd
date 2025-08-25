@@ -55,6 +55,65 @@ xrates <- tribble(
   "oecd", "REFSERIES_MSIT",
   "wdi", "PA.NUS.FCRF") |>
   arrange(source, dataset)
+
+library(tibble)
+
+currencies_countrycode <- tribble(
+  ~Currency,                   ~countrycode,
+  "Argentine Peso",            "AR",
+  "Australian Dollar",         "AU",
+  "Bahraini Dinar",            "BH",
+  "Botswana Pula",             "BW",
+  "Brazilian Real",            "BR",
+  "British Pound",             "GB",
+  "Bruneian Dollar",           "BN",
+  "Bulgarian Lev",             "BG",
+  "Canadian Dollar",           "CA",
+  "Chilean Peso",              "CL",
+  "Chinese Yuan Renminbi",     "CN",
+  "Colombian Peso",            "CO",
+  "Czech Koruna",              "CZ",
+  "Danish Krone",              "DK",
+  "Emirati Dirham",            "AE",
+  "Hong Kong Dollar",          "HK",
+  "Hungarian Forint",          "HU",
+  "Icelandic Krona",           "IS",
+  "Indian Rupee",              "IN",
+  "Indonesian Rupiah",         "ID",
+  "Iranian Rial",              "IR",
+  "Israeli Shekel",            "IL",
+  "Japanese Yen",              "JP",
+  "Kazakhstani Tenge",         "KZ",
+  "Kuwaiti Dinar",             "KW",
+  "Libyan Dinar",              "LY",
+  "Malaysian Ringgit",         "MY",
+  "Mauritian Rupee",           "MU",
+  "Mexican Peso",              "MX",
+  "Nepalese Rupee",            "NP",
+  "New Zealand Dollar",        "NZ",
+  "Norwegian Krone",           "NO",
+  "Omani Rial",                "OM",
+  "Pakistani Rupee",           "PK",
+  "Philippine Peso",           "PH",
+  "Polish Zloty",              "PL",
+  "Qatari Riyal",              "QA",
+  "Romanian New Leu",          "RO",
+  "Russian Ruble",             "RU",
+  "Saudi Arabian Riyal",       "SA",
+  "Singapore Dollar",          "SG",
+  "South African Rand",        "ZA",
+  "South Korean Won",          "KR",
+  "Sri Lankan Rupee",          "LK",
+  "Swedish Krona",             "SE",
+  "Swiss Franc",               "CH",
+  "Taiwan New Dollar",         "TW",
+  "Thai Baht",                 "TH",
+  "Trinidadian Dollar",        "TT",
+  "Turkish Lira",              "TR",
+  "US Dollar",                 "US"
+)
+
+
 ```
 
 # Current xrates
@@ -116,13 +175,19 @@ data_investing |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
   pluck(2) |>
+  rename(Currency = Euro) |>
+  left_join(currencies_countrycode, by = "Currency") |>
+  select(countrycode, everything()) |>
   gt::gt() |>
+  gt::fmt_flag(columns = countrycode) |>
   gt::opt_interactive(use_search = F,
                       use_pagination = T,
                       use_pagination_info = F,
                       use_compact_mode = T,
                       page_size_default = 10,
                       page_size_values = c(5, 10, 15, 20)) |>
+  gt::cols_width(countrycode ~ gt::px(60))|>
+  gt::cols_label(countrycode = "")|>
   gt::tab_footnote(
     footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
   ) |>
@@ -183,13 +248,19 @@ data_investing |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
   pluck(2) |>
+  rename(Currency = `US Dollar`) |>
+  left_join(currencies_countrycode, by = "Currency") |>
+  select(countrycode, everything()) |>
   gt::gt() |>
+  gt::fmt_flag(columns = countrycode) |>
   gt::opt_interactive(use_search = F,
                       use_pagination = T,
                       use_pagination_info = F,
                       use_compact_mode = T,
                       page_size_default = 10,
                       page_size_values = c(5, 10, 15, 20)) |>
+  gt::cols_width(countrycode ~ gt::px(60))|>
+  gt::cols_label(countrycode = "")|>
   gt::tab_footnote(
     footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
   ) |>
