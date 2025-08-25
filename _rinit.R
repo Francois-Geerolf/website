@@ -24,6 +24,9 @@ knitr::opts_chunk$set(echo = T)
 
 # functions -----
 
+ig_r <-function(paper, file) i_g(paste0("replications/", paper, "_files/figure-html/", file, "-1.png"))
+
+
 ig_d <- function(source, dataset, file){
   i_g(paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1.png"))
 }
