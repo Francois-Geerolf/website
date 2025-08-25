@@ -151,6 +151,14 @@ data_investing |>
   mutate(symbol1 = paste0("1 ", symbol1, " = ")) |>
   #select(Pair2, symbol1, Bid, symbol2, Pair, Ask) |>
   select(Pair2, symbol1, Bid, symbol2, Pair) |>
+  mutate(Bid = as.numeric(Bid)) |>
+  mutate(across(where(is.numeric),
+                ~ case_when(. >= 1000 ~ round(., 1),
+                          . >= 1 ~ round(., 3),
+                          TRUE ~ signif(., 3)
+                          )
+                )
+         ) |>
   gt::gt() |>
   gt::fmt_flag(columns = Pair2) |>
   gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), everything() ~ gt::px(60)) |>
@@ -180,7 +188,7 @@ data_investing |>
   select(countrycode, everything()) |>
   mutate(across(where(is.numeric),
                 ~ case_when(. >= 1000 ~ round(., 1),
-                          . >= 1 ~ round(., 2),
+                          . >= 1 ~ round(., 3),
                           TRUE ~ signif(., 3)
                           )
                 )
@@ -231,6 +239,13 @@ data_investing |>
   mutate(symbol1 = paste0("1 ", symbol1, " = ")) |>
   #select(Pair2, symbol1, Bid, symbol2, Pair, Ask) |>
   select(Pair2, symbol1, Bid, symbol2, Pair) |>
+  mutate(across(where(is.numeric),
+                ~ case_when(. >= 1000 ~ round(., 1),
+                          . >= 1 ~ round(., 3),
+                          TRUE ~ signif(., 3)
+                          )
+                )
+         ) |>
   gt::gt() |>
   gt::fmt_flag(columns = Pair2) |>
   gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), everything() ~ gt::px(60)) |>
@@ -260,7 +275,7 @@ data_investing |>
   select(countrycode, everything()) |>
   mutate(across(where(is.numeric),
                 ~ case_when(. >= 1000 ~ round(., 1),
-                          . >= 1 ~ round(., 2),
+                          . >= 1 ~ round(., 3),
                           TRUE ~ signif(., 3)
                           )
                 )
@@ -308,6 +323,14 @@ data_investing |>
   mutate(symbol1 = paste0("1 ", symbol1, " = ")) |>
   #select(Pair2, symbol1, Bid, symbol2, Pair, Ask) |>
   select(Pair2, symbol1, Bid, symbol2, Pair) |>
+  mutate(Bid = as.numeric(Bid)) |>
+  mutate(across(where(is.numeric),
+                ~ case_when(. >= 1000 ~ round(., 1),
+                          . >= 1 ~ round(., 3),
+                          TRUE ~ signif(., 3)
+                          )
+                )
+         ) |>
   gt::gt() |>
   gt::fmt_flag(columns = Pair2) |>
   gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), everything() ~ gt::px(60)) |>
