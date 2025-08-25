@@ -516,5 +516,16 @@ xrates |>
 
 # Bibliography
 
+## English
+
+{{< include ../working-papers/en/Geerolf2020.qmd >}}
+
+
+## French
+
+{{< include ../publications/fr/Geerolf2021b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021a.qmd >}}
+
 
 
