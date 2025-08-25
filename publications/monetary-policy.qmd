@@ -14,6 +14,15 @@
 
 {{< include ../publications/en/Blot2022.qmd >}}
 
+{{< include ../working-papers/en/Geerolf2020.qmd >}}
+
+
+
 ## French
 
 {{< include ../publications/fr/Blot2025.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021a.qmd >}}
+
