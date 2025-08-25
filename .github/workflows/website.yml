@@ -3,12 +3,14 @@ name: Build Website Root
 on:
   push:
     paths:
-      - "/*"        # only files directly in the root folder
-      - "!/**/**"   # exclude subfolders
+      - "*"
+      - ".*"
+      - "!*/**"
   pull_request:
     paths:
-      - "/*"        # only files directly in the root folder
-      - "!/**/**"   # exclude subfolders
+      - "*"
+      - ".*"
+      - "!*/**"
   schedule:
     - cron: '0 5 * * *'   # tous les jours à 05:00 UTC
 
