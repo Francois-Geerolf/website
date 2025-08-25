@@ -16,7 +16,7 @@ country_money <- country_money
 country_names <- country_names
 country_calling_code <- country_calling_code
 
-codelist <- codelist|>
+codelist <- codelist |>
   transmute(countryname = country.name.en, country_code_2 = fips)
 
 currencycode_countrycode <- country_money |>

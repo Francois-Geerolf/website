@@ -38,7 +38,7 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
 ```{r, echo = F}
 central_banks <- tribble(
-  ~`Central Bank`,                                      ~countrycode,
+  ~`Central Bank`,                                   ~countrycode,
   "Federal Reserve (FED)",                           "US",
   "European Central Bank (ECB)",                     "EU",
   "Bank of England (BOE)",                           "GB",
@@ -76,21 +76,11 @@ temp|>
   cols_align(
     align = "center",
     columns = -c(`Central Bank`))|>
-  gt::tab_source_note(source_note = paste0("Source: investing.com, tradingeconomics.com. Date: ", format(Sys.Date(), "%B %d, %Y")))|>
+  gt::tab_source_note(source_note = paste0("Source: investing.com, tradingeconomics.com. Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p")))|>
   fmt_number(
     dec_mark = ",",
     sep_mark = ".",
     decimals = 2
-  ) |>
-  opt_interactive(
-    use_search = TRUE,
-    use_filters = TRUE,
-    use_resizers = TRUE,
-    use_highlight = TRUE,
-    use_compact_mode = TRUE,
-    page_size_default = 20,
-    use_text_wrapping = FALSE,
-    use_page_size_select = TRUE
   ) |>
   gt::cols_label(countrycode = "")
 ```

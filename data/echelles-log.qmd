@@ -111,6 +111,21 @@ ig_d("insee", "reve-niv-vie-pouv-achat-trim", "pouvoir-achat-UC-both")
 ig_d("insee", "marc-salair-net-moy-sexe", "plot-bind")
 ```
 
+## Revenu et prix immobilier
+
+Aussi à repliquer en échelle log:
+
+```{r}
+ig_b("insee", "RPM2024", "F31", "fig1")
+```
+
+
+## Revenu et prix immobilier
+
+```{r}
+ig_b("insee", "RPM2024", "F31", "fig2")
+```
+
 # Indice des prix
 
 ```{r, echo = F}
