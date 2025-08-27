@@ -17,11 +17,6 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
 # Relative importance
 
-## GDP per capita
-
-```{r}
-ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT")
-```
 
 ## Compare
 
