@@ -1,0 +1,39 @@
+---
+title: Données sur la France
+metadata-files: 
+  - _common.yml
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+`france` <-tribble(
+  ~source, ~dataset,
+  "eurostat", "nama_10_pc") %>%
+  arrange(source, dataset)
+```
+
+# Relative importance
+
+## GDP per capita
+
+```{r}
+ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT")
+```
+
+## Compare
+
+```{r}
+ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT-using-groups-linear")
+```
+
+
+
+# Datasets
+
+```{r, echo = F}
+`france` |>
+  source_dataset_file_updates()
+```
