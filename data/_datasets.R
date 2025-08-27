@@ -99,7 +99,7 @@ if (length(complete_bases) == 0) {
     dataset = character(),
     Title   = character(),
     `.html` = as.POSIXct(character()),
-    `.RData`= as.POSIXct(character())
+    `.rdata`= as.POSIXct(character())
   )
   print(datasets)
 } else {

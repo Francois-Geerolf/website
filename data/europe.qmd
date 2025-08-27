@@ -27,7 +27,7 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
   arrange(source, dataset)
 ```
 
-# Info
+# Related papers
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
@@ -43,24 +43,27 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 ```
 
 
+## English
 
-## Related papers
+{{< include ../publications/en/Blot2025.qmd >}}
 
-### English
+{{< include ../publications/en/Blot2023d.qmd >}}
 
-- "Are inflation dynamics different in the euro area and the United States?" C. Blot & F. Geerolf, Monetary Dialogue Paper, November 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/755706/IPOL_IDA(2023)755706_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/fr/document/IPOL_IDA(2023)755706)]
+{{< include ../publications/en/Blot2023c.qmd >}}
 
-- "Excess liquidity in the euro area? Assessment and possible ways forward." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, September 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/ATAG/2023/747868/IPOL_ATA(2023)747868_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_ATA(2023)747868)]
+{{< include ../publications/en/Blot2023b.qmd >}}
 
-- "Is monetary tightening a threat to financial stability?" C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, June 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/747843/IPOL_IDA(2023)747843_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)747843)]
+{{< include ../publications/en/Blot2023a.qmd >}}
 
-- "The direct and indirect impacts of the war on inflation." C. Blot, J. Creel & F. Geerolf, Monetary Dialogue Paper, March 2023, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2023/741487/IPOL_IDA(2023)741487_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2023)741487)]
+{{< include ../publications/en/Blot2022.qmd >}}
 
-- "Heterogeneity of inflation in the euro area: more complicated than it seems." C. Blot, J. Creel, F. Geerolf & S. Levasseur, Monetary Dialogue Paper, November 2022, requested by the ECON committee, European Parliament. [[pdf](https://www.europarl.europa.eu/RegData/etudes/IDAN/2022/733999/IPOL_IDA(2022)733999_EN.pdf)] [[html](https://www.europarl.europa.eu/thinktank/en/document/IPOL_IDA(2022)733999)]
 
-### French
 
-- "L’Europe, de réelles avancées mais des choix à assumer." J. Creel, F. Geerolf, S. Levasseur, X. Ragot & F. Saraceno, OFCE Policy Brief 101, 24 février 2022. [[pdf](https://www.ofce.sciences-po.fr/pdf/pbrief/2022/OFCEpbrief101.pdf)]
+## French
+
+{{< include ../publications/fr/Blot2025.qmd >}}
+
+{{< include ../publications/fr/Creel2022.qmd >}}
 
 # Relative importance
 
