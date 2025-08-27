@@ -1,5 +1,5 @@
 ---
-title: Données sur la France
+title: Economic data for France
 metadata-files: 
   - _common.yml
 ---
