@@ -15,13 +15,19 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
   arrange(source, dataset)
 ```
 
-# Relative importance
+# Relative importance vs. European countries
 
 
 ## Compare
 
 ```{r}
 ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT-using-groups-linear")
+```
+
+## Other european countries
+
+```{r}
+ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT-main-EU")
 ```
 
 

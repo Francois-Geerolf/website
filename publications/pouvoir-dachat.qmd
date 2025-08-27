@@ -38,6 +38,8 @@
 
 {{< include ../publications/en/Geerolf2023c.qmd >}}
 
+{{< include ../publications/en/Geerolf2023b.qmd >}}
+
 {{< include ../publications/en/Blot2023d.qmd >}}
 
 {{< include ../publications/en/Blot2023c.qmd >}}
