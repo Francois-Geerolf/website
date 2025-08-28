@@ -499,6 +499,10 @@ ig_d("bdf", "DET", "detention-non-residents")
 
 ## English
 
+{{< include ../public-debate/en/Geerolf2025.qmd >}}
+
+{{< include ../publications/en/Geerolf2024b.qmd >}}
+
 {{< include ../working-papers/en/Geerolf2018a.qmd >}}
 
 {{< include ../publications/en/Geerolf2013.qmd >}}
@@ -507,7 +511,11 @@ ig_d("bdf", "DET", "detention-non-residents")
 
 {{< include ../public-debate/fr/Geerolf2025.qmd >}}
 
+{{< include ../publications/fr/Geerolf2024b.qmd >}}
+
 {{< include ../public-debate/fr/EcalleGeerolf2025.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021c.qmd >}}
 
 {{< include ../publications/fr/Geerolf2021c.qmd >}}
 
