@@ -4,7 +4,6 @@ metadata-files:
   - _common_fr.yml
 ---
 
-
 ```{r, echo = FALSE, message = FALSE}
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
