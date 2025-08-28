@@ -58,10 +58,21 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 {{< include ../publications/en/Blot2022.qmd >}}
 
 
-
 ## French
 
 {{< include ../publications/fr/Blot2025.qmd >}}
+
+{{< include ../publications/fr/Geerolf2025a.qmd >}}
+
+{{< include ../publications/fr/Geerolf2024d.qmd >}}
+
+{{< include ../public-debate/fr/Geerolf2024b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2023b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2023a.qmd >}}
+
+{{< include ../publications/fr/Allegre2022.qmd >}}
 
 {{< include ../publications/fr/Creel2022.qmd >}}
 
