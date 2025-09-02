@@ -136,7 +136,7 @@ ig_d("insee", "t_conso_vol", "produits-agricoles")
 ## Secteur institutionnels
 
 ```{r}
-ig_d("insee", "CNT-2014-PIB-EQB-RF", "P51-P51B-P51G-P51M-P51P-P51S-1980")
+ig_d("insee", "CNT-2020-PIB-EQB-RF", "P51-P51B-P51G-P51M-P51P-P51S-1980")
 ```
 
 ## MN, C4, C3, MB
@@ -287,14 +287,14 @@ ig_d("insee", "CNT-2014-CSI", "B2-B1G-S11")
 ### Investissement total
 
 ```{r}
-ig_d("insee", "CNT-2014-CSI", "investissement-taux-marge")
+ig_d("insee", "CNT-2020-CSI", "investissement-taux-marge")
 ```
 
 
 ### Investissement des SNF
 
 ```{r}
-ig_d("insee", "CNT-2014-CSI", "investissement-taux-marge-SNF")
+ig_d("insee", "CNT-2020-CSI", "investissement-taux-marge-SNF")
 ```
 
 
@@ -303,13 +303,13 @@ ig_d("insee", "CNT-2014-CSI", "investissement-taux-marge-SNF")
 ### Avec 0
 
 ```{r}
-ig_d("insee", "CNT-2014-CB", "B2-B1-DE-C1-CNT-2010")
+ig_d("insee", "CNT-2020-CB", "B2-B1-DE-C1-CNT-2010")
 ```
 
 ### Sans 0
 
 ```{r}
-ig_d("insee", "CNT-2014-CB", "B2-B1-DE-C1-CNT-2010-sans-0")
+ig_d("insee", "CNT-2020-CB", "B2-B1-DE-C1-CNT-2010-sans-0")
 ```
 
 
@@ -320,7 +320,7 @@ ig_d("insee", "CNT-2014-CB", "B2-B1-DE-C1-CNT-2010-sans-0")
 ### C1, C2, DE, HZ
 
 ```{r}
-ig_d("insee", "CNT-2014-CB", "B2-gdp-C1-DE-HZ-C2-2000")
+ig_d("insee", "CNT-2020-CB", "B2-gdp-C1-DE-HZ-C2-2000")
 ```
 
 
@@ -328,7 +328,7 @@ ig_d("insee", "CNT-2014-CB", "B2-gdp-C1-DE-HZ-C2-2000")
 ### Services, Industrie, Tertiaire marchand
 
 ```{r}
-ig_d("insee", "CNT-2014-CB", "B2-gdp-DI-DIM-DS-DSM")
+ig_d("insee", "CNT-2020-CB", "B2-gdp-DI-DIM-DS-DSM")
 ```
 
 
