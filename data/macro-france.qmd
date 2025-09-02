@@ -128,6 +128,7 @@ ig_d("insee", "t_conso_vol", "produits-agricoles")
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-FBCF-BRANCHE; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-FBCF-BRANCHE.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2020-FBCF-BRANCHE; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-FBCF-BRANCHE.qmd")'
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-FBCF-SI; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-FBCF-SI.qmd")'
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-PIB-EQB-RF; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-PIB-EQB-RF.qmd")'
 # sh ~/iCloud/website/website_short.sh
@@ -279,7 +280,7 @@ ig_d("bdf", "CFT", "DETT-S1M-FR-IT-DE-2013")
 ## Excédent brut
 
 ```{r}
-ig_d("insee", "CNT-2014-CSI", "B2-B1G-S11")
+ig_d("insee", "CNT-2020-CSI", "B2-B1G-S11-1949")
 ```
 
 ## Taux de marge et investissement
