@@ -42,11 +42,12 @@ fichiers <- list.files(
   path = ".",
   pattern = "\\.qmd$", 
   recursive = F, 
-  full.names = TRUE
+  full.names = T
 )
 
 # Remove index.qmd
 fichiers <- setdiff(fichiers, "./index.qmd")
+fichiers <- c(fichiers, "./data/insee/calendrier.qmd")
 
 # Mesure du temps total
 debut_total <- Sys.time()
