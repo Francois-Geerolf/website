@@ -22,7 +22,9 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   "insee", "CNA-2014-DETTE-APU",
   "insee", "t_compteapu_val",
   "insee", "T_3217",
-  "insee", "T_7301") %>%
+  "insee", "T_7301",
+  "gfd", "debt",
+  "imf", "HPDD") %>%
   arrange(source, dataset)
 ```
 
@@ -327,6 +329,12 @@ ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-interet-2008-2016")
 
 
 # Dette publique
+
+## France, US, UK
+
+```{r}
+ig_d("imf", "HPDD", "US-UK-FR-JP-GFD")
+```
 
 ## Dette en valeur
 
