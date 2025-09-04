@@ -1,0 +1,46 @@
+---
+title: Indicateurs et chiffres clés de l'écologie
+metadata-files: 
+  - _common_fr.yml
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+knitr::opts_chunk$set(echo = T)
+emploi <- tribble(
+  ~source, ~dataset,
+  "citepa",  "emissions_2020") %>%
+  arrange(source, dataset)
+```
+
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("emploi.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+# Emissions
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R TAUX-CHOMAGE; /usr/local/bin/R -e 'quarto::quarto_render("TAUX-CHOMAGE.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CHOMAGE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("CHOMAGE-TRIM-NATIONAL.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## En Mt
+
+```{r}
+ig_d("citepa", "emissions_2020", "emissions")
+```
+
+## Base 100
+
+```{r}
+ig_d("citepa", "emissions_2020", "emissions-log-100")
+```
+
