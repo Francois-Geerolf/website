@@ -25,21 +25,6 @@ housing <- tribble(
   arrange(source, dataset)
 ```
 
-# Info
-
-```{r, echo = F}
-# cd ~/iCloud/website/data
-
-# sed -E 's|i_g\("data/([^/]+)/([^/]+)_files/figure-html/(.+)-1\.png"\)|ig_d("\1", "\2", "\3")|g' housing.qmd > housing2.qmd
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("housing.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("immobilier.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/housing.html
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/immobilier.html
-# sh ~/iCloud/website/website_short.sh
-```
-
 
 # Construction
 
