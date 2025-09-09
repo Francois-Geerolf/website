@@ -80,7 +80,7 @@ ratings_taux|>
   select(-country, -DBRS)|>
   select(country_code_2, country = country.name.fr, everything())|>
   filter(country_code_2 %in% c("FR", "DE", "IT", "US", "GB", "CH", "AU")) |>
-  arrange(-TE, `10Y`)|>
+  arrange(`10Y`)|>
   select(-TE)|>
   filter(!is.na(country))|>
   gt()|>
