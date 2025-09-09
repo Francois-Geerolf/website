@@ -336,6 +336,14 @@ ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-interet-2008-2016")
 ig_d("imf", "HPDD", "US-UK-FR-JP-GFD")
 ```
 
+
+
+## France, US, UK
+
+```{r}
+ig_d("imf", "HPDD", "US-UK-FR-JP-GFD")
+```
+
 ## Dette en valeur
 
 ### Linéaire
