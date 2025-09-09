@@ -252,7 +252,7 @@ ratings_taux|>
 
 
 
-## Yield Curve
+## Courbe des taux
 
 ### France, Italie, Espagne, Allemagne
 

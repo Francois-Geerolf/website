@@ -9,11 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-## cd ~/iCloud/website/data; ./_update_data_themes.sh taux-dinteret.qmd
-## cd ~/iCloud/website/data; ./_update_data_themes.sh interest-rates.qmd
-## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("taux-dinteret.qmd")'
-## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("themes.qmd")'
-## sh ~/iCloud/website/website_short.sh
+load(here::here("flags", "colors.RData"))
 
 `dette-publique` <- tribble(
   ~source, ~dataset,
@@ -203,6 +199,95 @@ ratings_taux|>
   ) |>
   gt::tab_options(table.width = "100%")
 ```
+
+
+
+## Courbe des taux
+
+### France, Italie, Espagne, Allemagne
+
+```{r YC-France-Italy-Spain-Germany, echo = F}
+taux_souverains %>%
+  mutate(number = parse_number(duration),
+         number = ifelse(duration %in% paste0(1:12, "M"), number/12, number)) %>%
+  filter(country %in% c("France", "Italy", "Spain", "Germany")) %>%
+  left_join(colors, by = "country") %>%
+   ggplot + geom_line(aes(x = number, y = Yield/100, color = color)) +
+  scale_color_identity() + 
+  theme_minimal() + xlab("Maturité") + ylab("Taux d'intérêt (%)") +
+  scale_x_log10(breaks = c(1/12, 3/12, 6/12, 9/12, 1, 2, 5, 10, 15, 20, 30, 50),
+                     labels = c("1M", "3M", "6M", "9M", "1Y", "2Y", "5Y", "10Y", "15Y", "20Y", "30Y", "50Y")) +
+  scale_y_continuous(breaks = 0.01*seq(-10, 50, 0.2),
+                     labels = scales::percent_format(accuracy = .1)) +
+  theme(legend.position = c(0.2, 0.8),
+        legend.title = element_blank()) +
+  ggimage::geom_image(data = . %>% group_by(number) %>%
+                           filter(n() == 4) %>%
+                           arrange(Yield) %>%
+                           mutate(dist = min(Yield[2]-Yield[1],Yield[3]-Yield[2],Yield[4]-Yield[3])) %>%
+                           arrange(-dist, Yield) %>%
+                           head(4) %>%
+                           mutate(image = paste0("../icon/flag/round/", str_to_lower(gsub(" ", "-", country)), ".png")),
+                         aes(x = number, y = Yield/100, image = image), asp = 1.5)
+```
+
+
+### France, Allemagne, USA, Grèce
+
+```{r YC-France-Germany-US-Greece, echo = F}
+taux_souverains %>%
+  mutate(number = parse_number(duration),
+         number = ifelse(duration %in% paste0(1:12, "M"), number/12, number)) %>%
+  filter(country %in% c("France", "United States", "Germany", "Greece")) %>%
+  left_join(colors, by = "country") %>%
+   ggplot + geom_line(aes(x = number, y = Yield/100, color = color)) +
+  scale_color_identity() + 
+  theme_minimal() + xlab("Maturité") + ylab("Taux d'intérêt (%)") +
+  scale_x_log10(breaks = c(1/12, 3/12, 6/12, 9/12, 1, 2, 5, 10, 15, 20, 30, 50),
+                     labels = c("1M", "3M", "6M", "9M", "1Y", "2Y", "5Y", "10Y", "15Y", "20Y", "30Y", "50Y")) +
+  scale_y_continuous(breaks = 0.01*seq(-10, 50, 0.2),
+                     labels = scales::percent_format(accuracy = .1)) +
+  theme(legend.position = c(0.2, 0.8),
+        legend.title = element_blank()) +
+  ggimage::geom_image(data = . %>% group_by(number) %>%
+                           filter(n() == 4) %>%
+                           arrange(Yield) %>%
+                           mutate(dist = min(Yield[2]-Yield[1],Yield[3]-Yield[2],Yield[4]-Yield[3])) %>%
+                           arrange(-dist, Yield) %>%
+                           head(4) %>%
+                           mutate(image = paste0("../icon/flag/round/", str_to_lower(gsub(" ", "-", country)), ".png")),
+                         aes(x = number, y = Yield/100, image = image), asp = 1.5)
+```
+
+
+### France, US, GB, Canada
+
+```{r YC-France-Germany-UK-Australia, echo = F}
+taux_souverains %>%
+  mutate(number = parse_number(duration),
+         number = ifelse(duration %in% paste0(1:12, "M"), number/12, number)) %>%
+  filter(country %in% c("France", "United States", "United Kingdom", "Australia")) %>%
+  left_join(colors, by = "country") %>%
+   ggplot + geom_line(aes(x = number, y = Yield/100, color = color)) +
+  scale_color_identity() + 
+  theme_minimal() + xlab("Maturité") + ylab("Taux d'intérêt (%)") +
+  scale_x_log10(breaks = c(1/12, 3/12, 6/12, 9/12, 1, 2, 5, 10, 15, 20, 30, 50),
+                     labels = c("1M", "3M", "6M", "9M", "1Y", "2Y", "5Y", "10Y", "15Y", "20Y", "30Y", "50Y")) +
+  scale_y_continuous(breaks = 0.01*seq(-10, 50, 0.2),
+                     labels = scales::percent_format(accuracy = .1)) +
+  theme(legend.position = c(0.2, 0.8),
+        legend.title = element_blank()) +
+  ggimage::geom_image(data = . %>% group_by(number) %>%
+                           filter(n() == 4) %>%
+                           arrange(Yield) %>%
+                           mutate(dist = min(Yield[2]-Yield[1],Yield[3]-Yield[2],Yield[4]-Yield[3])) %>%
+                           arrange(-dist, Yield) %>%
+                           head(4) %>%
+                           mutate(image = paste0("../icon/flag/round/", str_to_lower(gsub(" ", "-", country)), ".png")),
+                         aes(x = number, y = Yield/100, image = image), asp = 1.5)
+```
+
+
 
 
 ## Agences de notation / de rating
