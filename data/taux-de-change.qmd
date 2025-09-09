@@ -309,6 +309,8 @@ ig_d("ecb", "EXR", "USD-CHF-GBP-1-month")
 
 ## Français
 
+{{< include ../publications/fr/Antonin2023.qmd >}}
+
 {{< include ../publications/fr/Geerolf2021b.qmd >}}
 
 {{< include ../publications/fr/Geerolf2021a.qmd >}}
