@@ -53,33 +53,18 @@ immobilier <- tribble(
 
 ### Français
 
-<!---
-- La politique économique en Europe face à l'inflation: un art plus qu'une science? [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
 
-- Inflation in Europe. [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
+{{< include ../publications/fr/Geerolf2023c.qmd >}}
 
---->
+{{< include ../publications/fr/Geerolf2022.qmd >}}
 
-- "L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques.", F. Geerolf, Blog de l'OFCE, décembre 2023. [[html](https://fgeerolf.com/inflation-par-categorie.html)] [[blog](https://www.ofce.sciences-po.fr/blog/lanalyse-de-linflation-par-categories-de-menages-quelques-problemes-methodologiques/)] [[pdf](https://fgeerolf.com/inflation-par-categorie.pdf)]
+{{< include ../publications/fr/Geerolf2021b.qmd >}}
 
-- "Quelques remarques au sujet du Blog de l'Insee: Mais si, l'Insee prend bien en compte le logement dans l'inflation !", F. Geerolf, Document de travail, 22 février 2022. [[html](https://fgeerolf.com/blog-insee-IPC-loyers.html)] [[pdf](https://fgeerolf.com/blog-insee-IPC-loyers.pdf)]
-
-- "Le keynésianisme doit-il faire l'économie de la courbe de Phillips ?" F. Geerolf, In L'économie mondiale 2022, La Découverte, p.73-86, septembre 2021. [[pdf](http://www.cepii.fr/PDF_PUB/em/2022/em2022-05.pdf)] [[slides](http://www.cepii.fr/docs/files/reunions/communications/em2022/Economie%20Mondiale%202022_Geerolf.pdf)]
-
-- "La courbe de Phillips n'est pas celle que vous croyez." F. Geerolf, La Lettre du CEPII, n°417, avril 2021. [[pdf](http://www.cepii.fr/PDF_PUB/lettre/2021/let417.pdf)] [[html](http://www.cepii.fr/CEPII/fr/publications/lettre/abstract.asp?NoDoc=12974)]
+{{< include ../publications/fr/Geerolf2021a.qmd >}}
 
 ### Anglais
 
-<!---
-
-- Nominal rates matter, independent from real rates [[pdf](https://fgeerolf.com/nominal-rates-matter.pdf)]
-
-- Wages and profits in a time of high inflation in the euro area. [[pdf](https://fgeerolf.com/wages-profits-euroarea.pdf)]
-
---->
-
-
-- "The Phillips Curve: a Relation between Real Exchange Rate Growth and Unemployment." F. Geerolf, January 2020. [[pdf](https://fgeerolf.com/phillips.pdf)]
+{{< include ../working-papers/en/Geerolf2020.qmd >}}
 
 # Nombre de logements, France
 

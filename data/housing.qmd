@@ -280,4 +280,14 @@ ig_d("eurostat", "prc_hicp_midx", "CP041-FR-DE-EL-PT")
 
 {{< include ../working-papers/en/Geerolf2020.qmd >}}
 
+## French
+
+{{< include ../publications/fr/Geerolf2023c.qmd >}}
+
+{{< include ../publications/fr/Geerolf2022.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021a.qmd >}}
+
 
