@@ -62,6 +62,10 @@ immobilier <- tribble(
 
 {{< include ../publications/fr/Geerolf2021a.qmd >}}
 
+{{< include ../publications/fr/Geerolf2011b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2011a.qmd >}}
+
 ### Anglais
 
 {{< include ../working-papers/en/Geerolf2020.qmd >}}
