@@ -89,13 +89,14 @@ temp |>
     page_size_values = c(5, 10, 15, 20),
     use_resizers = T,
     use_highlight = T
-  # ) |>
-  # cols_width(
-  #   c("country_code_2") ~ px(40),
-  #   c("Current Rate") ~ px(120),
-  #   c("Next Meeting") ~ px(140),
-  #   c("Central Bank") ~ px(280),
-  #   everything() ~ px(200)
+  ) |>
+  cols_width(
+    c("country_code_2") ~ px(40),
+    c("Central Bank") ~ px(300),
+    c("Current Rate") ~ px(120),
+    c("Next Meeting") ~ px(120),
+    c("Last Change") ~ px(200),
+  everything() ~ px(100)
   ) |>
   gt::tab_source_note(
     source_note = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/central-banks/>"))
