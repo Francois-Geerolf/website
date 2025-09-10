@@ -32,6 +32,99 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   arrange(source, dataset)
 ```
 
+
+# PIB données
+
+## Evolutions trimestrielles (%)
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2830547#tableau-figure1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(Indicateur ~ gt::px(350), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830613#tableau-figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Evolutions annuelles (%)
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2830613#tableau-figure1_radio1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(Indicateur ~ gt::px(350), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830613#tableau-figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Niveaux
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2830613#figure1_radio2" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  gt::cols_width(Indicateur ~ gt::px(350), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830613#tableau-figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Contributions
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2830613#figure1_radio2" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  gt::cols_width(Indicateur ~ gt::px(350), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830613#tableau-figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
 # PIB - Comparaisons internationales
 
 ```{r, echo = F}
