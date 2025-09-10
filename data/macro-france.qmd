@@ -110,7 +110,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 "https://www.insee.fr/fr/statistiques/2830613#figure1_radio2" |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
-  pluck(2) |>
+  pluck(3) |>
   gt::gt() |>
   gt::cols_width(Indicateur ~ gt::px(350), everything() ~ gt::px(90)) |>
   gt::opt_interactive(use_search = F,
