@@ -49,9 +49,13 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
 {{< include ../publications/en/Blot2023d.qmd >}}
 
+{{< include ../publications/en/Geerolf2023b.qmd >}}
+
 {{< include ../publications/en/Blot2023c.qmd >}}
 
 {{< include ../publications/en/Blot2023b.qmd >}}
+
+{{< include ../publications/en/Geerolf2023a.qmd >}}
 
 {{< include ../publications/en/Blot2023a.qmd >}}
 
