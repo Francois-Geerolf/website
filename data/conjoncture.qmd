@@ -1,5 +1,5 @@
 ---
-title: Analyse de la Conjoncture Économique
+title: Analyse de la Conjoncture Économique en France
 metadata-files: 
   - _common_fr.yml
 ---
@@ -18,6 +18,30 @@ knitr::opts_chunk$set(echo = T)
   "insee", "IPI-2021") %>%
   arrange(source, dataset)
 ```
+
+# Tableau de bord
+
+## Insee
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2107840" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830613#tableau-figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
 
 # Indicateurs macro
 
