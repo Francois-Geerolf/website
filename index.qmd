@@ -1,0 +1,101 @@
+---
+title: François Geerolf
+lang: fr
+filters:
+  - code/genderize-fr.lua
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+editor: source
+---
+
+
+Economist, OFCE (Observatoire Français des Conjonctures Economiques)
+
+Associated Professor and Researcher, Sciences Po
+
+CEPR Research Affiliate
+
+
+# Research Interests
+
+Macroeconomics, Finance, Housing
+
+
+# Research
+
+{{< include working-papers/en/Geerolf2017.qmd >}}
+Revision requested at American Economic Review
+
+{{< include working-papers/en/Geerolf2018a.qmd >}}
+
+{{< include working-papers/en/Geerolf2015.qmd >}}
+
+{{< include working-papers/en/Geerolf2018b.qmd >}}
+
+{{< include working-papers/en/Geerolf2019a.qmd >}}
+
+{{< include working-papers/en/Geerolf2019b.qmd >}}
+
+{{< include working-papers/en/Geerolf2019c.qmd >}}
+
+{{< include working-papers/en/Geerolf2020.qmd >}}
+
+{{< include publications/en/Geerolf2022c.qmd >}}
+
+
+# Articles en Français
+
+{{< include publications/fr/Geerolf2022b.qmd >}}
+
+{{< include publications/fr/Geerolf2021c.qmd >}}
+
+{{< include publications/fr/Geerolf2021b.qmd >}}
+
+{{< include publications/fr/Geerolf2021a.qmd >}}
+
+{{< include publications/fr/Geerolf2020b.qmd >}}
+
+{{< include publications/fr/Geerolf2020a.qmd >}}
+
+{{< include publications/fr/Geerolf2018b.qmd >}}
+
+{{< include publications/fr/Geerolf2018a.qmd >}}
+
+# Other in English
+
+
+
+
+# Teaching (English)
+
+Evidence-Based Macroeconomics & Finance (PhD 2nd year) [[<i class="fas fa-globe"></i> Syllabus](https://fgeerolf.com/econ221/syllabus.html)]
+
+Intermediate Macroeconomics (Undergraduate) [[<i class="fas fa-globe"></i> Syllabus](https://fgeerolf.com/econ102/syllabus.html)]
+
+Economics of Superstars (Undergraduate) [[<i class="fas fa-globe"></i> Syllabus](https://fgeerolf.com/econ19/syllabus.html)]
+
+
+# Ph.D. Dissertation
+
+{{< include publications/en/Geerolf2013.qmd >}}
+
+
+# Curriculum Vitae
+
+[[<i class="fas fa-file-pdf"></i> CV](https://fgeerolf.com/cv.pdf)] [📷 <a href="https://fgeerolf.com/files/fgeerolf.jpg">jpg</a>] [<a href="https://fgeerolf.com/files/fgeerolf-1.HIEC">heic</a>] [<a href="https://fgeerolf.com/files/fgeerolf-1.png">png</a>]
+
+# Contact
+
+Email: francois.geerolf@polytechnique.org
+
+OFCE  
+10, place de Catalogne  
+75014 PARIS  
+France
