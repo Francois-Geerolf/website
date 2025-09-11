@@ -113,6 +113,40 @@ currencies_countrycode <- tribble(
   "US Dollar",                 "US"
 )
 
+currencies_euro <- tribble(
+  ~CURRENCY, ~Currency,           ~countrycode,
+  "USD", "US dollar",              "US",
+  "JPY", "Japanese yen",           "JP",
+  "BGN", "Bulgarian lev",          "BG",
+  "CZK", "Czech koruna",           "CZ",
+  "DKK", "Danish krone",           "DK",
+  "GBP", "Pound sterling",         "GB",
+  "HUF", "Hungarian forint",       "HU",
+  "PLN", "Polish zloty",           "PL",
+  "RON", "Romanian leu",           "RO",
+  "SEK", "Swedish krona",          "SE",
+  "CHF", "Swiss franc",            "CH",
+  "ISK", "Icelandic krona",        "IS",
+  "NOK", "Norwegian krone",        "NO",
+  "TRY", "Turkish lira",           "TR",
+  "AUD", "Australian dollar",      "AU",
+  "BRL", "Brazilian real",         "BR",
+  "CAD", "Canadian dollar",        "CA",
+  "CNY", "Chinese yuan renminbi",  "CN",
+  "HKD", "Hong Kong dollar",       "HK",
+  "IDR", "Indonesian rupiah",      "ID",
+  "ILS", "Israeli shekel",         "IL",
+  "INR", "Indian rupee",           "IN",
+  "KRW", "South Korean won",       "KR",
+  "MXN", "Mexican peso",           "MX",
+  "MYR", "Malaysian ringgit",      "MY",
+  "NZD", "New Zealand dollar",     "NZ",
+  "PHP", "Philippine peso",        "PH",
+  "SGD", "Singapore dollar",       "SG",
+  "THB", "Thai baht",              "TH",
+  "ZAR", "South African rand",     "ZA"
+)
+
 
 ```
 
@@ -176,7 +210,43 @@ data_investing |>
   gt::tab_options(table.width = "100%")
 ```
 
-### More...
+
+### ECB Website
+
+```{r, echo = F}
+"https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"|>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  rename(CURRENCY = 1) |>
+  mutate(across(where(is.numeric),
+                ~ case_when(. >= 1000 ~ round(., 1),
+                          . >= 1 ~ round(., 3),
+                          TRUE ~ signif(., 3)
+                          )
+                )
+         ) |>
+  left_join(currencies_euro, by = c("CURRENCY", "Currency")) |>
+  select(countrycode, everything()) |>
+  select(-Chart) |>
+  gt::gt() |>
+  gt::fmt_flag(columns = countrycode) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = T,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 10,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::cols_width(countrycode ~ gt::px(60), CURRENCY ~ gt::px(60))|>
+  gt::cols_label(countrycode = "", CURRENCY = "")|>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". [Source](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html)"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+### X Rates
 
 ```{r, echo = F}
 "https://www.x-rates.com/table/?from=EUR&amount=1"|>
