@@ -25,7 +25,7 @@ CEPR Research Affiliate
 
 # Research Interests
 
-Macroeconomics, Finance, Housing
+Macroeconomics, Finance, Housing, Inflation
 
 
 # Research
@@ -50,9 +50,39 @@ Revision requested at American Economic Review
 {{< include publications/en/Geerolf2022c.qmd >}}
 
 
-# Articles en Français
+# Travaux en Français
+
+{{< include publications/fr/Geerolf2025a.qmd >}}
+
+{{< include publications/fr/Blot2025.qmd >}}
+
+{{< include publications/fr/Geerolf2024d.qmd >}}
+
+{{< include publications/fr/Geerolf2024c.qmd >}}
+
+{{< include publications/fr/Geerolf2024b.qmd >}}
+
+{{< include publications/fr/Geerolf2024a.qmd >}}
+
+{{< include publications/fr/Aurissergues2024.qmd >}}
+
+{{< include publications/fr/Geerolf2023c.qmd >}}
+
+{{< include publications/fr/Geerolf2023b.qmd >}}
+
+{{< include publications/fr/Dees2023.qmd >}}
+
+{{< include publications/fr/Antonin2023.qmd >}}
+
+{{< include publications/fr/Geerolf2023a.qmd >}}
+
+{{< include publications/fr/Allegre2022.qmd >}}
 
 {{< include publications/fr/Geerolf2022b.qmd >}}
+
+{{< include publications/fr/Creel2022.qmd >}}
+
+{{< include publications/fr/Geerolf2022.qmd >}}
 
 {{< include publications/fr/Geerolf2021c.qmd >}}
 
@@ -71,7 +101,62 @@ Revision requested at American Economic Review
 # Other in English
 
 
+{{< include publications/en/Blot2025.qmd >}}
 
+{{< include publications/en/Geerolf2024c.qmd >}}
+
+{{< include publications/en/Geerolf2024b.qmd >}}
+
+{{< include publications/en/Geerolf2024a.qmd >}}
+
+{{< include publications/en/Aurissergues2024.qmd >}}
+
+{{< include publications/en/Geerolf2023c.qmd >}}
+
+{{< include publications/en/Blot2023d.qmd >}}
+
+{{< include publications/en/Blot2023c.qmd >}}
+
+{{< include publications/en/Blot2023b.qmd >}}
+
+{{< include publications/en/Blot2023a.qmd >}}
+
+{{< include publications/en/Geerolf2022c.qmd >}}
+
+{{< include publications/en/Blot2022.qmd >}}
+
+{{< include publications/en/Geerolf2022b.qmd >}}
+
+{{< include publications/en/Geerolf2022.qmd >}}
+
+
+
+# Débat public
+
+## Tribunes
+
+{{< include public-debate/fr/Concialdi2025.qmd >}}
+
+{{< include public-debate/fr/Geerolf2025.qmd >}}
+
+{{< include public-debate/fr/Bensidoun2021.qmd >}}
+
+{{< include public-debate/fr/Geerolf2020.qmd >}}
+
+## Interviews
+
+{{< include public-debate/fr/Geerolf2024a.qmd >}}
+
+{{< include public-debate/fr/Geerolf2022b.qmd >}}
+
+{{< include public-debate/fr/Geerolf2022.qmd >}}
+
+
+## Autres interventions (sélection)
+
+{{< include public-debate/fr/EcalleGeerolf2025.qmd >}}
+
+{{< include public-debate/fr/Geerolf2024b.qmd >}}
 
 # Teaching (English)
 
