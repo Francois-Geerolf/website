@@ -146,8 +146,6 @@ currencies_euro <- tribble(
   "THB", "Thai baht",              "TH",
   "ZAR", "South African rand",     "ZA"
 )
-
-
 ```
 
 # Current xrates
