@@ -19,8 +19,6 @@ editor: source
 
 Economist, OFCE (Observatoire Français des Conjonctures Economiques)
 
-Associated Professor and Researcher, Sciences Po
-
 CEPR Research Affiliate
 
 # Research Interests
