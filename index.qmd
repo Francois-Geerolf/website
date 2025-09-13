@@ -19,8 +19,6 @@ editor: source
 
 Economist, OFCE (Observatoire Français des Conjonctures Economiques)
 
-CEPR Research Affiliate
-
 # Research Interests
 
 Macroeconomics, Finance, Inflation, Housing
@@ -157,7 +155,7 @@ Revision requested at American Economic Review
 
 # Teaching (English)
 
-Evidence-Based Macroeconomics & Finance (UCLA, PhD 2nd year) [[<i class="fas fa-globe"></i> Syllabus](https://fgeerolf.com/econ221/syllabus.html)] [Data](https://fgeerolf.com/data/)
+Evidence-Based Macroeconomics & Finance (UCLA, PhD 2nd year) [[<i class="fas fa-globe"></i> Syllabus](https://fgeerolf.com/econ221/syllabus.html)] [[Data](https://fgeerolf.com/data/)]
 
 Intermediate Macroeconomics (UCLA, Undergraduate) [[<i class="fas fa-globe"></i> Syllabus](https://fgeerolf.com/econ102/syllabus.html)]
 
