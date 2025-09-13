@@ -315,55 +315,18 @@ taux_souverains %>%
 
 ## Agences de notation / de rating
 
-### Calendrier des notations
-
-```{r, echo = F}
-# load_data("public-debt/rating.RData")
-try(
-  `calendrier-notations-france` <- "https://www.aft.gouv.fr/fr/calendrier-notations-france" %>%
-  rvest::read_html()
-)
-
-if(exists("calendrier-notations-france")){
-  `calendrier-notations-france` %>%
-  rvest::html_table(header = T, fill = T) %>%
-  .[[1]] %>%
-  setNames(c(names(.)[1:4], "Prochaine décision"))|>
-  gt::gt()|>
-   gt::tab_options(
-      quarto.disable_processing = TRUE
-    ) |>
-  gt::fmt_number(
-    dec_mark = ",",
-    sep_mark = ".",
-    decimals = 2
-  ) |>
-  gt::sub_missing(
-    missing_text = ""
-  )|>
-  gt::opt_interactive(
-    use_search = F,
-    use_resizers = T,
-    use_highlight = T,
-    use_pagination = F,
-    use_pagination_info = F,
-    use_compact_mode = T,
-    use_page_size_select = F
-  ) |>
-  gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.aft.gouv.fr/fr/calendrier-notations-france>"))
-  ) |>
-  gt::tab_options(table.width = "100%")
-}
-
-```
-
-
 ### Historique
 
 ```{r}
 ig_b("dette", "france-credit-rating", ext = ".jpeg")
 ```
+
+## Historique 2
+
+```{r}
+ig_b("public-debt", "credit-watch", ext = ".jpeg")
+```
+
 
 
 # Déficit public
