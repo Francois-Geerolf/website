@@ -1,8 +1,6 @@
 ---
 title: François Geerolf
 lang: fr
-filters:
-  - code/genderize-fr.lua
 format:
   html:
     code-fold: false
