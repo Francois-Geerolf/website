@@ -101,7 +101,6 @@ editor: source
 
 {{< include ../public-debate/fr/Geerolf2022.qmd >}}
 
-
 ## Autres interventions (sélection)
 
 {{< include ../public-debate/fr/EcalleGeerolf2025.qmd >}}
