@@ -11,7 +11,6 @@ function Str(el)
   t = t:gsub("%.e%.s", "s")      -- étudiant.e.s -> étudiants
   t = t:gsub("·e·s", "s")        -- étudiant·e·s -> étudiants
   t = t:gsub("/e/s", "s")        -- étudiant/e/s -> étudiants
-  t = t:gsub("trice", "teur")    -- directrice -> directeur
 
   el.text = t
   return el
