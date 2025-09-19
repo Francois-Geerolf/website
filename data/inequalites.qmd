@@ -1,0 +1,66 @@
+---
+title: "Données sur les inégalités en France"
+metadata-files: 
+  - _common_fr.yml
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+`inégalités` <- tribble(
+  ~source, ~dataset,
+  "insee", "bdf2017",
+  "insee", "ILC-ILAT-ICC",
+  "insee", "INDICES_LOYERS",
+  "insee", "IPC-1990",
+  "insee", "IPC-1970-1980",
+  "insee", "IPC-2015",
+        "insee", "echantillon-agglomerations-IPC-2024",
+        "insee", "ponderations-elementaires-IPC-2024",
+        "insee", "liste-varietes-IPC-2024",
+  "insee", "IPC-PM-2015",
+  "insee", "IPCH-2015",
+  "insee", "IPCH-IPC-2015-ensemble",
+  "insee", "IPLA-IPLNA-2015",
+  "insee", "IPPI-2015",
+  "insee", "IRL",
+  "insee", "IPGD-2015",
+  "insee", "SERIES_LOYERS",
+  "insee", "T_CONSO_EFF_FONCTION") %>%
+  arrange(source, dataset)
+```
+
+
+
+# Inégalités en France
+
+## Données Gini
+
+```{r}
+ig_b("insee", "RPM2021", "D2", "fig8")
+```
+
+
+
+
+# Pour en savoir plus...
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")';
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inégalités.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Info
+
+- Insee. L'essentiel sur... l'inflation. <https://www.insee.fr/fr/statistiques/4268033>
+
+
+# Bibliographie
+
+{{< include ../publications/inégalités.qmd >}}
+
