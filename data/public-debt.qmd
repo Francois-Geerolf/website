@@ -117,7 +117,7 @@ taux_souverains %>%
     use_highlight = T
   ) |>
   gt::tab_source_note(
-    source_note = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds>"))
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -174,7 +174,7 @@ ratings_taux |>
     use_highlight = T
   ) |>
   gt::tab_source_note(
-    source_note = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds>"))
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```

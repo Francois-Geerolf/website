@@ -203,7 +203,7 @@ data_investing |>
                       page_size_default = 20,
                       page_size_values = c(5, 10, 15, 20)) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -238,7 +238,7 @@ data_investing |>
   gt::cols_width(countrycode ~ gt::px(60), CURRENCY ~ gt::px(60))|>
   gt::cols_label(countrycode = "", CURRENCY = "")|>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". [Source](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html)"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". [Source](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html)"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -272,7 +272,7 @@ data_investing |>
   gt::cols_width(countrycode ~ gt::px(60))|>
   gt::cols_label(countrycode = "")|>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -326,7 +326,7 @@ data_investing |>
                       page_size_default = 20,
                       page_size_values = c(5, 10, 15, 20)) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -359,7 +359,7 @@ data_investing |>
   gt::cols_width(countrycode ~ gt::px(60))|>
   gt::cols_label(countrycode = "")|>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -411,7 +411,7 @@ data_investing |>
                       page_size_default = 10,
                       page_size_values = c(5, 10, 15, 20)) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```

@@ -111,7 +111,7 @@ ratings_taux|>
     use_page_size_select = T
   ) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds> et <https://tradingeconomics.com/country-list/rating>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds> et <https://tradingeconomics.com/country-list/rating>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -195,7 +195,7 @@ ratings_taux|>
     use_page_size_select = T
   ) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds> et <https://tradingeconomics.com/country-list/rating>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.investing.com/rates-bonds/world-government-bonds> et <https://tradingeconomics.com/country-list/rating>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -305,7 +305,7 @@ taux_souverains %>%
                       page_size_default = 20,
                       page_size_values = c(5, 10, 15, 20)) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830301#tableau-figure1>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/2830301#tableau-figure1>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
