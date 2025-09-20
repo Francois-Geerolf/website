@@ -57,10 +57,7 @@ ig_b("insee", "RPM2021", "D2", "fig8")
 
 ## Info
 
-- Insee. L'essentiel sur... l'inflation. <https://www.insee.fr/fr/statistiques/4268033>
+## Bibliographie
 
 
-# Bibliographie
-
-{{< include ../publications/inégalités.qmd >}}
 
