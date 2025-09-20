@@ -43,6 +43,13 @@ ig_b("insee", "RPM2021", "D2", "fig8")
 ```
 
 
+## Décomposition Gini
+
+```{r}
+ig_b("insee", "IA88", "fig4")
+```
+
+
 
 
 # Pour en savoir plus...
