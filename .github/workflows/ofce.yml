@@ -7,8 +7,6 @@ on:
   pull_request:
     paths:
       - 'ofce/**'
-  schedule:
-    - cron: '0 5 * * *'   # tous les jours à 05:00 UTC
 
 jobs:
   build:
