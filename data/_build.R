@@ -1,4 +1,5 @@
 #!/usr/bin/env Rscript
+source(here::here("_rinit.R"))
 
 quiet <- FALSE
 
@@ -43,13 +44,16 @@ compiler_qmd <- function(fichier) {
 fichiers <- list.files(
   path = "data",
   pattern = "\\.qmd$", 
-  recursive = FALSE, 
-  full.names = TRUE
+  recursive = T, 
+  full.names = T
 )
 
 # Move "./themes.qmd" to last
 fichiers <- c(setdiff(fichiers, "data/themes.qmd"), "data/themes.qmd")
 fichiers <- c(setdiff(fichiers, "data/index.qmd"), "data/index.qmd")
+
+# Remove oecd
+fichiers <- fichiers[!str_detect(fichiers, "^data/oecd")]
 
 # Mesure du temps total
 debut_total <- Sys.time()
