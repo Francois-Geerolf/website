@@ -77,9 +77,25 @@ ig_d("bdf", "DET", "detention-non-residents")
 
 # Bibliographie
 
-## Français
+## En Français
+
+{{< include ../public-debate/fr/Geerolf2025.qmd >}}
+
+{{< include ../publications/fr/Geerolf2024b.qmd >}}
+
+{{< include ../public-debate/fr/EcalleGeerolf2025.qmd >}}
 
 {{< include ../publications/fr/Geerolf2021c.qmd >}}
 
+
+## En Anglais
+
+{{< include ../public-debate/en/Geerolf2025.qmd >}}
+
+{{< include ../publications/en/Geerolf2024b.qmd >}}
+
+{{< include ../working-papers/en/Geerolf2018a.qmd >}}
+
+{{< include ../publications/en/Geerolf2013.qmd >}}
 
 
