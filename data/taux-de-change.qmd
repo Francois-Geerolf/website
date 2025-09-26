@@ -195,7 +195,7 @@ currencies <- currencies|>
   #gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), Ask ~ gt::px(100), everything() ~ gt::px(60)) |>
   gt::cols_label(Pair2 = "", Pair = "", symbol1 = "", symbol2 = "") |>
   gt::tab_source_note(
-    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.investing.com/currencies/streaming-forex-rates-majors>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -223,7 +223,7 @@ currencies <- currencies|>
     use_page_size_select = TRUE
   ) |>
   gt::tab_source_note(
-    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -258,7 +258,7 @@ currencies <- currencies|>
   gt::cols_width(countrycode ~ gt::px(60))|>
   gt::cols_label(countrycode = "")|>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.x-rates.com/table/?from=EUR&amount=1>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -289,7 +289,7 @@ currencies <- currencies|>
     use_page_size_select = TRUE
   ) |>
   gt::tab_source_note(
-    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
+    source_note = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
@@ -324,7 +324,7 @@ currencies <- currencies|>
   gt::cols_width(countrycode ~ gt::px(60))|>
   gt::cols_label(countrycode = "")|>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.x-rates.com/table/?from=USD&amount=1>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
