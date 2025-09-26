@@ -11,6 +11,7 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 `finances-publiques` <- tribble(
   ~source, ~dataset,
+  "insee",  "T_3201",
   "insee",  "T_7301",
   "insee", "T_3217") %>%
   arrange(source, dataset)
@@ -87,4 +88,17 @@ ig_d("insee", "T_3201", "3-20-1-19")
 ```{r}
 ig_d("insee", "T_3201", "3-20-1-19-1981")
 ```
+
+
+
+
+
+# Bases de données
+
+```{r, echo = F}
+`finances-publiques` |>
+  source_dataset_file_updates()
+```
+
+# Bibliographie
 
