@@ -12,6 +12,7 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 demography <- tribble(
   ~source, ~dataset,
   "eurostat", "demo_minfind",
+  "wdi", "SP.POP.TOTL",
   "oecd", "FAMILY") %>%
   arrange(source, dataset)
 ```
@@ -44,10 +45,27 @@ ig_d("eurostat", "demo_minfind", "FR-DE-IT-ES-1996")
 
 # Births
 
+## Demography
+
 ```{r}
 ig_d("eurostat", "demo_fmonth", "DE-FR-IT-12months")
 ```
 
+# Population
+
+## US, China, Europe
+
+```{r}
+ig_d("wdi", "SP.POP.TOTL", "US-CN-EU")
+```
+
+
+
+## Germany, France, Italy
+
+```{r}
+ig_d("wdi", "SP.POP.TOTL", "DE-FR-IT")
+```
 
 
 # Datasets

@@ -36,7 +36,8 @@ bibliography %>%
   cols_width(
     PDF    ~ px(40),
     HTML   ~ px(40),
-    GitHub ~ px(40)
+    GitHub ~ px(40),
+    File ~ px(100)
   ) %>%
   opt_interactive(
     use_search       = TRUE,
