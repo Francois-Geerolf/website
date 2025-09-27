@@ -211,6 +211,7 @@ source_dataset_file_updates3 <- . %>%
 source_dataset_file_updates4 <- . %>%
   mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
          source = glue::glue("[{source}](https://fgeerolf.com/data/{source})")) %>%
+  select(-4) %>%
   gt::gt() %>%
   fmt_markdown(columns = c("dataset", "source")) %>%
   gt::cols_align(align = "center", columns = everything()) %>% 
@@ -219,9 +220,8 @@ source_dataset_file_updates4 <- . %>%
   gt::cols_width(
     1 ~ gt::px(90),
     2 ~ gt::px(120),
-    3 ~ gt::px(400),        # make the 3rd column much larger
+    3 ~ gt::px(400),
     4 ~ gt::px(90),
-    5 ~ gt::px(90),
     gt::everything() ~ gt::px(120)  # optional: set a default for others
   ) %>%
   # Interactive gt
