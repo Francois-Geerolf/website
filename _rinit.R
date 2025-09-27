@@ -217,7 +217,11 @@ source_dataset_file_updates4 <- . %>%
   gt::tab_options(column_labels.font.weight = "bold") %>% 
   # Make the 3rd column wider
   gt::cols_width(
+    1 ~ gt::px(90),
+    2 ~ gt::px(120),
     3 ~ gt::px(400),        # make the 3rd column much larger
+    4 ~ gt::px(90),
+    5 ~ gt::px(90),
     gt::everything() ~ gt::px(120)  # optional: set a default for others
   ) %>%
   # Interactive gt
