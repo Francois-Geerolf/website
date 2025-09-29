@@ -1,0 +1,228 @@
+---
+title: "Inflation in France: CPI or HICP ?"
+metadata-files: 
+  - _common.yml
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+
+`CPI-or-HICP` <- tribble(
+  ~source, ~dataset,
+  "insee", "IPC-1990",
+  "insee", "IPC-1970-1980",
+  "insee", "IPC-2015",
+        "insee", "echantillon-agglomerations-IPC-2024",
+        "insee", "ponderations-elementaires-IPC-2024",
+        "insee", "liste-varietes-IPC-2024",
+  "insee", "IPC-PM-2015",
+  "insee", "IPCH-2015") %>%
+  arrange(source, dataset)
+```
+
+{{< include ../publications/en/Geerolf2024a.qmd >}}
+
+
+# Comparing the French CPI vs. the HICP
+
+## Ratio IPC/IPCH
+
+### 1996-
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996-ratio-inverted")
+```
+
+
+
+### 1999-
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1999-ratio-inverted")
+```
+
+
+
+
+## Ratio IPCH/IPC
+
+### 1996-
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996-ratio")
+```
+
+
+
+### 1999-
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1999-ratio")
+```
+
+
+## Indices de Prix
+
+### Annuel
+
+#### 1996-
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1996")
+```
+
+
+
+### Mensuel
+
+#### 1996-
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996")
+```
+
+
+
+#### 2008-
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-2008")
+```
+
+
+#### 2016-
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-2016")
+```
+
+## Inflation
+
+### 10 années
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-10-annees")
+```
+
+### 15 années
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-15-annees")
+```
+
+### 5 années
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-5-annees")
+```
+
+
+
+# Effet santé
+
+## Poids santé
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-06")
+```
+
+
+## Evolution santé
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-06")
+```
+
+## Figure 1
+
+```{r}
+ig_d("insee", "IPCH-2015", "plot-sante-bind")
+```
+
+
+## Produits pharmaceutiques
+
+#### Tous
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-0611")
+```
+
+#### 2020-
+
+À compter du 15 mai 2024, le montant de la participation forfaitaire passe de 1€ à 2€
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-0611-2020")
+```
+
+# Enseignement
+
+## Comparaison des pondérations (Figure 2)
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-10-101-102-104")
+```
+
+## Evolutions
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-10")
+```
+
+
+# Autres différences
+
+## Redevance audiovisuelle
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-094231")
+```
+
+
+
+## Jeux de hasard, ticket à gratter
+
+### Poids
+
+```{r}
+ig_d("insee", "IPC-2015", "POND-0943")
+```
+
+
+### Evolution
+
+Pour 0.9%-1% de l'indice depuis 2016. (l'IPC base 2016)
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-0943")
+```
+
+### 1er quintile pour le SMIC ?
+
+```{r}
+ig_d("insee", "bdf2017", "0943")
+```
+
+
+
+# Effets sur la mesure du pouvoir d'achat
+
+## Salaires annuels « en euros constants »
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-CCE-4-6-IPC-IPCH-reel")
+```
+
+
+## Point d'indice net de la fonction publique
+
+
+```{r}
+ig_d("ipp", "indicefp", "indicefp-reel-1999-cpih-percent-net-brut-mensuel")
+```
+
+
