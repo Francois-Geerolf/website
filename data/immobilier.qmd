@@ -11,6 +11,8 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 immobilier <- tribble(
   ~source, ~dataset,
   "acpr",  "as151",
+  "acpr",  "as160",
+  "acpr",  "as174",
   "bdf",  "BSI1",
   "bdf",  "FM",
   "bdf",  "CPP",
