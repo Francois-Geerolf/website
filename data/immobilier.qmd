@@ -268,6 +268,14 @@ ig_d("insee", "T_3217", "TF-TH")
 
 
 
+## Droits de mutation à titre gratuit
+
+```{r}
+ig_d("insee", "T_3217", "droits-de-mutation")
+```
+
+
+
 ## Taxe foncière
 
 ### Montant
@@ -282,12 +290,6 @@ ig_d("insee", "T_3217", "taxe-fonciere")
 
 ```{r}
 ig_b("insee", "RPM2021", "F31", "table1")
-```
-
-## Droits de mutation, taxe foncière, taxe habitation
-
-```{r}
-ig_d("insee", "t_3217", "enregistrement-mutation-habitation-fonciere")
 ```
 
 
