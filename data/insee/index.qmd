@@ -59,6 +59,16 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 
 # List of Insee Datasets
 
+## Interactive
+
+```{r, echo = F}
+datasets |>
+  filter(source == "insee") |>
+  source_dataset_file_updates2i()
+```
+
+
+## Flat
 
 ```{r, echo = F}
 datasets |>
@@ -184,14 +194,14 @@ ig_d("insee", "CNT-2020-PIB-EQB-RF", "P51-P51B-P51G-P51M-P51P-P51S-1980")
 ## MN, C4, C3, MB
 
 ```{r}
-ig_d("insee", "CNA-2020-FBCF-SI", "MN-C4-C3-MB")
+ig_d("insee", "CNA-2014-FBCF-SI", "MN-C4-C3-MB")
 ```
 
 
 ## NNTOTAL, BE, JZ, FZ
 
 ```{r}
-ig_d("insee", "CNA-2020-FBCF-SI", "NNTOTAL-BE-JZ-FZ")
+ig_d("insee", "CNA-2014-FBCF-SI", "NNTOTAL-BE-JZ-FZ")
 ```
 
 
@@ -210,7 +220,7 @@ ig_d("insee", "CNA-2020-FBCF-SI", "NNTOTAL-BE-JZ-FZ")
 ## Excédent brut
 
 ```{r}
-ig_d("insee", "CNT-2020-CSI", "B2-B1G-S11")
+ig_d("insee", "CNT-2014-CSI", "B2-B1G-S11")
 ```
 
 ## Taux de marge et investissement
@@ -471,15 +481,10 @@ ig_d("insee", "IPC-PM-2015", "essence-gazole-fioul-linear")
 ## Personne > UC > Ménage (Cotis)
 
 ```{r}
-ig_d("insee", "CNA-2020-RDB", "menage-personne-UC-arbitrable-1996")
+ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
 ```
 
 # Cartes / Géographies
-
-```{r, echo = F}
-# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPPI-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPPI-2015.qmd")'
-# sh ../../website_short.sh
-```
 
 ## Revenu médian
 

@@ -192,6 +192,31 @@ source_dataset_file_updates2 <- . %>%
   gt::tab_options(column_labels.font.weight = "bold")
 
 
+source_dataset_file_updates2i <- . %>%
+  mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)")) %>%
+  select(-source) %>%
+  gt::gt() %>%
+  fmt_markdown(columns = c("dataset")) %>%
+  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::tab_options(column_labels.font.weight = "bold") %>% 
+  # Make the 3rd column wider
+  gt::cols_width(
+    1 ~ gt::px(120),
+    2 ~ gt::px(400),
+    3 ~ gt::px(90),
+    4 ~ gt::px(90),
+    gt::everything() ~ gt::px(120)  # optional: set a default for others
+  ) %>%
+  # Interactive gt
+  gt::opt_interactive(use_search = T,
+                      use_pagination = T,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      use_resizers = TRUE,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20))
+
+
 source_dataset_file_updates3 <- . %>%
   mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
          source = glue::glue("[{source}](https://fgeerolf.com/data/{source})")) %>%
