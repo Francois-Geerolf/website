@@ -17,22 +17,26 @@ pauvrete <- tribble(
 ```
 
 
-# Info
-
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pauvrete.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("employment.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
+# Taux de pauvreté selon le seuil de pauvreté 
 
 
-# Taux de chômage BIT
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R TAUX-CHOMAGE; /usr/local/bin/R -e 'quarto::quarto_render("TAUX-CHOMAGE.qmd")'
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CHOMAGE-TRIM-NATIONAL; /usr/local/bin/R -e 'quarto::quarto_render("CHOMAGE-TRIM-NATIONAL.qmd")'
-# sh ~/iCloud/website/website_short.sh
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2408282#tableau-figure1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width("Seuil de pauvreté" ~ gt::px(150), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/2408282#tableau-figure1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
 ```
 
 # Seuils de pauvreté
