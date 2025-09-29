@@ -17,7 +17,126 @@ pauvrete <- tribble(
 ```
 
 
-# Taux de pauvreté selon le seuil de pauvreté 
+# Données Insee
+
+## Taux de pauvreté et seuils de pauvreté
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/5759045#tableau-figure1_radio2" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  #gt::cols_width("Année" ~ gt::px(150), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/5759045#tableau-figure1_radio2>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+
+
+
+## Par statut d'activité
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/5759045#tableau-figure2_radio1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  #gt::cols_width("Année" ~ gt::px(150), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/5759045#tableau-figure2_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+## Configuration famiale
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/5759045#tableau-figure2_radio1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(3) |>
+  gt::gt() |>
+  #gt::cols_width("Année" ~ gt::px(150), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/5759045#tableau-figure2_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Catégorie socioprofessionnelle
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/5759045#tableau-figure2_radio1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(4) |>
+  gt::gt() |>
+  #gt::cols_width("Année" ~ gt::px(150), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/5759045#tableau-figure2_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Lien avec l'immigration
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/5759045#tableau-figure2_radio1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(5) |>
+  gt::gt() |>
+  #gt::cols_width("Année" ~ gt::px(150), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/5759045#tableau-figure2_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Taux de pauvreté selon le seuil de pauvreté 
 
 
 ```{r echo = F}
@@ -39,9 +158,30 @@ pauvrete <- tribble(
   gt::tab_options(table.width = "100%")
 ```
 
-# Seuils de pauvreté
+## Seuils de pauvreté
 
 - Seuils de pauvreté mensuels - Données annuelles de 1975 à 2022. [html](https://www.insee.fr/fr/statistiques/2499760)
+
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2499760#tableau-figure1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width("Seuil de pauvreté" ~ gt::px(150), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/2499760#tableau-figure1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
 
 # Pauvreté des retraités
 
