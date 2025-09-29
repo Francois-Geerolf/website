@@ -250,16 +250,10 @@ source_dataset_title_file_updates <- . %>%
   gt::tab_options(column_labels.font.weight = "bold")
 
 theme_file_updates <- . %>%
-  mutate(type = map(theme, ~ tibble(type = c(".html")))) %>%
-  unnest %>%
-  mutate(date = paste0("~/iCloud/website/data/", theme, type) %>% file.info %>% pluck("mtime") %>% as.Date()) %>%
-  spread(type, date) %>%
-  mutate(Title = read_lines(paste0("~/iCloud/website/data/", theme, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
-  select(theme, Title, everything()) %>%
-  mutate(theme = glue::glue("[{theme}](https://fgeerolf.com/data/{theme}.html)"),
-         theme = map(theme, gt::md)) %>%
+  left_join(themes, by = c("theme")) %>%
   gt::gt() %>%
-  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::fmt_markdown(columns = "Link") %>%
+  gt::cols_align(align = "center", columns = everything()) %>%
   gt::tab_options(column_labels.font.weight = "bold")
 
 

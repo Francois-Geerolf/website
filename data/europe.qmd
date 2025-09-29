@@ -364,3 +364,14 @@ ig_d("eurostat", "tipsbp20", "mean-sd-EU27-FR-DE")
 `europe` |>
   source_dataset_file_updates()
 ```
+
+# Related themes
+
+
+
+```{r, echo = F}
+tribble(~ theme,
+        "greece",
+        "poland") |>
+  theme_file_updates()
+```
