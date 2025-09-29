@@ -14,12 +14,8 @@ format:
 
 
 ```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
-library(lubridate)
-library(rvest)
-library(purrr)
-library(dplyr)
-library(gt)
 # cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 # cd ~/iCloud/website/data; /usr/local/bin/Rscript --vanilla _update_qmd_folder.R insee reset
 # sh ~/iCloud/website/website_short.sh

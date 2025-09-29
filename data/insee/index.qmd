@@ -1,0 +1,682 @@
+---
+title: INSEE - Institut national de la statistique et des études économiques
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/Rscript --vanilla _update_qmd_folder.R insee reset
+# sh ~/iCloud/website/website_short.sh
+#load_data("insee/WSBDM_familles_source_2020Q2.RData")
+#load_data("insee/insee_datasets.RData")
+#load_data("insee/codelist.RData")
+#load_data("insee/idbank_list.RData")
+#load_data("insee/CL_INDICATEUR.RData")
+#list_main_datasets <- list.files(pattern = "\\.qmd$") %>%
+#  gsub(".qmd$", "", .)
+
+#insee_datasets_url <- insee::get_dataset_list() %>%
+#  select(id, url)
+```
+
+
+# Calendrier des prochaines publications de l'Insee
+
+```{r, echo = F}
+"https://www.insee.fr/fr/information/5235017" |>
+  rvest::read_html() |>
+  rvest::html_table(header = F, fill = T) |>
+  purrr::pluck(1) |>
+  dplyr::mutate(X2 = ifelse(is.na(X2), X1, X2),
+                X3 = ifelse(is.na(X3), "", X3))|>
+  dplyr::select(-X1) |>
+  #dplyr::filter(X3 != "DATE D'EMBARGO", X3 != "") |>
+  dplyr::select(`Données` = X2, `Mise à jour` = X3) |>
+  dplyr::mutate(`Données` = stringr::str_remove_all(`Données`, "\\\t|\\\n|\\\r"),
+         `Données` = substr(`Données`, 1,190)) |>
+  gt::gt() |>
+  #gt::cols_width(`Données` ~ gt::px(400), everything() ~ gt::px(150)) |>
+  gt::cols_label(`Données` = "", `Mise à jour` = "") |>
+  gt::opt_interactive(use_search = F,
+                      use_resizers = T,
+                      use_highlight = T,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T) |>
+  gt::tab_footnote(
+  footnote = gt::md(
+    paste0(
+      "Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"),
+      ". Mis à jour: [fgeerolf.com](https://fgeerolf.com/data/insee/calendrier.html). ",
+      "Source: [Insee](https://www.insee.fr/fr/information/5235017)"
+    )
+  )
+) |>
+  gt::tab_options(table.width = "100%")
+```
+
+- Calendrier des prochaines publications. [html](https://fgeerolf.com/data/insee/calendrier.html)
+
+- Actualités des indices et séries chronologiques. [html](https://www.insee.fr/fr/information/2862832)
+
+# List of Insee Datasets
+
+
+```{r, echo = F}
+datasets |>
+  filter(source == "insee") |>
+  source_dataset_file_updates2()
+```
+
+
+# Statistique publique
+
+## Autres organismes
+
+```{r, echo = F}
+ig_b("insee", "blogInsee_2025_08_l_insee_et_les_services_statistiques_ministeriels_fig1-1-scaled")
+```
+
+## Liens
+
+```{r, echo = F}
+ig_b("insee", "blogInsee_2025_08_l_insee_et_les_services_statistiques_ministeriels_fig2-scaled")
+```
+
+<!---
+
+## List
+
+```{r, echo = F}
+insee_datasets %>%
+  filter((id %in% (list.files(pattern = "\\.qmd$") %>% gsub(".qmd$", "", .)))) %>%
+  arrange(id) %>%
+  select(1:2) %>%
+  mutate(`.RData` = as.Date(file.info(paste0("../../data/insee/", id, ".RData"))$mtime),
+         `.html` = as.Date(file.info(paste0("../../data/insee/", id, ".html"))$mtime)) %>%
+  arrange(desc(`.html`)) %>%
+  mutate(`.html` = paste0("[", `.html`, "](https://fgeerolf.com/data/insee/", `.html`, '.html)')) %>%
+  {if (is_html_output()) print_table(.) else .}
+```
+
+
+# List of Other Datasets
+
+```{r, echo = F}
+insee_datasets %>%
+  select(1:3) %>%
+  filter(!(id %in% gsub(".qmd$", "", list.files(pattern = "\\.qmd$")))) %>%
+  {if (is_html_output()) datatable(., filter = 'top', rownames = F, escape = F) else .}
+```
+
+
+--->
+
+# Comptes de la Nation
+
+## Annuels
+
+- Données détaillées. [html](https://www.insee.fr/fr/statistiques/5354721?sommaire=5354786)
+
+- Production et consommation intermédiaire en 2020. [html](https://www.insee.fr/fr/statistiques/5354737?sommaire=5354786)
+
+- Les comptes de la Nation en 2020. [html](https://www.insee.fr/fr/statistiques/5354786)
+
+
+
+<!---
+
+## List
+
+
+## Javascript
+
+```{r, echo = F}
+insee_datasets %>%
+  filter((id %in% (list.files(pattern = "\\.qmd$") %>% gsub(".qmd$", "", .)))) %>%
+  filter(grepl("t_[0-9]", id) | grepl("CNA-2014-", id)) %>%
+  arrange(id) %>%
+  select(1:2) %>%
+  mutate(`.RData` = as.Date(file.info(paste0("../../data/insee/", id, ".RData"))$mtime),
+         `.html` = as.Date(file.info(paste0("../../data/insee/", id, ".html"))$mtime)) %>%
+  arrange(desc(`.html`)) %>%
+  mutate(`.html` = paste0('<a  target=_blank href=https://fgeerolf.com/data/insee/', id, '.html >', `.html`, '</a>')) %>%
+  {if (is_html_output()) datatable(., filter = 'top', rownames = F, escape = F) else .}
+```
+
+```{r, echo = F}
+insee_datasets %>%
+  filter((id %in% (list.files(pattern = "\\.qmd$") %>% gsub(".qmd$", "", .)))) %>%
+  filter(grepl("t_[0-9]", id) | grepl("CNA-2014-", id)) %>%
+  arrange(id) %>%
+  select(1:2) %>%
+  mutate(`.RData` = as.Date(file.info(paste0("../../data/insee/", id, ".RData"))$mtime),
+         `.html` = as.Date(file.info(paste0("../../data/insee/", id, ".html"))$mtime)) %>%
+  mutate(`.html` = paste0("[", `.html`, "](https://fgeerolf.com/data/insee/", id, '.html)')) %>%
+  {if (is_html_output()) print_table(.) else .}
+```
+
+--->
+
+## Trimestriels
+
+- Produit Intérieur Brut (PIB) et ses composantes. [html](https://www.insee.fr/fr/statistiques/5419155?sommaire=5414151)
+
+- Biens et services. [html](https://www.insee.fr/fr/statistiques/5419157?sommaire=5414151)
+
+- Consommation des ménages. [html](https://www.insee.fr/fr/statistiques/5419159?sommaire=5414151)
+
+- Échanges extérieurs. [html](https://www.insee.fr/fr/statistiques/5419161?sommaire=5414151)
+
+- Branches. [html](https://www.insee.fr/fr/statistiques/5419163?sommaire=5414151)
+
+- Secteurs institutionnels. [html](https://www.insee.fr/fr/statistiques/5419165?sommaire=5414151)
+
+- Revenu disponible et pouvoir d'achat des ménages [html](https://www.insee.fr/fr/statistiques/5419167?sommaire=5414151)
+
+- Finances publiques. [html](https://www.insee.fr/fr/statistiques/5419169?sommaire=5414151)
+
+
+
+<!---
+
+
+## Javascript
+
+```{r, echo = F}
+insee_datasets %>%
+  filter((id %in% (list.files(pattern = "\\.qmd$") %>% gsub(".qmd$", "", .)))) %>%
+  filter(!grepl("t_[0-9]", id), grepl("t_", id) | grepl("CNT-2014-", id), id != "irsocdads2016_nat_excel") %>%
+  arrange(id) %>%
+  select(1:2) %>%
+  mutate(`.RData` = as.Date(file.info(paste0("../../data/insee/", id, ".RData"))$mtime),
+         `.html` = as.Date(file.info(paste0("../../data/insee/", id, ".html"))$mtime)) %>%
+  arrange(desc(`.html`)) %>%
+  mutate(`.html` = paste0('<a  target=_blank href=https://fgeerolf.com/data/insee/', id, '.html >', `.html`, '</a>')) %>%
+  {if (is_html_output()) datatable(., filter = 'top', rownames = F, escape = F) else .}
+```
+
+## List
+
+```{r, echo = F}
+insee_datasets %>%
+  filter((id %in% (list.files(pattern = "\\.qmd$") %>% gsub(".qmd$", "", .)))) %>%
+  filter(!grepl("t_[0-9]", id), grepl("t_", id) | grepl("CNT-2014-", id), id != "irsocdads2016_nat_excel") %>%
+  arrange(id) %>%
+  select(1:2) %>%
+  mutate(`.RData` = as.Date(file.info(paste0("../../data/insee/", id, ".RData"))$mtime),
+         `.html` = as.Date(file.info(paste0("../../data/insee/", id, ".html"))$mtime)) %>%
+  mutate(`.html` = paste0("[", `.html`, "](https://fgeerolf.com/data/insee/", id, '.html)')) %>%
+  {if (is_html_output()) print_table(.) else .}
+```
+
+
+# Autres Comptes de la Nation
+
+```{r, echo = F}
+insee_datasets %>%
+  filter(grepl("t_[0-9]", id)) %>%
+  arrange(id) %>%
+  select(1:2) %>%
+    mutate(html = ifelse(id %in% list_main_datasets, paste0('<a  target=_blank href=https://fgeerolf.com/data/insee/', id, '.html > html </a>'), "")) %>%
+  {if (is_html_output()) datatable(., filter = 'top', rownames = F, escape = F) else .}
+```
+
+# Sources - Main Datasets
+
+## Javascript
+
+```{r, echo = F}
+WSBDM_familles_source_2020Q2 %>%
+  filter((Dataflow %in% (list.files(pattern = "\\.qmd$") %>% gsub(".qmd$", "", .)))) %>%
+  select(1, 2, 4, 6) %>%
+  mutate(Dataflow = paste0('<a  target=_blank href=https://fgeerolf.com/data/insee/', Dataflow, '.html >', Dataflow ,'</a>')) %>%
+  {if (is_html_output()) datatable(., filter = 'top', rownames = F, escape = F) else .}
+```
+
+--->
+
+
+
+
+<!---
+
+## List
+
+```{r, echo = F}
+WSBDM_familles_source_2020Q2 %>%
+  filter((Dataflow %in% (list.files(pattern = "\\.qmd$") %>% gsub(".qmd$", "", .)))) %>%
+  arrange(Dataflow) %>%
+  select(1, 2, 4, 6) %>%
+  mutate(Dataflow = paste0("[", Dataflow, "](https://fgeerolf.com/data/insee/", Dataflow, '.html)')) %>%
+  {if (is_html_output()) print_table(.) else .}
+```
+
+
+# Sources - Other Datasets
+
+```{r, echo = F}
+WSBDM_familles_source_2020Q2 %>%
+  filter(!(Dataflow %in% (list.files(pattern = "\\.qmd$") %>% gsub(".qmd$", "", .)))) %>%
+  select(1, 2, 4, 6) %>%
+  {if (is_html_output()) datatable(., filter = 'top', rownames = F, escape = F) else .}
+```
+
+
+# Codelist
+
+```{r, echo = F}
+codelist %>%
+  select(-1) %>%
+  {if (is_html_output()) datatable(., filter = 'top', rownames = F, escape = F) else .}
+```
+
+--->
+
+
+
+## Autre info
+
+- Agenda de diffusion des indicateurs économiques. [[html](https://www.insee.fr/fr/information/1405540?debut=0)]
+- INSEE Idbanks. [[html](idbank_list.html)]
+- INSEE Datasets. [[html](dataset_list.html)]
+- Liste des indicateurs statistiques. [[html](https://www.insee.fr/fr/metadonnees/indicateurs)]
+- Nomenclature d'Activités Française NAF rév. 2. [[pdf](https://www.insee.fr/fr/statistiques/fichier/2120875/Nomenclatures_NAF_Reedition_2020.pdf)]
+- Nomenclatures d'activités et de produits françaises NAF et CPF. [[pdf](https://www.insee.fr/fr/statistiques/fichier/2406147/Nomenclatures_NAF_et_CPF_Reedition_2020.pdf)]
+
+
+
+
+# Indicateur de Chiffre d'Affaires
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R ICA-2015-IND-CONS; /usr/local/bin/R -e 'quarto::quarto_render("ICA-2015-IND-CONS.qmd")'
+# sh ../../website_short.sh
+```
+
+## Fabrication de boissons
+
+```{r}
+ig_d("insee", "ICA-2015-IND-CONS", "11-0-01-02-05-06-07-CVS-CJO")
+```
+
+
+# Consommation Mensuelle
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/R -e 'quarto::quarto_render("conso-mensuelle.qmd")'
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CONSO-MENAGES-2020; /usr/local/bin/R -e 'quarto::quarto_render("CONSO-MENAGES-2020.qmd")'
+# sh ../../website_short.sh
+```
+
+
+## Depuis décembre 2021
+
+```{r}
+ig_d("insee", "CONSO-MENAGES-2020", "BIENS-ALIMENTAIRE-ALIMENTAIRE-HORS-TABAC-dec-2021")
+```
+
+
+## Depuis février 2022
+
+```{r}
+ig_d("insee", "CONSO-MENAGES-2020", "BIENS-ALIMENTAIRE-feb-2022")
+```
+
+
+
+## Alimentation, Total, Mensuelle
+
+```{r}
+ig_d("insee", "CONSO-MENAGES-2020", "BIENS-ALIMENTAIRE")
+```
+
+
+## Alimentation, Fabriqués, Manufacturés, Energie
+
+```{r}
+ig_d("insee", "conso-mensuelle", "ALIM-ENERGIE-FABRIQUES-MANUFACTURES")
+```
+
+
+# Investissement
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-FBCF-BRANCHE; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-FBCF-BRANCHE.qmd")'
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-FBCF-SI; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-FBCF-SI.qmd")'
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-PIB-EQB-RF; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-PIB-EQB-RF.qmd")'
+# sh ../../website_short.sh
+```
+
+## Secteur institutionnels
+
+```{r}
+ig_d("insee", "CNT-2014-PIB-EQB-RF", "P51-P51B-P51G-P51M-P51P-P51S-1980")
+```
+
+## MN, C4, C3, MB
+
+```{r}
+ig_d("insee", "CNA-2014-FBCF-SI", "MN-C4-C3-MB")
+```
+
+
+## NNTOTAL, BE, JZ, FZ
+
+```{r}
+ig_d("insee", "CNA-2014-FBCF-SI", "NNTOTAL-BE-JZ-FZ")
+```
+
+
+
+
+
+
+# Taux de marge
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-CSI; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-CSI.qmd")'
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-CB; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-CB.qmd")'
+# sh ../../website_short.sh
+```
+
+## Excédent brut
+
+```{r}
+ig_d("insee", "CNT-2014-CSI", "B2-B1G-S11")
+```
+
+## Taux de marge et investissement
+
+### Investissement total
+
+```{r}
+ig_d("insee", "CNT-2014-CSI", "investissement-taux-marge")
+```
+
+
+### Investissement des SNF
+
+```{r}
+ig_d("insee", "CNT-2014-CSI", "investissement-taux-marge-SNF")
+```
+
+
+## Agro-alimentaire, Energie, Ensemble
+
+### Avec 0
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-B1-DE-C1-CNT-2010")
+```
+
+### Sans 0
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-B1-DE-C1-CNT-2010-sans-0")
+```
+
+
+
+
+## EBE
+
+### C1, C2, DE, HZ
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-gdp-C1-DE-HZ-C2-2000")
+```
+
+
+
+### Services, Industrie, Tertiaire marchand
+
+```{r}
+ig_d("insee", "CNT-2014-CB", "B2-gdp-DI-DIM-DS-DSM")
+```
+
+
+
+
+# Commerce Extérieur
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNT-2014-OPERATIONS; /usr/local/bin/R -e 'quarto::quarto_render("CNT-2014-OPERATIONS.qmd")'
+# sh ../../website_short.sh
+```
+
+## Exports et imports
+
+```{r}
+ig_d("insee", "CNT-2014-PIB-EQB-RF", "P6-P7-PIB")
+```
+
+## Solde commercial
+
+```{r}
+ig_d("insee", "CNT-2014-PIB-EQB-RF", "SOLDE-PIB")
+```
+
+## Balance commerciale
+
+### Biens, Services, B&S (manque tourisme)
+
+```{r}
+ig_d("insee", "CNT-2014-OPERATIONS", "NX-DS-DB-D")
+```
+
+
+
+
+### Tous
+
+```{r}
+ig_d("insee", "CNT-2014-OPERATIONS", "NX-DIM-DI")
+```
+
+### 1990-
+
+```{r}
+ig_d("insee", "CNT-2014-OPERATIONS", "NX-DIM-DI-1990")
+```
+
+## Exportations
+
+### 2017-
+
+```{r}
+ig_d("insee", "CNT-2014-OPERATIONS", "DIM-DI-DB-P6-2017")
+```
+
+## Importations
+
+### 2017-
+
+```{r}
+ig_d("insee", "CNT-2014-OPERATIONS", "DIM-DI-DB-P7-2017")
+```
+
+
+
+
+
+
+# Indicateur du climat
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CLIMAT-AFFAIRES; /usr/local/bin/R -e 'quarto::quarto_render("CLIMAT-AFFAIRES.qmd")'
+# sh ../../website_short.sh
+```
+
+## Tous
+
+```{r}
+ig_d("insee", "CLIMAT-AFFAIRES", "CLIMAT-EMPLOI")
+```
+
+
+
+
+
+# Inflation annuelle
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPC-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPC-2015.qmd")'
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
+# sh ../../website_short.sh
+```
+
+## 3 dernières années
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-inflation-3-dernieres-annees")
+```
+
+
+
+## 2 dernières années
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-inflation-2-dernieres-annees")
+```
+
+
+
+## Inflation
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1996")
+```
+
+## Inflation
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1996-labels")
+```
+
+
+
+
+## 5 dernières années
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-5-annees")
+```
+
+## 10 dernières années
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-10-annees")
+```
+
+## 15 dernières années
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-15-annees")
+```
+
+## Cadre, ouvrier, retraité, actif
+
+```{r}
+ig_d("insee", "IPC-2015", "CADRE-OUVRIER-RETRAITE")
+```
+
+# Indice de Production
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPPI-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPPI-2015.qmd")'
+# sh ../../website_short.sh
+```
+
+## 10-12
+
+```{r}
+ig_d("insee", "IPPI-2015", "10-12-importation-2017")
+```
+
+# Pondérations Importantes
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
+# sh ../../website_short.sh
+```
+
+## Alimentation
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-01")
+```
+
+## Logement
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-04")
+```
+
+## Loyers
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-041")
+```
+
+
+# Prix des biens
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPC-PM-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPC-PM-2015.qmd")'
+# sh ../../website_short.sh
+```
+
+## Energie: Pétrole, Fioul
+
+```{r}
+ig_d("insee", "IPC-PM-2015", "essence-gazole-fioul-linear")
+```
+
+
+# Pouvoir d'achat
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-RDB; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-RDB.qmd")'
+# sh ../../website_short.sh
+```
+
+## Personne > UC > Ménage (Cotis)
+
+```{r}
+ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
+```
+
+# Cartes / Géographies
+
+```{r, echo = F}
+# cd ../../data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPPI-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPPI-2015.qmd")'
+# sh ../../website_short.sh
+```
+
+## Revenu médian
+
+```{r}
+ig_d("insee", "filosofi2015", "MED15-france")
+```
+
+## Taux de chômage localisé
+
+
+```{r}
+ig_d("insee", "TAUX-CHOMAGE", "carte-chomage-2019Q4")
+```
+
+
+
