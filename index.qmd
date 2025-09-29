@@ -1,17 +1,7 @@
 ---
 title: François Geerolf
-lang: fr
-format:
-  html:
-    code-fold: false
-    toc: true
-    theme: flatly
-    embed-resources: false
-    include-in-header:
-      - text: |
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    include-after-body: statcounter.html
-editor: source
+metadata-files: 
+  - _common_fr.yml
 ---
 
 
