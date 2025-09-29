@@ -4,8 +4,9 @@ setwd(here::here("data"))
 # Set your root folder here
 root_dir <- "~/iCloud/website/data"
 
-# Required extensions (case-insensitive)
-targets <- c("qmd", "html", "rdata")
+# Required core (case-insensitive) + allowed data
+targets_core <- c("qmd", "html")
+targets_data <- c("rdata", "parquet")
 
 # --- Helper: robustly extract title from a .qmd's YAML front matter ---
 get_qmd_title <- function(qmd_path) {
@@ -22,7 +23,6 @@ get_qmd_title <- function(qmd_path) {
   top_idx <- which(grepl("^---\\s*$", lines[seq_len(ncheck)]))
   if (length(top_idx) > 0) {
     start <- top_idx[1]
-    # Find the first closing fence after start
     after <- (start + 1):length(lines)
     if (length(after) > 0) {
       end_rel <- which(grepl("^---\\s*$|^\\.\\.\\.\\s*$", lines[after]))
@@ -50,7 +50,6 @@ get_qmd_title <- function(qmd_path) {
   if (!is.na(idx)) {
     raw <- sub("^\\s*title\\s*:\\s*", "", lines[idx], ignore.case = TRUE, perl = TRUE)
     raw <- trimws(raw)
-    # strip surrounding single/double quotes if present
     raw <- sub('^"(.*)"$', "\\1", raw)
     raw <- sub("^'(.*)'$", "\\1", raw)
     return(raw)
@@ -59,11 +58,10 @@ get_qmd_title <- function(qmd_path) {
   NA_character_
 }
 
-
 # List candidate files recursively, ignoring case on pattern
 files <- list.files(
   root_dir,
-  pattern = "\\.(qmd|html|rdata)$",
+  pattern = "\\.(qmd|html|rdata|parquet)$",
   ignore.case = TRUE,
   recursive = TRUE,
   full.names = TRUE
@@ -86,20 +84,22 @@ df <- tibble(path = files) %>%
     basepath = file.path(rel_dir, stem)
   )
 
-# Identify basenames that have ALL required extensions present
+# Identify basenames that have BOTH core files and AT LEAST ONE data file
 complete_bases <- df %>%
   group_by(basepath) %>%
   summarize(have_ext = list(sort(unique(ext))), .groups = "drop") %>%
-  filter(map_lgl(have_ext, ~ all(targets %in% .x))) %>%
+  filter(map_lgl(have_ext, ~ all(targets_core %in% .x) && any(.x %in% targets_data))) %>%
   pull(basepath)
 
 if (length(complete_bases) == 0) {
   datasets <- tibble(
-    source  = character(),
-    dataset = character(),
-    Title   = character(),
-    `.html` = as.POSIXct(character()),
-    `.rdata`= as.POSIXct(character())
+    source     = character(),
+    dataset    = character(),
+    Title      = character(),
+    `.html`    = as.Date(character()),
+    `.RData`   = as.Date(character()),
+    `.parquet` = as.Date(character()),
+    `.data`    = as.Date(character())
   )
   print(datasets)
 } else {
@@ -108,13 +108,18 @@ if (length(complete_bases) == 0) {
     filter(basepath %in% complete_bases) %>%
     group_by(basepath, ext) %>%
     summarize(path = dplyr::first(path), .groups = "drop") %>%
-    filter(ext %in% targets) %>%
+    filter(ext %in% c(targets_core, targets_data)) %>%
     pivot_wider(names_from = ext, values_from = path)
+  
+  # Ensure expected columns exist even if entirely missing in this slice
+  for (col in c("qmd", "html", "rdata", "parquet")) {
+    if (!col %in% names(paths_wide)) paths_wide[[col]] <- NA_character_
+  }
   
   # Derive rel_dir and dataset (stem), compute mtimes, and extract Title from .qmd
   datasets <- paths_wide %>%
     mutate(
-      rel_dir = dplyr::coalesce(dirname(html), dirname(qmd), dirname(rdata)),
+      rel_dir = dplyr::coalesce(dirname(html), dirname(qmd), dirname(rdata), dirname(parquet)),
       rel_dir = {
         rd <- normalizePath(root_dir, winslash = "/", mustWork = FALSE)
         pr <- normalizePath(rel_dir, winslash = "/", mustWork = FALSE)
@@ -122,10 +127,11 @@ if (length(complete_bases) == 0) {
         out <- str_replace(out, "^/?", "")
         ifelse(out == "", ".", out)
       },
-      dataset = basename(basepath),
-      html_mtime  = as.Date(file.info(html)$mtime),
-      rdata_mtime = as.Date(file.info(rdata)$mtime),
-      Title = map_chr(qmd, get_qmd_title)
+      dataset        = basename(basepath),
+      html_mtime     = as.Date(file.info(html)$mtime),
+      rdata_mtime    = as.Date(file.info(rdata)$mtime),
+      parquet_mtime  = as.Date(file.info(parquet)$mtime),
+      Title          = map_chr(qmd, get_qmd_title)
     ) %>%
     mutate(
       source = ifelse(rel_dir == ".", ".", strsplit(rel_dir, "/", fixed = TRUE) %>% map_chr(~ .x[1]))
@@ -134,14 +140,14 @@ if (length(complete_bases) == 0) {
       source,
       dataset,   # <- basename/stem
       Title,     # <- from YAML front matter of the .qmd
-      `.html`  = html_mtime,
-      `.RData` = rdata_mtime
+      `.html`    = html_mtime,
+      .rData = coalesce(parquet_mtime, rdata_mtime)
     ) %>%
     arrange(source, dataset)
   
   print(datasets)
 }
 
-
 save(datasets, file = "_datasets.RData")
+
 
