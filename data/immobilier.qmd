@@ -260,6 +260,14 @@ ig_d("insee", "bdf2017", "132Z-0411-DECUC")
 # sh ~/iCloud/website/website_short.sh
 ```
 
+## Taxe foncière + taxe d'habitation
+
+```{r}
+ig_d("insee", "T_3217", "TF-TH")
+```
+
+
+
 ## Taxe foncière
 
 ### Montant
