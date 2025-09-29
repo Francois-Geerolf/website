@@ -192,3 +192,12 @@ ig_d("oecd", "FAMILY", "FAM16A-DEU-FRA-ITA-log")
 ig_d("eurostat", "demo_minfind", "FR-DE-IT-ES-1996")
 ```
 
+
+
+
+# Bases de données
+
+```{r, echo = F}
+`demographie` |>
+  source_dataset_file_updates()
+```
