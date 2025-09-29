@@ -3,6 +3,7 @@
 source(here::here("_packages.R"))
 
 load(here::here("data", "_datasets.RData"))
+load(here::here("data", "_themes.RData"))
 
 # # Install any missing packages
 # installed <- packages %in% rownames(installed.packages())
