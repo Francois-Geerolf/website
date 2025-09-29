@@ -350,23 +350,11 @@ taux_souverains %>%
 
 ### 2020-
 
+(Discontinued)
+
 ```{r}
 ig_d("eurostat", "irt_lt_mcby_d", "FR-DE-IT-ES-EL-2020")
 ```
-
-### 3 months
-
-```{r}
-ig_d("eurostat", "irt_lt_mcby_d", "FR-DE-IT-ES-EL-last-3-months")
-```
-
-
-### 1 month
-
-```{r}
-ig_d("eurostat", "irt_lt_mcby_d", "FR-DE-IT-ES-EL-last-1-month")
-```
-
 
 
 ## U.S., France, Japan, Germany
