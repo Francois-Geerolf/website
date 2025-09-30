@@ -319,7 +319,17 @@ energie |>
 
 {{< include ../publications/fr/Geerolf2025a.qmd >}}
 
+{{< include ../public-debate/fr/Geerolf2022b.qmd >}}
+
+{{< include ../publications/fr/Allegre2022.qmd >}}
+
+
+
+
 ### Anglais
 
 {{< include ../publications/en/Geerolf2022c.qmd >}}
+
+{{< include ../publications/en/Geerolf2022b.qmd >}}
+
 
