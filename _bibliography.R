@@ -1,13 +1,6 @@
 # Load packages --------
 source(here::here("_rinit.R"))
 
-library(stringr)
-library(readr)
-library(tibble)
-library(purrr)
-library(glue)
-library(dplyr)
-
 # Folders to scan# Define the two sets
 langs <- c("fr", "en")
 folders <- c("publications", "public-debate", "working-papers")
