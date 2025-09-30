@@ -676,7 +676,19 @@ ig_d("wdi", "FR.INR.RINR", "GB-JP-US")
 
 
 
-## Datasets
+
+
+# Linked Themes
+
+```{r, echo = F}
+tribble(~ theme,
+        "monetary-policy",
+        "interest-rates") |>
+  theme_file_updates()
+```
+
+
+# Datasets
 
 ```{r, echo = F}
 `interest-rates` |>
@@ -684,3 +696,7 @@ ig_d("wdi", "FR.INR.RINR", "GB-JP-US")
 ```
 
 
+
+# Bibliography
+
+{{< include ../publications/monetary-policy.qmd >}}

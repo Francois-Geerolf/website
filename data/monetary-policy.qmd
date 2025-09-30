@@ -616,9 +616,15 @@ ig_d("ecb", "SUP", "net-interest-margin-FR-IT-DE-ES-NL-BE-AT-PT")
 ```
 
 
-# Related papers
 
-{{< include ../publications/monetary-policy.qmd >}}
+# Linked Themes
+
+```{r, echo = F}
+tribble(~ theme,
+        "monetary-policy",
+        "interest-rates") |>
+  theme_file_updates()
+```
 
 
 # Datasets
@@ -630,4 +636,6 @@ ig_d("ecb", "SUP", "net-interest-margin-FR-IT-DE-ES-NL-BE-AT-PT")
 
 
 
+# Bibliography
 
+{{< include ../publications/monetary-policy.qmd >}}

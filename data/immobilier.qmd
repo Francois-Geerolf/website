@@ -39,39 +39,6 @@ immobilier <- tribble(
 ```
 
 
-# Info
-
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("immobilier.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("housing.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
-
-
-
-## Bibliographie en lien
-
-### Français
-
-
-{{< include ../publications/fr/Geerolf2023c.qmd >}}
-
-{{< include ../publications/fr/Geerolf2022.qmd >}}
-
-{{< include ../publications/fr/Geerolf2021b.qmd >}}
-
-{{< include ../publications/fr/Geerolf2021a.qmd >}}
-
-{{< include ../publications/fr/Geerolf2011b.qmd >}}
-
-{{< include ../publications/fr/Geerolf2011a.qmd >}}
-
-### Anglais
-
-{{< include ../working-papers/en/Geerolf2020.qmd >}}
-
 # Nombre de logements, France
 
 - 37,8 millions de logements en France au 1er janvier 2023, Insee Focus N°309. [[html](https://www.insee.fr/fr/statistiques/7700305)]
@@ -547,3 +514,49 @@ ig_d("insee", "ENQ-CONJ-ART-BAT", "ECB-DREC-FAPPR")
 ```{r}
 ig_d("insee", "ENQ-CONJ-IND-BAT", "ECB-DMAN-DQUA-DSPE-DTEC")
 ```
+
+
+
+
+# Info
+
+
+## Bases de données
+
+```{r, echo = F}
+immobilier |>
+  source_dataset_file_updates()
+```
+
+
+
+
+## Thèmes reliés
+
+```{r, echo = F}
+tribble(~ theme,
+        "immobilier",
+        "housing") |>
+  theme_file_updates()
+```
+
+# Bibliographie
+
+## Français
+
+
+{{< include ../publications/fr/Geerolf2023c.qmd >}}
+
+{{< include ../publications/fr/Geerolf2022.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021a.qmd >}}
+
+{{< include ../publications/fr/Geerolf2011b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2011a.qmd >}}
+
+## Anglais
+
+{{< include ../working-papers/en/Geerolf2020.qmd >}}

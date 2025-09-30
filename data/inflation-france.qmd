@@ -307,6 +307,16 @@ ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
 
 - Insee. L'essentiel sur... l'inflation. <https://www.insee.fr/fr/statistiques/4268033>
 
+## Thèmes reliés
+
+```{r, echo = F}
+tribble(~ theme,
+        "inflation-europe",
+        "inflation-france",
+        "inflation") |>
+  theme_file_updates()
+```
+
 
 # Bibliographie
 
