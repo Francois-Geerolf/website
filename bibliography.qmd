@@ -10,16 +10,7 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 load("_bibliography.RData")
-```
-
-
-
-
-# English
-
-```{r, echo = F, warning = F}
-bibliography %>%
-  filter(str_detect(File, "/en/")) %>%
+print_bibliography <- .  %>%
   gt() %>%
   fmt_markdown(columns = c(PDF, HTML, GitHub)) %>%  # render the <i> icons/links
   cols_align(align = "center", columns = c(PDF, HTML, GitHub)) %>%
@@ -36,24 +27,23 @@ bibliography %>%
   )
 ```
 
+
+
+
+# English
+
+```{r, echo = F, warning = F}
+bibliography %>%
+  filter(str_detect(File, "/en/")) %>%
+  print_bibliography()
+```
+
 # French
 
 ```{r, echo = F, warning = F}
 bibliography %>%
   filter(str_detect(File, "/fr/")) %>%
-  gt() %>%
-  fmt_markdown(columns = c(PDF, HTML, GitHub)) %>%  # render the <i> icons/links
-  cols_align(align = "center", columns = c(PDF, HTML, GitHub)) %>%
-  cols_width(
-    PDF    ~ px(40),
-    HTML   ~ px(40),
-    GitHub ~ px(40)
-  ) %>%
-  opt_interactive(
-    use_search       = TRUE,
-    use_resizers     = TRUE,
-    use_compact_mode = TRUE
-  )
+  print_bibliography()
 ```
 
 
@@ -61,18 +51,6 @@ bibliography %>%
 
 ```{r, echo = F, warning = F}
 bibliography %>%
-  gt() %>%
-  fmt_markdown(columns = c(PDF, HTML, GitHub)) %>%  # render the <i> icons/links
-  cols_align(align = "center", columns = c(PDF, HTML, GitHub)) %>%
-  cols_width(
-    PDF    ~ px(40),
-    HTML   ~ px(40),
-    GitHub ~ px(40)
-  ) %>%
-  opt_interactive(
-    use_search       = TRUE,
-    use_resizers     = TRUE,
-    use_compact_mode = TRUE
-  )
+  print_bibliography()
 ```
 
