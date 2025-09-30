@@ -34,7 +34,8 @@ immobilier <- tribble(
   "insee", "SERIES_LOYERS",
   "insee", "t_dpe_val",
   "notaires", "arrdt",
-  "notaires", "dep") %>%
+  "notaires", "dep",
+  "olap", "loyers") %>%
   arrange(source, dataset)
 ```
 
@@ -518,10 +519,8 @@ ig_d("insee", "ENQ-CONJ-IND-BAT", "ECB-DMAN-DQUA-DSPE-DTEC")
 
 
 
-# Info
 
-
-## Bases de données
+# Bases de données
 
 ```{r, echo = F}
 immobilier |>
@@ -531,7 +530,7 @@ immobilier |>
 
 
 
-## Thèmes reliés
+# Thèmes reliés
 
 ```{r, echo = F}
 tribble(~ theme,
