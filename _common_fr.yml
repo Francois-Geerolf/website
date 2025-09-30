@@ -1,6 +1,6 @@
 lang: fr
 filters:
-  - ../code/genderize-fr.lua
+  - code/genderize-fr.lua
 format:
   html:
     code-fold: false
