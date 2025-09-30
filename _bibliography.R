@@ -58,6 +58,7 @@ parse_qmd <- function(file) {
 }
 
 #--- Collect files and build the tibble ----------------------------------------
+cat("Collect files and build the tibble...\n")
 
 qmd_files <- map(roots, ~list.files(.x, pattern = "\\.qmd$", full.names = TRUE, recursive = TRUE)) %>%
   unlist()
@@ -76,6 +77,7 @@ bibliography <- map_dfr(qmd_files, parse_qmd) %>%
   ) %>%
   select(File, Content, PDF, HTML, GitHub)
 
+cat("Save _bibliography.RData...\n")
 save(bibliography, file = "_bibliography.RData")
 
 

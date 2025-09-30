@@ -61,6 +61,10 @@ jobs:
           sudo locale-gen fr_FR.UTF-8
           sudo update-locale
 
+      - name: ▶️ Run _bibliography.R
+        working-directory: ${{ github.workspace }}
+        run: Rscript _bibliography.R
+
       - name: ▶️ Run _build.R
         working-directory: ${{ github.workspace }}
         run: Rscript _build.R
