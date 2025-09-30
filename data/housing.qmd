@@ -259,11 +259,21 @@ ig_d("fhfa", "index", "los-angeles-las-vegas-denver")
 ig_d("eurostat", "prc_hicp_midx", "CP041-FR-DE-EL-PT")
 ```
 
+
+# Datasets
+
+```{r, echo = F}
+housing |>
+  source_dataset_file_updates()
+```
+
 # Bibliography
 
 ## English
 
 {{< include ../working-papers/en/Geerolf2020.qmd >}}
+
+{{< include ../working-papers/en/Geerolf2015.qmd >}}
 
 ## French
 

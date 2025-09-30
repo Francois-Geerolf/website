@@ -169,3 +169,21 @@ ig_d("wb", "CMO", "natural-gas-nominal-log-2000")
 commodities |>
   source_dataset_file_updates()
 ```
+
+
+# Bibliography
+
+## English
+
+{{< include ../publications/en/Geerolf2022c.qmd >}}
+
+{{< include ../publications/en/Geerolf2022b.qmd >}}
+
+## French
+
+{{< include ../publications/fr/Geerolf2025a.qmd >}}
+
+{{< include ../public-debate/fr/Geerolf2022b.qmd >}}
+
+{{< include ../publications/fr/Allegre2022.qmd >}}
+
