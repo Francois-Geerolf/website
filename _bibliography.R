@@ -1,6 +1,12 @@
 # Load packages --------
-
 source(here::here("_rinit.R"))
+
+library(stringr)
+library(readr)
+library(tibble)
+library(purrr)
+library(glue)
+library(dplyr)
 
 # Folders to scan# Define the two sets
 langs <- c("fr", "en")
@@ -8,31 +14,41 @@ folders <- c("publications", "public-debate", "working-papers")
 
 # Create all combinations
 roots <- as.vector(outer(folders, langs, paste, sep = "/"))
-roots
+
+# --- Core: allow one level of parentheses inside URLs -------------------------
+# Captures the URL inside (...) while permitting single-level nested parentheses.
+paren_url <- "\\(((?:[^()]|\\([^()]*\\))*)\\)"
 
 #--- Helpers to extract icon-tagged links --------------------------------------
 
 # PDF link (<i class="fas fa-file-pdf"></i>)
 extract_pdf_link <- function(x) {
-  m <- str_match(x, "(?is)\\[\\[\\s*<i[^>]*fa[- ]file[- ]pdf[^>]*>\\s*</i>[^\\]]*\\]\\(([^)]+)\\)\\]")
-  m[,2]
+  pat <- paste0("(?is)\\[\\[\\s*<i[^>]*fa[- ]file[- ]pdf[^>]*>\\s*</i>[^\\]]*\\]\\s*", paren_url, "\\s*\\]")
+  m <- str_match(x, pat)
+  m[, 2]
 }
 
 # HTML link (<i class="fas fa-globe"></i>)
 extract_html_link <- function(x) {
-  m <- str_match(x, "(?is)\\[\\[\\s*<i[^>]*fa[- ]globe[^>]*>\\s*</i>[^\\]]*\\]\\(([^)]+)\\)\\]")
-  m[,2]
+  pat <- paste0("(?is)\\[\\[\\s*<i[^>]*fa[- ]globe[^>]*>\\s*</i>[^\\]]*\\]\\s*", paren_url, "\\s*\\]")
+  m <- str_match(x, pat)
+  m[, 2]
 }
 
 # GitHub link (<i class="fab fa-github"></i>)
 extract_github_link <- function(x) {
-  m <- str_match(x, "(?is)\\[\\[\\s*<i[^>]*fa[^\">]*github[^>]*>\\s*</i>[^\\]]*\\]\\(([^)]+)\\)\\]")
-  m[,2]
+  pat <- paste0("(?is)\\[\\[\\s*<i[^>]*fa[^\">]*github[^>]*>\\s*</i>[^\\]]*\\]\\s*", paren_url, "\\s*\\]")
+  m <- str_match(x, pat)
+  m[, 2]
 }
 
 # Read, clean content (remove links), and extract icon links
 parse_qmd <- function(file) {
   raw <- read_file(file)
+  
+  # Patterns to remove links, with parentheses-friendly URL group
+  pat_icon_links   <- paste0("(?is)\\[\\[[^\\]]*\\]\\s*", paren_url, "\\s*\\]")
+  pat_md_links     <- paste0("(?is)\\[[^\\]]*\\]\\s*", paren_url)
   
   tibble(
     File    = file,
@@ -41,10 +57,10 @@ parse_qmd <- function(file) {
     GitHub  = extract_github_link(raw),
     Content = raw %>%
       str_squish() %>%
-      # remove [[...](...)] links
-      str_remove_all("(?is)\\[\\[[^\\]]*\\]\\([^\\)]*\\)\\]") %>%
-      # remove single-bracket markdown links
-      str_remove_all("(?is)\\[[^\\]]*\\]\\([^\\)]*\\)")
+      # remove [[...](...)] links (with tolerant URL)
+      str_remove_all(pat_icon_links) %>%
+      # remove single-bracket markdown links (with tolerant URL)
+      str_remove_all(pat_md_links)
   )
 }
 
@@ -66,7 +82,6 @@ bibliography <- map_dfr(qmd_files, parse_qmd) %>%
                     "")
   ) %>%
   select(File, Content, PDF, HTML, GitHub)
-
 
 save(bibliography, file = "_bibliography.RData")
 
