@@ -20,9 +20,9 @@ print_bibliography <- .  %>%
     File ~ px(100)
   ) %>%
   opt_interactive(
-    use_search       = TRUE,
-    use_resizers     = TRUE,
-    use_compact_mode = TRUE
+    use_search       = T,
+    use_resizers     = T,
+    use_compact_mode = T
   )
 ```
 
