@@ -303,9 +303,7 @@ ig_d("sdes", "bilan_energetique", "EL041TMR-EL042TMR-EL043TMR")
 ```
 
 
-# Pour en savoir plus...
-
-## Bases de données
+# Bases de données
 
 ```{r, echo = F}
 energie |>
@@ -313,9 +311,9 @@ energie |>
 ```
 
 
-## Bibliographie en lien
+# Bibliographie en lien
 
-### Français
+## Français
 
 {{< include ../publications/fr/Geerolf2025a.qmd >}}
 
@@ -326,7 +324,7 @@ energie |>
 
 
 
-### Anglais
+## Anglais
 
 {{< include ../publications/en/Geerolf2022c.qmd >}}
 
