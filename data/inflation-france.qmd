@@ -33,6 +33,45 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ```
 
 
+# Derniers chiffres de l'inflation
+
+## Inflation en moyenne annuelle
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-5-annees")
+```
+
+## Inflation en glissement annuel
+
+```{r}
+table1_idbanks <- c("001761313", # glissement mensuel
+                    "010576187" # glissement annuel
+                    )
+
+paste(table1_idbanks, collapse = "+") |>
+  paste0("https://www.bdm.insee.fr/series/sdmx/data/SERIES_BDM/", i = _) |>
+  rsdmx::readSDMX() |>
+  as_tibble() |>
+  select(TIME_PERIOD, OBS_VALUE, TITLE_FR) |>
+  arrange(desc(TIME_PERIOD)) |>
+  slice(1:6) |>
+  transmute(TIME_PERIOD,
+            OBS_VALUE = as.numeric(OBS_VALUE)/100, 
+            `IPC ou IPCH ?` = case_when(grepl("harmonisé", TITLE_FR) ~ "Inflation IPCH",
+                                        T ~ "Inflation IPC")) |>
+  spread(TIME_PERIOD, OBS_VALUE)  |>
+  gt::gt() |>
+  gt::fmt_percent(
+    columns = 2:5,
+    decimals = 2,
+    force_sign = T
+  ) |>
+  gt::cols_align(
+    align = "center",
+    columns = everything()
+  )
+```
+
 
 # Indice des prix dans la Grande Distribution
 
