@@ -38,14 +38,15 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ## Inflation en moyenne annuelle
 
 ```{r}
+c("001762489" #)
 ig_d("insee", "IPCH-2015", "IPC-IPCH-00-5-annees")
 ```
 
 ## Inflation en glissement annuel
 
 ```{r, echo = F}
-c("001761313", # glissement mensuel
-  "010576187" # glissement annuel
+c("001761313", # glissement annuel IPC
+  "010576187" # glissement annuel IPCH
   ) |>
   paste(i = _, collapse = "+") |>
   paste0("https://www.bdm.insee.fr/series/sdmx/data/SERIES_BDM/", i = _) |>
@@ -68,6 +69,9 @@ c("001761313", # glissement mensuel
   gt::cols_align(
     align = "center",
     columns = everything()
+  ) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001761313](https://www.insee.fr/fr/statistiques/serie/001761313), [010576187](https://www.insee.fr/fr/statistiques/serie/010576187)"))
   )
 ```
 
