@@ -43,12 +43,11 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-5-annees")
 
 ## Inflation en glissement annuel
 
-```{r}
-table1_idbanks <- c("001761313", # glissement mensuel
-                    "010576187" # glissement annuel
-                    )
-
-paste(table1_idbanks, collapse = "+") |>
+```{r, echo = F}
+c("001761313", # glissement mensuel
+  "010576187" # glissement annuel
+  ) |>
+  paste(i = _, collapse = "+") |>
   paste0("https://www.bdm.insee.fr/series/sdmx/data/SERIES_BDM/", i = _) |>
   rsdmx::readSDMX() |>
   as_tibble() |>
