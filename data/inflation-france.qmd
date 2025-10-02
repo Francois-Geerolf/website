@@ -37,9 +37,37 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 
 ## Inflation en moyenne annuelle
 
-```{r}
-c("001762489" #)
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-5-annees")
+```{r, echo = F}
+c("001762489", #
+  "001764363") |>
+  paste(i = _, collapse = "+") |>
+  paste0("https://www.bdm.insee.fr/series/sdmx/data/SERIES_BDM/", i = _) |>
+  rsdmx::readSDMX() |>
+  as_tibble() |>
+  transmute(TIME_PERIOD,
+            OBS_VALUE = as.numeric(OBS_VALUE), 
+            `IPC ou IPCH ?` = case_when(grepl("harmonisé", TITLE_FR) ~ "Inflation IPCH",
+                                        T ~ "Inflation IPC")) |>
+  group_by(`IPC ou IPCH ?`) |>
+  arrange(TIME_PERIOD) |>
+  mutate(OBS_VALUE = OBS_VALUE/lag(OBS_VALUE)-1) |>
+  ungroup() |>
+  arrange(desc(TIME_PERIOD)) |>
+  slice(1:8) |>
+  spread(TIME_PERIOD, OBS_VALUE)  |>
+  gt::gt() |>
+  gt::fmt_percent(
+    columns = 2:5,
+    decimals = 1,
+    force_sign = T
+  ) |>
+  gt::cols_align(
+    align = "center",
+    columns = everything()
+  ) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001762489](https://www.insee.fr/fr/statistiques/serie/001762489), [001764363](https://www.insee.fr/fr/statistiques/serie/001764363)"))
+  )
 ```
 
 ## Inflation en glissement annuel
@@ -63,7 +91,7 @@ c("001761313", # glissement annuel IPC
   gt::gt() |>
   gt::fmt_percent(
     columns = 2:5,
-    decimals = 2,
+    decimals = 1,
     force_sign = T
   ) |>
   gt::cols_align(
