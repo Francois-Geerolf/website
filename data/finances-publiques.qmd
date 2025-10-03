@@ -60,11 +60,18 @@ ig_d("insee", "T_3217", "TVA-produits-salaires-production-cotisations")
 ig_d("insee", "T_3217", "IR-TVA-CSG")
 ```
 
+## Taxe foncière vs. taxe d'habitation
+
+```{r}
+ig_d("insee", "T_3217", "TF-TH")
+```
+
 ## Taxe Foncière
 
 ```{r}
-ig_d("insee", "T_3217", "taxe-fonciere")
+ig_d("insee", "T_3217", "TF-TH-Md")
 ```
+
 
 
 ## Impôt sur les sociétés, IR, TICPE
