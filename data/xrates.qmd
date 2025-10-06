@@ -1,7 +1,25 @@
 ---
 title: Exchange Rate Data (X rates)
-metadata-files: 
-  - _common.yml
+subtitle: Data
+lang: en
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+          <meta name="twitter:card" content="summary">
+          <meta name="twitter:title" content="Exchange rate data (X rates)">
+          <meta name="twitter:description" content="Live exchange-rate data and currency conversion table (EUR, USD, GBP & more) — up-to-date bid/ask quotes and cross rates.">
+          <meta name="twitter:image" content="https://fgeerolf.com/files/xrates.jpg">
+    include-after-body: ../statcounter.html
+editor: source
 ---
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
