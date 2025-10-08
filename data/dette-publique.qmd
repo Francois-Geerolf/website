@@ -310,6 +310,53 @@ taux_souverains %>%
   gt::tab_options(table.width = "100%")
 ```
 
+## Dette des administrations publiques au sens de Maastricht par sous-secteur
+
+
+### en % du PIB
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2830192#figure1_radio1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  #gt::cols_width(Indicateur ~ gt::px(350), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/2830301#tableau-figure1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+### en Md€
+
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2830192#figure1_radio1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  #gt::cols_width(Indicateur ~ gt::px(350), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M %z (%Z)"), ". Source: <https://www.insee.fr/fr/statistiques/2830301#tableau-figure1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
 
 
 
