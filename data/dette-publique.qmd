@@ -450,6 +450,14 @@ ig_d("insee", "t_compteapu_val", "PIB-D41-B9NF-interet-2008-2016")
 
 ## France
 
+### Comparer les sources
+
+```{r}
+ig_d("insee", "econ-gen-dette-trim-adm-pub-2", "GFD-Insee-FMI")
+```
+
+
+
 ### 1995-
 
 ```{r}
