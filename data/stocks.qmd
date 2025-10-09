@@ -44,7 +44,8 @@ stocks <- tribble(
   gt::tab_options(table.width = "100%")
 ```
 
-## All
+
+## Investing.com
 
 ```{r, echo = F, warning = F}
 # load_data("public-debt/rating.RData")
@@ -63,6 +64,30 @@ stocks <- tribble(
                       page_size_values = c(5, 10, 15, 20)) |>
   gt::tab_footnote(
     footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p"), ". Source: <https://www.investing.com/indices/major-indices>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+## yahoo.com
+
+```{r, echo = F, warning = F}
+# load_data("public-debt/rating.RData")
+"https://finance.yahoo.com/markets/world-indices" %>%
+  rvest::read_html() %>%
+  rvest::html_table(header = T, fill = T) %>%
+  .[[1]] %>%
+  select(1, 2, 6, 7) |>
+  gt::gt() |>
+  #gt::cols_width(Pair ~ gt::px(100), Bid ~ gt::px(100), Ask ~ gt::px(100), everything() ~ gt::px(60)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = T,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 10,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". Source: <https://finance.yahoo.com/markets/world-indices>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
