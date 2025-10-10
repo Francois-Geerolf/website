@@ -66,7 +66,7 @@ c("001762489", #
     columns = everything()
   ) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001764363](https://www.insee.fr/fr/statistiques/serie/001764363), [001762489](https://www.insee.fr/fr/statistiques/serie/001762489)"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001764363](https://www.insee.fr/fr/statistiques/serie/001764363) (IPC), [001762489](https://www.insee.fr/fr/statistiques/serie/001762489) (IPCH)"))
   )
 ```
 
@@ -104,7 +104,7 @@ c("001759971", # IPCH
     columns = everything()
   ) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001764363](https://www.insee.fr/fr/statistiques/serie/001764363), [001762489](https://www.insee.fr/fr/statistiques/serie/001762489)"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001759970](https://www.insee.fr/fr/statistiques/serie/001762489) (IPC), [001759971](https://www.insee.fr/fr/statistiques/serie/001764363) (IPCH)"))
   )
 ```
 
