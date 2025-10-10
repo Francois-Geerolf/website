@@ -256,7 +256,7 @@ data_investing |>
   gt::cols_width(countrycode ~ gt::px(60), CURRENCY ~ gt::px(60))|>
   gt::cols_label(countrycode = "", CURRENCY = "")|>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". [Source](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html)"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p %z (%Z)"), ". Source: <https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```

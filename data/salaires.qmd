@@ -35,6 +35,27 @@ salaires <- tribble(
 # sh ~/iCloud/website/website_short.sh
 ```
 
+## Montant du Smic en France hors Mayotte
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/1375188#figure1_radio1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(60), 2 ~ gt::px(70), everything() ~ gt::px(120)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/1375188#figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
 ## Tous
 
 ```{r}
@@ -316,13 +337,13 @@ ig_b("salaires", "blogInsee_2023_10-les_indicateurs_stats_pour_mesurer_les_salai
 ```
 
 
-## Bibliographie en lien
+# Bibliographie
 
-### Français
+## Français
 
-- "Inflation en France : IPC ou IPCH ?", F. Geerolf, Document de travail, Juillet 2024. [[html](https://fgeerolf.com/IPC-ou-IPCH.html)] [[pdf](https://fgeerolf.com/IPC-ou-IPCH.pdf)]
+{{< include ../publications/fr/Geerolf2024c.qmd >}}
 
-
+{{< include ../publications/fr/Geerolf2024a.qmd >}}
 
 
 # Bases de données
