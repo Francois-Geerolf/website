@@ -441,6 +441,32 @@ ig_d("insee", "CNT-2020-CB", "B2-gdp-DI-DIM-DS-DSM")
 # sh ~/iCloud/website/website_short.sh
 ```
 
+
+
+
+## Échanges extérieurs par zone géographique
+
+
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2381418" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(3) |>
+  gt::gt() |>
+  gt::cols_width(Zone ~ gt::px(150), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2381418>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
 ## Balance extérieure
 
 ```{r}
