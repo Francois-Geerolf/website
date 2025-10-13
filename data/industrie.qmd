@@ -597,5 +597,7 @@ ig_d("insee", "CNT-2014-CB", "B2-gdp-DI-DIM-DS-DSM")
 
 ## Bibliographie
 
+{{< include ../publications/fr/Geerolf2025a.qmd >}}
+
 {{< include ../publications/fr/Geerolf2024d.qmd >}}
 
