@@ -153,7 +153,7 @@ Economics of Superstars (UCLA, Undergraduate). [[<i class="fa-solid fa-chalkboar
 
 # Curriculum Vitae
 
-CV. [[<i class="fa-solid fa-user-tie"></i> en](https://fgeerolf.com/cv.pdf)] [[<i class="fa-solid fa-camera"></i> jpg](https://fgeerolf.com/files/fgeerolf-1.jpg)] [[<i class="fa-solid fa-camera"></i> heic](https://fgeerolf.com/files/fgeerolf-1.HEIC)] [[<i class="fa-solid fa-camera"></i> png](https://fgeerolf.com/files/fgeerolf-1.png)]
+CV. [[<i class="fa-solid fa-user-tie"></i> en](https://fgeerolf.com/cv.pdf)] [[<i class="fa-solid fa-camera"></i> jpg](https://fgeerolf.com/files/fgeerolf-1.jpg)] [[<i class="fa-solid fa-camera"></i> png](https://fgeerolf.com/files/fgeerolf-1.png)]
 
 Bibliographie. [[<i class="fa-solid fa-book"></i> en](https://fgeerolf.com/bibliography.html)] [[<i class="fa-solid fa-book"></i> fr](https://fgeerolf.com/bibliographie.html)]
 
