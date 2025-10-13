@@ -32,7 +32,6 @@ Revision requested at American Economic Review
 
 {{< include publications/en/Geerolf2022c.qmd >}}
 
-
 # Travaux en Français
 
 {{< include publications/fr/Geerolf2025a.qmd >}}
