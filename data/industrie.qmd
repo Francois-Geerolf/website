@@ -597,5 +597,5 @@ ig_d("insee", "CNT-2014-CB", "B2-gdp-DI-DIM-DS-DSM")
 
 ## Bibliographie
 
--	Réindustrialisation : l’Union Européenne et les nations. In L’économie européenne 2025, La Découverte, septembre 2024. [[pdf](https://fgeerolf.com/reindustrialisation.pdf)] / [[html](https://shs.cairn.info/l-economie-europeenne-2025--9782348084799-page-45?lang=fr)]
+{{< include ../publications/fr/Geerolf2024d.qmd >}}
 
