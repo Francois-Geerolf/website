@@ -365,6 +365,33 @@ ig_b("bdf", "prix-immobilier-taux")
 # sh ~/iCloud/website/website_short.sh
 ```
 
+## Derniers IRL
+
+
+
+## Inflation en moyenne annuelle
+
+```{r, echo = F}
+c("001515333") |>
+  paste(i = _, collapse = "+") |>
+  paste0("https://www.bdm.insee.fr/series/sdmx/data/SERIES_BDM/", i = _) |>
+  rsdmx::readSDMX() |>
+  dplyr::as_tibble() |>
+  dplyr::transmute(TIME_PERIOD,
+            OBS_VALUE = as.numeric(OBS_VALUE), 
+            DATE_JO = as.Date(DATE_JO)) |>
+  head(8) |>
+  gt::gt() |>
+  gt::cols_align(
+    align = "center",
+    columns = everything()
+  ) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001515333](https://www.insee.fr/fr/statistiques/serie/001515333)"))
+  )
+```
+
+
 ## IRL
 
 ```{r}
