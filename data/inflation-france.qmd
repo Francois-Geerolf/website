@@ -72,8 +72,6 @@ c("001762489", #
 
 ## Inflation en glissement annuel
 
-### Calculée
-
 ```{r, echo = F}
 c("001759971", # IPCH
   "001759970"  #  IPC
@@ -109,39 +107,6 @@ c("001759971", # IPCH
 ```
 
 
-
-### Publiée par l'Insee
-
-```{r, echo = F}
-c("001761313", # glissement annuel IPC
-  "010576187" # glissement annuel IPCH
-  ) |>
-  paste(i = _, collapse = "+") |>
-  paste0("https://www.bdm.insee.fr/series/sdmx/data/SERIES_BDM/", i = _) |>
-  rsdmx::readSDMX() |>
-  as_tibble() |>
-  select(TIME_PERIOD, OBS_VALUE, TITLE_FR) |>
-  arrange(desc(TIME_PERIOD)) |>
-  slice(1:6) |>
-  transmute(TIME_PERIOD,
-            OBS_VALUE = as.numeric(OBS_VALUE)/100, 
-            `IPC ou IPCH ?` = case_when(grepl("harmonisé", TITLE_FR) ~ "Inflation IPCH",
-                                        T ~ "Inflation IPC")) |>
-  spread(TIME_PERIOD, OBS_VALUE)  |>
-  gt::gt() |>
-  gt::fmt_percent(
-    columns = 2:5,
-    decimals = 1,
-    force_sign = T
-  ) |>
-  gt::cols_align(
-    align = "center",
-    columns = everything()
-  ) |>
-  gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001761313](https://www.insee.fr/fr/statistiques/serie/001761313), [010576187](https://www.insee.fr/fr/statistiques/serie/010576187)"))
-  )
-```
 
 
 # Indice des prix dans la Grande Distribution
