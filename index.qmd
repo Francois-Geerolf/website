@@ -137,6 +137,8 @@ Revision requested at American Economic Review
 
 {{< include public-debate/fr/Geerolf2024b.qmd >}}
 
+{{< include public-debate/fr/Geerolf2022a.qmd >}}
+
 # Teaching (English)
 
 Evidence-Based Macroeconomics & Finance (UCLA, PhD 2nd year). [[<i class="fa-solid fa-chalkboard-teacher"></i> Syllabus](https://fgeerolf.com/econ221/syllabus.html)] [[<i class="fas fa-globe"></i> Data](https://fgeerolf.com/data/)]
