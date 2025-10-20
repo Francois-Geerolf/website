@@ -84,7 +84,6 @@ editor: source
 
 {{< include ../publications/en/Geerolf2022.qmd >}}
 
-
 # Débat public
 
 ## Tribunes
