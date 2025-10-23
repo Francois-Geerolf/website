@@ -82,21 +82,34 @@ ig_d("insee", "T_3217", "IS-IR-TICPE")
 
 # Dépenses publiques
 
-## Tous
+## Frais de fonctionnement, Etat vs. Dépenses publiques
 
+### Tous
 
 ```{r}
 ig_d("insee", "T_3201", "3-20-1-19")
 ```
 
-## 1981-
-
+### 1981-
 
 ```{r}
 ig_d("insee", "T_3201", "3-20-1-19-1981")
 ```
 
 
+## Avec les "dépenses sociales"
+
+### Tous
+
+```{r}
+ig_d("insee", "T_3201", "3-20-1-19-9")
+```
+
+### 1981-
+
+```{r}
+ig_d("insee", "T_3201", "3-20-1-19-9-1981")
+```
 
 
 
