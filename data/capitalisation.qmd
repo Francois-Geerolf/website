@@ -20,12 +20,31 @@ load(here::here("flags", "colors.RData"))
 
 # Capitalisation
 
+## S&P 500 et CAC 40
 
-# Les Sept magnifiques de la Tech...
+Rendements
 
-Les Sept Magnifiques de la Bourse américaine portent largement la hausse du S&P 500...
+```{r}
+ig_d("yahoo", "indices", "SP500TR-CAC40TR-1990-log")
+```
 
-## Les sept magnifiques de la tech...
+## 7 magnifiques de la tech
+
+```{r}
+ig_d("yahoo", "SP500", "magnificent-7-2010-log")
+```
+
+
+
+
+## S&P 500 et CAC 40
+
+Rendements
+
+```{r}
+ig_d("yahoo", "indices", "SP500TR-CAC40TR-1990-log")
+```
+
 
 # Comment financer le passage à la capitalisation ?
 
