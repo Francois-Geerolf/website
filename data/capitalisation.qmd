@@ -29,6 +29,14 @@ Les Sept Magnifiques de la Bourse américaine portent largement la hausse du S&P
 
 # Comment financer le passage à la capitalisation ?
 
+## Déficit public ?
+
+Déjà à -5.8% du PIB en 2024, objectif retour au dessus de -3% du PIB à l'horizon de 2029...
+
+```{r}
+ig_d("insee", "T_7301", "B9-PIB-2000")
+```
+
 ## Perte de pouvoir d'achat des salaires
 
 Double cotisation ?
