@@ -246,7 +246,7 @@ ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice")
 
 # Salaires
 
-```{r, echo = F}
+```{r, echo = F} the 
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SALAIRES-ANNUELS; /usr/local/bin/R -e 'quarto::quarto_render("SALAIRES-ANNUELS.qmd")'
 # sh ~/iCloud/website/website_short.sh
 ```

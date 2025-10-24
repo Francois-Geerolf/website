@@ -1,0 +1,54 @@
+---
+title: Données sur la retraite par capitalisation
+metadata-files: 
+  - _common_fr.yml
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+load(here::here("flags", "colors.RData"))
+
+`capitalisation` <- tribble(
+  ~source, ~dataset,
+  "yahoo",  "indices",
+  "yahoo", "SP500") %>%
+  arrange(source, dataset)
+```
+
+# Capitalisation
+
+
+# Les Sept magnifiques de la Tech...
+
+Les Sept Magnifiques de la Bourse américaine portent largement la hausse du S&P 500...
+
+## Les sept magnifiques de la tech...
+
+# Comment financer le passage à la capitalisation ?
+
+## Perte de pouvoir d'achat des salaires
+
+Double cotisation ?
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-CCE-4-6-IPC-IPCH-reel")
+```
+
+## Perte de pouvoir d'achat des retraites
+
+```{r}
+ig_d("ipp", "revalorisation_pension", "reval-1996-reel")
+```
+
+
+# Bibliographie
+
+## En Anglais
+
+{{< include ../publications/en/Geerolf2013.qmd >}}
+
+
+
