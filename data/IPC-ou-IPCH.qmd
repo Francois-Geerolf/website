@@ -125,18 +125,41 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1999-ratio-inverted")
 
 ### 1996-
 
+#### Mensuel
+
 ```{r}
 ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996-ratio")
+```
+
+#### Annuel
+
+```{r}
+ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel")
 ```
 
 
 
 ### 1999-
 
+#### Mensuel
+
 ```{r}
 ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1999-ratio")
 ```
 
+#### Annuel
+
+```{r}
+ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel-1999")
+```
+
+### 2008-
+
+#### Annuel
+
+```{r}
+ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel-2008")
+```
 
 ## Indices de Prix
 

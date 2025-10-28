@@ -22,17 +22,15 @@ load(here::here("flags", "colors.RData"))
 
 ## S&P 500 et CAC 40
 
-Rendements
-
 ```{r}
-ig_d("yahoo", "indices", "SP500TR-CAC40TR-1990-log")
+ig_d("yahoo", "indices", "SP500TR-CAC40TR-1996-log-francais")
 ```
 
 ## 7 magnifiques de la tech
 
 ```{r}
 ig_d("yahoo", "SP500", "magnificent-7-2010-log")
-```
+``` 
 
 
 
