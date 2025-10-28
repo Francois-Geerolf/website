@@ -289,6 +289,11 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-094231")
 ig_d("insee", "IPC-2015", "POND-0943")
 ```
 
+### Comparaison
+
+```{r fig.align="center", out.width="90%"}
+ig_b("insee", "ponderations-elementaires-IPC-2024", "liste-varietes-ponderations")
+```
 
 ### Evolution
 
