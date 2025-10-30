@@ -4,7 +4,6 @@ metadata-files:
   - _common_fr.yml
 ---
 
-
 Economist, OFCE (Observatoire Français des Conjonctures Economiques)
 
 # Research Interests
