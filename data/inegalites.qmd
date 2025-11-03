@@ -11,24 +11,7 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 `inégalités` <- tribble(
   ~source, ~dataset,
-  "insee", "bdf2017",
-  "insee", "ILC-ILAT-ICC",
-  "insee", "INDICES_LOYERS",
-  "insee", "IPC-1990",
-  "insee", "IPC-1970-1980",
-  "insee", "IPC-2015",
-        "insee", "echantillon-agglomerations-IPC-2024",
-        "insee", "ponderations-elementaires-IPC-2024",
-        "insee", "liste-varietes-IPC-2024",
-  "insee", "IPC-PM-2015",
-  "insee", "IPCH-2015",
-  "insee", "IPCH-IPC-2015-ensemble",
-  "insee", "IPLA-IPLNA-2015",
-  "insee", "IPPI-2015",
-  "insee", "IRL",
-  "insee", "IPGD-2015",
-  "insee", "SERIES_LOYERS",
-  "insee", "T_CONSO_EFF_FONCTION") %>%
+  "insee", "IA88") %>%
   arrange(source, dataset)
 ```
 
