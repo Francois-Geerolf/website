@@ -30,6 +30,13 @@ ig_b("insee", "RPM2021", "D2", "fig8")
 ig_b("insee", "IA88", "fig4")
 ```
 
+## Données
+
+```{r}
+ig_d("insee", "RPM2021_D2", "comparatif")
+```
+
+
 
 # Bases de données
 
