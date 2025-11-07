@@ -43,11 +43,19 @@ ig_d("insee", "T_82XX", "AN-AN1-AN2-annees-PIB")
 
 # Le patrimoine des secteurs institutionnels
 
+## Fin 2024
+
+```{r}
+ig_b("insee", "IP2081", "table2")
+```
+
 ## Fin 2023
 
 ```{r}
 ig_b("insee", "ip2028", "fig2")
 ```
+
+
 
 # Pour en savoir plus...
 

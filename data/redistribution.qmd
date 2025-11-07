@@ -11,7 +11,8 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 redistribution <- tribble(
   ~source, ~dataset,
-  "insee", "IA88") %>%
+  "insee", "IA88",
+  "insee", "RPM2021_D2") %>%
   arrange(source, dataset)
 ```
 
@@ -30,11 +31,21 @@ ig_b("insee", "RPM2021", "D2", "fig8")
 ig_b("insee", "IA88", "fig4")
 ```
 
+# Taux d'imposition
+
 ## Données
 
 ```{r}
 ig_d("insee", "RPM2021_D2", "comparatif")
 ```
+
+## Autre visualisation
+
+```{r}
+ig_b("redistribution", "redistribution-decile")
+```
+
+
 
 
 
