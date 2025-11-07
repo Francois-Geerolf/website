@@ -68,7 +68,6 @@ ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-CCE-4-6-IPC-IPCH-reel")
 ig_d("ipp", "revalorisation_pension", "reval-1996-reel")
 ```
 
-
 # Bibliographie
 
 ## En Anglais
