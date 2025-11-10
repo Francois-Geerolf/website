@@ -33,21 +33,20 @@ ig_b("insee", "IA88", "fig4")
 ```
 
 
+## Ménages pauvres et aisés avant et après redistribution élargie
 
-
-# Pour en savoir plus...
-
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")';
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inégalités.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
-# sh ~/iCloud/website/website_short.sh
+```{r}
+ig_b("insee", "IA88", "fig2")
 ```
 
-## Info
+# Thèmes reliés
 
-## Bibliographie
+```{r, echo = F}
+tribble(~ theme,
+        "inegalites",
+        "redistribution") |>
+  theme_file_updates()
+```
 
 
 

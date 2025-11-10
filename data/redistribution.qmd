@@ -55,6 +55,14 @@ ig_b("redistribution", "redistribution-decile")
 
 
 
+# Thèmes reliés
+
+```{r, echo = F}
+tribble(~ theme,
+        "inegalites",
+        "redistribution") |>
+  theme_file_updates()
+```
 
 
 # Bases de données
