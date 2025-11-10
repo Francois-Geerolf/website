@@ -31,6 +31,14 @@ ig_b("insee", "RPM2021", "D2", "fig8")
 ig_b("insee", "IA88", "fig4")
 ```
 
+
+
+## Ménages pauvres et aisés avant et après redistribution élargie
+
+```{r}
+ig_b("insee", "IA88", "fig2")
+```
+
 # Taux d'imposition
 
 ## Données
