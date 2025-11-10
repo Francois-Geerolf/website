@@ -26,7 +26,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ig_b("insee", "RPM2021", "D2", "fig8")
 ```
 
-## Données Gini
+## Comptes nationaux distribués
 
 ```{r}
 ig_b("insee", "RPM2021", "D2", "table2")
