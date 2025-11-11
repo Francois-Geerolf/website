@@ -6,7 +6,7 @@ setwd(here::here("data"))
 
 themes <- tibble::tibble(
   theme = tools::file_path_sans_ext(
-    list.files(path = root_dir, pattern = "\\.qmd$", full.names = FALSE, ignore.case = TRUE)
+    list.files(pattern = "\\.qmd$", full.names = FALSE, ignore.case = TRUE)
   )
 ) |>
   dplyr::filter(
