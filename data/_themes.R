@@ -16,4 +16,4 @@ themes <- tibble::tibble(
 
 save(themes, file = "_themes.RData")
 
-
+print(themes)
