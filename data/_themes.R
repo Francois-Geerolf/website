@@ -1,8 +1,5 @@
 source(here::here("_rinit.R"))
-
-# Set your root folder here
 setwd(here::here("data"))
-
 
 themes <- tibble::tibble(
   theme = tools::file_path_sans_ext(
