@@ -191,6 +191,14 @@ ig_d("insee", "t_recapAgent_val", "B9NF-RdM-APU-percent-PIB")
 ig_d("insee", "t_recapAgent_val", "B9NF-RdM-APU-percent-PIB-12mois")
 ```
 
+
+### Depuis 2017
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2018-bis2")
+```
+
+
 ### Ménages, Reste du Monde
 
 ```{r}
