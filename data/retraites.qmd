@@ -54,6 +54,12 @@ ig_b("insee", "ip2005", "fig3")
 
 ## Pensions vs. Indice FP
 
+### 1996-
+
+```{r}
+ig_d("ipp", "revalorisation_pension", "reval-1996-reel")
+```
+
 ### 1999-
 
 ```{r}
@@ -72,7 +78,6 @@ ig_d("ipp", "revalorisation_pension", "merge-indicefp-2012")
 ```{r}
 ig_d("ipp", "revalorisation_pension", "merge-indicefp-2017")
 ```
-
 
 
 
