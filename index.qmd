@@ -163,4 +163,3 @@ OFCE
 10, place de Catalogne  
 75014 PARIS  
 France
-

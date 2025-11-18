@@ -107,4 +107,3 @@ editor: source
 {{< include ../public-debate/fr/Geerolf2024b.qmd >}}
 
 {{< include ../public-debate/fr/Geerolf2022a.qmd >}}
-
