@@ -165,10 +165,19 @@ ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel-2008")
 
 ### Annuel
 
+
+
 #### 1996-
 
 ```{r}
 ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1996")
+```
+
+
+#### 2003-2022
+
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-2003-2022-labels")
 ```
 
 
