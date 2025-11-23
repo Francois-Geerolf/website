@@ -1,0 +1,40 @@
+---
+title: Données sur la Pologne
+metadata-files: 
+  - _common.yml
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+`pologne` <-tribble(
+  ~source, ~dataset,
+  "oecd", "QNA",
+  "wdi", "NY.GDP.PCAP.PP.CD") %>%
+  arrange(source, dataset)
+```
+
+
+# Comparaisons de PIB
+
+
+## Europe
+
+### Pologne
+
+```{r}
+ig_d("eurostat", "tec00114", "FR-DE-EL-PL")
+```
+
+
+
+# Datasets
+
+```{r, echo = F}
+`pologne` |>
+  source_dataset_file_updates()
+```
+
+
