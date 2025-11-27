@@ -169,6 +169,25 @@ ig_b("sdes", "datalab_essentiel_349_prix_electricite_france_ue_2023_juillet2024_
 
 ## Electricité, Gaz, électricité + gaz
 
+### 30 ans
+
+```{r}
+ig_d("insee", "IPCH-2015", "041-045-01-00-30ans")
+```
+
+### 20 ans
+
+```{r}
+ig_d("insee", "IPCH-2015", "041-045-01-00-20ans")
+```
+
+### 10 ans
+
+```{r}
+ig_d("insee", "IPCH-2015", "041-045-01-00-10ans")
+```
+
+
 ### Janvier 2008
 
 ```{r}
