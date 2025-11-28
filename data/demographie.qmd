@@ -26,6 +26,13 @@ demographie <- tribble(
 
 # Indicateur (conjoncturel) de fécondité
 
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R DECES-MORTALITE; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("DECES-MORTALITE.qmd")'; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
 ## France, Germany, Italy
 
 ```{r}
@@ -200,4 +207,16 @@ ig_d("eurostat", "demo_minfind", "FR-DE-IT-ES-1996")
 ```{r, echo = F}
 `demographie` |>
   source_dataset_file_updates()
+```
+
+
+# Related themes
+
+
+
+```{r, echo = F}
+tribble(~ theme,
+        "demographie",
+        "demography") |>
+  theme_file_updates()
 ```
