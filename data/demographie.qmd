@@ -127,6 +127,14 @@ ig_d("insee", "DECES-MORTALITE", "deces-naissances-2024")
 
 ## France Entiere
 
+### Dernier chiffre
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-dernier-chiffre")
+```
+
+
+
 ### Tous
 
 ```{r}
