@@ -23,6 +23,14 @@ demographie <- tribble(
 
 
 
+# Thèmes reliés
+
+```{r, echo = F}
+tribble(~ theme,
+        "demography") |>
+  theme_file_updates()
+```
+
 
 # Indicateur (conjoncturel) de fécondité
 
@@ -215,16 +223,4 @@ ig_d("eurostat", "demo_minfind", "FR-DE-IT-ES-1996")
 ```{r, echo = F}
 `demographie` |>
   source_dataset_file_updates()
-```
-
-
-# Related themes
-
-
-
-```{r, echo = F}
-tribble(~ theme,
-        "demographie",
-        "demography") |>
-  theme_file_updates()
 ```

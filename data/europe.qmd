@@ -27,6 +27,21 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
   arrange(source, dataset)
 ```
 
+
+# Related themes
+
+```{r, echo = F}
+tribble(~ theme,
+        "monetary-policy", 
+        "germany",
+        "inflation-europe",
+        "poland",
+        "greece",
+        "italy",
+        "france") |>
+  theme_file_updates()
+```
+
 # Related papers
 
 ```{r, echo = F}

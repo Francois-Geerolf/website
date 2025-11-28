@@ -18,6 +18,13 @@ demography <- tribble(
 ```
 
 
+# Related themes
+
+```{r, echo = F}
+tribble(~ theme,
+        "demographie") |>
+  theme_file_updates()
+```
 
 
 # Births, Deaths

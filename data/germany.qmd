@@ -16,7 +16,19 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
   arrange(source, dataset)
 ```
 
-# Info
+# Related themes
+
+```{r, echo = F}
+tribble(~ theme,
+        "monetary-policy", 
+        "europe",
+        "inflation-europe",
+        "poland",
+        "greece",
+        "italy",
+        "france") |>
+  theme_file_updates()
+```
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("germany.qmd")'
