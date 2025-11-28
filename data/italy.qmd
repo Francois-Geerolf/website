@@ -16,7 +16,7 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
   arrange(source, dataset)
 ```
 
-# Info
+# Related themes
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("italy.qmd")'
@@ -28,6 +28,19 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 # sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
 # sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
 # sh ~/iCloud/website/website_short.sh
+```
+
+```{r, echo = F}
+tribble(~ theme,
+        "monetary-policy", 
+        "europe",
+        "inflation-europe",
+        "germany",
+        "france",
+        "italy",
+        "poland",
+        "greece") |>
+  theme_file_updates()
 ```
 
 # GDP
