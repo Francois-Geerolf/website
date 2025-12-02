@@ -71,7 +71,6 @@ ig_b("insee", "ia72", "fig1")
 ```
 
 
-
 #### Avant
 
 ```{r}
