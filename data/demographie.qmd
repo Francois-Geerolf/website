@@ -140,14 +140,11 @@ ig_d("insee", "DECES-MORTALITE", "deces-naissances-2024")
 ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-dernier-chiffre")
 ```
 
-
-
 ### Tous
 
 ```{r}
 ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE")
 ```
-
 
 ### 2024-
 
