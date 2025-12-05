@@ -1,0 +1,50 @@
+---
+title: UCLA - University of California, Los Angeles
+lang: en
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+editor: source
+---
+
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+```
+
+```{r fig.align="center", out.width="80%", echo = F}
+knitr::include_graphics("../files/ucla-undergraduate.avif")
+```
+
+Work undertaken while at UCLA
+
+# Working Papers
+
+
+# Research
+
+{{< include ../working-papers/en/Geerolf2017.qmd >}}
+Revision requested at American Economic Review
+
+{{< include ../working-papers/en/Geerolf2018a.qmd >}}
+
+{{< include ../working-papers/en/Geerolf2015.qmd >}}
+
+{{< include ../working-papers/en/Geerolf2018b.qmd >}}
+
+{{< include ../working-papers/en/Geerolf2019a.qmd >}}
+
+{{< include ../working-papers/en/Geerolf2019b.qmd >}}
+
+{{< include ../working-papers/en/Geerolf2019c.qmd >}}
+
