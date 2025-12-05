@@ -18,6 +18,12 @@ format:
 editor: source
 ---
 
+
+
+```{r fig.align="center", out.width="80%", echo = F}
+knitr::include_graphics("../files/OFCE_(logo).png")
+```
+
 # Articles
 
 ## Français

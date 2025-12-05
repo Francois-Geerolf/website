@@ -24,6 +24,10 @@ editor: source
 source(here::here("_rinit.R"))
 ```
 
+```{r fig.align="center", out.width="80%", echo = F}
+knitr::include_graphics("../files/cepii-logo.png")
+```
+
 Travaux réalisés pour le CEPII lorsque j'étais _Conseiller Scientifique_ au CEPII et _Assistant Professor_ à UCLA.
 
 # Articles
