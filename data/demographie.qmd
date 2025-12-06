@@ -100,6 +100,7 @@ ig_b("insee", "FPORSOC15a", "EC1_fecondite", "encadre1")
 
 # Naissances vs. Décès
 
+Données France Entière puis France Métropolitaine.
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'

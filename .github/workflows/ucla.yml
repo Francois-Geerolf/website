@@ -3,10 +3,10 @@ name: Build UCLA
 on:
   push:
     paths:
-      - 'ucla'
+      - 'ucla/**'
   pull_request:
     paths:
-      - 'ucla'
+      - 'ucla/**'
   schedule:
     - cron: '0 5 * * *'   # tous les jours à 05:00 UTC
 
