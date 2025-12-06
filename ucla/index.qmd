@@ -45,7 +45,7 @@ Revision requested at American Economic Review
 {{< include ../working-papers/en/Geerolf2019c.qmd >}}
 
 
-# Teaching au UCLA
+# Teaching at UCLA
 
 Evidence-Based Macroeconomics & Finance (UCLA, PhD 2nd year). [[<i class="fa-solid fa-chalkboard-teacher"></i> Syllabus](https://fgeerolf.com/econ221/syllabus.html)] [[<i class="fas fa-globe"></i> Data](https://fgeerolf.com/data/)]
 
