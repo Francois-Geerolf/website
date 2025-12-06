@@ -85,7 +85,7 @@ ig_b("insee", "ip1826", "figure2a")
 
 # Economie, fécondité, natalité
 
-"Jamais la diminution de la population n'a marqué une période heureuse pour les individus plus à l'aise dans leur cadre étroit"
+Alfred Sauvy. "Jamais la diminution de la population n'a marqué une période heureuse pour les individus plus à l'aise dans leur cadre étroit".
 
 ## Lien
 
@@ -105,6 +105,26 @@ ig_b("insee", "FPORSOC15a", "EC1_fecondite", "encadre1")
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R DECES-MORTALITE; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("DECES-MORTALITE.qmd")'; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
 # sh ~/iCloud/website/website_short.sh
+```
+
+## France Entière
+
+### Dernier chiffre
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-dernier-chiffre")
+```
+
+### Tous
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE")
+```
+
+### 2024-
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-2024")
 ```
 
 ## France Métropolitaine
@@ -131,26 +151,6 @@ ig_d("insee", "DECES-MORTALITE", "deces-naissances-2020")
 ig_d("insee", "DECES-MORTALITE", "deces-naissances-2024")
 ```
 
-
-## France Entiere
-
-### Dernier chiffre
-
-```{r}
-ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-dernier-chiffre")
-```
-
-### Tous
-
-```{r}
-ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE")
-```
-
-### 2024-
-
-```{r}
-ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-2024")
-```
 
 
 # Nombre de naissances vivantes
