@@ -23,6 +23,21 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
   arrange(source, dataset)
 ```
 
+# Food
+
+Methodology is not harmonized across European countries... Some have scanner data, some don't. France switched to scanner data in early 2020.
+
+## 2017-
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP01-2017")
+```
+
+## 2021-
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP01-2021")
+```
 
 
 # United States vs Europe
