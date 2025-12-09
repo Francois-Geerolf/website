@@ -12,18 +12,9 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 `europe` <-tribble(
   ~source, ~dataset,
   "eurostat", "bop_gdp6_q",
-  "eurostat",  "nama_10_a10_e",
+  "oecd",  "QNA_EXPENDITURE_CAPITA",
   "eurostat",  "namq_10_a10_e",
-  "eurostat",  "nama_10_a10",
-  "eurostat",  "namq_10_a10",
-  "eurostat",  "nama_10_gdp",
-  "eurostat",  "namq_10_gdp",
-  "eurostat",  "nama_10_lp_ulc",
-  "eurostat",  "namq_10_lp_ulc",
-  "eurostat",  "namq_10_pc",
-  "eurostat", "nasa_10_nf_tr",
-  "eurostat", "nasq_10_nf_tr",
-  "eurostat", "tipsii40") %>%
+  "eurostat",  "nama_10_a10") %>%
   arrange(source, dataset)
 ```
 
