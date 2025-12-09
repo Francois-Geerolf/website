@@ -33,8 +33,9 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 ```{r, echo = F}
 tribble(~ theme,
         "monetary-policy", 
-        "germany",
         "inflation-europe",
+        "euro",
+        "germany",
         "poland",
         "greece",
         "italy",
