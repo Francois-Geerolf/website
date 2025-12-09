@@ -43,3 +43,11 @@ tribble(~ theme,
 ```{r, echo = F}
 ig_b("europe", "carte-zone-euro-1152x644")
 ```
+
+
+# Comparaison UE à 27 vs. Zone € à 20
+
+```{r, echo = F}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA20-EU2027-1999")
+```
+
