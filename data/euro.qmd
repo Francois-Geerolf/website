@@ -1,0 +1,392 @@
+---
+title: Europe in Numbers
+metadata-files: 
+  - _common.yml
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+`europe` <-tribble(
+  ~source, ~dataset,
+  "eurostat", "bop_gdp6_q",
+  "eurostat",  "nama_10_a10_e",
+  "eurostat",  "namq_10_a10_e",
+  "eurostat",  "nama_10_a10",
+  "eurostat",  "namq_10_a10",
+  "eurostat",  "nama_10_gdp",
+  "eurostat",  "namq_10_gdp",
+  "eurostat",  "nama_10_lp_ulc",
+  "eurostat",  "namq_10_lp_ulc",
+  "eurostat",  "namq_10_pc",
+  "eurostat", "nasa_10_nf_tr",
+  "eurostat", "nasq_10_nf_tr",
+  "eurostat", "tipsii40") %>%
+  arrange(source, dataset)
+```
+
+
+# Related themes
+
+```{r, echo = F}
+tribble(~ theme,
+        "monetary-policy", 
+        "germany",
+        "inflation-europe",
+        "poland",
+        "greece",
+        "italy",
+        "france") |>
+  theme_file_updates()
+```
+
+# Related papers
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("europe.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro-france.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("interest-rates.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("monetary-policy.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/europe.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## English
+
+{{< include ../publications/en/Blot2025.qmd >}}
+
+{{< include ../publications/en/Blot2023d.qmd >}}
+
+{{< include ../publications/en/Geerolf2023b.qmd >}}
+
+{{< include ../publications/en/Blot2023c.qmd >}}
+
+{{< include ../publications/en/Blot2023b.qmd >}}
+
+{{< include ../publications/en/Blot2023a.qmd >}}
+
+{{< include ../publications/en/Blot2022.qmd >}}
+
+
+## French
+
+{{< include ../publications/fr/Blot2025.qmd >}}
+
+{{< include ../publications/fr/Geerolf2025a.qmd >}}
+
+{{< include ../publications/fr/Geerolf2024d.qmd >}}
+
+{{< include ../public-debate/fr/Geerolf2024b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2023b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2023a.qmd >}}
+
+{{< include ../publications/fr/Allegre2022.qmd >}}
+
+{{< include ../publications/fr/Creel2022.qmd >}}
+
+# Relative importance
+
+## PIB relatif
+
+```{r}
+ig_d("wdi", "NY.GDP.MKTP.CD", "US-CN-EU")
+```
+
+## GDP per capita
+
+```{r}
+ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT")
+```
+
+## Compare
+
+```{r}
+ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT-using-groups-linear")
+```
+
+
+
+
+# GDP Horse races
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R namq_10_gdp; /usr/local/bin/R -e 'quarto::quarto_render("namq_10_gdp.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R namq_10_a10_e; /usr/local/bin/R -e 'quarto::quarto_render("namq_10_a10_e.qmd")'
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.PP.CD; /usr/local/bin/R -e 'quarto::quarto_render("NY.GDP.PCAP.PP.CD.qmd")'
+# cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.CD; /usr/local/bin/R -e 'quarto::quarto_render("NY.GDP.PCAP.CD.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+## Europe, U.S., OCDE
+
+
+
+## Europe, U.S.
+
+### OECD
+
+#### GDP
+
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA20-2000-new-english")
+```
+
+### WDI (2008-)
+
+#### PIB
+
+##### Current Dollar
+
+```{r}
+ig_d("wdi", "NY.GDP.MKTP.CD", "XC-US-PIB-dollars")
+```
+
+
+
+##### 2015 Dollars
+
+```{r}
+ig_d("wdi", "NY.GDP.MKTP.KD", "XC-US-PIB-dollars")
+```
+
+##### Current PPP Dollars
+
+```{r}
+ig_d("wdi", "NY.GDP.MKTP.PP.CD", "XC-US-PIB-dollars")
+```
+
+
+##### 2015 PPP Dollars
+
+```{r}
+ig_d("wdi", "NY.GDP.MKTP.PP.KD", "XC-US-PIB-dollars")
+```
+
+
+
+#### PIB/habitant
+
+##### Current Dollar
+
+```{r}
+ig_d("wdi", "NY.GDP.PCAP.CD", "XC-US-PIB-dollars")
+```
+
+
+
+##### 2015 Dollars
+
+```{r}
+ig_d("wdi", "NY.GDP.PCAP.KD", "XC-US-PIB-dollars")
+```
+
+##### Current PPP Dollars
+
+```{r}
+ig_d("wdi", "NY.GDP.PCAP.PP.CD", "XC-US-PIB-dollars")
+```
+
+
+##### 2015 PPP Dollars
+
+```{r}
+ig_d("wdi", "NY.GDP.PCAP.PP.KD", "XC-US-PIB-dollars")
+```
+
+
+
+## Germany, France, Italy, Spain
+
+### Since Covid-19
+
+```{r}
+ig_d("eurostat", "namq_10_gdp", "DE-IT-ES-FR-2019")
+```
+
+
+
+### 1996-
+
+```{r}
+ig_d("eurostat", "namq_10_gdp", "B1GQ-SCA-CLV10MEUR-DE-EA19-FR-IT-1996")
+```
+
+
+## Germany, France, Italy, Spain
+
+```{r}
+ig_d("eurostat", "namq_10_gdp", "DE-IT-ES-FR-2019")
+```
+
+# Unemployment
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f STLABOUR_7.R; /usr/local/bin/R -e 'quarto::quarto_render("STLABOUR.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Europe, France, United States
+
+### 1990-
+
+```{r}
+ig_d("oecd", "STLABOUR", "LRHUTTTT-M-USA-EA20-FRA-1990")
+```
+
+### 2005-
+
+```{r}
+ig_d("oecd", "STLABOUR", "LRHUTTTT-M-USA-EA19-FRA-2005")
+```
+
+## Germany, France, Italy
+
+### All
+
+```{r}
+ig_d("oecd", "STLABOUR", "LRHUTTTT-Q-DEU-FRA-ITA")
+```
+
+
+# Employment in Manufacturing
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R namq_10_a10_e; /usr/local/bin/R -e 'quarto::quarto_render("namq_10_a10_e.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## France, Italy, Germany
+
+```{r}
+ig_d("eurostat", "namq_10_a10_e", "C-TOTAL-FR-DE-IT-1995-flags")
+```
+
+## France, Italy, Germany, Spain, Europe
+
+```{r}
+ig_d("eurostat", "namq_10_a10_e", "C-TOTAL-FR-DE-IT-ES-EA-1995-flags")
+```
+
+## Spain, Netherlands, Portugal
+
+```{r}
+ig_d("eurostat", "namq_10_a10_e", "C-TOTAL-ES-NL-PT-1995-flags")
+```
+
+# Current account balance
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R bop_gdp6_q; /usr/local/bin/R -e 'quarto::quarto_render("bop_gdp6_q.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## All
+
+```{r}
+ig_d("eurostat", "bop_gdp6_q", "DE-ES-FR-IT-NL-EA20")
+```
+
+## 2012
+
+```{r}
+ig_d("eurostat", "bop_gdp6_q", "DE-ES-FR-IT-NL-EA20-2012")
+```
+
+
+
+
+# Net international investment position
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R tipsii40; /usr/local/bin/R -e 'quarto::quarto_render("tipsii40.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R bop_iip6_q; /usr/local/bin/R -e 'quarto::quarto_render("bop_iip6_q.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Bn€
+
+### Main Europe
+
+
+```{r}
+ig_d("eurostat", "bop_iip6_q", "FANENDI-FR-DE-EA20-ES-NL-IT")
+```
+
+### France, Germany, Europe
+
+```{r}
+ig_d("eurostat", "bop_iip6_q", "FANENDI-FR-DE-EA20")
+```
+
+## % of GDP
+
+### Germany, Spain, France, Italy, Netherlands
+
+```{r}
+ig_d("eurostat", "tipsii40", "DE-ES-FR-IT-NL-2000")
+```
+
+### With Greece
+
+```{r}
+ig_d("eurostat", "tipsii40", "DE-BE-FR-IT-NL-ES-EL")
+```
+
+
+
+
+# Commerce extérieur
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R tipsbp20; /usr/local/bin/R -e 'quarto::quarto_render("tipsbp20.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R namq_10_gdp; /usr/local/bin/R -e 'quarto::quarto_render("namq_10_gdp.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Trimestriel
+
+```{r}
+ig_d("eurostat", "namq_10_gdp", "P6-P7-SCA-FR-DE-IT-EA-ES-1998")
+```
+
+
+
+## Moyenne 3 ans
+
+```{r}
+ig_d("eurostat", "tipsbp20", "mean-sd-EU27-FR-DE")
+```
+
+
+
+
+# Datasets
+
+```{r, echo = F}
+`europe` |>
+  source_dataset_file_updates()
+```
+
+# Related themes
+
+
+
+```{r, echo = F}
+tribble(~ theme,
+        "greece",
+        "poland") |>
+  theme_file_updates()
+```
