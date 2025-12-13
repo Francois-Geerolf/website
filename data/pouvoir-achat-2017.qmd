@@ -1,5 +1,5 @@
 ---
-title: Données sur l'évolution du pouvoir d'achat
+title: Évolution du pouvoir d'achat depuis 2017
 metadata-files: 
   - _common_fr.yml
 ---
@@ -32,14 +32,13 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ```
 
 
+
 # Thèmes reliés
 
 ```{r, echo = F}
 tribble(~ theme,
         "pouvoir-achat", 
-        "pouvoir-achat-2017",
-        "inflation-france",
-        "inflation-france-2017") |>
+        "pouvoir-achat-2017") |>
   theme_file_updates()
 ```
 
