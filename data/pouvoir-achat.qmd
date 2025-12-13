@@ -133,14 +133,20 @@ ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
 # sh ~/iCloud/website/website_short.sh
 ```
 
-## 1999-
+## Annuel, 1999-
 
 ```{r}
 ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-1999")
 ```
 
 
-## 2019-
+## Annuel, 2017-
+
+```{r}
+ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2017")
+```
+
+## Annuel, 2019-
 
 ```{r}
 ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2019")
@@ -289,6 +295,14 @@ ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "demographie")
 
 ```{r}
 ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "demographie-1999")
+```
+
+
+
+## 2017-
+
+```{r}
+ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "demographie-2017")
 ```
 
 
