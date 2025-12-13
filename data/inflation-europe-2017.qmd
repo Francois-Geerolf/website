@@ -31,14 +31,33 @@ Methodology is not harmonized across European countries... Some have scanner dat
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP01-2017")
 ```
 
-
 # Cars
 
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP071-2017")
+```
 
+# New Cars
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0711-2017")
 ```
+
+# Old cars
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0712-2017")
+```
+
+
+
+# Rents
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP041-2017")
+```
+
+
 
 
 # Bibliography
