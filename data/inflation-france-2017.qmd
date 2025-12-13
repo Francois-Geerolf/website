@@ -9,7 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-`inflation-france` <- tribble(
+`inflation-france-2017` <- tribble(
   ~source, ~dataset,
   "insee", "bdf2017",
   "insee", "ILC-ILAT-ICC",
@@ -32,6 +32,17 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   arrange(source, dataset)
 ```
 
+
+# Thèmes reliés
+
+```{r, echo = F}
+tribble(~ theme,
+        "pouvoir-achat",
+        "inflation-france",
+        "pouvoir-achat-2017",
+        "inflation-france-2017") |>
+  theme_file_updates()
+```
 
 # Derniers chiffres de l'inflation
 
@@ -382,15 +393,6 @@ ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
 
 - Insee. L'essentiel sur... l'inflation. <https://www.insee.fr/fr/statistiques/4268033>
 
-## Thèmes reliés
-
-```{r, echo = F}
-tribble(~ theme,
-        "inflation-europe",
-        "inflation-france",
-        "inflation") |>
-  theme_file_updates()
-```
 
 
 # Bibliographie

@@ -153,8 +153,6 @@ ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
 
 ## Comparer déflateur
 
-### 1990-
-
 ```{r}
 ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-2017")
 ```
@@ -215,19 +213,13 @@ ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-2017")
 
 ## Pas de hausse des inégalités ?
 
-### Nominal
-
-```{r}
-ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice")
-```
-
 
 
 ### Reel
 
 
 ```{r}
-ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel")
+ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2017")
 ```
 
 
@@ -239,7 +231,7 @@ ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel")
 ### Réel
 
 ```{r}
-ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2008")
+ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2017")
 ```
 
 
@@ -263,7 +255,7 @@ ig_d("insee", "reve-niv-vie-individu-activite", "1996-2008-2019-moy")
 Dernier chiffre RDB/ménage (2022): -0.6% 
 
 ```{r}
-ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
+ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-2017")
 ```
 
 
