@@ -27,153 +27,18 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
 Methodology is not harmonized across European countries... Some have scanner data, some don't. France switched to scanner data in early 2020.
 
-## 2017-
-
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP01-2017")
 ```
 
 
-# United States vs Europe
+# Cars
 
-## Flavors of inflation
+
 
 ```{r}
-ig_d("fred", "inflation", "CPIAUCSL-PCEPI-CP0000USM086NEST-CP00MI15EA20M086NEST-2020")
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0711-2017")
 ```
-
-## Flavors of CPI
-
-```{r}
-ig_d("fred", "inflation", "CPIAUCSL-PCEPI-CP0000USM086NEST-CP00MI15EA20M086NEST-2020-index")
-```
-
-
-## Decomposition
-
-```{r}
-ig_d("oecd", "PRICES_CPI", "EU-US-contributions")
-```
-
-
-## Focus on energy prices
-
-```{r}
-ig_d("fred", "energy", "electricity-natural-gas-fuel-2020-facet")
-```
-
-
-## All, Rents
-
-```{r}
-ig_d("fred", "housing", "all-rents-HICP-CPI")
-```
-
-
-## Inflation by HICP category
-
-```{r}
-ig_d("eurostat", "prc_hicp_manr", "RCH-A-CP00-EA20-US-2020-facet")
-```
-
-
-## CPI by HICP category
-
-```{r}
-ig_d("eurostat", "prc_hicp_midx", "I15-2-digit-EA20-US-2020-facet")
-```
-
-
-## Heterogeneity
-
-```{r}
-ig_d("eurostat", "prc_hicp_midx", "CP00-TOT-X-NRG-FOOD-standard-deviation-weighted-1-2-years")
-```
-
-
-
-
-
-# France, Germany, Italy, Spain, Europe
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R prc_hicp_manr; /usr/local/bin/R -e 'quarto::quarto_render("prc_hicp_manr.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
-
-## All
-
-```{r}
-ig_d("eurostat", "prc_hicp_manr", "RCH-A-CP00-FR-DE-ES-IT-EA19-2020")
-```
-
-
-
-## All
-
-```{r}
-ig_d("eurostat", "prc_hicp_manr", "RCH-A-CP00-FR-DE-ES-IT-EA19-US-2Y")
-```
-
-
-
-
-
-## Core inflation
-
-```{r}
-ig_d("eurostat", "prc_hicp_manr", "TOT-X-NRG-FOOD-FR-DE-ES-IT-2020")
-```
-
-
-## Rents
-
-```{r}
-ig_d("eurostat", "prc_hicp_manr", "RCH-A-CP041-FR-DE-ES-IT-EA19-2020")
-```
-
-## Natural gas
-
-```{r}
-ig_d("eurostat", "prc_hicp_manr", "RCH-A-CP04521-FR-DE-BE-NL-2Y")
-```
-
-
-
-
-
-# Weights - France
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R prc_hicp_inw; /usr/local/bin/R -e 'quarto::quarto_render("prc_hicp_inw.qmd")'
-# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R nama_10_co3_p3; /usr/local/bin/R -e 'quarto::quarto_render("nama_10_co3_p3.qmd")'
-# cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data/eurostat
-# sh ~/iCloud/website/website_short.sh
-```
-
-
-## Food + Housing + Transport = more than half
-
-### % of Consumption - Weights
-
-```{r}
-ig_d("eurostat", "prc_hicp_inw", "FRA-CP01-CP04-CP07")
-```
-
-### % of Consumption
-
-```{r}
-ig_d("eurostat", "nama_10_co3_p3", "FR-CP04-CP07-CP01-PCTOT")
-```
-
-### % of GDP Value
-
-```{r}
-ig_d("eurostat", "nama_10_co3_p3", "FR-CP04-CP07-CP01-CPMEUR")
-```
-
 
 
 # Bibliography
