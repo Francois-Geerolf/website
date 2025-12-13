@@ -101,26 +101,18 @@ tribble(~ theme,
 ## Revalorisation retraites
 
 ```{r, echo = F}
-ig_d("ipp", "revalorisation_pension", "reval-1999-reel")
+ig_d("ipp", "revalorisation_pension", "reval-2017-reel")
 ```
 
 
 ## Revalorisation retraites
 
 ```{r}
-ig_d("ipp", "revalorisation_pension", "reval-1999-reel")
+ig_d("ipp", "revalorisation_pension", "reval-2017-reel")
 ```
 
 
 ## Indice de la fonction publique
-
-### 1999-
-
-```{r}
-ig_d("ipp", "indicefp", "indicefp-reel-1999-cpih-percent-net-brut-mensuel")
-```
-
-
 
 ### 2017-
 
@@ -144,12 +136,6 @@ ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
 # sh ~/iCloud/website/website_short.sh
 ```
 
-## Annuel, 1999-
-
-```{r}
-ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-1999")
-```
-
 
 ## Annuel, 2017-
 
@@ -157,18 +143,12 @@ ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-1999")
 ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2017")
 ```
 
-## Annuel, 2019-
-
-```{r}
-ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2019")
-```
-
 
 
 ## Evolution du RDB vs. déflateur de la conso
 
 ```{r}
-ig_d("insee", "t_pouvachat_val", "P3prix-B6-B7-GA-1990")
+ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
 ```
 
 ## Comparer déflateur
@@ -176,13 +156,13 @@ ig_d("insee", "t_pouvachat_val", "P3prix-B6-B7-GA-1990")
 ### 1990-
 
 ```{r}
-ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-1990")
+ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-2017")
 ```
 
-### 1999-
+## Consommation, PIB
 
 ```{r}
-ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-1999")
+ig_d("insee", "t_pib_vol", "consommation-2017T2-log")
 ```
 
 
@@ -190,15 +170,10 @@ ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-1999")
 ## Pouvoir d'achat du RDB
 
 ```{r}
-ig_d("insee", "t_pouvachat_val", "pouvoir-achat-GA")
+ig_d("insee", "t_pouvachat_val", "pouvoir-achat-2017T2")
 ```
 
 
-## RDB, RDB moins capital
-
-```{r}
-ig_d("insee", "t_men_val", "RDB-RDBmoinsK")
-```
 
 
 
@@ -209,7 +184,7 @@ ig_d("insee", "t_men_val", "RDB-RDBmoinsK")
 ### Trimestriel
 
 ```{r}
-ig_d("insee", "t_men_val", "B2S14-D4-log-1995")
+ig_d("insee", "t_men_val", "B2S14-D4-log-2017")
 ```
 
 
@@ -217,7 +192,7 @@ ig_d("insee", "t_men_val", "B2S14-D4-log-1995")
 ### Annuel
 
 ```{r}
-ig_d("insee", "T_7401", "D4-D42-D44-1995")
+ig_d("insee", "T_7401", "D4-D42-D44-2017")
 ```
 
 
@@ -233,7 +208,7 @@ ig_d("insee", "T_7401", "D4-D42-D44-1995")
 ## PCS
 
 ```{r}
-ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice")
+ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-2017")
 ```
 
 
@@ -293,22 +268,6 @@ ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
 
 
 # Population, unités de consommation
-
-## 1959-
-
-```{r}
-ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "demographie")
-```
-
-
-
-## 1999-
-
-```{r}
-ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "demographie-1999")
-```
-
-
 
 ## 2017-
 
