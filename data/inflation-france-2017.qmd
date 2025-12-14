@@ -59,6 +59,13 @@ ig_d("insee", "IPCH-IPC-2015-ensemble", "IPC-IPCH-trimestre-2017T1")
 ```
 
 
+## Mensuel
+
+```{r}
+ig_d("insee", "IPCH-IPC-2015-ensemble", "IPC-IPCH-2017")
+```
+
+
 
 
 # Indice des prix dans la Grande Distribution
