@@ -27,7 +27,8 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   "insee", "t_salaire_val",
   "insee", "t_recapAgent_val",
   "oecd",  "HH_DASH",
-  "insee",  "T_7401") %>%
+  "insee",  "T_7401",
+  "insee", "T_2101") %>%
   arrange(source, dataset)
 ```
 
@@ -145,6 +146,13 @@ ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
 ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2017")
 ```
 
+## Masse salariale brute vs. nette
+
+```{r}
+ig_d("insee", "T_2101", "brut-net-base-100-2017")
+```
+
+brut-net-base-100-2017
 
 
 ## Evolution du RDB vs. déflateur de la conso
@@ -174,6 +182,21 @@ ig_d("insee", "t_pouvachat_val", "pouvoir-achat-2017T2")
 ```
 
 
+# Salaires par tête
+
+## 2017T1-
+
+```{r}
+ig_d("insee", "t_salaire_val", "TOTAL-OQ-2017T1")
+```
+
+
+
+## 2017T2-
+
+```{r}
+ig_d("insee", "t_salaire_val", "TOTAL-AZ-C-2017T1")
+```
 
 
 
