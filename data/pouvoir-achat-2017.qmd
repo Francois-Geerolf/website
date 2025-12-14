@@ -198,6 +198,11 @@ ig_d("insee", "t_salaire_val", "TOTAL-OQ-2017T1")
 ig_d("insee", "t_salaire_val", "TOTAL-AZ-C-2017T1")
 ```
 
+## Salaires de base
+
+```{r}
+ig_d("dares", "les-indices-de-salaire-de-base", "bind-2017T2")
+```
 
 
 # Types de revenus
