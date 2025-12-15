@@ -33,17 +33,19 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP01-2017")
 
 # Cars
 
+## All Cars
+
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP071-2017")
 ```
 
-# New Cars
+## New Cars
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0711-2017")
 ```
 
-# Old cars
+## Old cars
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0712-2017")
@@ -57,7 +59,27 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0712-2017")
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP041-2017")
 ```
 
+# Communications
 
+## All
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP08-2017")
+```
+
+
+
+## Equipment
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP0820-2017")
+```
+
+## Services
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-NL-ES-CP0830-2017")
+```
 
 
 # Bibliography
