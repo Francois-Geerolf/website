@@ -406,7 +406,3 @@ ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-1996")
 `pouvoir-achat` |>
   source_dataset_file_updates()
 ```
-
-# Bibliographie
-
-{{< include ../publications/pouvoir-dachat.qmd >}}

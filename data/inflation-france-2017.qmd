@@ -326,24 +326,3 @@ ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
 
 
 
-
-# Pour en savoir plus...
-
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")';
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
-## Info
-
-- Insee. L'essentiel sur... l'inflation. <https://www.insee.fr/fr/statistiques/4268033>
-
-
-
-# Bibliographie
-
-{{< include ../publications/inflation-france.qmd >}}
-
