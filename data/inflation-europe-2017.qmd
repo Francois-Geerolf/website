@@ -23,6 +23,14 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
   arrange(source, dataset)
 ```
 
+# All
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx_Q", "CP00-DE-FR-IT-EA20-ES-2017T1-Q")
+```
+
+
+
 # Food
 
 Methodology is not harmonized across European countries... Some have scanner data, some don't. France switched to scanner data in early 2020.
@@ -33,7 +41,7 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP01-2017")
 
 # Cars
 
-## All Cars
+## All Cars (CP071)
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP071-2017")
@@ -59,7 +67,19 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0712-2017")
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP041-2017")
 ```
 
-# Communications
+# Communications (CP08)
+
+## Services (CP083)
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-NL-ES-CP0830-2017")
+```
+
+## Equipment (CP082)
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP0820-2017")
+```
 
 ## All
 
@@ -69,17 +89,7 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP08-2017")
 
 
 
-## Equipment
 
-```{r}
-ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP0820-2017")
-```
-
-## Services
-
-```{r}
-ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-NL-ES-CP0830-2017")
-```
 
 
 # Bibliography
