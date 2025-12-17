@@ -62,7 +62,7 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0712-2017")
 # Rents
 
 ```{r}
-ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP041-2017")
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-CP041-2017")
 ```
 
 # Communications (CP08)

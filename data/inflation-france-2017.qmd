@@ -65,7 +65,13 @@ ig_d("insee", "IPCH-IPC-2015-ensemble", "IPC-IPCH-trimestre-2017T1")
 ig_d("insee", "IPCH-IPC-2015-ensemble", "IPC-IPCH-2017")
 ```
 
+# Loyers
 
+## Secteur social, libre
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "FM-2017")
+```
 
 
 # Indice des prix dans la Grande Distribution
