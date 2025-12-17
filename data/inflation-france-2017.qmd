@@ -81,30 +81,25 @@ ig_d("insee", "INDICES_LOYERS", "FM-2017")
 # sh ~/iCloud/website/website_short.sh
 ```
 
+## Tous produits
+
+```{r}
+ig_d("insee", "IPGD-2015", "PROD-GC-PA-TOTAL-2017")
+```
+
 ## Viandes, Boissons, Produits alimentaires de grande conso, Produits d'entretien, hygiène-beauté
 
-### Tous
+```{r}
+ig_d("insee", "IPGD-2015", "produits-2017")
+```
+
+
+## Grande distribution, GD étendue, Hors GD, Toutes formes de vente
 
 ```{r}
-ig_d("insee", "IPGD-2015", "produits")
+ig_d("insee", "IPGD-2015", "PROD-GC-2017")
 ```
 
-
-### 2022
-
-```{r}
-ig_d("insee", "IPGD-2015", "produits-2022")
-```
-
-
-
-# Glissement sur 2 ans
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPC-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPC-2015.qmd")'
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
 
 
 ## Alimentation, loyers, chauffage, Ensemble
