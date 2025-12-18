@@ -107,13 +107,13 @@ ig_d("insee", "IPGD-2015", "PROD-GC-2017")
 ### IPC
 
 ```{r}
-ig_d("insee", "IPC-2015", "041-045-01-00-2ans")
+ig_d("insee", "IPC-2015", "041-045-01-00-2017")
 ```
 
 ### IPCH
 
 ```{r}
-ig_d("insee", "IPCH-2015", "041-045-01-00-2ans")
+ig_d("insee", "IPCH-2015", "041-045-01-00-2017")
 ```
 
 
@@ -121,7 +121,7 @@ ig_d("insee", "IPCH-2015", "041-045-01-00-2ans")
 ## IPC - Ensemble, hors tabac, avec loyers fictifs
 
 ```{r}
-ig_d("insee", "IPC-2015", "tabac-2ans")
+ig_d("insee", "IPC-2015", "tabac-2017")
 ```
 
 ## Loyers effectifs, Ensemble
