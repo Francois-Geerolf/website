@@ -79,7 +79,13 @@ ig_d("ipp", "revalorisation_pension", "merge-indicefp-2012")
 ig_d("ipp", "revalorisation_pension", "merge-indicefp-2017")
 ```
 
+# Dépenses de retraite, % du PIB
 
+## Comptabilité nationale
+
+```{r}
+ig_d("insee", "T_3301", "GF1002-GF1003")
+```
 
 # Bases de données
 
