@@ -31,27 +31,27 @@ ig_d("eurostat", "prc_hicp_midx_Q", "CP00-DE-FR-IT-EA20-ES-2017T1-Q")
 
 
 
-# Food
+# Food (CP01)
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP01-2017")
 ```
 
-# Cars
+# Cars (CP0711)
 
-## All Cars (CP071)
+## All Cars (CP0711)
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0711-2017")
 ```
 
-## New Cars
+## New Cars (CP07111)
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP07111-2017")
 ```
 
-## Old cars
+## Old cars (CP07112)
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP07112-2017")
@@ -59,7 +59,7 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP07112-2017")
 
 
 
-# Rents
+# Rents (CP041)
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-CP041-2017")
