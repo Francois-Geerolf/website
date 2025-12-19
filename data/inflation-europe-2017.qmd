@@ -86,5 +86,13 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP08-2017")
 ```
 
 
+# Clothing (CP03)
+
+Bridged overlap shouldn't be used except in exceptional circumstances according to Eurostat.
+
+```{r}
+ig_d("eurostat", "prc_hicp_aind", "DE-FR-IT-EA20-ES-CP03-2017")
+```
+
 
 
