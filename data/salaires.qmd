@@ -306,9 +306,19 @@ ig_d("insee", "INDICE-TRAITEMENT-FP", "C-net-brut")
 
 ## Salaires nets et bruts
 
+### % du PIB
+
 ```{r}
 ig_d("insee", "T_2101", "brut-net")
 ```
+
+### % du RDB
+
+```{r}
+ig_d("insee", "T_2101", "brut-net-rdb")
+```
+
+
 
 
 # Pour en savoir plus...
