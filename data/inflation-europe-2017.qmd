@@ -42,19 +42,19 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP01-2017")
 ## All Cars (CP071)
 
 ```{r}
-ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP071-2017")
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0711-2017")
 ```
 
 ## New Cars
 
 ```{r}
-ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0711-2017")
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP07111-2017")
 ```
 
 ## Old cars
 
 ```{r}
-ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP0712-2017")
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP07112-2017")
 ```
 
 
