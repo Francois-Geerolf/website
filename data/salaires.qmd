@@ -302,6 +302,13 @@ ig_d("insee", "INDICE-TRAITEMENT-FP", "B-net-brut")
 ig_d("insee", "INDICE-TRAITEMENT-FP", "C-net-brut")
 ```
 
+# Comptabilité nationale
+
+## Salaires nets et bruts
+
+```{r}
+ig_d("insee", "T_2101", "brut-net")
+```
 
 
 # Pour en savoir plus...
