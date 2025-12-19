@@ -146,13 +146,19 @@ ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
 ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2017")
 ```
 
-## Masse salariale brute vs. nette
+## Masse salariale brute et nette
 
 ```{r}
 ig_d("insee", "T_2101", "brut-net-base-100-2017")
 ```
 
-brut-net-base-100-2017
+## Prestations sociales, EBE
+
+```{r}
+ig_d("insee", "T_2101", "EBE-prestations-sociales-base-100-2017")
+```
+
+
 
 
 ## Evolution du RDB vs. déflateur de la conso
