@@ -159,6 +159,11 @@ ig_d("insee", "T_2101", "EBE-prestations-sociales-base-100-2017")
 ```
 
 
+## Assurances, % du RDB
+
+```{r}
+ig_d("insee", "T_2103", "ASSUR-2017")
+```
 
 
 ## Evolution du RDB vs. déflateur de la conso
