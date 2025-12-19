@@ -95,4 +95,14 @@ ig_d("eurostat", "prc_hicp_aind", "DE-FR-IT-EA20-ES-CP03-2017")
 ```
 
 
+# Health (CP06)
+
+##  Other medical products (CP0612)
+
+Vaccines
+
+```{r}
+ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP0612-2017")
+```
+
 
