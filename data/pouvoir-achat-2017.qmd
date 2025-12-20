@@ -194,6 +194,14 @@ Difficile car l'Insee ne publie pas officiellement le déflateur hors SIFIM.
 ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-2017")
 ```
 
+## Déflateur
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "P3prix-B6-B7-index-2017")
+```
+
+
+
 ## Consommation, PIB
 
 ```{r}
