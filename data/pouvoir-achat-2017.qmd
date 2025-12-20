@@ -47,7 +47,7 @@ tribble(~ theme,
 
 # Chiffres officiels de l'Insee
 
-## Evolutions trimestrielles (%)
+## Dernières évolutions trimestrielles (%)
 
 ```{r echo = F}
 "https://www.insee.fr/fr/statistiques/2830166" |>
@@ -68,7 +68,7 @@ tribble(~ theme,
   gt::tab_options(table.width = "100%")
 ```
 
-## Evolutions annuelles (%)
+## Dernières évolutions annuelles (%)
 
 
 ```{r echo = F}
@@ -131,7 +131,7 @@ ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
 
 
 
-# Evolution du pouvoir d'achat
+# Décomposition du pouvoir d'achat
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_men_val.qmd")'
@@ -144,6 +144,20 @@ ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
 
 ```{r}
 ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2017")
+```
+
+
+## Trimestriel, 2017T1-
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T1")
+```
+
+
+## Trimestriel, 2017T2-
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
 ```
 
 ## Masse salariale brute et nette
@@ -166,11 +180,6 @@ ig_d("insee", "T_2103", "ASSUR-2017")
 ```
 
 
-## Evolution du RDB vs. déflateur de la conso
-
-```{r}
-ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
-```
 
 ## Comparer déflateur
 
@@ -234,7 +243,13 @@ ig_d("insee", "t_men_val", "B2S14-D4-log-2017")
 ig_d("insee", "T_7401", "D4-D42-D44-2017")
 ```
 
+# Contexte macroéconomique
 
+## Balance des secteurs institutionnels
+
+```{r}
+ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2018-bis2")
+```
 
 # Depuis 1996
 
