@@ -136,5 +136,16 @@ ig_d("insee", "IPC-2015", "041-00-2017")
 ```
 
 
+# Bibliographie
+
+{{< include ../publications/inflation-france.qmd >}}
+
+
+# Bases de données
+
+```{r, echo = F}
+`inflation-france-2017` |>
+  source_dataset_file_updates()
+```
 
 
