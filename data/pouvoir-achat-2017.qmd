@@ -229,6 +229,14 @@ ig_d("insee", "t_pouvachat_val", "pouvoir-achat-2017T2")
 ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-2017")
 ```
 
+#### Réels
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-CCE-4-6-IPC-IPCH-reel-2017")
+```
+
+
+
 
 
 
@@ -254,7 +262,11 @@ ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2017")
 ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-IPC-2017")
 ```
 
+### Cadres, y compris chefs d'entreprise salariés
 
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "PCS-cadres-indice-IPC-IPCH-reel-2017")
+```
 
 ## Salaires par tête, comptabilité nationale
 
