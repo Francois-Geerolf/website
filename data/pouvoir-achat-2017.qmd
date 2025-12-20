@@ -221,20 +221,34 @@ ig_d("insee", "t_pouvachat_val", "pouvoir-achat-2017T2")
 
 ## Salaires annuels
 
-### PCS, Nominaux
+### Professions Catégories Socioprofessionnelles (PCS)
+
+#### Nominaux
 
 ```{r}
 ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-2017")
 ```
 
 
-### Réels au sens de l'IPCH
+
+
+
+
+### Déciles, médiane, Centiles
+
+#### Nominaux
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-2017")
+```
+
+#### Réels au sens de l'IPCH
 
 ```{r}
 ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2017")
 ```
 
-### Réels au sens de l'IPC
+#### Réels au sens de l'IPC
 
 ```{r}
 ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-IPC-2017")
