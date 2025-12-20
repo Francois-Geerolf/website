@@ -318,53 +318,10 @@ ig_d("insee", "T_7401", "D4-D42-D44-2017")
 ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2018-bis2")
 ```
 
-# Depuis 1996
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SALAIRES-ANNUELS; /usr/local/bin/R -e 'quarto::quarto_render("SALAIRES-ANNUELS.qmd")'
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
-
-
-# Depuis 2008
-
-
-## Pas de hausse des inégalités ?
-
-### Réel
-
-```{r}
-ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2017")
-```
 
 
 
 
-# Pouvoir d'achat
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R CNA-2014-RDB; /usr/local/bin/R -e 'quarto::quarto_render("CNA-2014-RDB.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
-## Evolution depuis 1996
-
-```{r}
-ig_d("insee", "reve-niv-vie-individu-activite", "1996-2008-2019-moy")
-```
-
-## Personne > UC > Ménage
-
-Dernier chiffre RDB/ménage (2022): -0.6% 
-
-```{r}
-ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-2017")
-```
-
-
-# Population, unités de consommation
 
 
 
@@ -373,85 +330,32 @@ ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-2017")
 ## Salaires
 
 ```{r}
-ig_d("insee", "T_7401", "18-26-42-montant-log-1995")
+ig_d("insee", "T_7401", "18-26-42-montant-log-2017")
 ```
 
 
-
-## Dividendes, Ménages
-
-### Mds € (montants trimestriels)
-
-```{r}
-ig_d("insee", "t_recapAgent_val", "D42-menages")
-```
-
-
-
-### % du PIB
-
-```{r}
-ig_d("insee", "t_recapAgent_val", "D42-menages-percent-PIB")
-```
-
-
-
-## Dividendes
-
-```{r}
-ig_d("insee", "t_recapAgent_val", "D42-nets-percent-PIB")
-```
-
-# Revenu disponible
-
-Dernier chiffre RDB/ménage (2022): -0.6% 
-
-## Par ménage, par personne, par UC
-
-```{r}
-ig_d("insee", "CNA-2014-RDB", "menage-personne-UC")
-```
 
 # Comparaisons internationales
 
 ## GDI
 
-### 1999-
-
 ```{r}
-ig_d("eurostat", "nasq_10_nf_tr", "B6G-FR-DE-IT-ES-NL-1999")
+ig_d("eurostat", "nasq_10_nf_tr", "B6G-FR-DE-IT-ES-NL-2017")
 ```
 
 
 
 ## GDI, real, per person
 
-### 1999-
-
-```{r}
-ig_d("eurostat", "nasq_10_nf_tr", "B6G-R-HAB-FR-DE-IT-ES-NL-1999")
-```
-
-### OECD
-
-```{r}
-ig_d("oecd", "NAAG", "B6NS14S15DEF-ITA-ESP-FRA-DEU-1999")
-```
-
-
-
-### 2017-
-
 ```{r}
 ig_d("eurostat", "nasq_10_nf_tr", "B6G-R-HAB-FR-DE-IT-ES-NL-2017")
 ```
 
-## Quelle inflation ?
 
-### CPI vs. HICP
+## CPI vs HICP
 
 ```{r}
-ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-1996")
+ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-2017")
 ```
 
 
