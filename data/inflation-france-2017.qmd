@@ -124,6 +124,9 @@ ig_d("insee", "IPCH-2015", "041-045-01-00-2017")
 ig_d("insee", "IPC-2015", "tabac-2017")
 ```
 
+
+
+
 ## Loyers effectifs, Ensemble
 
 ### IPC

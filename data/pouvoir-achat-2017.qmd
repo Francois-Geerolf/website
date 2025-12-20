@@ -13,7 +13,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
 ## sh ~/iCloud/website/website_short.sh
-`pouvoir-achat` <- tribble(
+`pouvoir-achat-2017` <- tribble(
   ~source, ~dataset,
   "insee",  "CNA-2014-RDB",
   "insee",  "CNT-2014-CSI",
@@ -26,6 +26,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   "insee", "econ-gen-revenu-dispo-pouv-achat-2",
   "insee", "t_salaire_val",
   "insee", "t_recapAgent_val",
+  "insee", "SALAIRES-ANNUELS",
   "oecd",  "HH_DASH",
   "insee",  "T_7401",
   "insee", "T_2101") %>%
@@ -45,7 +46,7 @@ tribble(~ theme,
   theme_file_updates()
 ```
 
-# Chiffres officiels sur « le » pouvoir d'achat
+# Chiffres officiels sur « le » pouvoir d'achat au sens de l'Insee
 
 ## Annuel, 2017-
 
@@ -114,44 +115,7 @@ ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
 
 
 
-# Retraites, Point d'indice (net)
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_pouvachat_val.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
-## Revalorisation retraites
-
-```{r, echo = F}
-ig_d("ipp", "revalorisation_pension", "reval-2017-reel")
-```
-
-
-## Revalorisation retraites
-
-```{r}
-ig_d("ipp", "revalorisation_pension", "reval-2017-reel")
-```
-
-
-## Indice de la fonction publique
-
-### 2017-
-
-```{r}
-ig_d("ipp", "indicefp", "indicefp-reel-2017-cpih-percent-net-brut-mensuel")
-```
-
-### 2017T2-
-
-```{r}
-ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
-```
-
-
-
-# Décomposition du pouvoir d'achat
+# Décomposition « du »  pouvoir d'achat au sens de l'Insee
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_men_val.qmd")'
@@ -186,15 +150,33 @@ ig_d("insee", "T_2103", "ASSUR-2017")
 
 
 
+## Revenus de la propriété
+
+### Trimestriel
+
+```{r}
+ig_d("insee", "t_men_val", "B2S14-D4-log-2017")
+```
+
+
+
+### Annuel
+
+```{r}
+ig_d("insee", "T_7401", "D4-D42-D44-2017")
+```
+
 ## Comparer déflateur
 
 Difficile car l'Insee ne publie pas officiellement le déflateur hors SIFIM.
+
+### Déflateur consommation vs. investissement
 
 ```{r}
 ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-2017")
 ```
 
-## Déflateur
+### Déflateur
 
 ```{r}
 ig_d("insee", "t_pouvachat_val", "P3prix-B6-B7-index-2017")
@@ -202,22 +184,14 @@ ig_d("insee", "t_pouvachat_val", "P3prix-B6-B7-index-2017")
 
 
 
-## Consommation, PIB
+### Consommation, PIB
 
 ```{r}
 ig_d("insee", "t_pib_vol", "consommation-2017T2-log")
 ```
 
 
-
-## Pouvoir d'achat du RDB
-
-```{r}
-ig_d("insee", "t_pouvachat_val", "pouvoir-achat-2017T2")
-```
-
-
-# Salaires
+# Salaires, pouvoir d'achat
 
 ## Salaires annuels
 
@@ -291,26 +265,46 @@ ig_d("dares", "les-indices-de-salaire-de-base", "bind-2017T2")
 ```
 
 
+# Retraites, Point d'indice (net)
 
-# Types de revenus
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_pouvachat_val.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
 
-## Revenus de la propriété
+## Revalorisation retraites
 
-### Trimestriel
+```{r, echo = F}
+ig_d("ipp", "revalorisation_pension", "reval-2017-reel")
+```
+
+
+## Revalorisation retraites
 
 ```{r}
-ig_d("insee", "t_men_val", "B2S14-D4-log-2017")
+ig_d("ipp", "revalorisation_pension", "reval-2017-reel")
+```
+
+
+# Indice de la fonction publique
+
+## Point d'indice
+
+### 2017-
+
+```{r}
+ig_d("ipp", "indicefp", "indicefp-reel-2017-cpih-percent-net-brut-mensuel")
+```
+
+### 2017T2-
+
+```{r}
+ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
 ```
 
 
 
-### Annuel
-
-```{r}
-ig_d("insee", "T_7401", "D4-D42-D44-2017")
-```
-
-# Contexte macroéconomique
+# Contexte macro
 
 ## Balance des secteurs institutionnels
 
@@ -323,20 +317,6 @@ ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2018-bis2")
 ```{r}
 ig_d("eurostat", "nama_10_pc", "DE-IT-FR-CPPPSEU272020HAB-CPEURHAB-2017")
 ```
-
-
-
-
-
-
-# Détail du RDB
-
-## Salaires
-
-```{r}
-ig_d("insee", "T_7401", "18-26-42-montant-log-2017")
-```
-
 
 
 # Comparaisons internationales
@@ -363,12 +343,15 @@ ig_d("oecd", "PRICES_ALL", "T-FRA-DEU-2017")
 ```
 
 
-# Pour en savoir plus...
+
+# Bibliographie
+
+{{< include ../publications/pouvoir-dachat.qmd >}}
 
 
 # Bases de données
 
 ```{r, echo = F}
-`pouvoir-achat` |>
+`pouvoir-achat-2017` |>
   source_dataset_file_updates()
 ```
