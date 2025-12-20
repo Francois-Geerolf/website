@@ -359,22 +359,11 @@ ig_d("eurostat", "nasq_10_nf_tr", "B6G-R-HAB-FR-DE-IT-ES-NL-2017")
 ## CPI vs HICP
 
 ```{r}
-ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-2017")
+ig_d("oecd", "PRICES_ALL", "T-FRA-DEU-2017")
 ```
 
 
 # Pour en savoir plus...
-
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/pouvoir-achat.html
-# sh ~/iCloud/website/website_short.sh
-```
 
 
 # Bases de données
