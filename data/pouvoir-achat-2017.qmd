@@ -228,11 +228,19 @@ ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-2017")
 ```
 
 
-### Réels
+### Réels au sens de l'IPCH
 
 ```{r}
 ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2017")
 ```
+
+### Réels au sens de l'IPC
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-IPC-2017")
+```
+
+
 
 ## Salaires par tête, comptabilité nationale
 
