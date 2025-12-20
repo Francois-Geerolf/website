@@ -45,7 +45,7 @@ tribble(~ theme,
   theme_file_updates()
 ```
 
-# Chiffres officiels sur le pouvoir d'achat
+# Chiffres officiels sur « le » pouvoir d'achat
 
 ## Annuel, 2017-
 
