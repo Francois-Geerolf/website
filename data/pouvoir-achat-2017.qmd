@@ -45,7 +45,27 @@ tribble(~ theme,
   theme_file_updates()
 ```
 
-# Chiffres officiels de l'Insee
+# Chiffres officiels sur le pouvoir d'achat
+
+## Annuel, 2017-
+
+```{r}
+ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2017")
+```
+
+
+## Trimestriel, 2017T1-
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T1")
+```
+
+
+## Trimestriel, 2017T2-
+
+```{r}
+ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
+```
 
 ## Dernières évolutions trimestrielles (%)
 
@@ -139,25 +159,10 @@ ig_d("ipp", "indicefp", "indicefp-reel-2017T2-cpih-percent-net-brut-mensuel")
 # sh ~/iCloud/website/website_short.sh
 ```
 
-
-## Annuel, 2017-
-
-```{r}
-ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2017")
-```
-
-
-## Trimestriel, 2017T1-
+## Données démographiques
 
 ```{r}
-ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T1")
-```
-
-
-## Trimestriel, 2017T2-
-
-```{r}
-ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
+ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "demographie-2017")
 ```
 
 ## Masse salariale brute et nette
@@ -183,6 +188,8 @@ ig_d("insee", "T_2103", "ASSUR-2017")
 
 ## Comparer déflateur
 
+Difficile car l'Insee ne publie pas officiellement le déflateur hors SIFIM.
+
 ```{r}
 ig_d("insee", "t_pib_vol", "deflateur-P3M-P51M-somme-2017")
 ```
@@ -202,9 +209,26 @@ ig_d("insee", "t_pouvachat_val", "pouvoir-achat-2017T2")
 ```
 
 
-# Salaires par tête
+# Salaires
 
-## 2017T1-
+## Salaires annuels
+
+### PCS, Nominaux
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-2017")
+```
+
+
+### Réels
+
+```{r}
+ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2017")
+```
+
+## Salaires par tête, comptabilité nationale
+
+### 2017T1-
 
 ```{r}
 ig_d("insee", "t_salaire_val", "TOTAL-OQ-2017T1")
@@ -212,7 +236,7 @@ ig_d("insee", "t_salaire_val", "TOTAL-OQ-2017T1")
 
 
 
-## 2017T2-
+### 2017T2-
 
 ```{r}
 ig_d("insee", "t_salaire_val", "TOTAL-AZ-C-2017T1")
@@ -223,6 +247,7 @@ ig_d("insee", "t_salaire_val", "TOTAL-AZ-C-2017T1")
 ```{r}
 ig_d("dares", "les-indices-de-salaire-de-base", "bind-2017T2")
 ```
+
 
 
 # Types de revenus
@@ -259,24 +284,6 @@ ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2018-bis2")
 # sh ~/iCloud/website/website_short.sh
 ```
 
-## PCS
-
-```{r}
-ig_d("insee", "SALAIRES-ANNUELS", "PCS-indice-2017")
-```
-
-
-
-## Pas de hausse des inégalités ?
-
-
-
-### Reel
-
-
-```{r}
-ig_d("insee", "SALAIRES-ANNUELS", "D1-D5-D9-C95-C99-indice-reel-2017")
-```
 
 
 # Depuis 2008
@@ -316,12 +323,6 @@ ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-2017")
 
 
 # Population, unités de consommation
-
-## 2017-
-
-```{r}
-ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "demographie-2017")
-```
 
 
 
