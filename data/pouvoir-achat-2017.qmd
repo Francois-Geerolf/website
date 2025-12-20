@@ -318,7 +318,11 @@ ig_d("insee", "T_7401", "D4-D42-D44-2017")
 ig_d("insee", "t_recapAgent_val", "B9NF-percent-PIB-2018-bis2")
 ```
 
+## PIB/habitant
 
+```{r}
+ig_d("eurostat", "nama_10_pc", "DE-IT-FR-CPPPSEU272020HAB-CPEURHAB-2017")
+```
 
 
 
