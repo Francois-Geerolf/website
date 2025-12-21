@@ -51,6 +51,17 @@ ig_d("fred", "inflation", "CPIAUCSL-CUUR0000SA0L2-2017")
 ```
 
 
+# Macro context
+
+## GDP
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA20-FRA-ITA-2017-01")
+```
+
+
+
+
 
 # Datasets
 
