@@ -195,9 +195,20 @@ ig_d("insee", "t_pib_vol", "consommation-2017T2-log")
 
 ### Prix courants
 
+#### Par fonction
+
 ```{r}
 ig_d("insee", "CNA-2020-CONSO-MEN", "FON041-FON042-NNTOTAL-VAL-2017")
 ```
+
+#### Autre
+
+```{r}
+ig_d("insee", "CNA-2020-CONSO-MEN", "GGL68R-HHL68R1-HHL68R2-GGL68I-NNTOTAL-VAL-2017")
+```
+
+
+
 
 ### Prix chaîné année de base (non équilibré)
 
