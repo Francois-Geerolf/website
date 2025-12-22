@@ -37,10 +37,11 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 
 ```{r, echo = F}
 tribble(~ theme,
-        "pouvoir-achat",
+        "inflation",
         "inflation-france",
-        "pouvoir-achat-2017",
-        "inflation-france-2017") |>
+        "inflation-france-2017",
+        "pouvoir-achat",
+        "pouvoir-achat-2017") |>
   theme_file_updates()
 ```
 
