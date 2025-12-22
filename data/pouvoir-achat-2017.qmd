@@ -190,6 +190,14 @@ ig_d("insee", "t_pouvachat_val", "P3prix-B6-B7-index-2017")
 ig_d("insee", "t_pib_vol", "consommation-2017T2-log")
 ```
 
+## Loyers effectifs, imputés
+
+```{r}
+ig_d("insee", "CNA-2020-CONSO-MEN", "FON041-FON042-montant-2017")
+```
+
+
+
 
 # Salaires, pouvoir d'achat
 
@@ -265,7 +273,8 @@ ig_d("dares", "les-indices-de-salaire-de-base", "bind-2017T2")
 ```
 
 
-# Retraites, Point d'indice (net)
+
+# Revalorisation des pensions de retraite
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/R -e 'quarto::quarto_render("t_pouvachat_val.qmd")'
