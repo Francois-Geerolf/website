@@ -69,6 +69,11 @@ ig_d("insee", "IPCH-IPC-2015-ensemble", "IPC-IPCH-2017")
 
 ## Inflation
 
+```{r}
+ig_d("insee", "IPCH-2015", "IPC-IPCH-00-2017-annuel")
+```
+
+
 ## Données Banque Mondiale
 
 Indicateur Banque Mondiale Indice des prix à la consommation = IPC et non IPCH
