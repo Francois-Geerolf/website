@@ -46,24 +46,37 @@ tribble(~ theme,
 
 # IPC ou IPCH
 
-## Annuel
+## Indice des prix cumulé
+
+### Annuel
 
 ```{r}
 ig_d("insee", "IPCH-IPC-2015-ensemble", "IPC-IPCH-annuel-2017")
 ```
 
-## Trimestriel
+### Trimestriel
 
 ```{r}
 ig_d("insee", "IPCH-IPC-2015-ensemble", "IPC-IPCH-trimestre-2017T1")
 ```
 
 
-## Mensuel
+### Mensuel
 
 ```{r}
 ig_d("insee", "IPCH-IPC-2015-ensemble", "IPC-IPCH-2017")
 ```
+
+## Inflation
+
+## Données Banque Mondiale
+
+Indicateur Banque Mondiale Indice des prix à la consommation = IPC et non IPCH
+
+```{r}
+ig_d("wdi", "FP.CPI.TOTL.ZG", "FR-2017")
+```
+
 
 # Loyers
 
