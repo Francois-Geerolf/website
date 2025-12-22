@@ -190,18 +190,19 @@ ig_d("insee", "t_pouvachat_val", "P3prix-B6-B7-index-2017")
 ig_d("insee", "t_pib_vol", "consommation-2017T2-log")
 ```
 
+
 ## Loyers effectifs, imputés
 
 ### Prix courants
 
 ```{r}
-ig_d("insee", "CNA-2020-CONSO-MEN", "FON041-FON042-montant-2017")
+ig_d("insee", "CNA-2020-CONSO-MEN", "FON041-FON042-NNTOTAL-VAL-2017")
 ```
 
 ### Prix chaîné année de base (non équilibré)
 
 ```{r}
-ig_d("insee", "CNA-2020-CONSO-MEN", "FON041-FON042-PCH-2017")
+ig_d("insee", "CNA-2020-CONSO-MEN", "FON041-FON042-NNTOTAL-PCH-2017")
 ```
 
 
