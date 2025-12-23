@@ -92,13 +92,12 @@ tribble(~ theme,
 
 ### Niveau de vie médian selon le statut d’activité
 
-funs(format(round(as.numeric(str_remove_all(., "[\\s\\u00A0\\u202F]+"))/12, 0), big.mark = " ", scientific = FALSE)))
-
 ```{r echo = F}
 "https://www.insee.fr/fr/statistiques/2415628" |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
   pluck(1) |>
+  # "[\\s\\u00A0\\u202F]+" removes all whitespace, including non-breaking ones (and normal spaces), e.g. \u00A0 or narrow no-break \u202F) as thousands separators
   mutate(across(-1, ~ format(round(as.numeric(str_remove_all(., "[\\s\\u00A0\\u202F]+"))/12, 0), big.mark = " ", scientific = FALSE))) |>
   gt::gt() |>
   gt::cols_width(1 ~ gt::px(300), everything() ~ gt::px(90)) |>
@@ -123,6 +122,7 @@ funs(format(round(as.numeric(str_remove_all(., "[\\s\\u00A0\\u202F]+"))/12, 0), 
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
   pluck(2) |>
+  # "[\\s\\u00A0\\u202F]+" removes all whitespace, including non-breaking ones (and normal spaces), e.g. \u00A0 or narrow no-break \u202F) as thousands separators
   mutate(across(-1, ~ format(round(as.numeric(str_remove_all(., "[\\s\\u00A0\\u202F]+"))/12, 0), big.mark = " ", scientific = FALSE))) |>
   gt::gt() |>
   gt::cols_width(1 ~ gt::px(300), everything() ~ gt::px(90)) |>
