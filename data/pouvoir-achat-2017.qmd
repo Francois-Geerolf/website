@@ -294,6 +294,20 @@ ig_d("insee", "t_salaire_val", "TOTAL-AZ-C-2017T1")
 ig_d("dares", "les-indices-de-salaire-de-base", "bind-2017T2")
 ```
 
+## Niveau du Salaire Minimum
+
+### En euros
+
+```{r}
+ig_d("insee", "SMIC-COTISATIONS", "SMIC-2017")
+```
+
+### Indice 100
+
+```{r}
+ig_d("insee", "SMIC-COTISATIONS", "SMIC-2017-indice")
+```
+
 
 
 # Revalorisation des pensions de retraite
