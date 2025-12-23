@@ -22,8 +22,8 @@ format:
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     include-after-body: ../statcounter.html
     other-links:
-      - text: "Mesurer « le » pouvoir d'achat (9 juillet 2024)"
-        href: "mesurer-le-pouvoir-d-achat.html"
+      - text: "Mesurer « le » pouvoir d'achat"
+        href: "https://fgeerolf.com/mesurer-le-pouvoir-d-achat.html"
         icon: link
 editor: source
 ---
