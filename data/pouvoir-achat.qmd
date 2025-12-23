@@ -16,8 +16,9 @@ format:
     include-in-header:
       - text: |
           <meta name="twitter:card" content="summary">
-          <meta name="twitter:title" content="Données">
-          <meta name="twitter:description" content="Données par thème.">
+          <meta name="twitter:title" content="Données sur l'évolution du pouvoir d'achat">
+          <meta name="twitter:description" content="Données officielles Insee, par type de revenu, retraite, indice fonction publique...">
+          <meta name="twitter:image" content="https://fgeerolf.com/files/mesurer-le-pouvoir-d-achat.jpg">
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     include-after-body: ../statcounter.html
     other-links:

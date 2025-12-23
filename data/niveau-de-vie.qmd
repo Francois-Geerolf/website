@@ -1,7 +1,31 @@
 ---
 title: Données sur le niveau de vie
-metadata-files: 
-  - _common_fr.yml
+subtitle: Données
+lang: fr
+filters:
+  - ../code/genderize-fr.lua
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+    include-in-header:
+      - text: |
+          <meta name="twitter:card" content="summary">
+          <meta name="twitter:title" content="Données sur l'évolution du niveau de vie">
+          <meta name="twitter:description" content="Données sur l'évolution du niveau de vie.">
+          <meta name="twitter:image" content="https://fgeerolf.com/files/mesurer-le-pouvoir-d-achat.jpg">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    include-after-body: ../statcounter.html
+    other-links:
+      - text: "Mesurer « le » pouvoir d'achat (9 juillet 2024)"
+        href: "mesurer-le-pouvoir-d-achat.html"
+        icon: link
+editor: source
 ---
 
 
