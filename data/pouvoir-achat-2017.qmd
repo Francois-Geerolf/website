@@ -1,7 +1,31 @@
 ---
 title: Évolution du pouvoir d'achat depuis 2017
-metadata-files: 
-  - _common_fr.yml
+subtitle: Données
+lang: fr
+filters:
+  - ../code/genderize-fr.lua
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+    include-in-header:
+      - text: |
+          <meta name="twitter:card" content="summary">
+          <meta name="twitter:title" content="Données sur l'évolution du pouvoir d'achat en France depuis 2017">
+          <meta name="twitter:description" content="Données officielles Insee, par type de revenu, retraite, indice fonction publique...">
+          <meta name="twitter:image" content="https://fgeerolf.com/files/mesurer-le-pouvoir-d-achat.jpg">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    include-after-body: ../statcounter.html
+    other-links:
+      - text: "Mesurer « le » pouvoir d'achat (9 juillet 2024)"
+        href: "https://fgeerolf.com/mesurer-le-pouvoir-d-achat.html"
+        icon: link
+editor: source
 ---
 
 
