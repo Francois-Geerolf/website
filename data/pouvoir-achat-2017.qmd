@@ -141,7 +141,7 @@ ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
   rvest::html_table(header = T, fill = T) |>
   pluck(1) |>
   mutate(across(1, ~ as.numeric(.))) |>
-  dplyr::filter(dplyr::pick(1) >= 2017) |>
+  dplyr::filter(dplyr::pick(1)[[1]] >= 2017) |>
   gt::gt() |>
   gt::cols_width(1 ~ gt::px(70), everything() ~ gt::px(150)) |>
   gt::opt_interactive(use_search = F,
