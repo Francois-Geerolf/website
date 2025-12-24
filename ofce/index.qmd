@@ -113,3 +113,13 @@ knitr::include_graphics("../files/OFCE_(logo).png")
 {{< include ../public-debate/fr/Geerolf2024b.qmd >}}
 
 {{< include ../public-debate/fr/Geerolf2022a.qmd >}}
+
+# Expertise
+
+Mission d’information sur l’évolution du pouvoir d’achat en France depuis 2017 au regard des indicateurs de prix et de consommation, 16 décembre 2025. [[<i class="fas fa-globe"></i> html](https://fgeerolf.com/pouvoir-achat-2017-handouts-20251216.html)] [[<i class="fas fa-file-pdf"></i> pdf](https://fgeerolf.com/pouvoir-achat-2017-slides-20251216.pdf)] [[<i class="fas fa-copy"></i> handouts](https://fgeerolf.com/pouvoir-achat-2017-handouts-20251216.html)] [[<i class="fas fa-desktop"></i> pdf](https://fgeerolf.com/pouvoir-achat-2017-slides-20251216.pdf)] [[<i class="fas fa-desktop"></i> html](https://fgeerolf.com/pouvoir-achat-2017-slides-20251216.html)] [[<i class="fab fa-github"></i> github](https://github.com/Francois-Geerolf/pouvoir-achat-2017)]
+
+Commission d’enquête visant à établir les freins à la réindustrialisation de la France, Table ronde d’économistes, 13 mars 2025. [[<i class="fas fa-globe"></i> html](https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/cereind/l17cereind2425005_compte-rendu)] [[<i class="fas fa-file-pdf"></i> pdf](https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/cereind/l17cereind2425005_compte-rendu.pdf)]
+
+Comité des utilisateurs de l'Indice des Prix à la Consommation, 4 mars 2025. [[<i class="fas fa-file-pdf"></i> pdf](https://www.cnis.fr/wp-content/uploads/2025/05/dqs-juin-2025-cr-comite-des-utilisateurs.pdf)]
+
+
