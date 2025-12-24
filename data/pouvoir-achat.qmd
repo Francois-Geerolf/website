@@ -70,7 +70,9 @@ tribble(~ theme,
 
 # Chiffres officiels de l'Insee
 
-## Evolutions trimestrielles (%)
+## Évolution du revenu disponible brut par (RDB) et du pouvoir d’achat 
+
+### Trimestrielle (%)
 
 ```{r echo = F}
 "https://www.insee.fr/fr/statistiques/2830166" |>
@@ -91,8 +93,7 @@ tribble(~ theme,
   gt::tab_options(table.width = "100%")
 ```
 
-## Evolutions annuelles (%)
-
+### Annuelle (%)
 
 ```{r echo = F}
 "https://www.insee.fr/fr/statistiques/2830244" |>
@@ -115,6 +116,28 @@ tribble(~ theme,
 
 
 
+
+## Évolution de la dépense et du pouvoir d’achat des ménages
+
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2385829" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(70), everything() ~ gt::px(150)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2385829#tableau-figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
 
 
 # Retraites, Point d'indice (net)

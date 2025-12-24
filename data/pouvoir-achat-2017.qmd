@@ -34,9 +34,6 @@ editor: source
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
-## sh ~/iCloud/website/website_short.sh
 `pouvoir-achat-2017` <- tribble(
   ~source, ~dataset,
   "insee",  "CNA-2014-RDB",
@@ -136,7 +133,28 @@ ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
 ```
 
 
+## Évolution de la dépense et du pouvoir d’achat des ménages
 
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2385829" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  mutate(across(1, ~ as.numeric(.))) |>
+  dplyr::filter(dplyr::pick(1) >= 2017) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(70), everything() ~ gt::px(150)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2385829#tableau-figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
 
 
 # Décomposition « du »  pouvoir d'achat au sens de l'Insee
