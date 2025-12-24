@@ -1,0 +1,335 @@
+---
+title: Données sur le niveau de vie depuis 2017
+subtitle: Données
+lang: fr
+filters:
+  - ../code/genderize-fr.lua
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+    include-in-header:
+      - text: |
+          <meta name="twitter:card" content="summary">
+          <meta name="twitter:title" content="Données sur l'évolution du niveau de vie depuis 2017">
+          <meta name="twitter:description" content="Données sur l'évolution du niveau de vie.">
+          <meta name="twitter:image" content="https://fgeerolf.com/files/mesurer-le-pouvoir-d-achat.jpg">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    include-after-body: ../statcounter.html
+    other-links:
+      - text: "Mesurer « le » pouvoir d'achat"
+        href: "https://fgeerolf.com/mesurer-le-pouvoir-d-achat.html"
+        icon: link
+editor: source
+---
+
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
+## sh ~/iCloud/website/website_short.sh
+`niveau-de-vie` <- tribble(
+  ~source, ~dataset,
+  "insee", "reve-niv-vie-individu-activite",
+  "insee", "reve-niv-vie-pouv-achat-trim",
+  "insee", "reve-conso-evo-dep-pa",
+  "insee", "t_men_val",
+  "insee", "econ-gen-revenu-dispo-pouv-achat-2") %>%
+  arrange(source, dataset)
+```
+
+
+# Thèmes reliés
+
+```{r, echo = F}
+tribble(~ theme,
+        "niveau-de-vie-2017",
+        "pouvoir-achat-2017",
+        "inflation-france-2017",
+        "inflation-europe-2017",
+        "inflation-2017") |>
+  theme_file_updates()
+```
+
+
+
+
+# Chiffres officiels de l'Insee
+
+## Selon le statut d'activité
+
+### Annuel
+
+#### Niveau de vie médian
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2415628" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2415628#figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+#### Niveau de vie moyen
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2415628" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2415628#figure1_radio2>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+### Mensuel
+
+#### Niveau de vie médian
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2415628" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  # "[\\s\\u00A0\\u202F]+" removes all whitespace, including non-breaking ones (and normal spaces), e.g. \u00A0 or narrow no-break \u202F) as thousands separators
+  mutate(across(-1, ~ format(round(as.numeric(str_remove_all(., "[\\s\\u00A0\\u202F]+"))/12, 0), big.mark = " ", scientific = FALSE))) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2415628#figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+#### Niveau de vie moyen
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2415628" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  # "[\\s\\u00A0\\u202F]+" removes all whitespace, including non-breaking ones (and normal spaces), e.g. \u00A0 or narrow no-break \u202F) as thousands separators
+  mutate(across(-1, ~ format(round(as.numeric(str_remove_all(., "[\\s\\u00A0\\u202F]+"))/12, 0), big.mark = " ", scientific = FALSE))) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2415628#figure1_radio2>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+## Selon l'âge
+
+### Annuel
+
+#### Niveau de vie médian
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2416878" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2416878#figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+#### Niveau de vie moyen
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2416878" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2416878#figure1_radio2>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+### Mensuel
+
+#### Niveau de vie médian
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2416878" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  # "[\\s\\u00A0\\u202F]+" removes all whitespace, including non-breaking ones (and normal spaces), e.g. \u00A0 or narrow no-break \u202F) as thousands separators
+  mutate(across(-1, ~ format(round(as.numeric(str_remove_all(., "[\\s\\u00A0\\u202F]+"))/12, 0), big.mark = " ", scientific = FALSE))) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2416878#figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+#### Niveau de vie moyen
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2416878" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(2) |>
+  # "[\\s\\u00A0\\u202F]+" removes all whitespace, including non-breaking ones (and normal spaces), e.g. \u00A0 or narrow no-break \u202F) as thousands separators
+  mutate(across(-1, ~ format(round(as.numeric(str_remove_all(., "[\\s\\u00A0\\u202F]+"))/12, 0), big.mark = " ", scientific = FALSE))) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2416878#figure1_radio2>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Selon le dixième de revenu
+
+### Annuel
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2417897" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2417897#figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+### Mensuel
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/2417897" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  slice(-n()) |>
+  # "[\\s\\u00A0\\u202F]+" removes all whitespace, including non-breaking ones (and normal spaces), e.g. \u00A0 or narrow no-break \u202F) as thousands separators
+  mutate(across(-1, ~ format(round(as.numeric(str_remove_all(., "[\\s\\u00A0\\u202F]+"))/12, 0), big.mark = " ", scientific = FALSE))) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(250), everything() ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2417897#figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+# Méthodologie
+
+## Rupture ERFS 2021
+
+- Impact de la rénovation de l’enquête Revenus fiscaux et sociaux en 2021 sur la mesure des niveaux de vie, des indicateurs d’inégalités et de pauvreté - Insee Méthodes n° 145 - novembre 2023. [html](https://www.insee.fr/fr/information/7713943) [pdf](https://www.insee.fr/fr/statistiques/fichier/version-html/7713943/Insee%20Methodes%20145.pdf)
+
+
+# Bases de données
+
+```{r, echo = F}
+`niveau-de-vie` |>
+  source_dataset_file_updates()
+```
+
