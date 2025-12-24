@@ -317,14 +317,11 @@ tribble(~ theme,
   gt::tab_options(table.width = "100%")
 ```
 
-
-
 # Méthodologie
 
 ## Rupture ERFS 2021
 
 - Impact de la rénovation de l’enquête Revenus fiscaux et sociaux en 2021 sur la mesure des niveaux de vie, des indicateurs d’inégalités et de pauvreté - Insee Méthodes n° 145 - novembre 2023. [html](https://www.insee.fr/fr/information/7713943) [pdf](https://www.insee.fr/fr/statistiques/fichier/version-html/7713943/Insee%20Methodes%20145.pdf)
-
 
 # Bases de données
 
