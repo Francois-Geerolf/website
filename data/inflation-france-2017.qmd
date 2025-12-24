@@ -93,6 +93,16 @@ ig_d("insee", "INDICES_LOYERS", "FM-2017")
 ```
 
 
+
+## Indice de Référence des Loyers (IRL)
+
+Hausse supposément très inférieure à l'IRL...
+
+```{r}
+ig_d("insee", "IRL", "indice-100-2017")
+```
+
+
 # Indice des prix dans la Grande Distribution
 
 ```{r, echo = F}

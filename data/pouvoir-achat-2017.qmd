@@ -259,6 +259,20 @@ ig_d("insee", "CNA-2020-CONSO-MEN", "FON041-FON042-NNTOTAL-PCH-2017")
 ```
 
 
+### Indice de Référence des Loyers (IRL)
+
+```{r}
+ig_d("insee", "IRL", "indice-100-2017")
+```
+
+### Indice de hausse des loyers
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "FM-2017")
+```
+
+
+
 
 
 
