@@ -24,7 +24,7 @@ editor: source
 source(here::here("_rinit.R"))
 ```
 
-```{r fig.align="center", out.width="80%", echo = F}
+```{r fig.align="center", out.width="20%", echo = F}
 knitr::include_graphics("../files/cepii-logo.png")
 ```
 
@@ -46,3 +46,6 @@ Travaux réalisés pour le CEPII lorsque j'étais _Conseiller Scientifique_ au C
 
 {{< include ../public-debate/fr/Geerolf2020.qmd >}}
 
+# Expertise
+
+Commission d’enquête chargée d’identifier les facteurs qui ont conduit à la chute de la part de l’industrie dans le PIB de la France et de définir les moyens à mettre en œuvre pour relocaliser l’industrie et notamment celle du médicament, Table ronde de jeunes économistes, 30 septembre 2021. [[<i class="fas fa-globe"></i> html](https://www.assemblee-nationale.fr/dyn/15/comptes-rendus/cecifccpi/l15cecifccpi2021007_compte-rendu)] [[<i class="fas fa-file-pdf"></i> pdf](https://www.assemblee-nationale.fr/dyn/15/comptes-rendus/cecifccpi/l15cecifccpi2021007_compte-rendu.pdf)]
