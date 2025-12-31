@@ -37,8 +37,6 @@ ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "halo-chomage-france")
 ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "CTCHC-tous")
 ```
 
-
-
 ## Taux de chômage
 
 ```{r}
@@ -61,3 +59,4 @@ chomage |>
 
 - Insee. L'essentiel sur... le chômage. <https://www.insee.fr/fr/statistiques/4805248>
 
+- Chômage : les Français mentent-ils aux Français? Blog de l'Insee [[<i class="fas fa-globe"></i> html](https://blog.insee.fr/chomage-les-francais-mentent-ils-aux-francais/)]
