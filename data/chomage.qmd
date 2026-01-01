@@ -45,6 +45,14 @@ ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-tous")
 
 # BIT vs. Pôle Emploi
 
+## Définitions
+
+```{r}
+ig_b("insee", "ECRT19e_D4_chomeurs", "definitions")
+```
+
+
+
 ## Recoupement
 
 ```{r}
