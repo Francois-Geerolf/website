@@ -45,6 +45,21 @@ ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-tous")
 
 # BIT vs. Pôle Emploi
 
+## Polémique 2006-2007
+
+Note : en réponse à une « polémique » sur les chiffres du chômage en 2006-2007
+
+Le niveau et l’évolution du chômage étaient à l’époque suivis à partir de deux sources : les données administratives sur les demandeurs d’emploi et les données de l’enquête Emploi. Les résultats des deux sources étaient raccordés par un **calage des données administratives sur le chômage mesuré par l’enquête Emploi**. En 2006, pour la première fois en 20 ans, ce calage n’a pas pu être effectué en raison d’une forte divergence entre les deux sources. Par la suite, il a été mis fin à ce calage et des mesures ont été prises pour améliorer la précision de l’enquête Emploi et la compréhension des écarts entre les deux sources.
+
+
+## Catégorie A vs. chômeur BIT
+
+Les critères définissant les chômeurs au sens du BIT et les demandeurs d’emploi en catégorie A semblent a priori proches. Toutefois, les deux populations ne se recouvrent pas totalement, comme l’a montré en détail une étude récente de l’Insee. Environ un chômeur au sens du BIT sur cinq se déclare comme étant non inscrit à Pôle emploi (par exemple, des jeunes qui ne s’inscrivent pas car ils ne peuvent prétendre à une indemnisation). À l’inverse, deux demandeurs d’emploi en catégorie A sur cinq ne sont pas classés comme chômeurs au sens du BIT. C’est par exemple le cas des personnes qui n’ont effectué aucune démarche active de recherche d’emploi, au-delà du seul renouvellement de leur inscription à Pôle emploi.
+
+## Définition a donc changé ?
+
+"Ils sont en recherche d’emploi, puisque selon l’interprétation française des critères du BIT reprise par l’Insee, l’inscription à l’ANPE est suffisante pour justifier d’une recherche d’emploi."
+
 ## Définitions
 
 ```{r}
@@ -60,10 +75,6 @@ ig_b("insee", "ECRT19e_D4_chomeurs", "fig2")
 ```
 
 
-## Catégorie A vs. chômeur BIT
-
-Les critères définissant les chômeurs au sens du BIT et les demandeurs d’emploi en catégorie A semblent a priori proches. Toutefois, les deux populations ne se recouvrent pas totalement, comme l’a montré en détail une étude récente de l’Insee. Environ un chômeur au sens du BIT sur cinq se déclare comme étant non inscrit à Pôle emploi (par exemple, des jeunes qui ne s’inscrivent pas car ils ne peuvent prétendre à une indemnisation). À l’inverse, deux demandeurs d’emploi en catégorie A sur cinq ne sont pas classés comme chômeurs au sens du BIT. C’est par exemple le cas des personnes qui n’ont effectué aucune démarche active de recherche d’emploi, au-delà du seul renouvellement de leur inscription à Pôle emploi.
-
 
 # Pour en savoir plus...
 
@@ -76,8 +87,10 @@ chomage |>
 
 ## Info
 
-- Insee. L'essentiel sur... le chômage. <https://www.insee.fr/fr/statistiques/4805248>
+- Une nouvelle enquête Emploi en 2021. Entre impératif européen et volonté de modernisation. Courrier des statistiques N6 - 2021. [[<i class="fas fa-file-pdf"></i> pdf](https://www.insee.fr/fr/statistiques/fichier/4183055/ECRT19e_D4_chomeurs.pdf)] 
 
 - Chômage : les Français mentent-ils aux Français? Blog de l'Insee [[<i class="fas fa-globe"></i> html](https://blog.insee.fr/chomage-les-francais-mentent-ils-aux-francais/)]
 
 - Les chômeurs au sens du BIT et les demandeurs d’emploi inscrits à Pôle emploi : une divergence de mesure du chômage aux causes multiples. [[<i class="fas fa-file-pdf"></i> pdf](https://www.insee.fr/fr/statistiques/fichier/4183055/ECRT19e_D4_chomeurs.pdf)] 
+
+- Insee. L'essentiel sur... le chômage. <https://www.insee.fr/fr/statistiques/4805248>
