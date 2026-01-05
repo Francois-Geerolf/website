@@ -60,7 +60,6 @@ knitr::include_graphics("../files/OFCE_(logo).png")
 
 ## Anglais
 
-
 {{< include ../publications/en/Creel2025.qmd >}}
 
 {{< include ../publications/en/Blot2025.qmd >}}
