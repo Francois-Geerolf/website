@@ -1,5 +1,6 @@
 # Load packages --------
 source(here::here("_rinit.R"))
+setwd(here::here())
 
 # Folders to scan# Define the two sets
 langs <- c("fr", "en")
