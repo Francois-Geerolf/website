@@ -81,6 +81,8 @@ Revision requested at American Economic Review
 
 # Other in English
 
+{{< include publications/en/Creel2025.qmd >}}
+
 {{< include publications/en/Blot2025.qmd >}}
 
 {{< include publications/en/Geerolf2024c.qmd >}}
