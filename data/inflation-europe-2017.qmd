@@ -39,6 +39,8 @@ ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-CP01-2017")
 
 # Cars (CP0711)
 
+Weight: 
+
 ## All Cars (CP0711)
 
 ```{r}
@@ -103,6 +105,12 @@ Vaccines
 
 ```{r}
 ig_d("eurostat", "prc_hicp_midx", "DE-FR-IT-EA20-ES-CP0612-2017")
+```
+
+# Weights: France, 2025
+
+```{r}
+ig_b("eurostat", "prc_hicp_inw_ex3")
 ```
 
 
