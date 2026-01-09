@@ -128,6 +128,15 @@ ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE")
 ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-2024")
 ```
 
+
+### 2025-
+
+```{r}
+ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-2025")
+```
+
+
+
 ## France Métropolitaine
 
 ### Tous
