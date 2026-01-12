@@ -79,7 +79,8 @@ bibliography <- map_dfr(qmd_files, parse_qmd) %>%
   select(File, Content, PDF, HTML, GitHub) %>%
   # Arrange
   mutate(year = str_extract(File, "\\d{4}") %>% as.integer()) %>%
-  arrange(desc(year))
+  arrange(desc(year)) %>%
+  select(-year)
 
 #--- Save _bibliography.RData ----------------------------------------
 cat("Save _bibliography.RData...\n")
