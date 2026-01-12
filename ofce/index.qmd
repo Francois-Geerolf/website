@@ -100,6 +100,8 @@ knitr::include_graphics("../files/OFCE_(logo).png")
 
 ## Interviews
 
+{{< include ../public-debate/fr/Geerolf2025b.qmd >}}
+
 {{< include ../public-debate/fr/Geerolf2024a.qmd >}}
 
 {{< include ../public-debate/fr/Geerolf2022b.qmd >}}
