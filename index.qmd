@@ -141,11 +141,11 @@ Revision requested at American Economic Review
 
 # Teaching (English)
 
-Evidence-Based Macroeconomics & Finance (UCLA, PhD 2nd year). [[<i class="fa-solid fa-chalkboard-teacher"></i> Syllabus](https://fgeerolf.com/econ221/syllabus.html)] [[<i class="fas fa-globe"></i> Data](https://fgeerolf.com/data/)]
+{{< include teaching/en/Geerolf2014b.qmd >}}
 
-Intermediate Macroeconomics (UCLA, Undergraduate). [[<i class="fa-solid fa-chalkboard-teacher"></i> Syllabus](https://fgeerolf.com/econ102/syllabus.html)]
+{{< include teaching/en/Geerolf2014a.qmd >}}
 
-Economics of Superstars (UCLA, Undergraduate). [[<i class="fa-solid fa-chalkboard-teacher"></i> Syllabus](https://fgeerolf.com/econ19/syllabus.html)]
+{{< include teaching/en/Geerolf2016.qmd >}}
 
 # Ph.D. Dissertation
 
