@@ -91,6 +91,29 @@ ig_d("insee", "PARC-LOGEMENTS", "residences-principales")
 ig_d("insee", "PARC-LOGEMENTS", "proportion-locataires")
 ```
 
+## Transactions immobilières
+
+
+
+### Tous
+
+```{r}
+ig_d("cgedd", "nombre-vente-maison-appartement-ancien", "nombre-transactions")
+```
+
+### 2000-
+
+```{r}
+ig_d("cgedd", "nombre-vente-maison-appartement-ancien", "nombre-transactions-2000")
+```
+
+
+### 2017-
+
+```{r}
+ig_d("cgedd", "nombre-vente-maison-appartement-ancien", "nombre-transactions-2017")
+```
+
 
 # Crédit immobilier
 
