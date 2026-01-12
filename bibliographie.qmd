@@ -6,7 +6,7 @@ metadata-files:
 
 ```{r, echo = FALSE, message = FALSE, warning = F}
 source(here::here("_rinit.R"))
-invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 load("_bibliography.RData")
 print_bibliography <- .  %>%
@@ -25,7 +25,6 @@ print_bibliography <- .  %>%
     use_compact_mode = T
   )
 ```
-
 
 # Français
 

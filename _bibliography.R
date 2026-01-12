@@ -76,7 +76,10 @@ bibliography <- map_dfr(qmd_files, parse_qmd) %>%
                     glue('<a href="{GitHub}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>'),
                     "")
   ) %>%
-  select(File, Content, PDF, HTML, GitHub)
+  select(File, Content, PDF, HTML, GitHub) %>%
+  # Arrange
+  mutate(year = str_extract(File, "\\d{4}") %>% as.integer()) %>%
+  arrange(desc(year))
 
 #--- Save _bibliography.RData ----------------------------------------
 cat("Save _bibliography.RData...\n")
