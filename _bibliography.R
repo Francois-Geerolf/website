@@ -58,7 +58,7 @@ parse_qmd <- function(file) {
   )
 }
 
-# Parse date time ----------------
+# Parse date time from content in  ----------------
 
 extract_pub_date <- function(x) {
   
@@ -133,7 +133,7 @@ bibliography <- map_dfr(qmd_files, parse_qmd) %>%
                     glue('<a href="{GitHub}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>'),
                     "")
   ) %>%
-  # Arrange
+  # Parse using function extract_pub_date
   mutate(date = as.Date(unlist(map(Content, extract_pub_date)))) %>%
   arrange(desc(date)) %>%
   select(File, Content, date, PDF, HTML, GitHub)
