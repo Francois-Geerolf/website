@@ -42,6 +42,20 @@ immobilier <- tribble(
 
 # Nombre de logements, France
 
+## Parc de logements
+
+```{r}
+ig_b("sdes", "statistiques_sdes_datalab_143_rapport_compte_logement_2024_novembre2025_0", "parc-de-logements")
+```
+
+## Dépense en logement
+
+```{r}
+ig_b("sdes", "statistiques_sdes_datalab_143_rapport_compte_logement_2024_novembre2025_0", "depense-nationale-en-logement")
+```
+
+## Quelques chiffres
+
 - 37,8 millions de logements en France au 1er janvier 2023, Insee Focus N°309. [[html](https://www.insee.fr/fr/statistiques/7700305)]
 
 - Mises en chantier sur 12 mois = ~ 1% du stock. (300K-400K)
