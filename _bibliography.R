@@ -58,6 +58,63 @@ parse_qmd <- function(file) {
   )
 }
 
+# Parse date time ----------------
+
+extract_pub_date <- function(x) {
+  
+  x <- str_squish(x)
+  
+  # Mois FR / EN
+  months_fr <- c("janvier","février","fevrier","mars","avril","mai","juin",
+                 "juillet","août","aout","septembre","octobre","novembre","décembre","decembre")
+  months_en <- c("january","february","march","april","may","june","july",
+                 "august","september","october","november","december")
+  
+  m_fr <- paste(months_fr, collapse = "|")
+  m_en <- paste(months_en, collapse = "|")
+  
+  # Patterns
+  pat_fr <- regex(paste0("\\b(\\d{1,2}\\s+)?(", m_fr, ")\\s+(\\d{4})\\b"), ignore_case = TRUE)
+  pat_en <- regex(paste0("\\b(\\d{1,2}\\s+)?(", m_en, ")\\s+(\\d{4})\\b"), ignore_case = TRUE)
+  pat_year <- regex("\\b(19|20)\\d{2}\\b")
+  
+  hit_fr   <- str_extract(x, pat_fr)
+  hit_en   <- str_extract(x, pat_en)
+  hit_year <- str_extract(x, pat_year)
+  
+  # Priorité : mois+année > année seule
+  hit <- coalesce(hit_fr, hit_en)
+  
+  # ---- Cas 1 & 2 : mois + année (avec ou sans jour)
+  if (!is.na(hit)) {
+    
+    hit2 <- if_else(
+      str_detect(hit, "^\\d{1,2}\\s"),
+      hit,
+      paste("1", hit)
+    )
+    
+    return(
+      parse_date_time(
+        hit2,
+        orders = "d B Y",
+        locale = if (!is.na(hit_fr)) "fr_FR" else "en_US"
+      ) |>
+        as_date()
+    )
+  }
+  
+  # ---- Cas 3 : année seule
+  if (!is.na(hit_year)) {
+    return(as.Date(paste0(hit_year, "-01-01")))
+  }
+  
+  # ---- Sinon
+  as.Date(NA)
+}
+
+
+
 #--- Collect files and build the tibble ----------------------------------------
 cat("Collect files and build the tibble...\n")
 
@@ -78,9 +135,9 @@ bibliography <- map_dfr(qmd_files, parse_qmd) %>%
   ) %>%
   select(File, Content, PDF, HTML, GitHub) %>%
   # Arrange
-  mutate(year = str_extract(File, "\\d{4}") %>% as.integer()) %>%
-  arrange(desc(year)) %>%
-  select(-year)
+  mutate(date = unlist(map(Content, extract_pub_date))) %>%
+  arrange(desc(date)) %>%
+  select(-date)
 
 #--- Save _bibliography.RData ----------------------------------------
 cat("Save _bibliography.RData...\n")
