@@ -17,6 +17,7 @@ print_bibliography <- .  %>%
     PDF    ~ px(40),
     HTML   ~ px(40),
     GitHub ~ px(40),
+    date ~ px(60),
     File ~ px(100)
   ) %>%
   opt_interactive(

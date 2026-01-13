@@ -133,11 +133,10 @@ bibliography <- map_dfr(qmd_files, parse_qmd) %>%
                     glue('<a href="{GitHub}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>'),
                     "")
   ) %>%
-  select(File, Content, PDF, HTML, GitHub) %>%
   # Arrange
-  mutate(date = unlist(map(Content, extract_pub_date))) %>%
+  mutate(date = as.Date(unlist(map(Content, extract_pub_date)))) %>%
   arrange(desc(date)) %>%
-  select(-date)
+  select(File, Content, date, PDF, HTML, GitHub)
 
 #--- Save _bibliography.RData ----------------------------------------
 cat("Save _bibliography.RData...\n")
