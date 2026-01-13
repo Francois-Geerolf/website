@@ -88,9 +88,27 @@ ig_d("wdi", "FP.CPI.TOTL.ZG", "FR-2017")
 
 ## Secteur social, libre
 
+### France métropolitaine
+
 ```{r}
 ig_d("insee", "INDICES_LOYERS", "FM-2017")
 ```
+
+
+
+### Agglomération parisienne
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "AGGLO-PARIS-2017")
+```
+
+### Secteur libre, Paris vs. province
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-2017")
+```
+
+
 
 
 
