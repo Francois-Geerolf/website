@@ -42,7 +42,6 @@ Revision requested at American Economic Review
 
 {{< include ../working-papers/en/Geerolf2019c.qmd >}}
 
-
 # Teaching at UCLA
 
 {{< include ../teaching/en/Geerolf2014b.qmd >}}
