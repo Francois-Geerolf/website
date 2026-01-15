@@ -77,14 +77,13 @@ ig_d("eurostat", "tec00114", "FR-DE-IT-ES-EL-PL-HU")
 ### France, Germany, Greece, United States
 
 ```{r}
-ig_d("oecd", "QNA_live", "GDP-per-capita-USA-FRA-GRC-DEU-1999-2021")
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA20-GRC-2000-new-english")
 ```
-
 
 ### Greece
 
 ```{r}
-ig_d("oecd", "QNA_live", "GDP-per-capita-USA-FRA-GRC-DEU-1999-2021-base-2001")
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "FRA-PRT-ESP-GRC-ITA-1999")
 ```
 
 
