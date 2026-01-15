@@ -17,12 +17,8 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 ```
 
 ```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("greece.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro-france.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_new.R OECD.SDD.NAD DSD_NAMAIN1 QNA_EXPENDITURE_CAPITA; /usr/local/bin/R -e 'quarto::quarto_render(input = "QNA_EXPENDITURE_CAPITA.qmd")'
+# cd ~/iCloud/website/data/oecd; /usr/local/bin/Rscript --vanilla _download_new.R OECD.SDD.TPS DSD_BOP BOP; /usr/local/bin/R -e 'quarto::quarto_render(input = "BOP.qmd")'
 # sh ~/iCloud/website/website_short.sh
 ```
 
@@ -35,11 +31,6 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 # cd ~/iCloud/website/data/wdi; /usr/local/bin/Rscript --vanilla _dl_one_value.R NY.GDP.PCAP.CD
 # cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("NY.GDP.PCAP.PP.CD.qmd")'
 # cd ~/iCloud/website/data/wdi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R
-# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
-# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA.qmd")'
-# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -f QNA_9.R
-# cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("QNA_live.qmd")'
 # sh ~/iCloud/website/website_short.sh
 ```
 
@@ -73,6 +64,24 @@ ig_d("eurostat", "tec00114", "FR-DE-IT-ES-EL-PL-HU")
 
 
 ## World
+
+### US, France, Greece, Germany, Europe
+
+#### 100 = 2008
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-FRA-GRC-DEU-EA20-2001")
+```
+
+
+
+#### 100 = 2001
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-FRA-GRC-DEU-EA20-base2001")
+```
+
+
 
 ### France, Germany, Greece, United States
 
