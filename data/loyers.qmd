@@ -85,7 +85,66 @@ tribble(~ theme,
 ```
 
 
+# Depuis 2017
 
+
+
+## Secteur social, libre
+
+### France métropolitaine
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "FM-2017")
+```
+
+
+
+### Agglomération parisienne
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "AGGLO-PARIS-2017")
+```
+
+### Secteur libre, Paris vs. province
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-2017")
+```
+
+
+
+
+
+
+
+## Indice de Référence des Loyers (IRL)
+
+### IRL Seul
+
+Hausse supposément très inférieure à l'IRL...
+
+```{r}
+ig_d("insee", "IRL", "indice-100-2017")
+```
+
+### Tous
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2017")
+```
+
+### 2017T1-2025T1
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2017-2025")
+```
+
+
+## Comparaison Insee-OLAP sur l'agglomération parisienne
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-INSEE-vs-OLAP-2017-2025")
+```
 
 # Pour en savoir plus...
 
