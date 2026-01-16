@@ -1,0 +1,113 @@
+---
+title: Données sur l'évolution des loyers
+subtitle: Données
+lang: fr
+filters:
+  - ../code/genderize-fr.lua
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+    include-in-header:
+      - text: |
+          <meta name="twitter:card" content="summary">
+          <meta name="twitter:title" content="Données sur l'évolution des loyers">
+          <meta name="twitter:description" content="Données officielles Insee">
+          <meta name="twitter:image" content="https://fgeerolf.com/files/mesurer-le-pouvoir-d-achat.jpg">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    include-after-body: ../statcounter.html
+    other-links:
+      - text: "Mesurer « le » pouvoir d'achat (9 juillet 2024)"
+        href: "https://fgeerolf.com/mesurer-le-pouvoir-d-achat.html"
+        icon: link
+      - text: "Le traitement du logement dans l'IPC français"
+        href: "https://fgeerolf.com/blog-insee-IPC-loyers-handouts.html"
+        icon: link
+editor: source
+---
+
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
+## sh ~/iCloud/website/website_short.sh
+`loyers` <- tribble(
+  ~source, ~dataset,
+  "insee",  "IRL",
+  "insee",  "INDICES_LOYERS") %>%
+  arrange(source, dataset)
+```
+
+
+# Thèmes reliés
+
+```{r, echo = F}
+tribble(~ theme,
+        "pouvoir-achat", 
+        "pouvoir-achat-2017",
+        "inflation-france",
+        "inflation-france-2017") |>
+  theme_file_updates()
+```
+
+# Chiffres officiels de l'Insee
+
+## Indice de Référence des loyers
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/8725568" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  rename(Trimestre = 1) |>
+  arrange(desc(Trimestre)) |>
+  gt::gt() |>
+  gt::cols_width(3 ~ gt::px(250), 1:2 ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/8725568>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+
+# Pour en savoir plus...
+
+```{r, echo = F}
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/pouvoir-achat.html
+# sh ~/iCloud/website/website_short.sh
+```
+
+
+# Bases de données
+
+```{r, echo = F}
+`loyers` |>
+  source_dataset_file_updates()
+```
+
+# Bibliographie
+
+{{< include ../publications/pouvoir-dachat.qmd >}}
