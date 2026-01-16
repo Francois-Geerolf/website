@@ -137,7 +137,11 @@ ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2017-2025")
 ```
 
 
+## Comparaison Insee-OLAP sur l'agglomération parisienne
 
+```{r}
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-INSEE-vs-OLAP-2017-2025")
+```
 
 
 
