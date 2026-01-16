@@ -130,6 +130,14 @@ ig_d("insee", "IRL", "indice-100-2017")
 ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2017")
 ```
 
+### 2017T1-2025T1
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2017-2025")
+```
+
+
+
 
 
 
