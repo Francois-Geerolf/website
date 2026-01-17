@@ -444,6 +444,16 @@ ig_d("oecd", "PRICES_ALL", "T-FRA-DEU-2017")
 ```
 
 
+# Investissement en logement
+
+## IPEA
+
+```{r}
+ig_d("insee", "IPEA-2021", "43-IPEA-2017")
+```
+
+
+
 
 # Bibliographie
 
