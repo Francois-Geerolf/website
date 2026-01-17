@@ -197,7 +197,6 @@ ig_d("insee", "IPC-2015", "tabac-2017")
 
 
 
-
 ## Loyers effectifs, Ensemble
 
 ### IPC
@@ -205,6 +204,40 @@ ig_d("insee", "IPC-2015", "tabac-2017")
 ```{r}
 ig_d("insee", "IPC-2015", "041-00-2017")
 ```
+
+# Inflation par catégorie de ménages
+
+Comparaison Marques Nationales (MN) et Marques de Distributeur est révélatrice... Voir:
+
+{{< include ../publications/fr/Geerolf2023c.qmd >}}
+
+## Biscuits et gâteaux de conservation
+
+```{r}
+ig_d("insee", "IPPI-2021", "107203-107204-2017")
+```
+
+## Yaourts
+
+```{r}
+ig_d("insee", "IPPI-2021", "105110-105121-2017")
+```
+
+
+## Pâtes molles
+
+```{r}
+ig_d("insee", "IPPI-2021", "105128-105157-105158-2017")
+```
+
+
+## Beurre conditionné
+
+```{r}
+ig_d("insee", "IPPI-2021", "105122-105123-105124-2017")
+```
+
+
 
 
 # Bibliographie
