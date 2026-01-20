@@ -100,7 +100,7 @@ ig_b("insee", "FPORSOC15a", "EC1_fecondite", "encadre1")
 
 # Naissances vs. Décès
 
-Données France Entière puis France Métropolitaine.
+Données France Entière puis France Métropolitaine. 
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R NAISSANCES-FECONDITE; /usr/local/bin/R -e 'quarto::quarto_render("NAISSANCES-FECONDITE.qmd")'
@@ -133,6 +133,16 @@ ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-2024")
 
 ```{r}
 ig_d("insee", "DECES-MORTALITE", "deces-naissances-FE-2025")
+```
+
+## Point de basculement démographique
+
+- Solde naturel négatif = point de basculement démographique
+
+Atteint dès mi 2025, annoncé dans une [publication Insee](https://www.insee.fr/fr/statistiques/5893969) fin 2021 pour 2035...
+
+```{r}
+ig_b("insee", "ip1881", "solde-naturel-negatif-2035")
 ```
 
 
