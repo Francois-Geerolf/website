@@ -422,7 +422,7 @@ ig_d("eurostat", "nama_10_pc", "DE-IT-FR-CPPPSEU272020HAB-CPEURHAB-2017")
 
 # Comparaisons internationales
 
-## GDI
+## Revenu disponible brut (B6G)
 
 ```{r}
 ig_d("eurostat", "nasq_10_nf_tr", "B6G-FR-DE-IT-ES-NL-2017")
@@ -430,7 +430,15 @@ ig_d("eurostat", "nasq_10_nf_tr", "B6G-FR-DE-IT-ES-NL-2017")
 
 
 
-## GDI, real, per person
+## Revenu disponible brut (B6G)
+
+```{r}
+ig_d("eurostat", "nasq_10_nf_tr", "B6G-FR-DE-IT-ES-NL-2017-POP")
+```
+
+
+
+## Revenu disponible brut, réel, par personne (B6G_R_HAB)
 
 ```{r}
 ig_d("eurostat", "nasq_10_nf_tr", "B6G-R-HAB-FR-DE-IT-ES-NL-2017")

@@ -248,6 +248,22 @@ Exemple: fois 2 sur le prix du gaz.
 ig_d("insee", "IPCH-2015", "041-045-01-00-janvier2017")
 ```
 
+## Tabac
+
+```{r}
+ig_d("insee", "IPC-2015", "00-022-2017")
+```
+
+
+
+## Services
+
+```{r}
+ig_d("insee", "IPC-PM-2015", "services-2017")
+```
+
+
+
 
 
 
