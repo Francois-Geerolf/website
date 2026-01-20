@@ -262,6 +262,14 @@ ig_d("insee", "IPC-2015", "00-022-2017")
 ig_d("insee", "IPC-PM-2015", "services-2017")
 ```
 
+## Effets qualité
+
+```{r}
+ig_d("insee", "IPC-2015", "effets-qualite-2017")
+```
+
+
+
 
 
 
