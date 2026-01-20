@@ -238,6 +238,17 @@ ig_d("insee", "IPPI-2021", "105122-105123-105124-2017")
 ```
 
 
+# Quelques exemples de biens
+
+## Energie du logement
+
+Exemple: fois 2 sur le prix du gaz.
+
+```{r}
+ig_d("insee", "IPCH-2015", "041-045-01-00-janvier2017")
+```
+
+
 
 
 # Bibliographie
