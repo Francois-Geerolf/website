@@ -268,7 +268,11 @@ ig_d("insee", "IPC-PM-2015", "services-2017")
 ig_d("insee", "IPC-2015", "effets-qualite-2017")
 ```
 
+## Traitement des remplacements dans l'habillement
 
+```{r}
+ig_d("insee", "IPC-2015", "remplacements-habillement-2017")
+```
 
 
 
