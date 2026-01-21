@@ -433,7 +433,7 @@ ig_d("eurostat", "nasq_10_nf_tr", "B6G-FR-DE-IT-ES-NL-2017")
 ## Revenu disponible brut (B6G)
 
 ```{r}
-ig_d("eurostat", "nasq_10_nf_tr", "B6G-FR-DE-IT-ES-NL-2017-POP")
+ig_d("eurostat", "nasq_10_nf_tr", "B6G-FR-DE-IT-ES-EA20-2017-POP")
 ```
 
 
