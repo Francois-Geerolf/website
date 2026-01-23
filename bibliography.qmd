@@ -28,9 +28,6 @@ print_bibliography <- .  %>%
   )
 ```
 
-
-
-
 # English
 
 ```{r, echo = F, warning = F}
