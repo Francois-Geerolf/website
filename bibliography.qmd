@@ -47,11 +47,9 @@ bibliography %>%
   print_bibliography()
 ```
 
-
 # All
 
 ```{r, echo = F, warning = F}
 bibliography %>%
   print_bibliography()
 ```
-

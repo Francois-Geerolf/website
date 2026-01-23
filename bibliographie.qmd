@@ -43,7 +43,6 @@ bibliography %>%
   print_bibliography()
 ```
 
-
 # Tous
 
 ```{r, echo = F, warning = F}
