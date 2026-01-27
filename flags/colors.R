@@ -80,7 +80,7 @@ europe <- tibble(country = "Austria", color = "#ED2939", color2 = "") %>%
   add_row(country = "Sweden", color = "#FECC00", color2 = "#21468B") %>%
   add_row(country = "Switzerland", color = "#FF0000", color2 = "") %>%
   add_row(country = "Turkey", color = "#E30A17", color2 = "") %>%
-  add_row(country = "United Kingdom", color = "#CF142B", color2 = "")
+  add_row(country = "United Kingdom", color = "#CF142B", color2 = "#00247D")
 
 middle_east <- tibble(country = "Kuwait", color = "#007A3D", color2 = "#CE1126") %>%
   add_row(country = "Iraq", color = "#E9949D", color2 = "#000000") %>%
@@ -113,5 +113,3 @@ colors <- colors_manual %>%
   arrange(country)
 
 save(colors, file = "colors.RData")
-
-system("sh _to_website_offline.sh")
