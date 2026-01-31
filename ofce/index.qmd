@@ -110,6 +110,8 @@ knitr::include_graphics("../files/OFCE_(logo).png")
 
 ## Autres interventions (sélection)
 
+{{< include ../public-debate/fr/Geerolf2026.qmd >}}
+
 {{< include ../public-debate/fr/EcalleGeerolf2025.qmd >}}
 
 {{< include ../public-debate/fr/Geerolf2024b.qmd >}}
