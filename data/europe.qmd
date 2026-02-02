@@ -78,9 +78,9 @@ tribble(~ theme,
 
 ## French
 
-{{< include ../publications/fr/Blot2025.qmd >}}
-
 {{< include ../publications/fr/Geerolf2025a.qmd >}}
+
+{{< include ../publications/fr/Blot2025.qmd >}}
 
 {{< include ../publications/fr/Geerolf2024d.qmd >}}
 
