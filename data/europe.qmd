@@ -139,11 +139,18 @@ ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT-using-groups-linear")
 
 ### OECD
 
-#### GDP
+#### US vs Euro Area 20
 
 
 ```{r}
 ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA20-2000-new-english")
+```
+
+#### US vs Euro Area 20, EU-27
+
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA20-EU2027-1999")
 ```
 
 ### WDI (2008-)
