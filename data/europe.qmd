@@ -32,14 +32,15 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
 ```{r, echo = F}
 tribble(~ theme,
-        "monetary-policy", 
-        "inflation-europe",
+        "us-eu",
         "euro",
         "germany",
         "poland",
         "greece",
         "italy",
-        "france") |>
+        "france", 
+        "inflation-europe",
+        "monetary-policy") |>
   theme_file_updates()
 ```
 
@@ -379,15 +380,4 @@ ig_d("eurostat", "tipsbp20", "mean-sd-EU27-FR-DE")
 ```{r, echo = F}
 `europe` |>
   source_dataset_file_updates()
-```
-
-# Related themes
-
-
-
-```{r, echo = F}
-tribble(~ theme,
-        "greece",
-        "poland") |>
-  theme_file_updates()
 ```
