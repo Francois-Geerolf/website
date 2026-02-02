@@ -23,7 +23,9 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
   "eurostat",  "namq_10_pc",
   "eurostat", "nasa_10_nf_tr",
   "eurostat", "nasq_10_nf_tr",
-  "eurostat", "tipsii40") %>%
+  "eurostat", "tipsii40",
+  "eurostat", "tec00114",
+  "eurostat", "tec00113") %>%
   arrange(source, dataset)
 ```
 
@@ -99,9 +101,19 @@ tribble(~ theme,
 
 ## PIB relatif
 
+### 1960-
+
 ```{r}
 ig_d("wdi", "NY.GDP.MKTP.CD", "US-CN-EU")
 ```
+
+### 1995-
+
+```{r}
+ig_d("wdi", "NY.GDP.MKTP.CD", "US-CN-EU-1995")
+```
+
+
 
 ## GDP per capita
 
