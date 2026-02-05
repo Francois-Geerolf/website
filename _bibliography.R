@@ -4,7 +4,7 @@ setwd(here::here())
 
 # Folders to scan# Define the two sets
 langs <- c("fr", "en")
-folders <- c("publications", "public-debate", "working-papers")
+folders <- c("publications", "public-debate", "working-papers", "presentations", "press")
 
 # Create all combinations
 roots <- as.vector(outer(folders, langs, paste, sep = "/"))
