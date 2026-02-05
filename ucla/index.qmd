@@ -57,4 +57,3 @@ Revision requested at American Economic Review
 {{< include ../teaching/en/Geerolf2014a.qmd >}}
 
 {{< include ../teaching/en/Geerolf2016.qmd >}}
-
