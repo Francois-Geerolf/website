@@ -10,8 +10,6 @@ format:
     theme: flatly
     embed-resources: false
     other-links:
-      - text: "Bibliographie"
-        href: "https://fgeerolf.com/bibliographie.html"
       - text: "UCLA"
         href: "https://fgeerolf.com/ucla/"
       - text: "CEPII"
