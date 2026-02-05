@@ -20,8 +20,8 @@ editor: source
 source(here::here("_rinit.R"))
 ```
 
-```{r fig.align="center", out.width="80%", echo = F}
-knitr::include_graphics("../files/ucla-undergraduate.avif")
+```{r out.width="20%", echo = F}
+knitr::include_graphics("../files/ucla-logo.png")
 ```
 
 
