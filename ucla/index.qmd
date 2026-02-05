@@ -46,6 +46,9 @@ Revision requested at American Economic Review
 
 {{< include ../press/en/TheEconomist2017.qmd >}}
 
+# Presentations
+
+{{< include ../presentations/en/Geerolf2021.qmd >}}
 
 # Teaching at UCLA
 
