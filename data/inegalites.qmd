@@ -56,4 +56,11 @@ tribble(~ theme,
 ```
 
 
+# Bibliographie en lien
+
+## Français
+
+{{< include ../public-debate/fr/Geerolf2026.qmd >}}
+
+{{< include ../public-debate/fr/Geerolf2025b.qmd >}}
 
