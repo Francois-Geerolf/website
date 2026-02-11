@@ -50,6 +50,50 @@ Revision requested at American Economic Review
 
 {{< include ../working-papers/en/Geerolf2019c.qmd >}}
 
+# Invited Seminars
+
+Yale, Stanford, UC Riverside, Chicago Fed, Polytechnique, PSE, Wharton Econ, Wisconsin-Madison, USC, INSEAD, CIRED, UCSD, UC Berkeley, UC Irvine, MIT, UPenn, HEC Finance, Fed Board, Harvard Econ, UCLA, NYU Econ, CREI.
+
+# Conference Presentations and Discussions (Selected)
+
+Presenter, NBER EFG Meeting (Chicago)
+Presenter, SED Annual Meeting 2016 (Toulouse)
+Presenter, Bank of France Conference on Granularity (Paris)
+Presenter, 5th HKUST International Workshop on Macroeconomics (Hong Kong)
+Presenter, Chicago Initiative in Theory and Empirics (CITE) conference (Chicago)
+Presenter, Minnesota Macro Workshop in Macroeconomic Theory (Minneapolis)
+Presenter, SED Annual Meeting 2015 (Warsaw)
+Presenter, 4th Junior Conference on Macroeconomics, Instituto Einaudi (Rome)
+Discussant, IMF/ EUI Conference on Secular Stagnation and Growth (Florence)
+Presenter, 3rd GSE Summer Forum "Firms in the Global Economy" (Barcelona)
+Discussant, NBER Conference on Multiple Equilibria (San Francisco Fed)
+Discussant, Nemmers Prize Conference in honor of Jean Tirole (Northwestern)
+Presenter, INET-IMF Conference on Macroeconomic Externalities (Washington)
+Presenter, SED Annual Meeting 2014 (Toronto)
+Presenter, 2nd GSE Summer Forum (Barcelona)
+Discussant, EABCN-INET Conference on Macro Stabilization (Cambridge)
+Presenter, Cowles 10th Annual Conference on GE and its Applications (Yale)
+Presenter, FRIC Top Finance Graduate Award Conference (Copenhaguen)
+Presenter, Sveriges Riksbank Conference on "Bubbles" (Stockholm)
+
+# Grants
+
+2015-2016 UCLA Faculty Senate Grant
+
+2014-2016 UCLA Ziman Center for Real Estate Research Grant
+
+# Refereeing (Selected)
+
+American Economic Journal : Macro, American Economic Journal : Micro, American Economic Review, Econometrica, Economic Theory, International Economic Review, International Journal of Central Banking, Journal of Economic Theory, Journal of Finance, Journal of International Economics, Quarterly Journal of Economics, Review of Economic Studies, Review of Financial Studies
+
+# Organization
+
+SED Program Committee Member (2016)
+
+UCLA Conference on Housing and Macroeconomics, Co-organizer (2016)
+
+West Coast Search and Matching Meeting, Co-organizer (2014)
+
 # Press
 
 {{< include ../press/en/TheEconomist2017.qmd >}}
