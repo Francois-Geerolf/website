@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="russiangas-slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="russiangas-slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="russiangas-slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="russiangas-slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="russiangas-slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="russiangas-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="russiangas-slides_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
+
+  <meta name="author" content="François Geerolf">
+  <meta name="dcterms.date" content="2022-04-25">
+  <title>The ‘Baqaee-Farhi approach’ and a gas embargo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="russiangas-slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="russiangas-slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="russiangas-slides_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link href="russiangas-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="russiangas-slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="russiangas-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="russiangas-slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">The ‘Baqaee-Farhi approach’ and a gas embargo</h1>
+  <p class="subtitle">German Council of Economic Experts (GCEE) Workshop</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+<a href="https://fgeerolf.com">François Geerolf</a> 
+</div>
+        <p class="quarto-title-affiliation">
+            OFCE-Sciences Po, UCLA, CEPR
+          </p>
+    </div>
+</div>
+
+  <p class="date">2022-04-25</p>
+</section>
+<section>
+<section id="context" class="title-slide slide level1 center">
+<h1>Context</h1>
+
+</section>
+<section id="review-of-the-literature-by-the-gcee" class="slide level2">
+<h2>Review of the literature by the GCEE</h2>
+
+<img data-src="https://fgeerolf.com/bib/RussianGas_Appendix/literature-highlight-bind.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%" data-fig-pos="H"></section>
+<section id="foreword-bachmann_what_2022-and-baqaee-farhi" class="slide level2">
+<h2>Foreword: <span class="citation" data-cites="bachmann_what_2022">Bachmann et al. (<a href="#/section" role="doc-biblioref" onclick="">2022</a>)</span> and Baqaee-Farhi</h2>
+<ul>
+<li><p><span class="math inline">\(2\)</span> types of estimations in <span class="citation" data-cites="bachmann_what_2022">Bachmann et al. (<a href="#/section" role="doc-biblioref" onclick="">2022</a>)</span>:</p>
+<p>– some coming out of a <strong>very crude</strong> aggregate production function approach =&gt; upper bound estimates of <strong>1.5%</strong> and <strong>2.3% of GDP</strong>. (I’ll come back to it)</p>
+<p>– some presented as coming out of an application of a “state-of-the-art” Baqaee-Farhi model. <strong>0.2%-0.3% of GDP</strong> even according to the most conservative parametrizations.</p></li>
+<li><p>The “Baqaee-Farhi estimates” are <strong>an order of magnitude</strong> lower compared to estimates of major German institutes, the Bundesbank (see previous slide), to simple “common sense”, or to the paper’s bottom-line. (which in the end seems to favor the simpler production function approach)</p></li>
+<li><p>That these estimates seem to be coming out of Emmanuel’s joint work hurt me scientifically, but also (on a more personal note) emotionally, given how much respect I have for Emmanuel. (I’ll come back to my relationship to Emmanuel Farhi in the next slide) Is it a problem with the Baqaee-Farhi approach in general ? Or is “science” (= state-of-the-art models) telling us that a 0.2-0.3% drop in GDP is the most likely outcome ?</p></li>
+</ul>
+<!----
+To put it bluntly, I am really not sure that the @bachmann_what_2022 paper is being so true to Baqaee-Farhi's work.
+--->
+</section>
+<section id="emmanuel-farhi-8-september-1978-23-july-2020" class="slide level2">
+<h2>Emmanuel Farhi (8 September 1978 – 23 July 2020)</h2>
+
+<img data-src="https://fgeerolf.com/bib/russiangas/emmanuel-farhi.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%" data-fig-pos="H"></section>
+<section id="a-few-words-about-emmanuel-farhi" class="slide level2">
+<h2>A few words about Emmanuel Farhi</h2>
+<ul>
+<li><p>Full disclosure: Emmanuel Farhi was my mentor. I was a visiting fellow at Harvard in 2012-13 thanks to Emmanuel. After Polytechnique and my Ph.D.&nbsp;in Economics in 2013 I was going to leave academia (in part, because I had strong doubts about mainstream academic macroeconomics), but Emmanuel encouraged me to continue and to try and convince the profession about my work, etc… Without his advice, his example, and his very strong support throughout, I would not have become an academic economist, or stayed “in the profession”.</p></li>
+<li><p>Emmanuel was a hard scientist/an engineer by training: he went to prestigious “Corps des Mines”, a specialized elite corps which (ironically) deals with mining and energy… I attended less prestigious “Corps des Ponts”. (which deals with bridges and roads) We went to the same high school (“Lycée Louis Le Grand”), even to the same class (“TS1”) we talked a lot about our former history teacher (P. Laduguie) each time we saw each other.</p></li>
+<li><p>David Baqaee had Emmanuel as an advisor, he became his main coauthor after his Ph.D.&nbsp;in 2015. I know David, who is one of my good colleagues at UCLA. Most of the comments here I have previously debated with David…</p></li>
+</ul>
+</section>
+<section id="economists-vs.-engineers-in-france" class="slide level2">
+<h2>Economists vs.&nbsp;Engineers in France</h2>
+<p>From Brunnermeier, James, Landau (2018) “The Euro and the Battle of Ideas”</p>
+
+<img data-src="https://fgeerolf.com/bib/BrunnermeierJamesLandau2016/influence-engineering-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="H"></section>
+<section id="summary-of-the-main-approaches" class="slide level2">
+<h2>Summary of the main approaches</h2>
+<ul>
+<li><p><strong>The aggregate production function approach.</strong> This is where the main estimates - those which look more reasonable to everyone (including the authors apparently) - come from in the end. This is a paradox, because much of Baqaee-Farhi’s work is precisely about how we should avoid using an exogenous aggregate production function approach. This approach is very simple but in the end rests on “the elasticity of substitution” which drives the results, and which we don’t know much about especially in such a very extreme context.</p></li>
+<li><p><strong>The <span class="citation" data-cites="baqaee_networks_2021">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2021</a>)</span> approach.</strong> Stunningly small effects. Why is that ? In fact, both the model and the way it’s taken to the data, are not well suited to that particular question of thinking about an energy embargo. This model improved upon previous elegant models but it does not have the level of detail of bigger computational models (especially, to model the energy and the manufacturing sectors).</p></li>
+<li><p><strong>The <span class="citation" data-cites="baqaee_macroeconomic_2019">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2019a</a>)</span> approach.</strong> An earlier paper of theirs which shows that in fact, Hulten’s theorem is not at all a good approximation for thinking about shocks to energy prices, as shown during the 1970s oil embargo.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="the-aggregate-production-function-approach" class="title-slide slide level1 center">
+<h1>The aggregate production function approach</h1>
+
+</section>
+<section id="aggregate-production-function-for-energy" class="slide level2">
+<h2>Aggregate production function for energy</h2>
+<ul>
+<li>The main results of the paper are obtained from a <strong>very stylized</strong> aggregate production function approach, with two factors of production <span class="math inline">\(\text{Energy}\)</span> (<span class="math inline">\(E\)</span> in the paper) and <span class="math inline">\(\text{NonEnergy}\)</span> (<span class="math inline">\(X\)</span> in the paper):</li>
+</ul>
+<p><span class="math display">\[Y=\left(\alpha^{\frac{1}{\sigma}}{\text{Energy}}^{\frac{\sigma-1}{\sigma}}+(1-\alpha)^{\frac{1}{\sigma}}{\text{NonEnergy}}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}}\]</span></p>
+<ul>
+<li>Taking the first order derivative and the fact that the ratios of marginal productivities must equal the ratio of prices, it is easy to show that:</li>
+</ul>
+<p><span class="math display">\[\frac{{\text{Energy}}}{{\text{NonEnergy}}}=\frac{\alpha}{1-\alpha}\left(\frac{p_{\text{Energy}}}{p_{\text{NonEnergy}}}\right)^{-\sigma}.\]</span></p>
+<ul>
+<li>Importance of the <strong>elasticity of substitution <span class="math inline">\(\sigma\)</span></strong>. When the price of energy relative to the rest goes up by <span class="math inline">\(1\)</span>%, the use of energy declines by <span class="math inline">\(\sigma\)</span>%. If <span class="math inline">\(\sigma\)</span> is (very) small, it implies its use declines (very) little when the price goes up.</li>
+</ul>
+</section>
+<section id="production-function-for-gas-other" class="slide level2">
+<h2>Production function for gas / other ?</h2>
+<ul>
+<li><span class="citation" data-cites="bachmann_what_2022">Bachmann et al. (<a href="#/section" role="doc-biblioref" onclick="">2022</a>)</span> also use an alternative version where instead of a Energy and non energy being imperfect substitutes, gas and non gas are imperfect substitutes. This is to allow for the fact that gas may not be easily be replaceable by other energy sources. So <span class="math inline">\(E\)</span> sometimes stands for <span class="math inline">\(\text{Gas}\)</span> in the paper, while <span class="math inline">\(X\)</span> stands for <span class="math inline">\(\text{NonGas}\)</span>.</li>
+</ul>
+<p><span class="math display">\[Y=\left(\alpha^{\frac{1}{\sigma}}{\text{Gas}}^{\frac{\sigma-1}{\sigma}}+(1-\alpha)^{\frac{1}{\sigma}}{\text{NonGas}}^{\frac{\sigma-1}{\sigma}}\right)^{\frac{\sigma}{\sigma-1}}\]</span></p>
+<ul>
+<li><p>Of course, since gas in some location itself is not very substitutable with gas in another location in Germany, one can ask why we should stop there.</p></li>
+<li><p>In principle, if gas drops by 100% in some location and cannot be replaced, then one could get an arbitrarily large GDP drop. This is not necessarily realistic either, but this is simply to show that this approach is perhaps not that informative and may seem somewhat arbitrary.</p></li>
+</ul>
+</section>
+<section id="how-to-get-the-1.5-and-the-2.3-of-gdp" class="slide level2">
+<h2>How to get the 1.5% and the 2.3% of GDP ?</h2>
+<ul>
+<li>Reduction in 10% of energy usage with elasticity = 0.04, reduction in 30% of gas usage with elasticity = 0.1. Computing the change in GDP obtained from this very simple production function is simply a matter of plugging the values in the production function…</li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/russiangas/calculations-their3.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%" data-fig-pos="H"></section>
+<section id="very-sensitive-to-the-elasticity" class="slide level2">
+<h2>Very sensitive to the elasticity</h2>
+<ul>
+<li>Of course, we can plug other numbers in them. Imagine that <span class="math inline">\(\sigma = 0.01\)</span> instead of <span class="math inline">\(\sigma = 0.04\)</span>, and that natural gas is as substitutable as energy <span class="math inline">\(\sigma = 0.04\)</span> instead of <span class="math inline">\(\sigma = 0.1\)</span> then:</li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/russiangas/calculations-other3.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%" data-fig-pos="H"></section>
+<section id="what-are-these-elasticities" class="slide level2">
+<h2>What are these elasticities ?</h2>
+<ul>
+<li><p>Metaanalyses such as <span class="citation" data-cites="labandeira_meta-analysis_2017">Labandeira, Labeaga, and López-Otero (<a href="#/section" role="doc-biblioref" onclick="">2017</a>)</span> are using changes in prices which <strong>actually</strong> took place (in normal times), but do not tell us anything about the elasticity conditional on a huge shock such as an embargo: you might have nonlinearities.</p></li>
+<li><p>Constant Elasticity of Substitution (CES) functions are only a local approximation. There are (engineering) reasons to believe that as the shock gets larger, you can potentially get to much smaller elasticities…</p></li>
+<li><p>I think we should agree that there is to know what these elasticities are, and they are subject to a considerable degree of uncertainty. (the authors repeatedly criticize the “engineering view”, but who better than engineers can tell us what this elasticity of substitution really is ?)</p></li>
+</ul>
+</section>
+<section id="uncertainty-about-sigma-does-matter-a-lot" class="slide level2">
+<h2>Uncertainty about <span class="math inline">\(\sigma\)</span> does matter a lot !</h2>
+<ul>
+<li>The below graphs investigate the GDP drops for different values of the elasticity <span class="math inline">\(\sigma\)</span>. Of course, the elasticity of substitution matters a lot for how much GDP drops.</li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/russiangas/graph-other1-2d.png" class="quarto-figure quarto-figure-center r-stretch" style="width:95.0%" data-fig-pos="H"></section>
+<section id="using-the-production-function-is-a-contradiction" class="slide level2">
+<h2>Using the production function is a contradiction ?</h2>
+<ul>
+<li><p>What is paradoxical is that David Baqaee and Emmanuel Farhi’s research agenda was precisely to move away from these extremely stylized production functions. In <span class="citation" data-cites="baqaee_jeea-fbbva_2019">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2019b</a>)</span>: “As micro data becomes more plentiful, parsimonious reduced-form aggregate production functions look more antiquated.”</p></li>
+<li><p>This is a somewhat of a contradiction:</p>
+<p>– On the one hand, the sophisticated estimation techniques in <span class="citation" data-cites="bachmann_what_2022">Bachmann et al. (<a href="#/section" role="doc-biblioref" onclick="">2022</a>)</span> build upon state-of-the-art Baqaee-Farhi models. (but these seem to lead to embarrassingly small effects - 0.2-0.3% of GDP)</p>
+<p>– On the other, the numbers they seem to believe in (and which they have put forward in the public debate) do not come from these sophisticated approach, but from an very stylized production function approach. As we’ve seen, this approach doesn’t have a lot of scientific authority.</p></li>
+<li><p>So there’s only one question left: why do <span class="citation" data-cites="baqaee_networks_2021">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2021</a>)</span>, lead to such small estimates ?</p></li>
+</ul>
+</section></section>
+<section>
+<section id="baqaee_networks_2021" class="title-slide slide level1 center">
+<h1><span class="citation" data-cites="baqaee_networks_2021">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2021</a>)</span></h1>
+
+</section>
+<section id="main-estimates" class="slide level2">
+<h2>Main estimates</h2>
+<ul>
+<li><p>The <span class="citation" data-cites="baqaee_networks_2021">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2021</a>)</span> is presented in the <span class="citation" data-cites="bachmann_what_2022">Bachmann et al. (<a href="#/section" role="doc-biblioref" onclick="">2022</a>)</span> paper as a “state-of-the-art multi-sector model with rich input-output linkages and in which energy is a critical input in production.”</p></li>
+<li><p>Results of the model are extremely low except even with <strong>very low elasticities</strong>: 0.26% of GNE.</p></li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/ECONtribute_PB_028_2022/table1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:95.0%" data-fig-pos="H"></section>
+<section id="problems-with-the-model-the-calibration" class="slide level2">
+<h2>Problems with the model / the calibration</h2>
+<ul>
+<li><p><strong>Only 30 sectors</strong> (the table they use has 35 sectors, but they want to get rid of 0s): for example, water supply is mixed with electricity and gas in the “Electricity, Gas and Water Supply” sector; the chemical industry is mixed with rubber and plastics. Within a sector, there is perfect substitution. 2016 release of the world input-output table has more sectors.</p></li>
+<li><p><strong>Only 4 factors</strong>: high-skilled, medium-skilled, low-skilled labor, and capital. This implicitely assumes that a high-skilled person (say, an engineer) can easily switch across any of the 30 sectors. As shown in <span class="citation" data-cites="baqaee_macroeconomic_2019">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2019a</a>)</span>, the number of factors is hugely important.</p></li>
+<li><p><strong>No space</strong>: as discussed in <span class="citation" data-cites="baqaee_macroeconomic_2019">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2019a</a>)</span>, there might even be one factor per location, if people can’t freely move in the short run (note: gas also cannot easily be moved around).</p></li>
+<li><p><strong>Few parameters</strong>: there are 4 key elasticities of substitution. (e.g.&nbsp;only one for all consumption goods) This is better than the production function approach, but still very stylized. And no way to know what these elasticities are in this particular example. (never been seen before) Overall, this model closer to a “toy model” than to a “quantitative model”.</p></li>
+</ul>
+</section>
+<section id="only-30-sectors" class="slide level2">
+<h2>Only 30 sectors</h2>
+<ul>
+<li>Particular application at hand is perhaps not that well suited to study this particular question. Use of the 2013 release of the WIOD database, with only 35 sectors (which they assemble into 30). 2016 release breaks energy into two pieces. (Contrast this with Baqaee, Farhi (2019): 88 sector US KLEMS.)</li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/BaqaeeFarhi2021/detailed-data-2013.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%" data-fig-pos="H"></section>
+<section id="only-30-sectors-1" class="slide level2">
+<h2>Only 30 sectors</h2>
+
+<img data-src="https://fgeerolf.com/bib/BaqaeeFarhi2021/table5.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" data-fig-pos="H"></section>
+<section id="only-4-factors" class="slide level2">
+<h2>Only 4 factors</h2>
+<ul>
+<li>There are only 4 factors in the <span class="citation" data-cites="baqaee_networks_2021">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2021</a>)</span> model, for all industries: high-skilled, medium-skilled, low-skilled labor, and capital.</li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/BaqaeeFarhi2021/factors.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%" data-fig-pos="H"></section>
+<section id="no-space" class="slide level2">
+<h2>No space</h2>
+<ul>
+<li><p>Not only too few industries, too few factors, there also are too few locations. (there’s just one) In theory, adding space could be done, by simply adding more factors, one that is more specific to each factor.</p></li>
+<li><p>The more factors you have that are not substitutable, the less possibility of substitution you get.</p></li>
+<li><p>So in fact, it’s not a problem with “mathematical models” which do not work, it’s more a problem about the assumptions we choose to use in these mathematical models.</p></li>
+<li><p>I don’t see any reason why we should simply assume these problems away. In general, the issue with this model is perhaps that it is too stylized (or rather, too simplified in key respects, such as the modelling of the energy sector) compared to what you’d ideally like to have for such an exercise.</p></li>
+</ul>
+</section>
+<section id="no-space-olaf-scholz-is-correct" class="slide level2">
+<h2>No space: Olaf Scholz is correct</h2>
+
+<img data-src="https://fgeerolf.com/bib/Scholz2022/english4.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%" data-fig-pos="H"></section>
+<section id="closer-to-a-simple-stylized-model" class="slide level2">
+<h2>Closer to a “simple stylized model”</h2>
+<ul>
+<li><p>More generally: few parameters, quite a few simplifying assumptions. This computational experiment ends up being closer to a simple stylized model than to a large-scale computational GE model.</p></li>
+<li><p>“Can lead to unreliable quantitative predictions when compared to the large-scale models”.</p></li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/BaqaeeFarhi2021/introduction.png" class="quarto-figure quarto-figure-center r-stretch" style="width:95.0%" data-fig-pos="H"></section>
+<section id="how-does-baqaee_networks_2021-fit-into-their-research-agenda" class="slide level2">
+<h2>How does <span class="citation" data-cites="baqaee_networks_2021">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2021</a>)</span> fit into their research agenda ?</h2>
+<p>The <span class="citation" data-cites="baqaee_networks_2021">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2021</a>)</span> paper is very related to an earlier paper of theirs, released in Econometrica:</p>
+<ul>
+<li><p><span class="citation" data-cites="baqaee_networks_2021">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2021</a>)</span>: open economy model. Questions that they look at: gains from trade, impact of tariffs, etc.</p></li>
+<li><p><span class="citation" data-cites="baqaee_macroeconomic_2019">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2019a</a>)</span>: Breaking from Hulten’s “theorem”</p></li>
+</ul>
+<p>But the second paper appears to me like a much more relevant paper, and I’ll explain why:</p>
+<ul>
+<li><p>Assumes that factors are much less substitutable (one factor for each industry), which is more relevant for the short run, as the authors themselves point out.</p></li>
+<li><p>One of the experiments is precisely about energy, and the authors conclude that there does not seem to be much substitution.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="baqaee_macroeconomic_2019-breaking-from-hultens-theorem" class="title-slide slide level1 center">
+<h1><span class="citation" data-cites="baqaee_macroeconomic_2019">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2019a</a>)</span>: Breaking from “Hulten’s theorem”</h1>
+
+</section>
+<section id="hulten-key-reason-why-model-implied-losses-are-small" class="slide level2">
+<h2>Hulten: Key reason why model-implied losses are small</h2>
+<ul>
+<li>Extract from the paper:</li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/ECONtribute_PB_028_2022/share-small.png" class="quarto-figure quarto-figure-center r-stretch" style="width:95.0%" data-fig-pos="H"><ul>
+<li>This is some version of Hulten’s theorem: the effects of a shock on a sector has something to do with the importance of that sector in GDP.</li>
+</ul>
+</section>
+<section id="summers-dismisses-hultens-theorem-for-energy" class="slide level2">
+<h2>Summers dismisses “Hulten’s theorem” for energy</h2>
+<ul>
+<li><p>In his Secular Stagnation Speech at the 2013 IMF Fourteenth Jacques Polak Annual Research Conference (Emmanuel was in the front row), Larry Summers compared the 2007-2009 financial crisis to a power failure. He was precisely explaining that key sectors such as the financial sector, or the energy sector, were so central to the working of the economy, that clearly using such sectors would be far more important than suggested through their importance in GDP. In other words, he was dismissive of Hulten’s theorem.</p></li>
+<li><p>The quote (at 54’24’’) is: “You know, I always like to think of these crises as analogous to a power failure. Or analogous to what would happen if all the telephones were shut off for a time. The network would collapse, the connections would go away and output would of course drop very rapidly.”</p></li>
+</ul>
+<p>“There’d be a set of economists who would sit around explaining that <strong>electricity was only 4% of the economy</strong> and so if you lost 80% of electricity you couldn’t possibly have lost more than 3% of the economy. And there would be, you know, there’d be people in Minnesota and Chicago and stuff would be writing that paper… but it would be stupid ! It would be stupid ! And we’d understand that, somehow, even if we didn’t exactly understand in the model, that when there wasn’t any electricity there wasn’t really going to be much economy.”</p>
+</section>
+<section id="secular-stagnation-speech-from-larry-summers" class="slide level2">
+<h2>“Secular stagnation” speech from Larry Summers</h2>
+<ul>
+<li>Link to the YouTube Video: <a href="https://www.youtube.com/embed/qAsW6UnATAY?start=3265" class="uri">https://www.youtube.com/embed/qAsW6UnATAY?start=3265</a>.</li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/Summers2013/summers-electricity.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:95.0%" data-fig-pos="H"></section>
+<section id="this-argument-is-influential" class="slide level2">
+<h2>This argument is influential</h2>
+<ul>
+<li><p>One of the arguments for why the effects found in <span class="citation" data-cites="bachmann_what_2022">Bachmann et al. (<a href="#/section" role="doc-biblioref" onclick="">2022</a>)</span> are so low is that the share of energy is only about 4% of GDP, and the share of gas is only about 1% of GDP.</p></li>
+<li><p>It’s very paradoxical because <span class="citation" data-cites="baqaee_macroeconomic_2019">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2019a</a>)</span>’s work was a way to precisely break Hulten’s theorem.</p></li>
+<li><p>Since Hulten’s theorem is such an important tenet of growth accounting, this was presented however only as a second-order approximation, though in fact it was first order.</p></li>
+</ul>
+</section>
+<section id="importance-of-factor-reallocation" class="slide level2">
+<h2>Importance of factor reallocation</h2>
+<ul>
+<li><p><span class="citation" data-cites="baqaee_macroeconomic_2019">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2019a</a>)</span> show that with complementarities, a negative shock can cause a large downturn when labor cannot be freely re-allocated, but the <strong>ability to re-allocate labor</strong> largely mitigates these effects.</p></li>
+<li><p>There are reasons to suspect in such circumstances of a Russian gas embargo, that labor could not be easily reallocated. (probably in the 2021 trade paper the authors assume more reallocation is possible because they look at longer-term effects of trade) “In light of increasing evidence (see for example Acemoglu et al., 2016; Autor et al., 2016; Notowidigdo, 2011) that labor is not easily reallocated across industries or regions after shocks in the short run, we view the no-reallocation case as more realistic for modeling the short-run impact of shocks, and the full-reallocation case as better suited to study the medium to long-run impact shocks.”</p></li>
+</ul>
+</section>
+<section id="reallocation-is-difficult" class="slide level2">
+<h2>Reallocation is difficult</h2>
+<p>Empirical exercise shows reallocation is difficult at business cycle frequencies:</p>
+<ul>
+<li><p>Overall, given our elasticities of substitution, the model with full reallocation is <strong>unable to replicate</strong> the volatility of the Domar weights at either annual or quadrennial frequency, suggesting that this model is not nonlinear enough to match the movements in the Domar weights as arising from sectoral productivity shocks.</p></li>
+<li><p>We also consider the response of aggregate output to shocks to specific industries, using our benchmark calibration. It turns out that for a large negative shock, <strong>the “oil and gas” industry</strong> produces the <strong>largest negative response in aggregate output</strong>, despite the fact it is not the largest industry in the economy.</p></li>
+<li><p>In our baseline calibrations, we assume that intermediate inputs can be freely reallocated across producers even in the short run. This is sensible since intermediate goods are probably easier to reallocate than labor.</p></li>
+</ul>
+</section>
+<section id="the-importance-of-factor-reallocation" class="slide level2">
+<h2>The importance of factor reallocation</h2>
+
+<img data-src="https://fgeerolf.com/bib/BaqaeeFarhi2019b/figure1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%" data-fig-pos="H"></section>
+<section id="example-of-the-1970s-oil-shock" class="slide level2">
+<h2>Example of the 1970s oil shock</h2>
+<ul>
+<li>Share of oil went up and went down not mostly through substitution, but through a change in prices. (moreover: the household sector did some of the effort at the time…)</li>
+</ul>
+
+<img data-src="https://fgeerolf.com/bib/BaqaeeFarhi2019b/figure7.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%" data-fig-pos="H"></section>
+<section id="changes-in-oil-prices" class="slide level2">
+<h2>Changes in oil prices</h2>
+
+<img data-src="https://fgeerolf.com/data/fred/energy_files/figure-html/WTISPLC-CPIAUCSL-1970-log-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:95.0%" data-fig-pos="H"></section>
+<section id="circular-reasoning" class="slide level2">
+<h2>Circular reasoning</h2>
+<ul>
+<li><p>Back to the initial quote, the authors refer to the energy import share in GNE a lot, arguing that it cannot rise too much. The argument: if the price of energy goes up too much (in some estimations, it goes up by a factor of 10) without there being a substantial reduction in the quantity of energy bought, then the energy import share will rise too much.</p></li>
+<li><p>This is circular reasoning. If substitution is low, then yes the share of energy in consumption will rise a lot. Yet this is precisely what we experienced during the two oil shocks.</p></li>
+<li><p>There are reasons to think that in fact, cutting Russian gas now would be much worse for Germany than the two oil shocks: the change in natural gas prices is already larger; and would be an order of magnitude larger if there was an embargo. (see next slide)</p></li>
+<li><p>Moreover, because of low substitution, I don’t think indeed the price system would suffice, and there would be rationing. (i’ll come back to it) But this is precisely evidence in favor of limited substitution (to an extent that the price system would not be able to do its job), not against !</p></li>
+</ul>
+</section>
+<section id="natural-gas-price-increases-already-greater-source-world-bank" class="slide level2">
+<h2>Natural gas price increases already greater (Source: World Bank)</h2>
+
+<img data-src="https://fgeerolf.com/data/wb/CMO_files/figure-html/natural-gas-real-log-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%" data-fig-pos="H"></section></section>
+<section>
+<section id="other-thoughts" class="title-slide slide level1 center">
+<h1>Other thoughts</h1>
+
+</section>
+<section id="elasticity-optimism-in-neoclassical-macro" class="slide level2">
+<h2>Elasticity optimism in neoclassical macro</h2>
+<ul>
+<li><p>One which macroeconomists are usually particularly interested in is the elasticity of substitution between capital and labor.</p></li>
+<li><p>Harrod-Domar: Keynesian growth models had Leontief at the macroeconomic level So economists did not always believe that Leontief was “nonsensical”, even at the macroeconomic level.</p></li>
+<li><p>Solow (1956) made substitution substantial =&gt; neoclassical growth model. The Cobb-Douglas production function was then used, which has an elasticity of substitution of <span class="math inline">\(1\)</span>.</p></li>
+<li><p><span class="citation" data-cites="baqaee_macroeconomic_2019">Baqaee and Farhi (<a href="#/section" role="doc-biblioref" onclick="">2019a</a>)</span>: “a mixture of analytical tractability, as well as balanced-growth considerations, have made Cobb-Douglas the canonical production function for networks, multisector RBC models, and growth theory.”</p></li>
+</ul>
+</section>
+<section id="leontief-is-not-nonsensical-according-to-samuelson" class="slide level2">
+<h2>Leontief is not nonsensical according to Samuelson</h2>
+<p>Samuelson, Economics textbook in 1948</p>
+
+<img data-src="https://fgeerolf.com/bib/Samuelson1948/one-catch-to-this-theory.png" class="quarto-figure quarto-figure-center r-stretch" style="width:95.0%" data-fig-pos="H"></section>
+<section id="is-the-comparison-with-covid-19-valid" class="slide level2">
+<h2>Is the comparison with Covid-19 valid ?</h2>
+
+<img data-src="https://fgeerolf.com/bib/What_If_slides/comparison-covid-transportation.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%" data-fig-pos="H"></section>
+<section id="manufacturing-increasing-returns-to-scale" class="slide level2">
+<h2>Manufacturing: increasing returns to scale</h2>
+<ul>
+<li><p>I think that the comparison to Covid-19 is not valid. Drop in GDP during Covid-19 is largely replaced by home production (food at home vs.&nbsp;food away from home) <strong>industry</strong> / manufacturing is characterized by increasing returns to scale.</p></li>
+<li><p>Baqaee-Farhi (2019): “Our formulas can also in principle be applied with increasing-returns to scale under the joint assumption of marginal-cost pricing and <strong>impossibility of shutting down production</strong>, by simply adding producer-specific fixed factors with negative marginal products and negative payments (these factors are “bads” that cannot be freely disposed of).” Of course, industries are worried about shutting down production, and going bankrupt. There are <strong>dynamic aspects</strong> to this as well. Macroeconomic elasticities are greater because some firms which are intensive in natural gas might actually exit the market. Industry requires long-term know-how, skills. Lots of fixed costs in industry =&gt; large irreversibilities. There are dynamic effects that the industry is rightly worried about.</p></li>
+<li><p>Measuring the economic damage in € does not make much sense here. If you spend 100€ every month on heating, and the same on restaurants, the 100€ on heating is “worth much more” (brings you more utility). The elasticity of substitution is much lower for energy, so the consumer surplus is much larger.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="concluding-thoughts" class="title-slide slide level1 center">
+<h1>Concluding thoughts</h1>
+
+</section>
+<section id="many-other-issues-i-did-not-touch-on" class="slide level2">
+<h2>Many other issues I did not touch on</h2>
+<ul>
+<li><p>Focused on the issues that were not emphasized as much in the debate thus far; and in particular on the role of Baqaee-Farhi. But of course there are other issues that others have raised before.</p></li>
+<li><p>The production function approach with a 2.3% GDP drop implies a tenfold increase in the price of natural gas. At the same time, the authors (and most economists) advocate in favor of letting the price-signal act to reduce natural gas consumption efficiently. To me, it’s clear there would need to be rationing since most residential consumers could not cope. (and people are sometimes on long-term contracts anyways)</p></li>
+<li><p>There would be huge transfers involved: this tenfold increase in price would lead to a very important transfer from gas importing countries to gas exporting countries.</p></li>
+<li><p>Appendix says that monetary policy needs to be at the same time expansionary (because an increase in energy prices is a drag on disposable income) and contractionary (in order to reduce inflation).</p></li>
+</ul>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li><p>I am very sad that Emmanuel Farhi is not here today to settle the debate; he was a true intellectual, deeply committed to the power of ideas and research. In any case, I find that the current debate about the macroeconomic effects of a Russian gas embargo isn’t like Emmanuel. Emmanuel was a thoughtful, modest, and careful scholar. Based on his previous research, I don’t think he would have handled this controversy in this way, or be comfortable using such strong statements (e.g.&nbsp;“Leontief is nonsensical”).</p></li>
+<li><p>I am very glad that some academic economists have tried to assess the consequences of a Russian gas embargo using his tools. Emmanuel was deeply concerned about the real-world applications of his models. Yet I am not comfortable with the way this was done in <span class="citation" data-cites="bachmann_what_2022">Bachmann et al. (<a href="#/section" role="doc-biblioref" onclick="">2022</a>)</span>. I think David’s and Emmanuel’s work here may have been misused in this particular example.</p></li>
+<li><p>Based on the above elements, I am in fact very confident that Emmanuel Farhi would <strong>not</strong> have claimed that his research was showing that the effects would be limited to 0.2-0.3% of GDP. In fact, I hope to have shown that if anything, his previous joint work with David Baqaee suggests a much more nuanced view of what the effects of a Russian gas embargo would be.</p></li>
+</ul>
+<!---
+Emmanuel Farhi being much smarter than i am, it's not Emmanuel that I am criticizing here.
+--->
+<!---
+Again: should I say, misuse
+--->
+</section></section>
+<section>
+<section id="bibliography" class="title-slide slide level1 center">
+<h1>Bibliography</h1>
+
+</section>
+<section id="section" class="slide level2 smaller scrollable">
+<h2></h2>
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bachmann_what_2022" class="csl-entry" role="listitem">
+Bachmann, Ruediger, David Baqaee, Christian Bayer, Moritz Kuhn, Andreas Löschel, Benjamin Moll, Andreas Peichl, Karen Pittel, and Moritz Schularick. 2022. <span>“What If? <span>The</span> <span>Economic</span> <span>Effects</span> for <span>Germany</span> of a <span>Stop</span> of <span>Energy</span> <span>Imports</span> from <span>Russia</span>.”</span> 36. ifo Institute - Leibniz Institute for Economic Research at the University of Munich.
+</div>
+<div id="ref-baqaee_macroeconomic_2019" class="csl-entry" role="listitem">
+Baqaee, David Rezza, and Emmanuel Farhi. 2019a. <span>“The <span>Macroeconomic</span> <span>Impact</span> of <span>Microeconomic</span> <span>Shocks</span>: <span>Beyond</span> <span>Hulten</span>’s <span>Theorem</span>.”</span> <em>Econometrica</em> 87 (4): 1155–1203.
+</div>
+<div id="ref-baqaee_jeea-fbbva_2019" class="csl-entry" role="listitem">
+———. 2019b. <span>“<span>JEEA</span>-<span>FBBVA</span> <span>Lecture</span> 2018: <span>The</span> <span>Microeconomic</span> <span>Foundations</span> of <span>Aggregate</span> <span>Production</span> <span>Functions</span>.”</span> <em>Journal of the European Economic Association</em> 17 (5): 1337–92.
+</div>
+<div id="ref-baqaee_networks_2021" class="csl-entry" role="listitem">
+———. 2021. <span>“Networks, <span>Barriers</span>, and <span>Trade</span>.”</span> Working {Paper} 26108. National Bureau of Economic Research.
+</div>
+<div id="ref-labandeira_meta-analysis_2017" class="csl-entry" role="listitem">
+Labandeira, Xavier, José M. Labeaga, and Xiral López-Otero. 2017. <span>“A Meta-Analysis on the Price Elasticity of Energy Demand.”</span> <em>Energy Policy</em> 102 (March): 549–68.
+</div>
+</div>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="files/ofcelogo.svg" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="russiangas-slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="russiangas-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="russiangas-slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="russiangas-slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="russiangas-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="russiangas-slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="russiangas-slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="russiangas-slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="russiangas-slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="russiangas-slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': true,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
