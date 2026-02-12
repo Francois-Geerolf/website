@@ -48,9 +48,9 @@ Travaux réalisés pour le CEPII, notamment lorsque j'étais _Conseiller Scienti
 
 {{< include ../publications/fr/Geerolf2020a.qmd >}}
 
-{{< include publications/fr/Geerolf2018b.qmd >}}
+{{< include ../publications/fr/Geerolf2018b.qmd >}}
 
-{{< include publications/fr/Geerolf2018a.qmd >}}
+{{< include ../publications/fr/Geerolf2018a.qmd >}}
 
 # Débat public
 
