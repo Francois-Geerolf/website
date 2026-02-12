@@ -34,11 +34,11 @@ knitr::include_graphics("../files/ucla-logo.png")
 
 # Academic Positions
 
-Assistant Professor at UCLA \hfill 2014-2021.
+Assistant Professor at UCLA \hfill 2014-2022.
 
 *Becker Friedman Institute*, 1-week Visiting Scholar \hfill April 2017.  
 
-Visiting Professor, on Leave at Sciences Po \hfill 2017; 2021-2023.  
+Visiting Professor, on Leave at Sciences Po \hfill 2017; 2021-2022.  
 
 *Massachusetts Institute of Technology*, Visiting Scholar \hfill Fall 2013.
 
