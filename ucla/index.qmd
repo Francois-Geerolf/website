@@ -32,6 +32,15 @@ source(here::here("_rinit.R"))
 knitr::include_graphics("../files/ucla-logo.png")
 ```
 
+# Academic Positions
+
+Assistant Professor at UCLA \hfill 2014-2021.
+
+*Becker Friedman Institute*, 1-week Visiting Scholar \hfill April 2017.  
+
+Visiting Professor, on Leave at Sciences Po \hfill 2017; 2021-2023.  
+
+*Massachusetts Institute of Technology*, Visiting Scholar \hfill Fall 2013.
 
 # Research
 
@@ -52,55 +61,65 @@ Revision requested at American Economic Review
 
 # Invited Seminars
 
-Yale, Stanford, UC Riverside, Chicago Fed, Polytechnique, PSE, Wharton Econ, Wisconsin-Madison, USC, INSEAD, CIRED, UCSD, UC Berkeley, UC Irvine, MIT, UPenn, HEC Finance, Fed Board, Harvard Econ, UCLA, NYU Econ, CREI.
+2021: Banf of Israel, Bank of France.  
 
-# Conference Presentations and Discussions (Selected)
+2020: Princeton, Carnegie Mellon, IMF.  
 
-Presenter, NBER EFG Meeting (Chicago)
-Presenter, SED Annual Meeting 2016 (Toulouse)
-Presenter, Bank of France Conference on Granularity (Paris)
-Presenter, 5th HKUST International Workshop on Macroeconomics (Hong Kong)
-Presenter, Chicago Initiative in Theory and Empirics (CITE) conference (Chicago)
-Presenter, Minnesota Macro Workshop in Macroeconomic Theory (Minneapolis)
-Presenter, SED Annual Meeting 2015 (Warsaw)
-Presenter, 4th Junior Conference on Macroeconomics, Instituto Einaudi (Rome)
-Discussant, IMF/ EUI Conference on Secular Stagnation and Growth (Florence)
-Presenter, 3rd GSE Summer Forum "Firms in the Global Economy" (Barcelona)
-Discussant, NBER Conference on Multiple Equilibria (San Francisco Fed)
-Discussant, Nemmers Prize Conference in honor of Jean Tirole (Northwestern)
-Presenter, INET-IMF Conference on Macroeconomic Externalities (Washington)
-Presenter, SED Annual Meeting 2014 (Toronto)
-Presenter, 2nd GSE Summer Forum (Barcelona)
-Discussant, EABCN-INET Conference on Macro Stabilization (Cambridge)
-Presenter, Cowles 10th Annual Conference on GE and its Applications (Yale)
-Presenter, FRIC Top Finance Graduate Award Conference (Copenhaguen)
-Presenter, Sveriges Riksbank Conference on "Bubbles" (Stockholm)
+2019: PSE, Harvard Econ, UCSD, Michigan, Chicago Fed, EIEF, UC Riverside.  
 
-# Grants
+2018: HEC.  
 
-2015-2016 UCLA Faculty Senate Grant
+2017: NYU Stern, USC Lusk, Stanford GSB, Zurich, Chicago Econ.  
 
-2014-2016 UCLA Ziman Center for Real Estate Research Grant
+2016: Yale, Stanford, UC Riverside, Chicago Fed, Polytechnique, PSE.  
 
-# Refereeing (Selected)
+2015: Wharton Econ, Wisconsin-Madison, USC, INSEAD, CIRED.  
 
-American Economic Journal : Macro, American Economic Journal : Micro, American Economic Review, Econometrica, Economic Theory, International Economic Review, International Journal of Central Banking, Journal of Economic Theory, Journal of Finance, Journal of International Economics, Quarterly Journal of Economics, Review of Economic Studies, Review of Financial Studies
+2014: UCSD, UC Berkeley, UC Irvine, MIT, UPenn, HEC Finance, Fed Board, Harvard Econ, UCLA, NYU Econ, CREI.
 
-# Organization
+# Conference Presentations (Selected)
 
-SED Program Committee Member (2016)
+2021: SED Annual Meeting 2021 (Barcelona).  
 
-UCLA Conference on Housing and Macroeconomics, Co-organizer (2016)
+2019: Annual Conference Chaire Banque de France at PSE (Paris),
+4th Annual California Macroeconomics Conference (Claremont).  
 
-West Coast Search and Matching Meeting, Co-organizer (2014)
+2018: SED Annual Meeting 2018 (Mexico City),
+9th Summer Macro-Finance Workshop (Paris).  
 
-# Press
+2017: SED Annual Meeting 2017 (Edinburgh),
+Conference on Housing, Urban Development, and the Macroeconomy, INET (USC).  
 
-{{< include ../press/en/TheEconomist2017.qmd >}}
+2016: NBER EF\&G Meeting (Chicago),
+SED Annual Meeting 2016 (Toulouse),
+Bank of France Conference on Granularity (Paris),
+5th HKUST International Workshop on Macroeconomics (Hong Kong).
 
-# Presentations
+2015: Chicago Initiative in Theory and Empirics (CITE) conference (Chicago),
+Minnesota Macro Workshop in Macroeconomic Theory (Minneapolis),
+SED Annual Meeting 2015 (Warsaw),
+4th Junior Conference on Macroeconomics, Instituto Einaudi (Rome),
+3rd GSE Summer Forum "Firms in the Global Economy" (Barcelona),
+INET-IMF Conference on Macroeconomic Externalities (Washington).
 
-{{< include ../presentations/en/Geerolf2021.qmd >}}
+2014: SED Annual Meeting 2014 (Toronto),
+2nd GSE Summer Forum (Barcelona),
+Cowles 10th Annual Conference on GE and its Applications (Yale),
+FRIC Top Finance Graduate Award Conference (Copenhaguen).
+
+2013: Sveriges Riksbank Conference on "Bubbles" (Stockholm).
+
+# Conference Discussions (Selected)
+
+CEPII Workshop: Interplay between finance and macroeconomics in a global integration context (Paris),  
+
+IMF/ EUI Conference on Secular Stagnation and Growth (Florence),  
+
+NBER Conference on Multiple Equilibria (San Francisco Fed),  
+
+Nemmers Prize Conference in honor of Jean Tirole (Northwestern),  
+
+EABCN-INET Conference on Macro Stabilization (Cambridge).
 
 # Teaching at UCLA
 
@@ -109,3 +128,41 @@ West Coast Search and Matching Meeting, Co-organizer (2014)
 {{< include ../teaching/en/Geerolf2014a.qmd >}}
 
 {{< include ../teaching/en/Geerolf2016.qmd >}}
+
+# Advising
+
+Colin Weiss (First Placement: Federal Reserve Board).  
+
+Flavien Moreau (First Placement: International Monetary Fund).  
+
+# Grants
+
+*UCLA Faculty Senate Grant* \hfill 2015-2016.  
+
+*UCLA Ziman Center for Real Estate Research Grant* \hfill 2014, 2016, 2018.  
+
+# Refereeing (Selected)
+
+*American Economic Journal: Macro, American Economic Journal: Micro, American Economic Review, Econometrica, Economic Theory, Economic Journal, International Economic Review, International Journal of Central Banking, Journal of Economic Theory, Journal of Finance, Journal of International Economics, Journal of Political Economy, Journal of Public Economics, Quarterly Journal of Economics, Review of Economic Studies, Review of Financial Studies, Theoretical Economics.*
+
+# Professional Affiliations
+
+Macro Finance Society.  
+
+CEPR Research Affiliate.  
+
+# Organization
+
+SED Program Committee Member \hfill 2016, 2017, 2018.  
+
+[UCLA Conference on Housing and Macroeconomics, Co-organizer](https://www.anderson.ucla.edu/Documents/areas/ctr/ziman/Gilbert_Ettinger_ZC_Housing-Macro-Economy-Conf_05.11-12.16.pdf) \hfill 2016.  
+
+West Coast Search and Matching Meeting, Co-organizer \hfill 2014.
+
+# Press
+
+{{< include ../press/en/TheEconomist2017.qmd >}}
+
+# Presentations
+
+{{< include ../presentations/en/Geerolf2021.qmd >}}
