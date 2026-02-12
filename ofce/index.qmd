@@ -26,9 +26,8 @@ format:
 editor: source
 ---
 
-```{r, out.width="20%", echo = F}
-knitr::include_graphics("../files/OFCE_(logo).png")
-```
+
+[![](../files/OFCE_(logo).png){width=20%}](https://fgeerolf.com/ofce/)
 
 # Articles
 
