@@ -32,9 +32,7 @@ editor: source
 source(here::here("_rinit.R"))
 ```
 
-```{r out.width="20%", echo = F}
-knitr::include_graphics("../files/cepii-logo.png")
-```
+[![](../files/cepii-logo.png){width=20%}](https://fgeerolf.com/cepii/)
 
 Travaux réalisés pour le CEPII, notamment lorsque j'étais _Conseiller Scientifique_ au CEPII (en tant qu'_Assistant Professor_ à UCLA).
 
@@ -51,6 +49,10 @@ Travaux réalisés pour le CEPII, notamment lorsque j'étais _Conseiller Scienti
 {{< include ../publications/fr/Geerolf2018b.qmd >}}
 
 {{< include ../publications/fr/Geerolf2018a.qmd >}}
+
+# Blog du CEPII
+
+Voir [ici](https://www.cepii.fr/blog/bi/contributeur.asp?auteur=François%20Geerolf).
 
 # Débat public
 
