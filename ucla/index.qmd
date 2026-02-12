@@ -34,11 +34,11 @@ knitr::include_graphics("../files/ucla-logo.png")
 
 # Academic Positions
 
-Assistant Professor at *University of California, Los Angeles* (UCLA), \hfill 2014-2022.
+Assistant Professor at the *University of California, Los Angeles* (UCLA), \hfill 2014-2022.
 
 Visiting Scholar at the *Becker Friedman Institute for Economics at the University of Chicago* (BFI), \hfill April 2017.
 
-Visiting Scholar at *Massachusetts Institute of Technology* (MIT), \hfill Fall 2013.
+Visiting Scholar at the *Massachusetts Institute of Technology* (MIT), \hfill Fall 2013.
 
 Visiting Professor at *Sciences Po* (on leave from UCLA) \hfill 2017; 2021-2022.
 
