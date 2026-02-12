@@ -25,6 +25,10 @@ editor: source
 
 Economist, OFCE (Observatoire Français des Conjonctures Economiques)
 
+[![](files/OFCE_(logo).png){width=20%}](https://fgeerolf.com/ofce/)
+[![](files/cepii-logo.png){width=20%}](https://fgeerolf.com/cepii/)
+[![](files/ucla-logo.png){width=15%}](https://fgeerolf.com/ucla/)
+
 # Research Interests
 
 Macroeconomics, Finance, Inflation, Housing
