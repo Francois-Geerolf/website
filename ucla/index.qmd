@@ -30,7 +30,7 @@ source(here::here("_rinit.R"))
 
 
 
-[![](../files/ucla-logo.png){width=20%}](https://fgeerolf.com/ucla/)
+[![](../files/ucla-logo.png){width=15%}](https://fgeerolf.com/ucla/)
 
 # Academic Positions
 
