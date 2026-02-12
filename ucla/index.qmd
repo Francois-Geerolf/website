@@ -12,7 +12,7 @@ format:
     embed-resources: false
     other-links:
       - href: "https://fgeerolf.com/"
-        text: "Accueil"
+        text: "Home"
         icon: house
       - text: "CEPII"
         href: "https://fgeerolf.com/cepii/"
