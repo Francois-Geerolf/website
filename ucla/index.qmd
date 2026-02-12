@@ -24,10 +24,6 @@ format:
 editor: source
 ---
 
-```{r, echo = FALSE, message = FALSE}
-source(here::here("_rinit.R"))
-```
-
 [![](../files/ucla-logo.png){width=15%}](https://fgeerolf.com/ucla/)
 
 # Academic Positions

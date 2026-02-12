@@ -27,11 +27,6 @@ editor: source
 ---
 
 
-
-```{r, echo = FALSE, message = FALSE}
-source(here::here("_rinit.R"))
-```
-
 [![](../files/cepii-logo.png){width=20%}](https://fgeerolf.com/cepii/)
 
 Travaux réalisés pour le CEPII, notamment lorsque j'étais _Conseiller Scientifique_ au CEPII (en tant qu'_Assistant Professor_ à UCLA).
