@@ -174,11 +174,15 @@ Revision requested at American Economic Review
 
 {{< include publications/en/Geerolf2013.qmd >}}
 
+# Awards
+
+Top Finance Graduate Award 2014. [[<i class="fas fa-globe"></i> html](https://www.tilmeld.dk/financegradaward2021/previous-winners)]
+
+Prix L.E. Rivot, Académie des Sciences, 2008.
+
 # Curriculum Vitae
 
 CV. [[<i class="fa-solid fa-user-tie"></i> en](https://fgeerolf.com/cv.pdf)] [[<i class="fa-solid fa-camera"></i> jpg](https://fgeerolf.com/files/fgeerolf-1.jpg)] [[<i class="fa-solid fa-camera"></i> png](https://fgeerolf.com/files/fgeerolf-1.png)]
-
-Top Finance Graduate Award 2014. [[<i class="fas fa-globe"></i> html](https://www.tilmeld.dk/financegradaward2021/previous-winners)]
 
 Bibliographie. [[<i class="fa-solid fa-book"></i> en](https://fgeerolf.com/bibliography.html)] [[<i class="fa-solid fa-book"></i> fr](https://fgeerolf.com/bibliographie.html)]
 
