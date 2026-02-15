@@ -51,6 +51,8 @@ Voir [la page](https://www.cepii.fr/blog/bi/contributeur.asp?auteur=François%20
 
 # Débat public
 
+{{< include ../public-debate/fr/Geerolf2021.qmd >}}
+
 {{< include ../public-debate/fr/Bensidoun2021.qmd >}}
 
 {{< include ../public-debate/fr/Geerolf2020.qmd >}}
