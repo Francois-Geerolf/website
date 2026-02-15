@@ -1,0 +1,66 @@
+---
+title: Données sur la météo
+subtitle: Données
+lang: fr
+filters:
+  - ../code/genderize-fr.lua
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: flatly
+    embed-resources: false
+    include-in-header:
+      - text: |
+          <meta name="twitter:card" content="summary">
+          <meta name="twitter:title" content="Données sur la météo">
+          <meta name="twitter:description" content="Données sur la météo">
+          <meta name="twitter:image" content="https://fgeerolf.com/files/meteo.jpg">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    include-after-body: ../statcounter.html
+editor: source
+---
+
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
+## sh ~/iCloud/website/website_short.sh
+```
+
+
+
+# Météo Montsouris
+
+```{r echo = F}
+read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07156&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
+  as_tibble() %>%
+  select(-7) %>%
+  #filter(!is.na(mean_temp)) %>%
+  mutate(mois = month(Sys.Date()),
+         jour = parse_number(Jour),
+         annee = paste0("20", year(Sys.Date())-2000) %>% as.numeric,
+         date = as.Date(ISOdate(annee, mois, jour))) %>%
+  select(-mois, - annee, -jour) %>%
+  select(date, Jour, everything()) %>%
+  arrange(desc(date)) %>%
+  gt::gt() |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830166#tableau-figure1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
