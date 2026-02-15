@@ -37,7 +37,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 
 
 
-# Météo Montsouris
+# Parc Montsouris (07156)
 
 ```{r echo = F}
 read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07156&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
@@ -59,7 +59,65 @@ read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?stat
                       page_size_default = 20,
                       page_size_values = c(5, 10, 15, 20)) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830166#tableau-figure1>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.meteo60.fr/>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+# Roissy CDG (07157)
+
+```{r echo = F}
+read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07157&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
+  as_tibble() %>%
+  select(-7) %>%
+  #filter(!is.na(mean_temp)) %>%
+  mutate(mois = month(Sys.Date()),
+         jour = parse_number(Jour),
+         annee = paste0("20", year(Sys.Date())-2000) %>% as.numeric,
+         date = as.Date(ISOdate(annee, mois, jour))) %>%
+  select(-mois, - annee, -jour) %>%
+  select(date, Jour, everything()) %>%
+  arrange(desc(date)) %>%
+  gt::gt() |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.meteo60.fr/>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+# Marseille Marignane (07650)
+
+```{r echo = F}
+read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07157&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
+  as_tibble() %>%
+  select(-7) %>%
+  #filter(!is.na(mean_temp)) %>%
+  mutate(mois = month(Sys.Date()),
+         jour = parse_number(Jour),
+         annee = paste0("20", year(Sys.Date())-2000) %>% as.numeric,
+         date = as.Date(ISOdate(annee, mois, jour))) %>%
+  select(-mois, - annee, -jour) %>%
+  select(date, Jour, everything()) %>%
+  arrange(desc(date)) %>%
+  gt::gt() |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.meteo60.fr/>"))
   ) |>
   gt::tab_options(table.width = "100%")
 ```
