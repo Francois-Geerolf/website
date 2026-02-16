@@ -58,19 +58,17 @@ meteo_station <- function(station_id = "07156",
     select(-url, -...15) %>%
     arrange(desc(date), desc(Heure_UTC)) %>%
     
-    relocate(date, .after = last_col()) %>%
-    relocate(Heure_UTC, .after = last_col()) %>%
-    
-    select(
-      Heure_legale,
-      Temperature,
-      Temps,
-      Vent_moyen,
-      Humidite_relative,
-      everything()
+    rename(
+      heure = Heure_legale,
+      T = Temperature,
+      Vent = Vent_moyen,
+      Humidité = Humidite_relative
     ) %>%
     
     mutate(
+      # heure compacte
+      heure = str_replace(heure, "^([0-9]{1,2}).*$", "\\1h"),
+
       # icônes météo
       icon = case_when(
         str_detect(Temps, regex("soleil|clair", TRUE)) ~ "☀️",
@@ -82,6 +80,18 @@ meteo_station <- function(station_id = "07156",
         TRUE ~ ""
       ),
       Temps = paste(icon, Temps)
+    ) %>%
+    
+    relocate(date, .after = last_col()) %>%
+    relocate(Heure_UTC, .after = last_col()) %>%
+    
+    select(
+      heure,
+      T,
+      Temps,
+      Vent,
+      Humidité,
+      everything()
     )
 
   interactive_mode <- nrow(data) > interactive_limit
@@ -89,38 +99,43 @@ meteo_station <- function(station_id = "07156",
   gt_tbl <- data %>%
     gt() %>%
     
-    # largeur adaptative
-    cols_width(
-      Temps ~ px(150)
+    # 🌡️ ajouter symbole degré sans convertir en texte
+    fmt(
+      columns = T,
+      fns = function(x) sprintf("%.1f°", x)
     ) %>%
     
-    cols_align(
-      "center",
-      c(Temperature, Vent_moyen, Humidite_relative)
-    ) %>%
-    
-    # coloration température
+    # 🌈 couleurs thermiques (fonctionne car T est numérique)
     data_color(
-      columns = Temperature,
+      columns = T,
       colors = scales::col_numeric(
         palette = c("#2c7bb6", "#abd9e9", "#66bd63", "#fdae61", "#d7191c"),
         domain = NULL
       )
     ) %>%
     
+    cols_label(T = "T°") %>%
+    
+    cols_align(
+      "center",
+      c(T, Vent, Humidité)
+    ) %>%
+    
+    cols_width(
+      Temps ~ gt::px(150)
+    ) %>%
+    
     tab_options(
-      table.width = pct(100),
-      data_row.padding = px(4)
+      table.width = gt::pct(100),
+      data_row.padding = gt::px(4)
     ) %>%
     
     tab_footnote(
-      footnote = md(
+      footnote = gt::md(
         paste0(
-          "Date : ",
+          "Généré le ",
           format(Sys.time(), "%A %d %B %Y, %Hh%M"),
-          ". Source : https://www.infoclimat.fr/observations-meteo/temps-reel/",
-          station_id,
-          ".html"
+          " • Source : infoclimat.fr"
         )
       )
     )
@@ -138,10 +153,7 @@ meteo_station <- function(station_id = "07156",
   gt_tbl
 }
 
-library(tidyverse)
-library(lubridate)
-library(readr)
-library(gt)
+
 
 meteo_station_last_days <- function(station_id = "07156",
                                     n_days = 30,
