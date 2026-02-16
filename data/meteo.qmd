@@ -153,10 +153,9 @@ meteo_station <- function(station_id = "07156",
   gt_tbl
 }
 
-
-
 meteo_station_last_days <- function(station_id = "07156",
                                     n_days = 30,
+                                    sun_threshold = 6,   # heures d'ensoleillement "élevé"
                                     as_gt = TRUE,
                                     interactive_limit = 20) {
 
@@ -188,7 +187,36 @@ meteo_station_last_days <- function(station_id = "07156",
   }) %>%
     filter(date >= start_date & date <= today) %>%
     arrange(desc(date)) %>%
-    select(date, Jour, everything(), -jour)
+
+    mutate(
+      # 📅 Jour compact (Dim 15)
+      jour = format(date, "%a %d", locale = "fr_FR.UTF-8"),
+
+      # 🌡️ noms courts
+      `T° min` = Temperature_mini,
+      `T° moy` = Temperature_moy,
+      `T° max` = Temperature_maxi,
+
+      # ☔ pictogramme pluie
+      pluie_icon = ifelse(Precipitations > 0, "☔", ""),
+
+      # ☀️ conversion en minutes pour détecter fort ensoleillement
+      sun_minutes = period_to_seconds(ms(Ensoleillement)) / 60,
+      soleil_icon = ifelse(sun_minutes >= sun_threshold * 60, "☀️", ""),
+
+      # texte météo compact
+      Meteo = paste(pluie_icon, soleil_icon)
+    ) %>%
+    
+    select(
+      jour,
+      Meteo,
+      `T° min`,
+      `T° moy`,
+      `T° max`,
+      Precipitations,
+      Ensoleillement
+    )
 
   if (!as_gt) return(data)
 
@@ -196,32 +224,38 @@ meteo_station_last_days <- function(station_id = "07156",
 
   gt_tbl <- data %>%
     gt() %>%
-    
-    # largeur adaptative (aucune contrainte sauf si nécessaire)
+
+    cols_align(
+      "center",
+      c(`T° min`, `T° moy`, `T° max`, Precipitations)
+    ) %>%
+
+    # 🌈 coloration température moyenne
+    data_color(
+      columns = `T° moy`,
+      colors = scales::col_numeric(
+        palette = c("#2c7bb6", "#abd9e9", "#66bd63", "#fdae61", "#d7191c"),
+        domain = NULL
+      )
+    ) %>%
+
+    cols_label(
+      Meteo = "",
+      Precipitations = "Pluie (mm)",
+      Ensoleillement = "Soleil"
+    ) %>%
+
     tab_options(
       table.width = gt::pct(100),
       data_row.padding = gt::px(4)
     ) %>%
-    
-    # 🌡️ coloration température si colonne présente
-    {
-      if ("Temperature" %in% names(data)) {
-        data_color(.,
-          columns = Temperature,
-          colors = scales::col_numeric(
-            palette = c("#2c7bb6", "#abd9e9", "#66bd63", "#fdae61", "#d7191c"),
-            domain = NULL
-          )
-        )
-      } else .
-    } %>%
-    
+
     tab_footnote(
       footnote = gt::md(
         paste0(
-          n_days, " derniers jours. Généré le ",
-          format(Sys.time(), "%A %d %B %Y, %Hh%M"),
-          ". Source : https://www.meteo60.fr/"
+          n_days, " derniers jours • Généré le ",
+          format(Sys.time(), "%d %B %Y"),
+          " • Source : meteo60.fr"
         )
       )
     )
@@ -231,10 +265,8 @@ meteo_station_last_days <- function(station_id = "07156",
       opt_interactive(
         use_search = FALSE,
         use_pagination = TRUE,
-        use_pagination_info = FALSE,
         use_compact_mode = TRUE,
-        page_size_default = interactive_limit,
-        page_size_values = c(10, 20, 50, 100)
+        page_size_default = interactive_limit
       )
   }
 
