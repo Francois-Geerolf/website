@@ -39,6 +39,39 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 
 # Parc Montsouris (07156)
 
+## Par heure, 2 derniers jours
+
+```{r echo = F, message = F, warning = F}
+tibble(date = seq.Date(from = Sys.Date() - days(1), 
+                                to = Sys.Date(), 
+                                by = "day")) %>%
+  mutate(url = paste0("https://www.meteo60.fr/stations-releves/station-jour-csv?station_id=-07156&date=", paste0(format(date, "%d/%m/%Y")))) %>%
+  mutate(data = map(url, ~ read_delim(.))) %>%
+  mutate(data = lapply(data, function(df) {
+    df$`Vent moyen` <- as.character(df$Vent_moyen)
+    return(df)
+  })) %>%
+  unnest %>%
+  select(-url) %>%
+  select(-...15) %>%
+  arrange(desc(date), desc(Heure_UTC)) %>%
+  gt::gt() |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.infoclimat.fr/observations-meteo/temps-reel/paris-montsouris/07156.html>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
+## Début du mois
+
 ```{r echo = F, message = F, warning = F}
 read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07156&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
   as_tibble() %>%
@@ -67,6 +100,37 @@ read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?stat
 
 
 # Roissy CDG (07157)
+
+## Par heure, 2 derniers jours
+
+```{r echo = F, message = F, warning = F}
+tibble(date = seq.Date(from = Sys.Date() - days(1), 
+                                to = Sys.Date(), 
+                                by = "day")) %>%
+  mutate(url = paste0("https://www.meteo60.fr/stations-releves/station-jour-csv?station_id=-07157&date=", paste0(format(date, "%d/%m/%Y")))) %>%
+  mutate(data = map(url, ~ read_delim(.))) %>%
+  mutate(data = lapply(data, function(df) {
+    df$`Vent moyen` <- as.character(df$Vent_moyen)
+    return(df)
+  })) %>%
+  unnest %>%
+  select(-url) %>%
+  select(-...15) %>%
+  arrange(desc(date), desc(Heure_UTC)) %>%
+  gt::gt() |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.infoclimat.fr/observations-meteo/temps-reel/paris-montsouris/07157.html>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+## Début du mois
 
 ```{r echo = F, message = F, warning = F}
 read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07157&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
@@ -97,8 +161,41 @@ read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?stat
 
 # Marseille Marignane (07650)
 
+
+
+## Par heure, 2 derniers jours
+
 ```{r echo = F, message = F, warning = F}
-read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07157&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
+tibble(date = seq.Date(from = Sys.Date() - days(1), 
+                                to = Sys.Date(), 
+                                by = "day")) %>%
+  mutate(url = paste0("https://www.meteo60.fr/stations-releves/station-jour-csv?station_id=-07650&date=", paste0(format(date, "%d/%m/%Y")))) %>%
+  mutate(data = map(url, ~ read_delim(.))) %>%
+  mutate(data = lapply(data, function(df) {
+    df$`Vent moyen` <- as.character(df$Vent_moyen)
+    return(df)
+  })) %>%
+  unnest %>%
+  select(-url) %>%
+  select(-...15) %>%
+  arrange(desc(date), desc(Heure_UTC)) %>%
+  gt::gt() |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.infoclimat.fr/observations-meteo/temps-reel/paris-montsouris/07650.html>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+## Début du mois
+
+```{r echo = F, message = F, warning = F}
+read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07650&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
   as_tibble() %>%
   select(-7) %>%
   #filter(!is.na(mean_temp)) %>%
