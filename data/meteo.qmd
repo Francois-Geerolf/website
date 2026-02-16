@@ -39,7 +39,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 
 # Parc Montsouris (07156)
 
-```{r echo = F}
+```{r echo = F, message = F, warning = F}
 read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07156&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
   as_tibble() %>%
   select(-7) %>%
@@ -68,7 +68,7 @@ read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?stat
 
 # Roissy CDG (07157)
 
-```{r echo = F}
+```{r echo = F, message = F, warning = F}
 read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07157&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
   as_tibble() %>%
   select(-7) %>%
@@ -97,7 +97,7 @@ read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?stat
 
 # Marseille Marignane (07650)
 
-```{r echo = F}
+```{r echo = F, message = F, warning = F}
 read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07157&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
   as_tibble() %>%
   select(-7) %>%
