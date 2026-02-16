@@ -30,205 +30,224 @@ editor: source
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
+library(tidyverse)
+library(lubridate)
+library(gt)
+
+meteo_station <- function(station_id = "07156",
+                          from = Sys.Date() - days(1),
+                          to   = Sys.Date()) {
+
+  tibble(date = seq.Date(from = from, to = to, by = "day")) %>%
+    
+    mutate(
+      url = paste0(
+        "https://www.meteo60.fr/stations-releves/station-jour-csv?station_id=-",
+        station_id,
+        "&date=",
+        format(date, "%d/%m/%Y")
+      )
+    ) %>%
+    
+    mutate(data = purrr::map(url, readr::read_delim, show_col_types = FALSE)) %>%
+    
+    mutate(data = purrr::map(data, \(df) {
+      df$Vent_moyen <- as.character(df$Vent_moyen)
+      df
+    })) %>%
+    
+    unnest(data) %>%
+    select(-url, -...15) %>%
+    arrange(desc(date), desc(Heure_UTC)) %>%
+    
+    relocate(date, .after = last_col()) %>%
+    relocate(Heure_UTC, .after = last_col()) %>%
+    
+    select(
+      Heure_legale,
+      Temperature,
+      Temps,
+      Vent_moyen,
+      Humidite_relative,
+      everything()
+    ) %>%
+    
+    gt() |>
+    
+    cols_width(
+      1:2 ~ gt::px(70),
+      3   ~ gt::px(150),
+      4   ~ gt::px(80),
+      everything() ~ gt::px(100)
+    ) |>
+    
+    opt_interactive(
+      use_search = FALSE,
+      use_pagination = FALSE,
+      use_pagination_info = FALSE,
+      use_compact_mode = TRUE
+    ) |>
+    
+    tab_footnote(
+      footnote = gt::md(
+        paste0(
+          "Date : ",
+          format(Sys.time(), "%A %d %B %Y, %Hh%M"),
+          ". Source : https://www.infoclimat.fr/observations-meteo/temps-reel/",
+          station_id,
+          ".html"
+        )
+      )
+    ) |>
+    
+    tab_options(table.width = "100%")
+}
+
+meteo_station_last_days <- function(station_id = "07156",
+                                    n_days = 30,
+                                    as_gt = TRUE) {
+
+  stopifnot(n_days > 0)
+
+  today <- Sys.Date()
+  start_date <- today - n_days + 1
+
+  # mois nécessaires pour couvrir la période
+  months_needed <- seq(floor_date(start_date, "month"),
+                       floor_date(today, "month"),
+                       by = "1 month")
+
+  data <- purrr::map_dfr(months_needed, \(d) {
+
+    url <- paste0(
+      "https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=",
+      station_id,
+      "&mois=", month(d),
+      "&annee=", year(d) - 2000
+    )
+
+    read_delim(url, show_col_types = FALSE) %>%
+      as_tibble() %>%
+      select(-7) %>%
+      mutate(
+        jour = parse_number(Jour),
+        date = as.Date(ISOdate(year(d), month(d), jour))
+      )
+  }) %>%
+    filter(date >= start_date & date <= today) %>%
+    arrange(desc(date)) %>%
+    select(date, Jour, everything(), -jour)
+
+  if (!as_gt) return(data)
+
+  data %>%
+    gt() |>
+    opt_interactive(
+      use_search = FALSE,
+      use_pagination = FALSE,
+      use_pagination_info = FALSE,
+      use_compact_mode = TRUE
+    ) |>
+    tab_footnote(
+      footnote = gt::md(
+        paste0(
+          n_days, " derniers jours. Généré le ",
+          format(Sys.time(), "%A %d %B %Y, %Hh%M"),
+          ". Source : https://www.meteo60.fr/"
+        )
+      )
+    ) |>
+    tab_options(table.width = "100%")
+}
+
+
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
 ## sh ~/iCloud/website/website_short.sh
 ```
 
 
-
-# Parc Montsouris (07156)
-
-## Par heure, 2 derniers jours
-
-```{r echo = F, message = F, warning = F}
-tibble(date = seq.Date(from = Sys.Date() - days(1), 
-                                to = Sys.Date(), 
-                                by = "day")) %>%
-  mutate(url = paste0("https://www.meteo60.fr/stations-releves/station-jour-csv?station_id=-07156&date=", paste0(format(date, "%d/%m/%Y")))) %>%
-  mutate(data = map(url, ~ read_delim(.))) %>%
-  mutate(data = lapply(data, function(df) {
-    df$`Vent moyen` <- as.character(df$Vent_moyen)
-    return(df)
-  })) %>%
-  unnest %>%
-  select(-url) %>%
-  select(-...15) %>%
-  arrange(desc(date), desc(Heure_UTC)) %>%
-  relocate(date, .after = last_col()) %>%
-  relocate(Heure_UTC, .after = last_col()) %>%
-  select(Heure_legale, Temperature, Temps, Vent_moyen, Humidite_relative, everything()) %>%
-  gt::gt() |>
-  gt::cols_width(1:2 ~ gt::px(70), 3 ~ px(150), 4 ~ gt::px(80), everything() ~ gt::px(100)) |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
-  gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.infoclimat.fr/observations-meteo/temps-reel/paris-montsouris/07156.html>"))
-  ) |>
-  gt::tab_options(table.width = "100%")
-```
-
-
-
-## Début du mois
-
-```{r echo = F, message = F, warning = F}
-read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07156&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
-  as_tibble() %>%
-  select(-7) %>%
-  #filter(!is.na(mean_temp)) %>%
-  mutate(mois = month(Sys.Date()),
-         jour = parse_number(Jour),
-         annee = paste0("20", year(Sys.Date())-2000) %>% as.numeric,
-         date = as.Date(ISOdate(annee, mois, jour))) %>%
-  select(-mois, - annee, -jour) %>%
-  select(date, Jour, everything()) %>%
-  arrange(desc(date)) %>%
-  gt::gt() |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
-  gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.meteo60.fr/>"))
-  ) |>
-  gt::tab_options(table.width = "100%")
-```
-
-
-
-# Roissy CDG (07157)
+# Paris-Montsouris (07156)
 
 ## Par heure, 2 derniers jours
 
 ```{r echo = F, message = F, warning = F}
-tibble(date = seq.Date(from = Sys.Date() - days(1), 
-                                to = Sys.Date(), 
-                                by = "day")) %>%
-  mutate(url = paste0("https://www.meteo60.fr/stations-releves/station-jour-csv?station_id=-07157&date=", paste0(format(date, "%d/%m/%Y")))) %>%
-  mutate(data = map(url, ~ read_delim(.))) %>%
-  mutate(data = lapply(data, function(df) {
-    df$`Vent moyen` <- as.character(df$Vent_moyen)
-    return(df)
-  })) %>%
-  unnest %>%
-  select(-url) %>%
-  select(-...15) %>%
-  arrange(desc(date), desc(Heure_UTC)) %>%
-  relocate(date, .after = last_col()) %>%
-  relocate(Heure_UTC, .after = last_col()) %>%
-  select(Heure_legale, Temperature, Vent_moyen, Humidite_relative, everything()) %>%
-  select(Heure_legale, Temperature, Temps, Vent_moyen, Humidite_relative, everything()) %>%
-  gt::gt() |>
-  gt::cols_width(1:2 ~ gt::px(70), 3 ~ px(150), 4 ~ gt::px(80), everything() ~ gt::px(100)) |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
-  gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.infoclimat.fr/observations-meteo/temps-reel/paris-montsouris/07157.html>"))
-  ) |>
-  gt::tab_options(table.width = "100%")
+meteo_station("07156", from = Sys.Date() - 2)
 ```
 
-## Début du mois
+
+
+## 30 derniers jours
 
 ```{r echo = F, message = F, warning = F}
-read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07157&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
-  as_tibble() %>%
-  select(-7) %>%
-  #filter(!is.na(mean_temp)) %>%
-  mutate(mois = month(Sys.Date()),
-         jour = parse_number(Jour),
-         annee = paste0("20", year(Sys.Date())-2000) %>% as.numeric,
-         date = as.Date(ISOdate(annee, mois, jour))) %>%
-  select(-mois, - annee, -jour) %>%
-  select(date, Jour, everything()) %>%
-  arrange(desc(date)) %>%
-  gt::gt() |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
-  gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.meteo60.fr/>"))
-  ) |>
-  gt::tab_options(table.width = "100%")
+meteo_station_last_days("07156", 30)
 ```
 
 
+
+# Lille (07015)
+
+## Par heure, 2 derniers jours
+
+```{r echo = F, message = F, warning = F}
+meteo_station("07015", from = Sys.Date() - 2)
+```
+
+
+
+## 30 derniers jours
+
+```{r echo = F, message = F, warning = F}
+meteo_station_last_days("07015", 30)
+```
+
+# Montagne
+
+## Chamonix (07490)
+
+### Par heure, 2 derniers jours
+
+```{r echo = F, message = F, warning = F}
+meteo_station("07490", from = Sys.Date() - 2)
+```
+
+
+
+### 30 derniers jours
+
+```{r echo = F, message = F, warning = F}
+meteo_station_last_days("07490", 30)
+```
+
+
+# Région Parisienne
+
+## Roissy CDG (07157)
+
+### Par heure, 2 derniers jours
+
+```{r echo = F, message = F, warning = F}
+meteo_station("07157", from = Sys.Date() - 2)
+```
+
+
+
+### 30 derniers jours
+
+```{r echo = F, message = F, warning = F}
+meteo_station_last_days("07157", 30)
+```
 
 # Marseille Marignane (07650)
 
-
-
 ## Par heure, 2 derniers jours
 
 ```{r echo = F, message = F, warning = F}
-tibble(date = seq.Date(from = Sys.Date() - days(1), 
-                                to = Sys.Date(), 
-                                by = "day")) %>%
-  mutate(url = paste0("https://www.meteo60.fr/stations-releves/station-jour-csv?station_id=-07650&date=", paste0(format(date, "%d/%m/%Y")))) %>%
-  mutate(data = map(url, ~ read_delim(.))) %>%
-  mutate(data = lapply(data, function(df) {
-    df$`Vent moyen` <- as.character(df$Vent_moyen)
-    return(df)
-  })) %>%
-  unnest %>%
-  select(-url) %>%
-  select(-...15) %>%
-  arrange(desc(date), desc(Heure_UTC)) %>%
-  relocate(date, .after = last_col()) %>%
-  relocate(Heure_UTC, .after = last_col()) %>%
-  select(Heure_legale, Temperature, Temps, Vent_moyen, Humidite_relative, everything()) %>%
-  gt::gt() |>
-  gt::cols_width(1:2 ~ gt::px(70), 3 ~ px(150), 4 ~ gt::px(80), everything() ~ gt::px(100)) |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
-  gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.infoclimat.fr/observations-meteo/temps-reel/paris-montsouris/07650.html>"))
-  ) |>
-  gt::tab_options(table.width = "100%")
+meteo_station("07650", from = Sys.Date() - 2)
 ```
 
-## Début du mois
+## 30 derniers jours
 
 ```{r echo = F, message = F, warning = F}
-read_delim(paste0("https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=07650&mois=", month(Sys.Date()), "&annee=", year(Sys.Date())-2000)) %>%
-  as_tibble() %>%
-  select(-7) %>%
-  #filter(!is.na(mean_temp)) %>%
-  mutate(mois = month(Sys.Date()),
-         jour = parse_number(Jour),
-         annee = paste0("20", year(Sys.Date())-2000) %>% as.numeric,
-         date = as.Date(ISOdate(annee, mois, jour))) %>%
-  select(-mois, - annee, -jour) %>%
-  select(date, Jour, everything()) %>%
-  arrange(desc(date)) %>%
-  gt::gt() |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
-  gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.meteo60.fr/>"))
-  ) |>
-  gt::tab_options(table.width = "100%")
+meteo_station_last_days("07650", 30)
 ```
-
