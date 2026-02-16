@@ -1,5 +1,5 @@
 ---
-title: Données sur la météo
+title: Données météorologiques
 subtitle: Données
 lang: fr
 filters:
