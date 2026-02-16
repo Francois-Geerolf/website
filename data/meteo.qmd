@@ -55,6 +55,9 @@ tibble(date = seq.Date(from = Sys.Date() - days(1),
   select(-url) %>%
   select(-...15) %>%
   arrange(desc(date), desc(Heure_UTC)) %>%
+  relocate(date, .after = last_col()) %>%
+  relocate(Heure_UTC, .after = last_col()) %>%
+  select(Heure_legale, Temperature, Vent_moyen, Humidite_relative, everything()) %>%
   gt::gt() |>
   gt::opt_interactive(use_search = F,
                       use_pagination = F,
@@ -117,6 +120,9 @@ tibble(date = seq.Date(from = Sys.Date() - days(1),
   select(-url) %>%
   select(-...15) %>%
   arrange(desc(date), desc(Heure_UTC)) %>%
+  relocate(date, .after = last_col()) %>%
+  relocate(Heure_UTC, .after = last_col()) %>%
+  select(Heure_legale, Temperature, Vent_moyen, Humidite_relative, everything()) %>%
   gt::gt() |>
   gt::opt_interactive(use_search = F,
                       use_pagination = F,
@@ -179,6 +185,9 @@ tibble(date = seq.Date(from = Sys.Date() - days(1),
   select(-url) %>%
   select(-...15) %>%
   arrange(desc(date), desc(Heure_UTC)) %>%
+  relocate(date, .after = last_col()) %>%
+  relocate(Heure_UTC, .after = last_col()) %>%
+  select(Heure_legale, Temperature, Vent_moyen, Humidite_relative, everything()) %>%
   gt::gt() |>
   gt::opt_interactive(use_search = F,
                       use_pagination = F,
