@@ -92,7 +92,7 @@ Bank of France Conference on Granularity (Paris),
 2015: Chicago Initiative in Theory and Empirics (CITE) conference (Chicago),
 Minnesota Macro Workshop in Macroeconomic Theory (Minneapolis),
 SED Annual Meeting 2015 (Warsaw),
-4th Junior Conference on Macroeconomics, Instituto Einaudi (Rome),
+4th Junior Conference on Macroeconomics a.k.a Pizzanomics, Instituto Einaudi (Rome) [[<i class="fas fa-file-pdf"></i> pdf](pizzanomics-2015_program.pdf)],
 3rd GSE Summer Forum "Firms in the Global Economy" (Barcelona),
 INET-IMF Conference on Macroeconomic Externalities (Washington).
 
@@ -103,17 +103,21 @@ FRIC Top Finance Graduate Award Conference (Copenhaguen).
 
 2013: Sveriges Riksbank Conference on "Bubbles" (Stockholm).
 
-# Conference Discussions (Selected)
+# Discussions (Selected)
 
-CEPII Workshop: Interplay between finance and macroeconomics in a global integration context (Paris). [[<i class="fas fa-globe"></i> html](https://www.cepii.fr/CEPII/en/evenements/abstract.asp?IDReu=476)]
+## Conferences
 
 IMF/EUI Conference on Secular Stagnation and Growth (Florence). [[<i class="fas fa-globe"></i> html](https://www.imf.org/external/np/seminars/eng/2015/secularstag/)]
 
 NBER Conference on Multiple Equilibria (San Francisco Fed). [[<i class="fas fa-globe"></i> html](https://www.frbsf.org/news-and-media/events/2015/05/multiple-equilibria-and-financial-crises/)]
 
-Nemmers Prize Conference in honor of Jean Tirole (Northwestern). [[<i class="fas fa-globe"></i> html](https://economics.northwestern.edu/events/nemmers/2014.html)]
+Nemmers Prize Conference in honor of Jean Tirole (Northwestern). [[<i class="fas fa-file-pdf"></i> slides](https://www.anderson.ucla.edu/documents/areas/ctr/ziman/Gilbert_Ettinger_ZC_Housing-Macro-Economy-Conf_05.11-12.16.pdf)] [[<i class="fas fa-globe"></i> html](https://economics.northwestern.edu/events/nemmers/2014.html)]
 
 EABCN-INET Conference on Macro Stabilization (Cambridge).
+
+## Workshops
+
+CEPII Workshop: Interplay between finance and macroeconomics in a global integration context (Paris), July 2019. Discussion of _Austerity_. [[<i class="fas fa-globe"></i> html](https://www.cepii.fr/CEPII/en/evenements/abstract.asp?IDReu=476)]
 
 # Teaching at UCLA
 
