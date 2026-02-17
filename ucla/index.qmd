@@ -53,7 +53,7 @@ Revision requested at American Economic Review
 
 {{< include ../working-papers/en/Geerolf2019c.qmd >}}
 
-# Invited Seminars
+# Invited Seminars (Selected)
 
 2021: Bank of Israel, Bank of France.  
 
