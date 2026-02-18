@@ -31,10 +31,13 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 
-meteo_station <- function(station_id = "07156",
-                          from = Sys.Date() - days(1),
+meteo_station_heure_par_heure <- function(station_id = "07156",
+                          from = Sys.Date() - lubridate::days(1),
                           to   = Sys.Date(),
-                          interactive_limit = 20) {
+                          interactive_limit = 20,
+                          output = c("table", "data")) {
+
+  output <- match.arg(output)
 
   data <- tibble(date = seq.Date(from = from, to = to, by = "day")) %>%
     
@@ -51,10 +54,11 @@ meteo_station <- function(station_id = "07156",
     
     mutate(data = purrr::map(data, \(df) {
       df$Vent_moyen <- as.character(df$Vent_moyen)
+      df$Nebulosite <- as.character(df$Nebulosite)
       df
     })) %>%
     
-    unnest(data) %>%
+    tidyr::unnest(data) %>%
     select(-url, -...15) %>%
     arrange(desc(date), desc(Heure_UTC)) %>%
     
@@ -66,47 +70,54 @@ meteo_station <- function(station_id = "07156",
     ) %>%
     
     mutate(
-      # heure compacte
-      heure = str_replace(heure, "^([0-9]{1,2}).*$", "\\1h"),
+      heure = stringr::str_replace(heure, "^([0-9]{1,2}).*$", "\\1h"),
+      
+      Temps = tidyr::replace_na(Temps, ""),
 
-      # icônes météo
-      icon = case_when(
-        str_detect(Temps, regex("soleil|clair", TRUE)) ~ "☀️",
-        str_detect(Temps, regex("nuage", TRUE)) ~ "⛅",
-        str_detect(Temps, regex("pluie|averse", TRUE)) ~ "🌧️",
-        str_detect(Temps, regex("orage", TRUE)) ~ "⛈️",
-        str_detect(Temps, regex("brouillard|brume", TRUE)) ~ "🌫️",
-        str_detect(Temps, regex("neige", TRUE)) ~ "❄️",
+      icon = dplyr::case_when(
+        stringr::str_detect(Temps, regex("soleil|clair", TRUE)) ~ "☀️",
+        stringr::str_detect(Temps, regex("nuage", TRUE)) ~ "⛅",
+        stringr::str_detect(Temps, regex("pluie|averse", TRUE)) ~ "🌧️",
+        stringr::str_detect(Temps, regex("orage", TRUE)) ~ "⛈️",
+        stringr::str_detect(Temps, regex("brouillard|brume", TRUE)) ~ "🌫️",
+        stringr::str_detect(Temps, regex("neige", TRUE)) ~ "❄️",
         TRUE ~ ""
       ),
       Temps = paste(icon, Temps)
     ) %>%
     
-    relocate(date, .after = last_col()) %>%
-    relocate(Heure_UTC, .after = last_col()) %>%
-    
     select(
+      date,
       heure,
       T,
       Temps,
       Vent,
+      Vent_rafales,
+      Direction,
       Humidité,
       everything()
-    )
+    ) %>%
+    select(
+      -icon, -Heure_UTC
+    ) %>%
+    mutate(date = format(date, "%a %d"))
+
+  # 👉 si l'utilisateur veut les données brutes
+  if (output == "data") {
+    return(data)
+  }
 
   interactive_mode <- nrow(data) > interactive_limit
 
   gt_tbl <- data %>%
-    gt() %>%
+    gt::gt() %>%
     
-    # 🌡️ ajouter symbole degré sans convertir en texte
-    fmt(
+    gt::fmt(
       columns = T,
       fns = function(x) sprintf("%.1f°", x)
     ) %>%
     
-    # 🌈 couleurs thermiques (fonctionne car T est numérique)
-    data_color(
+    gt::data_color(
       columns = T,
       colors = scales::col_numeric(
         palette = c("#2c7bb6", "#abd9e9", "#66bd63", "#fdae61", "#d7191c"),
@@ -114,35 +125,41 @@ meteo_station <- function(station_id = "07156",
       )
     ) %>%
     
-    cols_label(T = "T°") %>%
+    gt::cols_label(T = "T°",
+                   heure = "h",
+                   Vent_rafales = "Rafales") %>%
     
-    cols_align(
+    gt::cols_align(
       "center",
       c(T, Vent, Humidité)
     ) %>%
     
-    cols_width(
-      Temps ~ gt::px(150)
+    gt::cols_width(
+      -c(Temps, Precipitations, Variation_pression,Pression_mer, date) ~ gt::px(60),
+      c(Pression_mer) ~ gt::px(80),
+      c(Variation_pression) ~ gt::px(90),
+      c(date) ~ gt::px(70),
+      c(Temps, Precipitations) ~ gt::px(225)
     ) %>%
     
-    tab_options(
+    gt::tab_options(
       table.width = gt::pct(100),
       data_row.padding = gt::px(4)
     ) %>%
     
-    tab_footnote(
+    gt::tab_footnote(
       footnote = gt::md(
         paste0(
           "Généré le ",
           format(Sys.time(), "%A %d %B %Y, %Hh%M"),
-          " • Source : infoclimat.fr"
+          " • Source : https://www.infoclimat.fr"
         )
       )
     )
 
   if (interactive_mode) {
     gt_tbl <- gt_tbl |>
-      opt_interactive(
+      gt::opt_interactive(
         use_search = FALSE,
         use_pagination = TRUE,
         use_compact_mode = TRUE,
@@ -152,20 +169,21 @@ meteo_station <- function(station_id = "07156",
 
   gt_tbl
 }
-
 meteo_station_last_days <- function(station_id = "07156",
                                     n_days = 30,
-                                    sun_threshold = 6,   # heures d'ensoleillement "élevé"
-                                    as_gt = TRUE,
-                                    interactive_limit = 20) {
+                                    sun_threshold = 6,
+                                    interactive_limit = 20,
+                                    output = c("table", "data")) {
+
+  output <- match.arg(output)
 
   stopifnot(n_days > 0)
 
   today <- Sys.Date()
   start_date <- today - n_days + 1
 
-  months_needed <- seq(floor_date(start_date, "month"),
-                       floor_date(today, "month"),
+  months_needed <- seq(lubridate::floor_date(start_date, "month"),
+                       lubridate::floor_date(today, "month"),
                        by = "1 month")
 
   data <- purrr::map_dfr(months_needed, \(d) {
@@ -173,23 +191,25 @@ meteo_station_last_days <- function(station_id = "07156",
     url <- paste0(
       "https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=",
       station_id,
-      "&mois=", month(d),
-      "&annee=", year(d) - 2000
+      "&mois=", lubridate::month(d),
+      "&annee=", lubridate::year(d) - 2000
     )
 
-    read_delim(url, show_col_types = FALSE) %>%
-      as_tibble() %>%
-      select(-7) %>%
-      mutate(
-        jour = parse_number(Jour),
-        date = as.Date(ISOdate(year(d), month(d), jour))
+    readr::read_delim(url, show_col_types = FALSE) %>%
+      tibble::as_tibble() %>%
+      dplyr::select(-7) %>%
+      dplyr::mutate(
+        jour = readr::parse_number(Jour),
+        date = as.Date(ISOdate(lubridate::year(d),
+                               lubridate::month(d),
+                               jour))
       )
   }) %>%
-    filter(date >= start_date & date <= today) %>%
-    arrange(desc(date)) %>%
+    dplyr::filter(date >= start_date & date <= today) %>%
+    dplyr::arrange(desc(date)) %>%
 
-    mutate(
-      # 📅 Jour compact (Dim 15)
+    dplyr::mutate(
+      # 📅 Jour compact
       jour = format(date, "%a %d", locale = "fr_FR.UTF-8"),
 
       # 🌡️ noms courts
@@ -197,18 +217,17 @@ meteo_station_last_days <- function(station_id = "07156",
       `T° moy` = Temperature_moy,
       `T° max` = Temperature_maxi,
 
-      # ☔ pictogramme pluie
+      # ☔ pluie
       pluie_icon = ifelse(Precipitations > 0, "☔", ""),
 
-      # ☀️ conversion en minutes pour détecter fort ensoleillement
-      sun_minutes = period_to_seconds(ms(Ensoleillement)) / 60,
+      # ☀️ ensoleillement élevé
+      sun_minutes = lubridate::period_to_seconds(lubridate::ms(Ensoleillement)) / 60,
       soleil_icon = ifelse(sun_minutes >= sun_threshold * 60, "☀️", ""),
 
-      # texte météo compact
-      Meteo = paste(pluie_icon, soleil_icon)
+      Meteo = stringr::str_trim(paste(pluie_icon, soleil_icon))
     ) %>%
     
-    select(
+    dplyr::select(
       jour,
       Meteo,
       `T° min`,
@@ -218,20 +237,22 @@ meteo_station_last_days <- function(station_id = "07156",
       Ensoleillement
     )
 
-  if (!as_gt) return(data)
+  # 👉 sortie données
+  if (output == "data") {
+    return(data)
+  }
 
   interactive_mode <- nrow(data) > interactive_limit
 
   gt_tbl <- data %>%
-    gt() %>%
+    gt::gt() %>%
 
-    cols_align(
+    gt::cols_align(
       "center",
       c(`T° min`, `T° moy`, `T° max`, Precipitations)
     ) %>%
 
-    # 🌈 coloration température moyenne
-    data_color(
+    gt::data_color(
       columns = `T° moy`,
       colors = scales::col_numeric(
         palette = c("#2c7bb6", "#abd9e9", "#66bd63", "#fdae61", "#d7191c"),
@@ -239,30 +260,30 @@ meteo_station_last_days <- function(station_id = "07156",
       )
     ) %>%
 
-    cols_label(
+    gt::cols_label(
       Meteo = "",
       Precipitations = "Pluie (mm)",
       Ensoleillement = "Soleil"
     ) %>%
 
-    tab_options(
+    gt::tab_options(
       table.width = gt::pct(100),
       data_row.padding = gt::px(4)
     ) %>%
 
-    tab_footnote(
+    gt::tab_footnote(
       footnote = gt::md(
         paste0(
           n_days, " derniers jours • Généré le ",
           format(Sys.time(), "%d %B %Y"),
-          " • Source : meteo60.fr"
+          " • Source : https://www.infoclimat.fr"
         )
       )
     )
 
   if (interactive_mode) {
     gt_tbl <- gt_tbl |>
-      opt_interactive(
+      gt::opt_interactive(
         use_search = FALSE,
         use_pagination = TRUE,
         use_compact_mode = TRUE,
@@ -285,7 +306,7 @@ meteo_station_last_days <- function(station_id = "07156",
 ## Par heure, 2 derniers jours
 
 ```{r echo = F, message = F, warning = F}
-meteo_station("07156", from = Sys.Date() - 2)
+meteo_station_heure_par_heure("07156", from = Sys.Date() - 2)
 ```
 
 
@@ -303,7 +324,7 @@ meteo_station_last_days("07156", 30)
 ## Par heure, 2 derniers jours
 
 ```{r echo = F, message = F, warning = F}
-meteo_station("07015", from = Sys.Date() - 2)
+meteo_station_heure_par_heure("07015", from = Sys.Date() - 2)
 ```
 
 
@@ -321,7 +342,7 @@ meteo_station_last_days("07015", 30)
 ### Par heure, 2 derniers jours
 
 ```{r echo = F, message = F, warning = F}
-meteo_station("07490", from = Sys.Date() - 2)
+meteo_station_heure_par_heure("07490", from = Sys.Date() - 2)
 ```
 
 
@@ -340,7 +361,7 @@ meteo_station_last_days("07490", 30)
 ### Par heure, 2 derniers jours
 
 ```{r echo = F, message = F, warning = F}
-meteo_station("07157", from = Sys.Date() - 2)
+meteo_station_heure_par_heure("07157", from = Sys.Date() - 2)
 ```
 
 
@@ -356,7 +377,7 @@ meteo_station_last_days("07157", 30)
 ## Par heure, 2 derniers jours
 
 ```{r echo = F, message = F, warning = F}
-meteo_station("07650", from = Sys.Date() - 2)
+meteo_station_heure_par_heure("07650", from = Sys.Date() - 2)
 ```
 
 ## 30 derniers jours
