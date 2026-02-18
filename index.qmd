@@ -35,7 +35,7 @@ Macroeconomics, Finance, Inflation, Housing, Pareto
 
 # Research
 
-{{< include working-papers/en/Geerolf2017.qmd >}}
+{{< include working-papers/en/Geerolf2017.qmd >}}\
 Revision requested at American Economic Review
 
 {{< include working-papers/en/Geerolf2018a.qmd >}}
