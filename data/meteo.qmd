@@ -34,7 +34,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 meteo_station_heure_par_heure <- function(station_id = "07156",
                           from = Sys.Date() - lubridate::days(1),
                           to   = Sys.Date(),
-                          interactive_limit = 20,
+                          interactive_limit = 12,
                           output = c("table", "data")) {
 
   output <- match.arg(output)
@@ -172,7 +172,7 @@ meteo_station_heure_par_heure <- function(station_id = "07156",
 meteo_station_last_days <- function(station_id = "07156",
                                     n_days = 30,
                                     sun_threshold = 6,
-                                    interactive_limit = 20,
+                                    interactive_limit = 15,
                                     output = c("table", "data")) {
 
   output <- match.arg(output)
@@ -218,11 +218,11 @@ meteo_station_last_days <- function(station_id = "07156",
       `T° max` = Temperature_maxi,
 
       # ☔ pluie
-      pluie_icon = ifelse(Precipitations > 0, "☔", ""),
+      pluie_icon = ifelse(!(Precipitations %in% c("0.0", "0.0*")), "☔", ""),
 
       # ☀️ ensoleillement élevé
-      sun_minutes = lubridate::period_to_seconds(lubridate::ms(Ensoleillement)) / 60,
-      soleil_icon = ifelse(sun_minutes >= sun_threshold * 60, "☀️", ""),
+      sun_minutes = lubridate::period_to_seconds(lubridate::hm(gsub("h", ":", Ensoleillement))) / 60,
+      soleil_icon = dplyr::if_else(sun_minutes >= sun_threshold * 60, "☀️", "", missing = ""),
 
       Meteo = stringr::str_trim(paste(pluie_icon, soleil_icon))
     ) %>%
@@ -232,8 +232,8 @@ meteo_station_last_days <- function(station_id = "07156",
       `T° min`,
       `T° moy`,
       `T° max`,
-      Precipitations,
       Meteo,
+      Precipitations,
       Ensoleillement
     )
 
@@ -272,10 +272,10 @@ meteo_station_last_days <- function(station_id = "07156",
     ) %>%
     
     gt::cols_width(
-      -c(Meteo, Precipitations, Ensoleillement, date) ~ gt::px(60),
+      -c(Meteo, Precipitations, Ensoleillement, date) ~ gt::px(55),
       c(date) ~ gt::px(70),
-      c(Precipitations, Ensoleillement) ~ gt::px(90),
-      c(Meteo) ~ gt::px(30)
+      c(Precipitations, Ensoleillement) ~ gt::px(80),
+      c(Meteo) ~ gt::px(50)
     ) %>%
 
     gt::tab_footnote(
