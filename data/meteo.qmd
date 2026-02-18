@@ -131,7 +131,7 @@ meteo_station_heure_par_heure <- function(station_id = "07156",
     
     gt::cols_align(
       "center",
-      c(T, Vent, Humidité)
+      everything()
     ) %>%
     
     gt::cols_width(
@@ -249,7 +249,7 @@ meteo_station_last_days <- function(station_id = "07156",
 
     gt::cols_align(
       "center",
-      c(`T° min`, `T° moy`, `T° max`, Precipitations)
+      everything()
     ) %>%
 
     gt::data_color(
