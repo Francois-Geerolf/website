@@ -272,7 +272,8 @@ meteo_station_last_days <- function(station_id = "07156",
     ) %>%
     
     gt::cols_width(
-      -c(Precipitations, Ensoleillement, date) ~ gt::px(55),
+      -c(Precipitations, Ensoleillement, date, Meteo) ~ gt::px(55),
+      c(Meteo) ~ gt::px(60),
       c(date) ~ gt::px(70),
       c(Precipitations, Ensoleillement) ~ gt::px(80)
     ) %>%
