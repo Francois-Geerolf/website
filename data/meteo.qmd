@@ -210,7 +210,7 @@ meteo_station_last_days <- function(station_id = "07156",
 
     dplyr::mutate(
       # 📅 Jour compact
-      jour = format(date, "%a %d", locale = "fr_FR.UTF-8"),
+      date = format(date, "%a %d", locale = "fr_FR.UTF-8"),
 
       # 🌡️ noms courts
       `T° min` = Temperature_mini,
@@ -228,12 +228,12 @@ meteo_station_last_days <- function(station_id = "07156",
     ) %>%
     
     dplyr::select(
-      jour,
-      Meteo,
+      date,
       `T° min`,
       `T° moy`,
       `T° max`,
       Precipitations,
+      Meteo,
       Ensoleillement
     )
 
@@ -269,6 +269,13 @@ meteo_station_last_days <- function(station_id = "07156",
     gt::tab_options(
       table.width = gt::pct(100),
       data_row.padding = gt::px(4)
+    ) %>%
+    
+    gt::cols_width(
+      -c(Meteo, Precipitations, Ensoleillement, date) ~ gt::px(60),
+      c(date) ~ gt::px(70),
+      c(Precipitations, Ensoleillement) ~ gt::px(90),
+      c(Meteo) ~ gt::px(30)
     ) %>%
 
     gt::tab_footnote(
