@@ -280,8 +280,7 @@ meteo_station_last_days <- function(station_id = "07156",
 
     gt::tab_footnote(
       footnote = gt::md(
-        paste0(
-          n_days, " derniers jours • Généré le ",
+        paste0("Généré le ",
           format(Sys.time(), "%A %d %B %Y, %Hh%M"),
           " • Source : https://www.infoclimat.fr"
         )
