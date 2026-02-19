@@ -77,7 +77,7 @@ meteo_station_heure_par_heure <- function(station_id = "07156",
       icon = dplyr::case_when(
         stringr::str_detect(Temps, regex("soleil|clair", TRUE)) ~ "☀️",
         stringr::str_detect(Temps, regex("nuage", TRUE)) ~ "⛅",
-        stringr::str_detect(Temps, regex("pluie|averse", TRUE)) ~ "🌧️",
+        stringr::str_detect(Temps, regex("pluie|averse|bruine", TRUE)) ~ "🌧️",
         stringr::str_detect(Temps, regex("orage", TRUE)) ~ "⛈️",
         stringr::str_detect(Temps, regex("brouillard|brume", TRUE)) ~ "🌫️",
         stringr::str_detect(Temps, regex("neige", TRUE)) ~ "❄️",
@@ -139,7 +139,8 @@ meteo_station_heure_par_heure <- function(station_id = "07156",
       c(Pression_mer) ~ gt::px(80),
       c(Variation_pression) ~ gt::px(90),
       c(date) ~ gt::px(70),
-      c(Temps, Precipitations) ~ gt::px(225)
+      c(Temps) ~ gt::px(250),
+      c(Precipitations) ~ gt::px(230)
     ) %>%
     
     gt::tab_options(
@@ -202,7 +203,10 @@ meteo_station_last_days <- function(station_id = "07156",
         jour = readr::parse_number(Jour),
         date = as.Date(ISOdate(lubridate::year(d),
                                lubridate::month(d),
-                               jour))
+                               jour)),
+        Temperature_mini = as.numeric(Temperature_mini),
+        Temperature_moy = as.numeric(Temperature_moy),
+        Temperature_maxi = as.numeric(Temperature_maxi)
       )
   }) %>%
     dplyr::filter(date >= start_date & date <= today) %>%
