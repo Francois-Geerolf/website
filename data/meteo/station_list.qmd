@@ -14,16 +14,11 @@ editor: source
 ---
 
 ```{r, echo = FALSE, message = FALSE}
-source("../../code/R-markdown/init_insee.R")
-# cd ~/iCloud/website/data/meteo; /usr/local/bin/R -e 'quarto::quarto_render("station_list.qmd")'
-# cd ~/iCloud/website/data/meteo; /usr/local/bin/R -e 'quarto::quarto_render("montsouris.qmd")'
-# sh ~/iCloud/website/website_short.sh
-knitr::opts_chunk$set(fig.height = 1.25*3.375, fig.width = 1.25*6, 
-                      out.width="100%", out.height="100%", 
-                      fig.align = "center", comment = "#",
-                      echo = T, warning = F,
-                      message = F, dev = c('png'))
-load_data("meteo/station_list.RData")
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+source(here::here("code", "meteo.R"))
+load(here::here("data", "meteo", "station_list.RData"))
 ```
 
 # Info

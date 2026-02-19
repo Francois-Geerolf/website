@@ -5,11 +5,13 @@ setwd(here::here("data", "meteo"))
 # 
 # https://donneespubliques.meteofrance.fr/client/document/20140701_liste_stations_temps_reel_141_154.xls
 
+temp <- tempfile()
+
 curl::curl_download("https://donneespubliques.meteofrance.fr/client/document/20140701_liste_stations_temps_reel_141_154.xls",
-              destfile = "20140701_liste_stations_temps_reel_141_154.xls")
+              destfile = temp)
 
 
-station_list <- readxl::read_xls("20140701_liste_stations_temps_reel_141_154.xls", skip = 9) %>%
+station_list <- readxl::read_xls(temp, skip = 9) %>%
   slice(4:n()) %>%
   as_tibble()
 
