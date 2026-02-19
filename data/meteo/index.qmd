@@ -1,40 +1,25 @@
 ---
-title: Données météorologiques
-subtitle: Données
-lang: fr
-filters:
-  - ../code/genderize-fr.lua
+title: Météo
+subtitle: Data - meteo
 author:
   - name: François Geerolf
     url: https://fgeerolf.com
 format:
   html:
-    code-fold: false
+    code-fold: true
     toc: true
     theme: flatly
     embed-resources: false
-    include-in-header:
-      - text: |
-          <meta name="twitter:card" content="summary">
-          <meta name="twitter:title" content="Données sur la météo">
-          <meta name="twitter:description" content="Données sur la météo">
-          <meta name="twitter:image" content="https://fgeerolf.com/files/meteo.jpg">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    include-after-body: ../statcounter.html
 editor: source
 ---
-
-
 
 ```{r, echo = FALSE, message = FALSE}
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 source(here::here("code/meteo.R"))
-
-## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
-## sh ~/iCloud/website/website_short.sh
+# cd ~/iCloud/website/data/meteo; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# sh ~/iCloud/website/website_short.sh
 ```
 
 
