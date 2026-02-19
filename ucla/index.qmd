@@ -81,7 +81,7 @@ Revision requested at American Economic Review
 2018: SED Annual Meeting 2018 (Mexico City),
 9th Summer Macro-Finance Workshop (Paris).  
 
-2017: SED Annual Meeting 2017 (Edinburgh),
+2017: SED Annual Meeting 2017 (Edinburgh) [[<i class="fas fa-file-pdf"></i> pdf](https://edwebcontent.ed.ac.uk/sites/default/files/atoms/files/sed_brochure_for_website2.pdf)],
 Conference on Housing, Urban Development, and the Macroeconomy, INET (USC).  
 
 2016: NBER EF\&G Meeting (Chicago),
@@ -92,7 +92,7 @@ Bank of France Conference on Granularity (Paris),
 2015: Chicago Initiative in Theory and Empirics (CITE) conference (Chicago),
 Minnesota Macro Workshop in Macroeconomic Theory (Minneapolis),
 SED Annual Meeting 2015 (Warsaw),
-4th Junior Conference on Macroeconomics a.k.a Pizzanomics, Instituto Einaudi (Rome) [[<i class="fas fa-file-pdf"></i> pdf](pizzanomics-2015_program.pdf)],
+4th Junior Conference on Macroeconomics a.k.a Pizzanomics, Instituto Einaudi (Rome) [[<i class="fas fa-file-pdf"></i> pdf](https://www.eief.it/files/2015/06/pizzanomics-2015_program.pdf)],
 3rd GSE Summer Forum "Firms in the Global Economy" (Barcelona),
 INET-IMF Conference on Macroeconomic Externalities (Washington).
 
