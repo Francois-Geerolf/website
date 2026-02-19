@@ -46,8 +46,14 @@ meteo_station_heure_par_heure("07156", from = Sys.Date() - 7)
 meteo_station_last_days("07156", 30)
 ```
 
+## 60 derniers jours
 
-## 30 derniers jours
+```{r echo = F, message = F, warning = F}
+meteo_station_last_days("07156", 60)
+```
+
+
+## 90 derniers jours
 
 ```{r echo = F, message = F, warning = F}
 meteo_station_last_days("07156", 90)
