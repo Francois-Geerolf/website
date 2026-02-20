@@ -7,7 +7,7 @@ langs <- c("fr", "en")
 folders <- c("publications", "public-debate", "working-papers", "presentations", "press")
 
 # Create all combinations
-roots <- as.vector(outer(folders, langs, paste, sep = "/"))
+root_dirs <- as.vector(outer(folders, langs, paste, sep = "/"))
 
 # --- Core: allow one level of parentheses inside URLs -------------------------
 # Captures the URL inside (...) while permitting single-level nested parentheses.
@@ -114,12 +114,12 @@ extract_pub_date <- function(x) {
 }
 
 
-
 #--- Collect files and build the tibble ----------------------------------------
 cat("Collect files and build the tibble...\n")
 
-qmd_files <- map(roots, ~list.files(.x, pattern = "\\.qmd$", full.names = TRUE, recursive = TRUE)) %>%
-  unlist()
+
+qmd_files <- list.files(root_dirs, pattern = "\\.qmd$", full.names = T, recursive = T)
+
 
 bibliography <- map_dfr(qmd_files, parse_qmd) %>%
   mutate(
@@ -134,7 +134,7 @@ bibliography <- map_dfr(qmd_files, parse_qmd) %>%
                     "")
   ) %>%
   # Parse using function extract_pub_date
-  mutate(date = as.Date(unlist(map(Content, extract_pub_date)))) %>%
+  mutate(date = as.Date(unlist(purrr::map(Content, extract_pub_date)))) %>%
   arrange(desc(date)) %>%
   select(File, Content, date, PDF, HTML, GitHub)
 
