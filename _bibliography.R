@@ -141,5 +141,3 @@ bibliography <- map_dfr(qmd_files, parse_qmd) %>%
 #--- Save _bibliography.RData ----------------------------------------
 cat("Save _bibliography.RData...\n")
 save(bibliography, file = "_bibliography.RData")
-
-
