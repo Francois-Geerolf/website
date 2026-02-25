@@ -42,7 +42,7 @@ meteo_station_heure_par_heure <- function(station_id = "07156",
     mutate(
       heure = stringr::str_replace(heure, "^([0-9]{1,2}).*$", "\\1h"),
       
-      Temps = tidyr::replace_na(Temps, ""),
+      Temps = tidyr::replace_na(as.character(Temps), ""),
       
       icon = dplyr::case_when(
         stringr::str_detect(Temps, regex("soleil|clair", TRUE)) ~ "☀️",
