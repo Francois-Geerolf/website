@@ -179,7 +179,8 @@ meteo_station_last_days <- function(station_id = "07156",
                                jour)),
         Temperature_mini = as.numeric(Temperature_mini),
         Temperature_moy = as.numeric(Temperature_moy),
-        Temperature_maxi = as.numeric(Temperature_maxi)
+        Temperature_maxi = as.numeric(Temperature_maxi),
+        Precipitations = as.numeric(Precipitations)
       )
   }) %>%
     dplyr::filter(date >= start_date & date <= today) %>%
