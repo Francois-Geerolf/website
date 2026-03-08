@@ -180,7 +180,7 @@ meteo_station_last_days <- function(station_id = "07156",
         Temperature_mini = as.numeric(Temperature_mini),
         Temperature_moy = as.numeric(Temperature_moy),
         Temperature_maxi = as.numeric(Temperature_maxi),
-        Precipitations = as.numeric(Precipitations)
+        Precipitations = as.character(Precipitations)
       )
   }) %>%
     dplyr::filter(date >= start_date & date <= today) %>%
@@ -196,7 +196,7 @@ meteo_station_last_days <- function(station_id = "07156",
       `T° max` = Temperature_maxi,
       
       # ☔ pluie
-      pluie_icon = ifelse(!(Precipitations %in% c("0.0", "0.0*")), "☔", ""),
+      pluie_icon = ifelse(!(Precipitations %in% c("0.0", "0.0*", "0*", "0")), "☔", ""),
       
       # ☀️ ensoleillement élevé
       sun_minutes = lubridate::period_to_seconds(lubridate::hm(gsub("h", ":", Ensoleillement))) / 60,
