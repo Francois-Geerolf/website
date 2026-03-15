@@ -136,6 +136,8 @@ editor: source
 
 {{< include ../teaching/en/Geerolf2022.qmd >}}
 
+{{< include ../teaching/en/Geerolf2021.qmd >}}
+
 # Expertise
 
 Mission d’information sur l’évolution du pouvoir d’achat en France depuis 2017 au regard des indicateurs de prix et de consommation, 16 décembre 2025. [[<i class="fas fa-globe"></i> html](https://fgeerolf.com/pouvoir-achat-2017-handouts-20251216.html)] [[<i class="fas fa-file-pdf"></i> pdf](https://fgeerolf.com/pouvoir-achat-2017-slides-20251216.pdf)] [[<i class="fas fa-copy"></i> handouts](https://fgeerolf.com/pouvoir-achat-2017-handouts-20251216.html)] [[<i class="fas fa-desktop"></i> pdf](https://fgeerolf.com/pouvoir-achat-2017-slides-20251216.pdf)] [[<i class="fas fa-desktop"></i> html](https://fgeerolf.com/pouvoir-achat-2017-slides-20251216.html)] [[<i class="fab fa-github"></i> github](https://github.com/Francois-Geerolf/pouvoir-achat-2017)]
