@@ -5,11 +5,11 @@ meteo_station_heure_par_heure <- function(station_id = "07156",
                                           from = Sys.Date() - lubridate::days(1),
                                           to   = Sys.Date(),
                                           interactive_limit = 12,
-                                          output = c("table", "data")) {
+                                          output = c("table", "data", "raw")) {
   
   output <- match.arg(output)
   
-  data <- tibble(date = seq.Date(from = from, to = to, by = "day")) %>%
+  raw <- tibble(date = seq.Date(from = from, to = to, by = "day")) %>%
     
     mutate(
       url = paste0(
@@ -19,26 +19,29 @@ meteo_station_heure_par_heure <- function(station_id = "07156",
         format(date, "%d/%m/%Y")
       )
     ) %>%
-    
     mutate(data = purrr::map(url, readr::read_delim, show_col_types = FALSE)) %>%
-    
     mutate(data = purrr::map(data, \(df) {
       df$Vent_moyen <- as.character(df$Vent_moyen)
       df$Nebulosite <- as.character(df$Nebulosite)
       df
     })) %>%
-    
     tidyr::unnest(data) %>%
+    rename(Heure_UTC = 3)
+  
+  # 👉 si l'utilisateur veut les données raw
+  if (output == "raw") {
+    return(raw)
+  }
+  
+   data <- raw %>%
     select(-url, -...15) %>%
     arrange(desc(date), desc(Heure_UTC)) %>%
-    
     rename(
       heure = Heure_legale,
       T = Temperature,
       Vent = Vent_moyen,
       Humidité = Humidite_relative
     ) %>%
-    
     mutate(
       heure = stringr::str_replace(heure, "^([0-9]{1,2}).*$", "\\1h"),
       
@@ -147,7 +150,7 @@ meteo_station_last_days <- function(station_id = "07156",
                                     n_days = 30,
                                     sun_threshold = 6,
                                     interactive_limit = 15,
-                                    output = c("table", "data")) {
+                                    output = c("table", "data", "raw")) {
   
   output <- match.arg(output)
   
@@ -160,7 +163,7 @@ meteo_station_last_days <- function(station_id = "07156",
                        lubridate::floor_date(today, "month"),
                        by = "1 month")
   
-  data <- purrr::map_dfr(months_needed, \(d) {
+  raw <- purrr::map_dfr(months_needed, \(d) {
     
     url <- paste0(
       "https://www.meteo60.fr/stations-releves/station-mois-csv?station_id=",
@@ -182,7 +185,15 @@ meteo_station_last_days <- function(station_id = "07156",
         Temperature_maxi = as.numeric(Temperature_maxi),
         Precipitations = as.character(Precipitations)
       )
-  }) %>%
+  })
+  
+  
+  # 👉 si l'utilisateur veut les données raw
+  if (output == "raw") {
+    return(raw)
+  }
+  
+  data <- raw %>%
     dplyr::filter(date >= start_date & date <= today) %>%
     dplyr::arrange(desc(date)) %>%
     
