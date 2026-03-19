@@ -52,7 +52,27 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
   tab_style(
     style = cell_fill(color = alpha("#F5A623", 0.15)),  # couleur fond
     locations = cells_body(
-      rows = str_detect(`Données`, "^[^a-z]*$")
+      rows = str_detect(`Données`, "^[^a-z]*$") & `Données` != ""
+    )
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "top",
+      color = "#7A57FF",   # couleur Insee
+      weight = px(2)
+    ),
+    locations = cells_body(
+      rows = str_detect(`Données`, "Semaine du")
+    )
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "top",
+      color = "#F5A623",   # couleur Insee
+      weight = px(2)
+    ),
+    locations = cells_body(
+      rows = str_detect(`Données`, "^[^a-z]*$")  & `Données` != ""
     )
   ) |>
   
