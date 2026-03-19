@@ -23,8 +23,6 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 
 
 ```{r, echo = F}
-# Charger les bibliothèques nécessaires
-
 "https://www.insee.fr/fr/information/5235017" |>
   rvest::read_html() |>
   rvest::html_table(header = F, fill = T) |>
@@ -45,6 +43,19 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
                       use_pagination = F,
                       use_pagination_info = F,
                       use_compact_mode = T) |>
+  tab_style(
+    style = cell_fill(color = alpha("#7A57FF", 0.10)),  # couleur fond
+    locations = cells_body(
+      rows = grepl("Semaine du", `Données`)
+    )
+  ) |>
+  tab_style(
+    style = cell_fill(color = alpha("#F5A623", 0.15)),  # couleur fond
+    locations = cells_body(
+      rows = str_detect(`Données`, "^[^a-z]*$")
+    )
+  ) |>
+  
   gt::tab_footnote(
     footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/information/5235017>"))
   ) |>
