@@ -34,6 +34,7 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
   dplyr::select(`Données` = X2, `Mise à jour` = X3) |>
   dplyr::mutate(`Données` = stringr::str_remove_all(`Données`, "\\\t|\\\n|\\\r"),
          `Données` = substr(`Données`, 1,190)) |>
+  dplyr::filter(!(`Données` == "" & `Mise à jour` == "")) |>
   gt::gt() |>
   #gt::cols_width(`Données` ~ gt::px(400), everything() ~ gt::px(150)) |>
   gt::cols_label(`Données` = "", `Mise à jour` = "") |>
