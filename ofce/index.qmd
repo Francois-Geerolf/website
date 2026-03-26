@@ -94,6 +94,8 @@ editor: source
 
 {{< include ../publications/en/Geerolf2022b.qmd >}}
 
+{{< include ../publications/en/Geerolf2022d.qmd >}}
+
 {{< include ../publications/en/Geerolf2022.qmd >}}
 
 # Débat public
