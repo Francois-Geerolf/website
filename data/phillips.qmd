@@ -26,7 +26,7 @@ phillips <- tribble(
 ```
 
 
-# Info
+# Bibliography
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
@@ -38,6 +38,19 @@ phillips <- tribble(
 # sh ~/iCloud/website/website_short.sh
 ```
 
+## English
+
+{{< include ../publications/en/Geerolf2021b.qmd >}}
+
+{{< include ../publications/en/Geerolf2021a.qmd >}}
+
+{{< include ../working-papers/en/Geerolf2020.qmd >}}
+
+## French
+
+{{< include ../publications/fr/Geerolf2021b.qmd >}}
+
+{{< include ../publications/fr/Geerolf2021a.qmd >}}
 
 # Original Phillips curve, UK
 
