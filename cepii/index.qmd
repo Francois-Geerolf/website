@@ -33,6 +33,8 @@ Travaux réalisés pour le CEPII, notamment lorsque j'étais _Conseiller Scienti
 
 # Articles
 
+## En Français
+
 {{< include ../publications/fr/Geerolf2021b.qmd >}}
 
 {{< include ../publications/fr/Geerolf2021a.qmd >}}
@@ -44,6 +46,12 @@ Travaux réalisés pour le CEPII, notamment lorsque j'étais _Conseiller Scienti
 {{< include ../publications/fr/Geerolf2018b.qmd >}}
 
 {{< include ../publications/fr/Geerolf2018a.qmd >}}
+
+## In English
+
+{{< include ../publications/en/Geerolf2021b.qmd >}}
+
+{{< include ../publications/en/Geerolf2021a.qmd >}}
 
 # Blog du CEPII
 
