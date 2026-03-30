@@ -136,6 +136,8 @@ Revision requested at American Economic Review
 
 {{< include publications/en/Geerolf2022.qmd >}}
 
+{{< include publications/en/Geerolf2021a.qmd >}}
+
 # Débat public
 
 ## Tribunes

@@ -79,11 +79,11 @@ ratings_taux|>
   filter(country_code_2 %in% c("FR", "US", "UK", "GB", "IT", "JP", "DE"))|>
   arrange(`10Y`)|>
   select(-TE)|>
-  filter(!is.na(country))|>
-  gt()|>
+  filter(!is.na(country)) |>
+  gt() |>
     tab_options(
       quarto.disable_processing = TRUE
-    ) |> 
+    ) |>
   cols_align(
     align = "center",
     columns = -c(country))|>
@@ -169,6 +169,12 @@ ratings_taux|>
   select(-TE)|>
   filter(!is.na(country))|>
   gt()|>
+  tab_style(
+    style = cell_fill(color = alpha("#002395", 0.10)),  # couleur fond
+    locations = cells_body(
+      rows = grepl("France", country)
+    )
+  ) |>
     tab_options(
       quarto.disable_processing = TRUE
     ) |> 
