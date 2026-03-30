@@ -37,6 +37,8 @@ Travaux réalisés pour le CEPII, notamment lorsque j'étais _Conseiller Scienti
 
 {{< include ../publications/fr/Geerolf2021b.qmd >}}
 
+{{< include ../publications/fr/Geerolf2021c.qmd >}}
+
 {{< include ../publications/fr/Geerolf2021a.qmd >}}
 
 {{< include ../publications/fr/Geerolf2020b.qmd >}}
