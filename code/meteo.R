@@ -23,6 +23,7 @@ meteo_station_heure_par_heure <- function(station_id = "07156",
     mutate(data = purrr::map(data, \(df) {
       df$Vent_moyen <- as.character(df$Vent_moyen)
       df$Nebulosite <- as.character(df$Nebulosite)
+      df$Direction <- as.character(df$Direction)
       df
     })) %>%
     tidyr::unnest(data) %>%
