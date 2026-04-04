@@ -269,6 +269,12 @@ ig_d("insee", "t_men_val", "B2S14-D4-log-1995")
 ig_d("insee", "T_7401", "D4-D42-D44-1995")
 ```
 
+## Indemnités d'assurance-dommage
+
+```{r}
+ig_d("insee", "T_7401", "D72-rdb")
+```
+
 
 
 # Depuis 1996
