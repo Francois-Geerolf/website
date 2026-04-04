@@ -269,7 +269,7 @@ ig_d("insee", "t_men_val", "B2S14-D4-log-1995")
 ig_d("insee", "T_7401", "D4-D42-D44-1995")
 ```
 
-## Indemnités d'assurance-dommage
+## Indemnités d'assurance-dommage (D72)
 
 ```{r}
 ig_d("insee", "T_7401", "D72-rdb")
