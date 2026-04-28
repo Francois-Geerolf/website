@@ -26,7 +26,6 @@ format:
 editor: source
 ---
 
-
 [![](../files/cepii-logo.png){width=20%}](https://fgeerolf.com/cepii/)
 
 Travaux réalisés pour le CEPII, notamment lorsque j'étais _Conseiller Scientifique_ au CEPII, en 2020-2021 (en tant qu'_Assistant Professor_ à UCLA).
