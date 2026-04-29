@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 
+# Load package list
 source("_packages.R")
 
 format_time <- function(seconds) {
@@ -8,35 +9,49 @@ format_time <- function(seconds) {
   sprintf("%dm %.1fs", minutes, seconds)
 }
 
-times <- numeric(length(packages))
-names(times) <- packages
-total_time <- proc.time()[3]
+# Ensure pak is available
+if (!requireNamespace("pak", quietly = TRUE)) {
+  install.packages("pak", repos = "https://cloud.r-project.org")
+}
 
-for (i in seq_along(packages)) {
-  pkg <- packages[i]
-  if (!requireNamespace(pkg, quietly = TRUE)) {
-    cat("⏳ Installing", pkg, "\n")
-    t <- tryCatch(
-      system.time(install.packages(pkg, repos = "https://cloud.r-project.org", quiet = TRUE)),
-      error = function(e) NA
-    )
-    if (!is.na(t[3]) && requireNamespace(pkg, quietly = TRUE)) {
-      times[i] <- t[3]
-      cat("✅", pkg, "installed in", format_time(t[3]), "\n\n")
+# Track already installed packages
+already_installed <- vapply(packages, requireNamespace, logical(1), quietly = TRUE)
+
+cat("📦 Installing missing packages with pak...\n\n")
+
+start_time <- proc.time()[3]
+
+# Install all missing packages at once (key improvement)
+to_install <- packages[!already_installed]
+
+install_result <- tryCatch(
+  {
+    if (length(to_install) > 0) {
+      pak::pkg_install(to_install)
+    }
+    TRUE
+  },
+  error = function(e) {
+    cat("❌ Global installation error:\n", conditionMessage(e), "\n\n")
+    FALSE
+  }
+)
+
+total_elapsed <- proc.time()[3] - start_time
+
+# Check final status package by package
+cat("\n📋 Installation Summary:\n")
+
+for (pkg in packages) {
+  if (requireNamespace(pkg, quietly = TRUE)) {
+    if (already_installed[pkg]) {
+      cat(sprintf(" - %s: ✅ already installed\n", pkg))
     } else {
-      times[i] <- NA
-      cat("❌ Failed to install", pkg, "\n\n")
+      cat(sprintf(" - %s: ✅ installed\n", pkg))
     }
   } else {
-    times[i] <- 0
-    cat("✅", pkg, "already installed\n\n")
+    cat(sprintf(" - %s: ❌ failed\n", pkg))
   }
 }
 
-total_elapsed <- proc.time()[3] - total_time
-cat("📋 Installation Summary:\n")
-for (i in seq_along(times)) {
-  status <- if (is.na(times[i])) "❌ failed" else if (times[i] == 0) "✅ already" else paste0("✅ ", format_time(times[i]))
-  cat(sprintf(" - %s: %s\n", names(times)[i], status))
-}
 cat(sprintf("\n🕒 Total time: %s\n", format_time(total_elapsed)))
