@@ -1,0 +1,78 @@
+---
+title: Inflation Expectations
+metadata-files: 
+  - _common.yml
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+inflation <- tribble(
+  ~source, ~dataset,
+  "bis",  "CPI",
+  "ecb", "CES",
+  "eurostat", "nama_10_co3_p3",
+  "eurostat",  "prc_hicp_manr",
+  "eurostat",  "prc_hicp_midx",
+  "eurostat",  "prc_hicp_mmor",
+  "eurostat",  "prc_hicp_inw",
+  "eurostat",  "prc_hicp_cow",
+  "eurostat",  "prc_ppp_ind",
+  "eurostat",  "prc_hicp_ctrb",
+  "eurostat",  "sts_inpp_m",
+  "eurostat",  "sts_inppd_m",
+  "eurostat",  "sts_inppnd_m",
+  "fred",  "cpi",
+  "fred",  "inflation",
+  "imf", "CPI",
+  "oecd",  "MEI_PRICES_PPI",
+  "oecd",  "PRICES_CPI",
+  "oecd", "PPP2017",
+  "wdi",  "NY.GDP.DEFL.KD.ZG",
+  "wdi",  "FP.CPI.TOTL.ZG") %>%
+  arrange(source, dataset)
+```
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "energy.R"; /usr/local/bin/R -e 'quarto::quarto_render("energy.qmd")'
+# cd ~/iCloud/website/data/ecb; /usr/local/bin/R -f "CES.R"; /usr/local/bin/R -e 'quarto::quarto_render("CES.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+# Gas prices
+
+## Gas prices and Inflation expectations
+
+### 1990-
+
+```{r}
+ig_d("fred", "energy", "GASREGW-MICH-1990")
+```
+
+### 1995-
+
+```{r}
+ig_d("fred", "energy", "GASREGW-MICH-1995")
+```
+
+## Consumer Expenditure Survey
+
+### 1-year
+
+```{r}
+ig_d("ecb", "CES", "c1020-mean")
+```
+
+### 3-year
+
+```{r}
+ig_d("ecb", "CES", "c1220-mean")
+```
+
+
+# Bibliography
+
+
+{{< include ../publications/inflation.qmd >}}
