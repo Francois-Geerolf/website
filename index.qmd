@@ -59,6 +59,8 @@ Revision requested at American Economic Review
 
 {{< include publications/fr/Geerolf2026.qmd >}}
 
+{{< include publications/fr/Audard2026.qmd >}}
+
 {{< include publications/fr/Geerolf2025a.qmd >}}
 
 {{< include publications/fr/Blot2025.qmd >}}
