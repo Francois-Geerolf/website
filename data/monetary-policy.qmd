@@ -539,6 +539,14 @@ ig_d("ecb", "YC_PUB", "SR-2Y-5Y-7Y")
 # sh ~/iCloud/website/website_short.sh
 ```
 
+
+## Banknotes
+
+```{r}
+ig_d("ecb", "BKN", "banknotes")
+```
+
+
 ## Main Refinancing Operation
 
 ```{r}
