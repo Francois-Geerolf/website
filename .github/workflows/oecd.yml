@@ -70,7 +70,6 @@ jobs:
       - name: 📤 Deploy to remote server via rsync
         run: |
           rsync --exclude-from=<(cat <<EOF
-            .git
             *.RData
             *.Rmd
             *.qmd
@@ -81,8 +80,6 @@ jobs:
             *.csv
             *.sh
             *.parquet
-            *.crdownload
-            *.curltmp
           EOF
           ) -avr -e 'ssh -p65002 -oHostKeyAlgorithms=+ssh-rsa' ./ \
           u597408863@147.79.103.253:~/domains/fgeerolf.com/public_html/
