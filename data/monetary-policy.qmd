@@ -34,59 +34,6 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
   arrange(source, dataset)
 ```
 
-# Current policy Rates
-
-```{r, echo = F}
-central_banks <- tribble(
-  ~`Central Bank`,                                   ~countrycode,
-  "Federal Reserve (FED)",                           "US",
-  "European Central Bank (ECB)",                     "EU",
-  "Bank of England (BOE)",                           "GB",
-  "Swiss National Bank (SNB)",                       "CH",
-  "Reserve Bank of Australia (RBA)",                 "AU",
-  "Bank of Canada (BOC)",                            "CA",
-  "Reserve Bank of New Zealand (RBNZ)",              "NZ",
-  "Bank of Japan (BOJ)",                             "JP",
-  "Central Bank of the Russian Federation (CBR)",    "RU",
-  "Reserve Bank of India (RBI)",                     "IN",
-  "People's Bank of China (PBOC)",                   "CN",
-  "Central Bank of Brazil (BCB)",                    "BR"
-)
-
-
-temp <- "https://www.investing.com/central-banks/" |>
-  rvest::read_html() |>
-  rvest::html_table(header = T, fill = T) |>
-  pluck(1) %>%
-  select(-1) %>%
-  left_join(central_banks, by = "Central Bank") |>
-  select(countrycode, everything())
-
-temp|>
-  gt() |>
-  gt::fmt_flag(columns = countrycode) |>
-  gt::cols_width(countrycode ~ gt::px(60),
-                 `Central Bank`  ~ gt::px(300),
-                 `Current Rate`  ~ gt::px(100),
-                 `Next Meeting`  ~ gt::px(150),
-                 `Last Change`  ~ gt::px(200))|>
-    tab_options(
-      quarto.disable_processing = TRUE
-    ) |> 
-  cols_align(
-    align = "center",
-    columns = -c(`Central Bank`))|>
-  gt::tab_source_note(source_note = paste0("Source: investing.com, tradingeconomics.com. Date: ", format(Sys.time(), format = "%B %d, %Y %I:%M %p")))|>
-  fmt_number(
-    dec_mark = ",",
-    sep_mark = ".",
-    decimals = 2
-  ) |>
-  gt::cols_label(countrycode = "")
-```
-
-Source: <https://www.investing.com/central-banks/>
-
 
 # Liquidity
 
@@ -589,7 +536,7 @@ ig_d("ecb", "liq_daily", "synthesis")
 ig_d("ecb", "liq_daily", "excess-liq-deposit-facility-current-accounts-2022")
 ```
 
-# Bank Lending Statistics
+# Bank Lending Survey
 
 ```{r, echo = F}
 # cd ~/iCloud/website/data/ecb; /usr/local/bin/Rscript --vanilla _download_one_csv.R BLS; /usr/local/bin/R -e 'quarto::quarto_render("BLS.qmd")'
