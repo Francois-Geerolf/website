@@ -32,6 +32,12 @@ editor: source
 
 ## Français
 
+{{< include publications/fr/Geerolf2026b.qmd >}}
+
+{{< include publications/fr/Geerolf2026a.qmd >}}
+
+{{< include publications/fr/Audard2026.qmd >}}
+
 {{< include ../publications/fr/Geerolf2025a.qmd >}}
 
 {{< include ../publications/fr/Blot2025.qmd >}}
