@@ -29,7 +29,46 @@ ig_r <-function(paper, file) i_g(paste0("replications/", paper, "_files/figure-h
 
 
 ig_d <- function(source, dataset, file){
-  i_g(paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1.png"))
+  path_base <- paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1")
+  img_path <- paste0(path_base, ".png")
+
+  # Source/Dataset link to this site's own pages -- same URL convention as
+  # source_dataset_file_updates() above (https://fgeerolf.com/data/<source>
+  # and .../<source>/<dataset>.html) -- which works for every source in
+  # this codebase, unlike an upstream-database link (only verified for
+  # eurostat's databrowser, dropped here in favor of this fully general
+  # pattern).
+  links <- tibble::tibble(
+    Source = paste0("[", source, "](https://fgeerolf.com/data/", source, ")"),
+    Dataset = paste0("[", dataset, "](https://fgeerolf.com/data/", source, "/", dataset, ".html)"),
+    PNG = paste0("[png](https://fgeerolf.com/", path_base, ".png)"),
+    PDF = paste0("[pdf](https://fgeerolf.com/", path_base, ".pdf)")
+  ) %>%
+    gt::gt() %>%
+    gt::fmt_markdown(columns = everything()) %>%
+    gt::cols_align(align = "center", columns = everything()) %>%
+    gt::tab_options(column_labels.font.weight = "bold")
+
+  if (knitr::is_html_output()) {
+    # print()-ing a gt table as a side effect (rather than returning it as
+    # the chunk's last value) skips knitr's special knit_print handling for
+    # recognized table/graphics classes: gt's print.gt_tbl method just
+    # writes its raw HTML to the console as plain text in a non-interactive
+    # render, which knitr then captures like any other printed output and
+    # HTML-escapes (`<table>` shows up as literal `&lt;table&gt;` on the
+    # page). knitr::asis_output() bypasses that by inserting its argument
+    # verbatim regardless of the calling chunk's own results option, so we
+    # build the table's raw HTML (gt::as_raw_html()) and the image tag
+    # ourselves and hand the combination to it directly.
+    img_tag <- sprintf('<p><img src="https://fgeerolf.com/%s" class="img-fluid figure-img"></p>', img_path)
+    return(knitr::asis_output(paste0(gt::as_raw_html(links), img_tag)))
+  }
+
+  # Interactive preview / LaTeX-PDF output: no asis-output escaping issue
+  # there (gt renders in RStudio's viewer; the table is a secondary detail
+  # in a PDF), so keep the simple print()-then-graphic behavior.
+  print(links)
+  i_g(img_path)
 }
 
 i_g <- function(path) {
