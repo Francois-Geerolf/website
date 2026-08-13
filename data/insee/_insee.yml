@@ -1,0 +1,26 @@
+subtitle: Données - INSEE
+lang: fr
+filters:
+  - ../../code/genderize-fr.lua
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+editor: source
+format:
+  html:
+    code-fold: true
+    toc: true
+    theme: flatly
+    embed-resources: false
+    other-links:
+      - text: "Données INSEE"
+        href: "https://fgeerolf.com/data/insee/"
+      - text: "Autres données"
+        href: "https://fgeerolf.com/data/"
+      - href: "https://fgeerolf.com/"
+        text: "Home"
+        icon: house
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    include-after-body: ../../statcounter.html

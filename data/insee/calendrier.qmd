@@ -1,15 +1,7 @@
 ---
 title: Calendrier des prochaines publications de l'Insee
-subtitle: Data - Insee
-author:
-  - name: François Geerolf
-    url: https://fgeerolf.com
-format:
-  html:
-    code-fold: false
-    toc: true
-    theme: flatly
-    embed-resources: false
+metadata-files:
+  - _insee.yml
 ---
 
 
