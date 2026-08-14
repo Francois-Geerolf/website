@@ -32,6 +32,23 @@ ig_d <- function(source, dataset, file){
   path_base <- paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1")
   img_path <- paste0(path_base, ".png")
 
+  # The chart shown below is a static PNG baked in at the dataset's last
+  # render -- it's only as fresh as the OLDER of "when the underlying data
+  # was last downloaded" and "when the page was last rendered" (e.g. new
+  # data can arrive after the last render, in which case the picture is
+  # stale even though the data itself isn't). min() of the two, from
+  # `datasets` (loaded from _datasets.RData at the top of this file),
+  # captures that conservatively; NA if the dataset isn't in the catalog.
+  # .data$/.env$ disambiguate the filter columns from this function's own
+  # source/dataset argument names, which are identical to them.
+  freshness <- datasets %>%
+    dplyr::filter(.data$source == .env$source, .data$dataset == .env$dataset)
+  updated <- if (nrow(freshness) == 1) {
+    format(pmin(as.Date(freshness$data_updated), as.Date(freshness$.html), na.rm = TRUE), "%d %b %Y")
+  } else {
+    NA_character_
+  }
+
   # Source/Dataset link to this site's own pages -- same URL convention as
   # source_dataset_file_updates() above (https://fgeerolf.com/data/<source>
   # and .../<source>/<dataset>.html) -- which works for every source in
@@ -41,6 +58,7 @@ ig_d <- function(source, dataset, file){
   links <- tibble::tibble(
     Source = paste0("[", source, "](https://fgeerolf.com/data/", source, ")"),
     Dataset = paste0("[", dataset, "](https://fgeerolf.com/data/", source, "/", dataset, ".html)"),
+    Updated = updated,
     PNG = paste0("[png](https://fgeerolf.com/", path_base, ".png)"),
     PDF = paste0("[pdf](https://fgeerolf.com/", path_base, ".pdf)")
   ) %>%
