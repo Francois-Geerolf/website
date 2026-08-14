@@ -9,7 +9,7 @@ author:
     url: https://fgeerolf.com
 format:
   html:
-    code-fold: false
+    code-fold: true
     toc: true
     theme: flatly
     embed-resources: false

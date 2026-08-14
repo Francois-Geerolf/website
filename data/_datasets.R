@@ -184,15 +184,18 @@ if (length(complete_bases) == 0) {
       dataset,   # <- basename/stem
       Title,     # <- from YAML front matter of the .qmd
       `.html`    = html_mtime,
-      # Fallback file-mtime date, used only where the checkpoint-based
-      # parquet_updated (precise timestamp, from _update_parquet.RData)
-      # isn't available -- e.g. sources outside _status/dirs.txt.
+      # Raw file-mtime date -- always computed, not just a fallback for
+      # untracked sources. The checkpoint's parquet_updated can lag behind
+      # the actual file if _update_parquet_folder.R hasn't been re-run
+      # since the last real download (it isn't wired into every build
+      # script), so pmax() below trusts whichever signal is more recent
+      # instead of blindly preferring the checkpoint.
       .data_mtime = coalesce(parquet_mtime, rdata_mtime)
     ) %>%
     left_join(parquet_info, by = c("source", "dataset")) %>%
     left_join(qmd_info, by = c("source", "dataset")) %>%
     mutate(
-      data_updated = coalesce(parquet_updated, as.POSIXct(.data_mtime))
+      data_updated = pmax(parquet_updated, as.POSIXct(.data_mtime), na.rm = TRUE)
     ) %>%
     select(source, dataset, Title, `.html`, data_updated, Nobs,
            qmd_duration_sec, qmd_rendered_at) %>%
