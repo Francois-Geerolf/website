@@ -91,6 +91,41 @@ complete_bases <- df %>%
   filter(map_lgl(have_ext, ~ all(targets_core %in% .x) && any(.x %in% targets_data))) %>%
   pull(basepath)
 
+# --- Per-file Nobs / precise parquet timestamp / qmd render duration -----
+# These are already tracked, per source directory, by the existing
+# _update_parquet_folder.R / _update_qmd_folder.R checkpoint mechanism
+# (dirs.txt lists which source directories are under that pipeline) --
+# read them here rather than recomputing anything (e.g. re-scanning
+# parquet files for row counts), matching the standing rule that dataset
+# sizes are only ever populated forward by the download/render hooks
+# themselves, never bulk-backfilled from this script.
+read_checkpoint <- function(dir_path, rdata_name, obj_name) {
+  chk <- file.path(dir_path, rdata_name)
+  if (!file.exists(chk)) return(NULL)
+  e <- new.env()
+  ok <- tryCatch({ load(chk, envir = e); TRUE }, error = function(err) FALSE)
+  if (!ok || !exists(obj_name, envir = e)) return(NULL)
+  get(obj_name, envir = e)
+}
+
+dirs_file <- file.path(root_dir, "_status", "dirs.txt")
+tracked_dirs <- if (file.exists(dirs_file)) trimws(readLines(dirs_file)) else character()
+tracked_dirs <- tracked_dirs[nzchar(tracked_dirs)]
+
+parquet_info <- map_dfr(tracked_dirs, function(d) {
+  x <- read_checkpoint(file.path(root_dir, d), "_update_parquet.RData", "update_parquet")
+  if (is.null(x)) return(tibble())
+  tibble(source = d, dataset = tools::file_path_sans_ext(x$filename),
+         Nobs = x$nrow, parquet_updated = x$mtime)
+})
+
+qmd_info <- map_dfr(tracked_dirs, function(d) {
+  x <- read_checkpoint(file.path(root_dir, d), "_update_qmd.RData", "update_qmd")
+  if (is.null(x)) return(tibble())
+  tibble(source = d, dataset = tools::file_path_sans_ext(x$filename),
+         qmd_duration_sec = x$duration_sec, qmd_rendered_at = x$end)
+})
+
 if (length(complete_bases) == 0) {
   datasets <- tibble(
     source     = character(),
@@ -99,7 +134,11 @@ if (length(complete_bases) == 0) {
     `.html`    = as.Date(character()),
     `.RData`   = as.Date(character()),
     `.parquet` = as.Date(character()),
-    `.data`    = as.Date(character())
+    `.data`    = as.Date(character()),
+    Nobs               = integer(),
+    parquet_updated    = as.POSIXct(character()),
+    qmd_duration_sec   = double(),
+    qmd_rendered_at    = as.POSIXct(character())
   )
   print(datasets)
 } else {
@@ -143,6 +182,8 @@ if (length(complete_bases) == 0) {
       `.html`    = html_mtime,
       .rData = coalesce(parquet_mtime, rdata_mtime)
     ) %>%
+    left_join(parquet_info, by = c("source", "dataset")) %>%
+    left_join(qmd_info, by = c("source", "dataset")) %>%
     arrange(source, dataset)
   
   print(datasets)
