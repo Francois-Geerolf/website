@@ -67,6 +67,13 @@ files <- list.files(
   full.names = TRUE
 )
 
+# Drop files that live directly in root_dir (not in a source subfolder),
+# e.g. energy.qmd, commodities.qmd -- these are cross-source synthesis
+# pages, not per-source datasets, so they don't belong in a catalog meant
+# to tell each source folder's index.qmd its own file count / last update.
+files <- files[dirname(normalizePath(files, winslash = "/", mustWork = FALSE)) !=
+                 normalizePath(root_dir, winslash = "/", mustWork = FALSE)]
+
 # Build a data frame of parts
 df <- tibble(path = files) %>%
   mutate(
@@ -128,17 +135,14 @@ qmd_info <- map_dfr(tracked_dirs, function(d) {
 
 if (length(complete_bases) == 0) {
   datasets <- tibble(
-    source     = character(),
-    dataset    = character(),
-    Title      = character(),
-    `.html`    = as.Date(character()),
-    `.RData`   = as.Date(character()),
-    `.parquet` = as.Date(character()),
-    `.data`    = as.Date(character()),
-    Nobs               = integer(),
-    parquet_updated    = as.POSIXct(character()),
-    qmd_duration_sec   = double(),
-    qmd_rendered_at    = as.POSIXct(character())
+    source           = character(),
+    dataset          = character(),
+    Title            = character(),
+    `.html`          = as.Date(character()),
+    data_updated     = as.POSIXct(character()),
+    Nobs             = integer(),
+    qmd_duration_sec = double(),
+    qmd_rendered_at  = as.POSIXct(character())
   )
   print(datasets)
 } else {
@@ -180,10 +184,18 @@ if (length(complete_bases) == 0) {
       dataset,   # <- basename/stem
       Title,     # <- from YAML front matter of the .qmd
       `.html`    = html_mtime,
-      .rData = coalesce(parquet_mtime, rdata_mtime)
+      # Fallback file-mtime date, used only where the checkpoint-based
+      # parquet_updated (precise timestamp, from _update_parquet.RData)
+      # isn't available -- e.g. sources outside _status/dirs.txt.
+      .data_mtime = coalesce(parquet_mtime, rdata_mtime)
     ) %>%
     left_join(parquet_info, by = c("source", "dataset")) %>%
     left_join(qmd_info, by = c("source", "dataset")) %>%
+    mutate(
+      data_updated = coalesce(parquet_updated, as.POSIXct(.data_mtime))
+    ) %>%
+    select(source, dataset, Title, `.html`, data_updated, Nobs,
+           qmd_duration_sec, qmd_rendered_at) %>%
     arrange(source, dataset)
   
   print(datasets)
