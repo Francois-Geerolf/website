@@ -229,14 +229,24 @@ print_table_noname <- . %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
                             latex_options = c("striped", "hold_position", "repeat_header"))
 
+# Joins in just Title + Updated (single pmin(data_updated, .html) date,
+# same as ig_d()'s Updated above) -- not the full raw catalog
+# (Nobs/qmd_duration_sec/qmd_rendered_at etc), which is what this used to
+# left_join() wholesale against the global `datasets` loaded at the top of
+# this file.
 source_dataset_file_updates <- . %>%
-  left_join(datasets, by = c("source", "dataset")) %>%
+  left_join(
+    datasets %>%
+      dplyr::transmute(source, dataset, Title,
+                        Updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE)),
+    by = c("source", "dataset")
+  ) %>%
   mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
          dataset = map(dataset, gt::md),
          source = glue::glue("[{source}](https://fgeerolf.com/data/{source})"),
          source = map(source, gt::md)) %>%
   gt::gt() %>%
-  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::cols_align(align = "center", columns = everything()) %>%
   gt::tab_options(column_labels.font.weight = "bold")
 
 
@@ -316,11 +326,15 @@ source_dataset_file_updates4 <- . %>%
                       page_size_default = 20,
                       page_size_values = c(5, 10, 15, 20))
 
+# Single Updated column (pmin of the .RData/.html file-mtime scan) instead
+# of two separate date columns.
 source_dataset_title_file_updates <- . %>%
   mutate(type = map(source, ~ tibble(type = c(".RData", ".html")))) %>%
   unnest %>%
   mutate(date = paste0("~/iCloud/website/data/", source, "/", dataset, type) %>% file.info %>% pluck("mtime") %>% as.Date()) %>%
   spread(type, date) %>%
+  mutate(Updated = pmin(`.RData`, `.html`, na.rm = TRUE)) %>%
+  select(-`.RData`, -`.html`) %>%
   mutate(Title = read_lines(paste0("~/iCloud/website/data/", source, "/",dataset, ".qmd"), skip = 1, n_max = 1) %>% gsub("title: ", "", .) %>% gsub("\"", "", .)) %>%
   select(Title, everything()) %>%
   mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
@@ -328,7 +342,7 @@ source_dataset_title_file_updates <- . %>%
          source = glue::glue("[{source}](https://fgeerolf.com/data/{source})"),
          source = map(source, gt::md)) %>%
   gt::gt() %>%
-  gt::cols_align(align = "center", columns = everything()) %>% 
+  gt::cols_align(align = "center", columns = everything()) %>%
   gt::tab_options(column_labels.font.weight = "bold")
 
 theme_file_updates <- . %>%
