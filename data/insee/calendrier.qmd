@@ -87,4 +87,23 @@ calendrier_donnees |>
 
 - Actualités des indices et séries chronologiques. [html](https://www.insee.fr/fr/information/2862832)
 
+## Historique
+
+```{r, echo = F}
+if (file.exists(calendrier_historique_path)) {
+  readr::read_csv(calendrier_historique_path, show_col_types = FALSE) |>
+    dplyr::arrange(dplyr::desc(Horodatage)) |>
+    gt::gt() |>
+    gt::opt_interactive(use_search = T,
+                        use_resizers = T,
+                        use_highlight = T,
+                        use_pagination = T,
+                        use_pagination_info = T,
+                        use_compact_mode = T,
+                        page_size_default = 20,
+                        page_size_values = c(20, 50, 100)) |>
+    gt::tab_options(table.width = "100%")
+}
+```
+
 
