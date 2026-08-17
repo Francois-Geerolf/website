@@ -17,6 +17,24 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 ```{r, echo = F}
 horodatage <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
+mois_fr <- c(janvier = 1, "février" = 2, mars = 3, avril = 4, mai = 5, juin = 6,
+             juillet = 7, "août" = 8, septembre = 9, octobre = 10, novembre = 11,
+             "décembre" = 12)
+
+parse_date_evenement <- function(donnees, mise_a_jour, annee) {
+  semaine <- stringr::str_match(donnees, "^Semaine du (\\d{1,2}) au \\d{1,2} (\\p{L}+)")
+  if (!is.na(semaine[1, 1])) {
+    return(sprintf("%04d-%02d-%02d 00:00:00", annee, mois_fr[[semaine[1, 3]]], as.integer(semaine[1, 2])))
+  }
+  item <- stringr::str_match(mise_a_jour, "^(\\d{1,2}) (\\p{L}+) à (\\d{1,2})h(\\d{0,2})$")
+  if (!is.na(item[1, 1])) {
+    minute <- ifelse(item[1, 5] == "", 0L, as.integer(item[1, 5]))
+    return(sprintf("%04d-%02d-%02d %02d:%02d:00", annee, mois_fr[[item[1, 3]]],
+                    as.integer(item[1, 2]), as.integer(item[1, 4]), minute))
+  }
+  ""
+}
+
 calendrier_donnees <- "https://www.insee.fr/fr/information/5235017" |>
   rvest::read_html() |>
   rvest::html_table(header = F, fill = T) |>
@@ -27,8 +45,22 @@ calendrier_donnees <- "https://www.insee.fr/fr/information/5235017" |>
   #dplyr::filter(X3 != "DATE D'EMBARGO", X3 != "") |>
   dplyr::select(`Données` = X2, `Mise à jour` = X3) |>
   dplyr::mutate(`Données` = stringr::str_remove_all(`Données`, "\\\t|\\\n|\\\r"),
-         `Données` = substr(`Données`, 1,190)) |>
+         `Données` = substr(`Données`, 1,190),
+         # Insee's page uses U+00A0 (espace insécable) between words, not a
+         # plain space -- parse_date_evenement()'s regexes (and anyone
+         # eyeballing the raw string) expect ordinary spaces.
+         `Données` = stringr::str_replace_all(`Données`, " ", " "),
+         `Mise à jour` = stringr::str_replace_all(`Mise à jour`, " ", " ")) |>
   dplyr::filter(!(`Données` == "" & `Mise à jour` == "")) |>
+  dplyr::mutate(
+    Annee_semaine = stringr::str_match(`Données`, "^Semaine du \\d{1,2} au \\d{1,2} \\p{L}+ (\\d{4})")[, 2],
+    Annee_semaine = as.integer(Annee_semaine)
+  ) |>
+  tidyr::fill(Annee_semaine, .direction = "down") |>
+  dplyr::rowwise() |>
+  dplyr::mutate(`Date/heure` = parse_date_evenement(`Données`, `Mise à jour`, Annee_semaine)) |>
+  dplyr::ungroup() |>
+  dplyr::select(-Annee_semaine) |>
   dplyr::mutate(Horodatage = horodatage, .before = 1)
 
 calendrier_historique_path <- here::here("data", "insee", "calendrier_historique.csv")
@@ -36,7 +68,7 @@ readr::write_csv(calendrier_donnees, calendrier_historique_path,
                   append = file.exists(calendrier_historique_path))
 
 calendrier_donnees |>
-  dplyr::select(-Horodatage) |>
+  dplyr::select(-Horodatage, -`Date/heure`) |>
   gt::gt() |>
   #gt::cols_width(`Données` ~ gt::px(400), everything() ~ gt::px(150)) |>
   gt::cols_label(`Données` = "", `Mise à jour` = "") |>
