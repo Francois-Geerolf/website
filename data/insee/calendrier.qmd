@@ -15,7 +15,9 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 
 
 ```{r, echo = F}
-"https://www.insee.fr/fr/information/5235017" |>
+horodatage <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
+
+calendrier_donnees <- "https://www.insee.fr/fr/information/5235017" |>
   rvest::read_html() |>
   rvest::html_table(header = F, fill = T) |>
   purrr::pluck(1) |>
@@ -27,6 +29,14 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
   dplyr::mutate(`Données` = stringr::str_remove_all(`Données`, "\\\t|\\\n|\\\r"),
          `Données` = substr(`Données`, 1,190)) |>
   dplyr::filter(!(`Données` == "" & `Mise à jour` == "")) |>
+  dplyr::mutate(Horodatage = horodatage, .before = 1)
+
+calendrier_historique_path <- here::here("data", "insee", "calendrier_historique.csv")
+readr::write_csv(calendrier_donnees, calendrier_historique_path,
+                  append = file.exists(calendrier_historique_path))
+
+calendrier_donnees |>
+  dplyr::select(-Horodatage) |>
   gt::gt() |>
   #gt::cols_width(`Données` ~ gt::px(400), everything() ~ gt::px(150)) |>
   gt::cols_label(`Données` = "", `Mise à jour` = "") |>
