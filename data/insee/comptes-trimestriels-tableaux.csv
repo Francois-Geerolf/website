@@ -1,0 +1,47 @@
+categorie,fichier,intitule
+Produit Intérieur Brut (PIB) et ses composantes,t_pib_val,PIB et ses composants - Equilibre emplois-ressources - valeurs aux prix courants
+Produit Intérieur Brut (PIB) et ses composantes,t_pib_vol,PIB et ses composantes - Equilibre emplois-ressources - volumes aux prix de l'année précédente chaînés
+Biens et services,t_manuf_vol,Produits manufacturés - Équilibre emplois-ressources - Volumes aux prix de l'année précédente chaînés
+Biens et services,t_manuf_val,Produits manufacturés - Équilibre emplois-ressources - Valeurs aux prix courants
+Biens et services,t_biens_vol,Biens - Équilibre emplois-ressources - Volumes aux prix de l'année précédente chaînés
+Biens et services,t_biens_val,Biens - Equilibre emplois-ressources - valeurs aux prix courants
+Biens et services,t_construc_vol,Construction - Équilibre emplois-ressources - Volumes aux prix de l'année précédente chaînés
+Biens et services,t_construc_val,Construction - Équilibre emplois-ressources - Valeurs aux prix courants
+Biens et services,t_servmarch_vol,Services principalement marchands - Équilibre emplois-ressources - Volumes aux prix de l'année précédente chaînés
+Biens et services,t_servmarch_val,Services principalement marchands - Équilibre emplois-ressources - Valeurs aux prix courants
+Biens et services,t_fbcfsi_vol,FBCF de l'ensemble des secteurs institutionnels - Par produit - Volumes aux prix de l'année précédente chaînés
+Biens et services,t_fbcfsi_val,FBCF de l'ensemble des secteurs institutionnels - Par produit - Valeurs aux prix courants
+Biens et services,t_fbcfenf_vol,FBCF des entreprises non financières (ENF) - Par produit - Volumes aux prix de l'année précédente chaînés
+Biens et services,t_fbcfenf_val,FBCF des entreprises non financières (ENF) - Par produit - Valeurs aux prix courants
+Biens et services,t_recapproduit_vol,Récapitulatif des séries des produits - Volumes aux prix de l'année précédente chaînés
+Biens et services,t_recapproduit_val,Récapitulatif des séries des produits - Valeurs aux prix courants
+Consommation des ménages,t_conso_vol,"Dépenses de consommation des ménages - volumes aux prix de l'année précédente chaînés (données CVS-CJO), base 2014"
+Consommation des ménages,t_conso_val,Dépenses de consommation des ménages aux prix courants (données CVS-CJO)
+Consommation des ménages,t_dpe_val,Dépenses de consommation des ménages pré-engagées
+Échanges extérieurs,t_exports_vol,Exportations - Par produit - Volumes aux prix de l'année précédente chaînés
+Échanges extérieurs,t_exports_val,Exportations - Par produit - Valeurs aux prix courants
+Échanges extérieurs,t_zonexp_vol,Exportations - Par zone - Volumes aux prix de l'année précédente chaînés
+Échanges extérieurs,t_zonexp_val,Exportations - Par zone - valeurs aux prix courants
+Échanges extérieurs,t_imports_vol,Importations - Par produit - Volumes aux prix de l'année précédente chaînés
+Échanges extérieurs,t_imports_val,Importations - Par produit - Valeurs aux prix courants
+Échanges extérieurs,t_zonimp_vol,Importations - Par zone - Volumes aux prix de l'année précédente chaînés
+Échanges extérieurs,t_zonimp_val,Importations - Par zone - Valeurs aux prix courants
+Branches,t_va_vol,Valeur ajoutée par branche - Volumes aux prix de l'année précédente chaînés
+Branches,t_va_val,Valeur ajoutée par branche - Valeurs aux prix courants
+Branches,t_prod_vol,Production par branche - Volumes aux prix de l'année précédente chaînés
+Branches,t_prod_val,Production par branche - Valeurs aux prix courants
+Branches,t_emploi_pp,Emploi par branche - Personnes physiques
+Branches,t_emploi_etp,Emploi salarié par branche - Équivalent temps plein
+Branches,t_salaire_val,Salaire moyen par tête - SMPT (données CVS)
+Branches,t_coutprodmanuf_val,Coûts de production dans l'industrie manufacturière - Valeurs aux prix courants
+Branches,t_recapbranche_val,Récapitulatif des comptes de branche - Comptes de production et d'exploitation en valeur
+Branches,t_recapbranche_vol,"Récapitulatif des comptes de branche - Comptes de production en volumes chaînés, comptes d'emploi et de durée"
+Secteurs institutionnels,t_revfact_val,Revenu des facteurs - Valeurs aux prix courants
+Secteurs institutionnels,t_coutprodenf_val,Coûts de production des entreprises non financières (ENF) - Valeurs aux prix courants
+Secteurs institutionnels,t_txmargeenf_val,Décomposition du taux de marge des entreprises non financières
+Secteurs institutionnels,t_txmargesnf_val,Décomposition du taux de marge des sociétés non financières
+Secteurs institutionnels,t_recapAgent_val,Récapitulatif des séries des comptes d'agents
+Revenu disponible et pouvoir d'achat des ménages,t_men_val,"Revenu, pouvoir d'achat et comptes des ménages - Valeurs aux prix courants"
+Revenu disponible et pouvoir d'achat des ménages,t_pouvachat_val,Pouvoir d'achat et ratios des comptes des ménages
+Finances publiques,t_compteapu_val,"Dépenses, recettes et besoin de financement des administrations publiques - valeurs aux prix courants"
+Finances publiques,dette,Dette de Maastricht des administrations publiques - Répartition par sous-secteur et par instrument

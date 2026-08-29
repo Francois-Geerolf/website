@@ -1,0 +1,182 @@
+categorie,fichier,intitule
+PIB et grands agrégats économiques,T_1101_1103,1.101-103 - Le produit intérieur brut et ses composantes
+PIB et grands agrégats économiques,T_1104,1.104 - Contributions à l’évolution du produit intérieur brut aux prix de l'année précédente (En points de PIB)
+PIB et grands agrégats économiques,T_1105,1.105 - Produit intérieur brut : les trois approches à prix courants
+PIB et grands agrégats économiques,T_1106,1.106 - Valeur ajoutée brute par secteur institutionnel à prix courants
+PIB et grands agrégats économiques,T_1107,1.107 - Partage de la valeur ajoutée brute à prix courants
+PIB et grands agrégats économiques,T_1108,1.108 - Emploi intérieur total par secteur institutionnel en nombre de personnes
+PIB et grands agrégats économiques,T_1109,1.109 - Emploi intérieur total par secteur institutionnel en nombre d'équivalents temps plein
+PIB et grands agrégats économiques,T_1110,1.110 - Capital fixe brut par secteur institutionnel à prix courants
+PIB et grands agrégats économiques,T_1111,1.111 - Capital fixe net par secteur institutionnel à prix courants
+PIB et grands agrégats économiques,T_1112,1.112 - Consommation de capital fixe par secteur institutionnel à prix courants
+PIB et grands agrégats économiques,T_1113,1.113 - Capacités (+) ou besoins (-) de financement des secteurs institutionnels
+PIB et grands agrégats économiques,T_1114,1.114 - Grands agrégats et opérations avec le Reste du monde
+PIB et grands agrégats économiques,T_1115,1.115 - Produit intérieur brut et revenu national brut par habitant
+PIB et grands agrégats économiques,population_menages,Population et ménages
+Ressources et emplois - Production et consommation intermédiaire,T_5101_5103,5.101-103 - Production par produit (38 postes)
+Ressources et emplois - Production et consommation intermédiaire,T_5104_5106,5.104-106 - Consommation intermédiaire par produit (38 postes)
+Ressources et emplois - Production et consommation intermédiaire,T_5101d_5103d,5.101d-103d - Production par produit (88 postes)
+Ressources et emplois - Production et consommation intermédiaire,T_5104d_5106d,5.104d-106d - Consommation intermédiaire par produit (88 postes)
+Ressources et emplois - Consommation des APU et ISBLSM,T_5207_5209,5.207-209 - Dépense de consommation individuelle des administrations publiques par produit
+Ressources et emplois - Consommation des APU et ISBLSM,T_5210_5212,5.210-212 - Dépense de consommation collective des administrations publiques par produit
+Ressources et emplois - Consommation des APU et ISBLSM,T_5213_5215,5.213-215 - Dépense de consommation finale des institutions sans but lucratif au service des ménages par produit
+Ressources et emplois - FBCF et variation de stocks,T_5301_5303,5.301-303 - Formation brute de capital fixe par produit (38 postes)
+Ressources et emplois - FBCF et variation de stocks,T_5304,5.304 - Variation des stocks par produit (38 postes)
+Ressources et emplois - FBCF et variation de stocks,T_5301d_5303d,5.301d-303d - Formation brute de capital fixe par produit (88 postes)
+Consommation des ménages,T_5204_5206,5.204-206 - Consommation finale effective des ménages par produit (38 postes)
+Consommation des ménages,T_5204d_5206d,5.204d-206d - Consommation finale effective des ménages par produit (88 postes)
+Consommation des ménages,T_CONSO_EFF_PRODUITS,Consommation finale effective par produit (niveaux diffusables les plus fins)
+Consommation des ménages,T_2201_2202,2.201-202 - Consommation finale effective par fonction
+Consommation des ménages,T_CONSO_EFF_FONCTION,Consommation finale effective par fonction (niveaux diffusables les plus fins)
+Consommation des ménages,T_2203_2204,2.203-204 - Consommation finale effective par durabilité
+Consommation des ménages,T_CONSO_EFF_DURABILITE,Consommation finale effective par durabilité (niveaux diffusables les plus fins)
+Consommation des ménages,T_CONSO_EFF_PRODUITS_MENAGES,Dépenses de consommation finale des ménages (niveaux diffusables les plus fins)
+Consommation des ménages,T_CONSO_EFF_PRODUITS_ISBLSM,Dépenses de consommation finale des ISBLSM (niveaux diffusables les plus fins)
+Consommation des ménages,T_CONSO_EFF_PRODUITS_APU,Dépenses de consommation finale des administrations publiques (niveaux diffusables les plus fins)
+Consommation des ménages,T_DEP_PRE_ENG,Dépense de consommation finale pré-engagée détaillée des ménages (niveaux diffusables les plus fins)
+Consommation des ménages,T_5201_5203,5.201-203 - Dépense de consommation finale des ménages par produit (38 postes)
+Consommation des ménages,T_5201d_5203d,5.201d-203d - Dépense de consommation finale des ménages par produit (88 postes)
+Échanges extérieurs,T_5401_5403,5.401-403 - Exportations de biens et de services par produit (38 postes)
+Échanges extérieurs,T_5404_5406,5.404-406 - Importations de biens et de services par produit (38 postes)
+Échanges extérieurs,T_5407,5.407 - Solde extérieur de biens et de services par produit (38 postes)
+Échanges extérieurs,T_5408,5.408 - Taux de couverture par produit (38 postes)
+Échanges extérieurs,T_5401d_5403d,5.401d-403d - Exportations de biens et de services par produit (88 postes)
+Échanges extérieurs,T_5404d_5406d,5.404d-406d - Importations de biens et de services par produit (88 postes)
+Activité des branches - Production et consommation intermédiaire,T_6101_6103,6.101-103 - Production par branche (38 postes)
+Activité des branches - Production et consommation intermédiaire,T_6104_6106,6.104-106 - Consommation intermédiaire par branche (38 postes)
+Activité des branches - Production et consommation intermédiaire,T_6101d_6103d,6.101d-103d - Production par branche (88 postes)
+Activité des branches - Production et consommation intermédiaire,T_6104d_6106d,6.104d-106d - Consommation intermédiaire par branche (88 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6201_6203,6.201-203 - Valeur ajoutée brute par branche (38 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6204,6.204 - Rémunération des salariés par branche (38 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6205,6.205 - Salaires et traitements bruts des salariés par branche (38 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6206,6.206 - Excédent brut d'exploitation par branche (38 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6207,6.207 - Excédent brut d'exploitation et revenu mixte brut par branche (38 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6201d_6203d,6.201d-203d - Valeur ajoutée brute par branche (88 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6204d,6.204d - Rémunération des salariés par branche (88 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6205d,6.205d - Salaires et traitements bruts des salariés par branche (88 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6206d,6.206d - Excédent brut d'exploitation par branche (88 postes)
+Activité des branches - Valeur ajoutée et rémunération,T_6207d,6.207d - Excédent brut d'exploitation et revenu mixte brut par branche (88 postes)
+Activité des branches - Emploi,T_6208,6.208 - Emploi intérieur total par branche en nombre de personnes (38 postes)
+Activité des branches - Emploi,T_6209,6.209 - Emploi intérieur total par branche en nombre d'équivalents temps plein (38 postes)
+Activité des branches - Emploi,T_6210,6.210 - Emploi intérieur salarié par branche en nombre de personnes (38 postes)
+Activité des branches - Emploi,T_6211,6.211 - Emploi intérieur salarié par branche en nombre d'équivalents temps plein (38 postes)
+Activité des branches - Emploi,T_6212,6.212 - Durée annuelle du travail des salariés par branche (38 postes)
+Activité des branches - Emploi,T_6213,6.213 - Volume total d'heures travaillées par branche (38 postes)
+Activité des branches - Emploi,T_6214,6.214 - Volume total d'heures travaillées des salariés par branche (38 postes)
+Activité des branches - Emploi,T_6215,6.215 - Productivité horaire du travail par branche (38 postes)
+Activité des branches - Emploi,T_6208d,6.208d - Emploi intérieur total par branche en nombre de personnes (88 postes)
+Activité des branches - Emploi,T_6209d,6.209d - Emploi intérieur total par branche en nombre d'équivalents temps plein (88 postes)
+Activité des branches - Emploi,T_6210d,6.210d - Emploi intérieur salarié par branche en nombre de personnes (88 postes)
+Activité des branches - Emploi,T_6211d,6.211d - Emploi intérieur salarié par branche en nombre d'équivalents temps plein (88 postes)
+"Activité des branches - FBCF, capital fixe et consommation",T_6301_6303,6.301-303 - Formation brute de capital fixe de l'ensemble des secteurs institutionnels par branche (38 postes)
+"Activité des branches - FBCF, capital fixe et consommation",T_6461_6462,6.401-460 - Capital fixe brut et net par actif et par branche
+Secteurs institutionnels - Entreprises non financières,PRINCIPAUX-AGREGATS-ENF,Variation annuelle en % des principales opérations des comptes des sociétés et entreprises individuelles non financières
+Secteurs institutionnels - Entreprises non financières,T_4101,4.101 - Principaux ratios des comptes des sociétés non financières (S11) et des entreprises individuelles non financières (S14AA)
+Secteurs institutionnels - Entreprises non financières,T_4102,4.102 - Éléments du compte d'exploitation des sociétés et des entreprises individuelles non financières (S11 et S14AA)
+Secteurs institutionnels - Entreprises non financières,T_7101,7.101 - Compte des sociétés non financières (S11)
+Secteurs institutionnels - Entreprises non financières,T_7102,7.102 - Compte des entreprises individuelles non financières (S14AA)
+Secteurs institutionnels - Entreprises non financières,T_7103,7.103 - Compte des entreprises non financières (S11 et S14AA)
+Secteurs institutionnels - Sociétés financières,T_7201,7.201 - Compte des sociétés financières (S12)
+Secteurs institutionnels - Sociétés financières,T_7202,7.202 - Compte des intermédiaires financiers hors assurances et fonds de pension (S12K64) (En milliards d'euros)
+Secteurs institutionnels - Sociétés financières,T_7203,7.203 - Compte des sociétés d'assurance et fonds de pension (S12K65) (En milliards d'euros)
+Secteurs institutionnels - Sociétés financières,T_7204,7.204 - Compte des auxiliaires financiers (S12K66) (En milliards d'euros)
+Secteurs institutionnels - Sociétés financières,T_7205,7.205 - Intérêts et services d’intermédiations indirectement mesurés (SIFIM) (En milliards d'euros)
+Secteurs institutionnels - Administrations publiques,T_7301,7.301 - Compte des administrations publiques (S13)
+Secteurs institutionnels - Administrations publiques,T_7302,7.302 - Compte de l'administration publique centrale (S1311)
+Secteurs institutionnels - Administrations publiques,T_7303,7.303 - Compte de l'Etat (S13111)
+Secteurs institutionnels - Administrations publiques,T_7304,7.304 - Compte des organismes divers d'administration centrale (S13112)
+Secteurs institutionnels - Administrations publiques,T_7305,7.305 - Compte des administrations publiques locales (S1313)
+Secteurs institutionnels - Administrations publiques,T_7306,7.306 - Compte des administrations de sécurité sociale (S1314)
+Secteurs institutionnels - Ménages,T_7401,7.401 - Compte des ménages (S14)
+Secteurs institutionnels - ISBLSM,T_7501,7.501 - Compte des institutions sans but lucratif au service des ménages (S15)
+Secteurs institutionnels - Reste du monde,T_7601,7.601 - Compte du reste du monde (S2)
+Finances publiques - Dette et déficit (Maastricht),t_3101,- Dette des administrations publiques (S13) au sens de Maastricht et sa répartition par sous-secteur (En milliards d'euros et %)
+Finances publiques - Dette et déficit (Maastricht),t_3102,- Dette des administrations publiques (S13) au sens de Maastricht et sa répartition par sous-secteurs : décomposition par instrument (En milliards d'euros)
+Finances publiques - Dette et déficit (Maastricht),t_3103,- Dette nette des administrations publiques (S13) et autres actifs liquides détenus par les administrations publiques (En milliards d'euros et %)
+Finances publiques - Dette et déficit (Maastricht),t_3104,- Passage du total des passifs des administrations publiques (S13) en comptabilité nationale à leur dette au sens de Maastricht (En milliards d'euros)
+Finances publiques - Dette et déficit (Maastricht),t_3105,- Passage du déficit des administrations publiques (S13) à la variation de leur dette au sens de Maastricht (En milliards d'euros)
+Finances publiques - Dette et déficit (Maastricht),t_3106,- Déficit des administrations publiques (S13) au sens de Maastricht (En milliards d'euros et %)
+Finances publiques - Dette et déficit (Maastricht),t_3107,- Passage du résultat d'exécution des lois de finances au déficit de l'État (S13111) au sens de Maastricht (En milliards d'euros)
+Finances publiques - Dette et déficit (Maastricht),t_3108,- Passage du résultat comptable du régime général au déficit des administrations de sécurité sociale (S1314) au sens de Maastricht (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3201,- Dépenses et recettes des administrations publiques (S13) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3202,- Dépenses et recettes de l'administration publique centrale (S1311) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3203,- Dépenses et recettes de l'État (S13111) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3204,- Dépenses et recettes des organismes divers d'administration centrale (S13112) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3205,- Dépenses et recettes des administrations publiques locales (S1313) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3206,- Dépenses et recettes des collectivités locales (S13131) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3207,- Dépenses et recettes des communes (S131311) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3208,- Dépenses et recettes des départements (S131312) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3209,- Dépenses et recettes des régions (S131313) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3210,- Dépenses et recettes des syndicats (S131314) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3211,- Dépenses et recettes des organismes divers d'administration locale (S13132) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3212,- Dépenses et recettes des administrations de sécurité sociale (S1314) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3213,- Dépenses et recettes des régimes d'assurance sociale (S13141) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3214,"- Dépenses et recettes des organismes dépendant des assurances sociales dont hôpitaux, Pôle Emploi,... (S13142) (En milliards d'euros)"
+Finances publiques - Dépenses et recettes,t_3215,- Dépenses et recettes des Administrations publiques par sous-secteur (En milliards d'euros et %)
+Finances publiques - Dépenses et recettes,t_3216,- Prélèvements obligatoires des administrations publiques et des institutions communautaires (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3217,- Principaux impôts par catégorie (En milliards d'euros)
+Ménages - Revenu et pouvoir d'achat,t_2101,2.101 - Revenu disponible brut des ménages et évolution du pouvoir d'achat
+Ménages - Revenu et pouvoir d'achat,t_2102,2.102 - Revenu disponible « arbitrable » des ménages et évolution du pouvoir d'achat « arbitrable »
+Ménages - Revenu et pouvoir d'achat,t_2103,2.103 - Dépense de consommation finale pré-engagée des ménages
+Ménages - Revenu et pouvoir d'achat,t_2104,2.104 - Compte des ménages simplifié et ratios d'épargne
+Patrimoine - Comptes financiers,T_8100_2025,8.100 - Tableau des opérations financières 2025
+Patrimoine - Comptes financiers,T_8100_2024,8.100 - Tableau des opérations financières 2024
+Patrimoine - Comptes financiers,T_8100_2023,8.100 - Tableau des opérations financières 2023
+Patrimoine - Comptes financiers,T_8101,8.101 - Comptes financiers - Économie nationale (S1)
+Patrimoine - Comptes financiers,T_8102,8.102 - Comptes financiers - Sociétés non financières (S11)
+Patrimoine - Comptes financiers,T_8103,8.103 - Comptes financiers - Sociétés financières (S12)
+Patrimoine - Comptes financiers,T_8104,"8.104 - Comptes financiers - Intermédiaires financiers, hors assurances et fonds de pension (S12K64)"
+Patrimoine - Comptes financiers,T_8105,8.105 - Comptes financiers - Sociétés d'assurance et fonds de pension (S12K65)
+Patrimoine - Comptes financiers,T_8106,8.106 - Comptes financiers - Administrations publiques (S13)
+Patrimoine - Comptes financiers,T_8107,8.107 - Comptes financiers - État (S13111)
+Patrimoine - Comptes financiers,T_8108,8.108 - Comptes financiers - Ménages (S14)
+Patrimoine - Comptes financiers,T_8109,8.109 - Comptes financiers - Institutions sans but lucratif au service des ménages (S15)
+Patrimoine - Comptes financiers,T_8110,8.110 - Comptes financiers - Reste du monde (S2)
+Patrimoine - Comptes financiers,T_8111,8.111 - Comptes financiers - Total (S1+S2)
+Patrimoine - Comptes de patrimoine,T_8200_2025,8.200 - Comptes de patrimoine annuels 2025
+Patrimoine - Comptes de patrimoine,T_8200_2024,8.200 - Comptes de patrimoine annuels 2024
+Patrimoine - Comptes de patrimoine,T_8200_2023,8.200 - Comptes de patrimoine annuels 2023
+Patrimoine - Comptes de patrimoine,T_8200_2022,8.200 - Comptes de patrimoine annuels 2022
+Patrimoine - Comptes de patrimoine,T_8200_2021,8.200 - Comptes de patrimoine annuels 2021
+Patrimoine - Comptes de patrimoine,T_8200_2020,8.200 - Comptes de patrimoine annuels 2020
+Patrimoine - Comptes de patrimoine,T_8201,8.200 - Comptes de patrimoine annuels (1959 à 2019)
+Patrimoine - Comptes de patrimoine,T_8202,"8.202 - Compte de patrimoine des sociétés non financières (S11), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8203,"8.203 - Compte de patrimoine des sociétés financières (S12), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8204,"8.204 - Compte de patrimoine des administrations publiques (S13), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8205,"8.205 - Compte de patrimoine de l’administration publique centrale (S1311), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8206,"8.206 - Compte de patrimoine de l'État (S13111), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8207,"8.207 - Compte de patrimoine des organismes divers d'administration centrale (S13112), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8208,"8.208 - Compte de patrimoine des administrations publiques locales (S1313), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8209,"8.209 - Compte de patrimoine des administrations de sécurité sociale (S1314), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8210,"8.210 - Compte de patrimoine des ménages (S14), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8211,8.211 - Variation de patrimoine de l'économie nationale (S1)
+Patrimoine - Comptes de patrimoine,T_8212,8.212 - Variation de patrimoine des sociétés non financières (S11)
+Patrimoine - Comptes de patrimoine,T_8213,8.213 - Variation de patrimoine des sociétés financières (S12)
+Patrimoine - Comptes de patrimoine,T_8214,8.214 - Variation de patrimoine des administrations publiques (S13)
+Patrimoine - Comptes de patrimoine,T_8215,8.215 - Variation de patrimoine de l’administration publique centrale (S1311)
+Patrimoine - Comptes de patrimoine,T_8216,8.216 - Variation de patrimoine de l'Etat (S13111)
+Patrimoine - Comptes de patrimoine,T_8217,8.217 - Variation de patrimoine des organismes divers d'administration centrale (S13112)
+Patrimoine - Comptes de patrimoine,T_8218,8.218 - Variation de patrimoine des administrations publiques locales (S1313)
+Patrimoine - Comptes de patrimoine,T_8219,8.219 - Variation de patrimoine des administrations de sécurité sociale (S1314)
+Patrimoine - Comptes de patrimoine,T_8220,8.220 - Variation de patrimoine des ménages (S14)
+Patrimoine - Comptes de patrimoine,T_8221_8222,8.221_222 - Formation brute de capital fixe (nomenclature des comptes de patrimoine) à prix courants et en volume
+Tableaux de synthèse - TES et TEE,TES_17_2024,2024
+Tableaux de synthèse - TES et TEE,TES_17_2023,2023
+Tableaux de synthèse - TES et TEE,TES_17_2022,2022
+Tableaux de synthèse - TES et TEE,TES_17_2021,2021
+Tableaux de synthèse - TES et TEE,TES_17_2020,2020
+Tableaux de synthèse - TES et TEE,T_9200,1949 / 2019
+Tableaux de synthèse - TES et TEE,TES_38_2024,2024
+Tableaux de synthèse - TES et TEE,TES_38_2023,2023
+Tableaux de synthèse - TES et TEE,TES_38_2022,2022
+Tableaux de synthèse - TES et TEE,TES_38_2021,2021
+Tableaux de synthèse - TES et TEE,TES_38_2020,2020
+Tableaux de synthèse - TES et TEE,TES_symetrique_A38_2022DEF,1978 / 2019
+Tableaux de synthèse - TES et TEE,TES_symetrique_A38_2021DEF,2021
+Tableaux de synthèse - TES et TEE,TES_symetrique_A38_2020DEF,2020
+Tableaux de synthèse - TES et TEE,TES_symetrique_A38_2019DEF,2019
+Tableaux de synthèse - TES et TEE,TEE_2025,2025
+Tableaux de synthèse - TES et TEE,TEE_2024,2024
+Tableaux de synthèse - TES et TEE,TEE_2023,2023
+Tableaux de synthèse - TES et TEE,TEE_2022,2022
+Tableaux de synthèse - TES et TEE,TEE_2021,2021
