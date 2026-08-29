@@ -63,9 +63,34 @@ calendrier_donnees <- "https://www.insee.fr/fr/information/5235017" |>
   dplyr::select(-Annee_semaine) |>
   dplyr::mutate(Horodatage = horodatage, .before = 1)
 
-calendrier_historique_path <- here::here("data", "insee", "calendrier_historique.csv")
-readr::write_csv(calendrier_donnees, calendrier_historique_path,
-                  append = file.exists(calendrier_historique_path))
+# Historique cumulatif : hors dépôt (comme qmd_status.csv / qmd_detail.csv),
+# pour qu'il s'accumule quel que soit l'arbre (~/github vs ~/Dropbox) qui
+# rend cette page, et sans bruit git. Voir data/_status/dump_qmd_status.R.
+calendrier_historique_dir  <- path.expand("~/Library/Application Support/website_status")
+dir.create(calendrier_historique_dir, showWarnings = FALSE, recursive = TRUE)
+calendrier_historique_path <- file.path(calendrier_historique_dir, "calendrier_historique.csv")
+
+# Historique : on ne persiste QUE les repères de semaine et les évènements
+# datés -- pas les en-têtes de section ("INDICATEURS CONJONCTURELS", etc.),
+# qui ne servent qu'au style du tableau "courant" ci-dessous.
+# Clé de dé-dup : titre normalisé + date -> une semaine de rendus
+# identiques n'ajoute rien ; seuls les vrais changements sont écrits (1x).
+cle <- function(df) paste(stringr::str_squish(df[["Données"]]),
+                          df[["Date/heure"]], sep = " |~| ")
+
+nouveau <- calendrier_donnees |>
+  dplyr::mutate(dplyr::across(dplyr::everything(), as.character)) |>
+  dplyr::filter(stringr::str_detect(`Données`, "^Semaine du") |
+                  (!is.na(`Date/heure`) & `Date/heure` != ""))
+if (file.exists(calendrier_historique_path)) {
+  existant <- readr::read_csv(calendrier_historique_path,
+                              col_types = readr::cols(.default = "c"), na = character())
+  nouveau  <- dplyr::filter(nouveau, !(cle(nouveau) %in% cle(existant)))
+}
+if (nrow(nouveau) > 0) {
+  readr::write_csv(nouveau, calendrier_historique_path,
+                   append = file.exists(calendrier_historique_path))
+}
 
 calendrier_donnees |>
   dplyr::select(-Horodatage, -`Date/heure`) |>

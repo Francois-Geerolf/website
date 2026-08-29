@@ -120,33 +120,24 @@ ig_b("insee", "blogInsee_2025_08_l_insee_et_les_services_statistiques_ministerie
 
 # Comptes de la Nation
 
+
 ## Annuels
 
-- Données détaillées. [html](https://www.insee.fr/fr/statistiques/5354721?sommaire=5354786)
+- **Liste des tableaux détaillés** (base 2020, ~180 tableaux). [[html](t_index_a.html)]
 
-- Production et consommation intermédiaire en 2020. [html](https://www.insee.fr/fr/statistiques/5354737?sommaire=5354786)
+- Les comptes de la Nation en 2025 - résultats détaillés (Insee Résultats). [html](https://www.insee.fr/fr/statistiques/8988934)
 
-- Les comptes de la Nation en 2020. [html](https://www.insee.fr/fr/statistiques/5354786)
+- Les comptes de la Nation en 2025 - synthèse. [html](https://www.insee.fr/fr/statistiques/8988793?sommaire=8988934)
+
+- Note de révisions 2023 à 2025. [pdf](https://www.insee.fr/fr/statistiques/fichier/8988934/Note_revisions_2023a2025.pdf)
 
 
 
 ## Trimestriels
 
-- Produit Intérieur Brut (PIB) et ses composantes. [html](https://www.insee.fr/fr/statistiques/5419155?sommaire=5414151)
+- **Liste des tableaux détaillés** (base 2020, 46 tableaux). [[html](t_index.html)]
 
-- Biens et services. [html](https://www.insee.fr/fr/statistiques/5419157?sommaire=5414151)
-
-- Consommation des ménages. [html](https://www.insee.fr/fr/statistiques/5419159?sommaire=5414151)
-
-- Échanges extérieurs. [html](https://www.insee.fr/fr/statistiques/5419161?sommaire=5414151)
-
-- Branches. [html](https://www.insee.fr/fr/statistiques/5419163?sommaire=5414151)
-
-- Secteurs institutionnels. [html](https://www.insee.fr/fr/statistiques/5419165?sommaire=5414151)
-
-- Revenu disponible et pouvoir d'achat des ménages [html](https://www.insee.fr/fr/statistiques/5419167?sommaire=5414151)
-
-- Finances publiques. [html](https://www.insee.fr/fr/statistiques/5419169?sommaire=5414151)
+- Comptes nationaux trimestriels au 2e trimestre 2026 - résultats détaillés (Insee Résultats). [html](https://www.insee.fr/fr/statistiques/9007859)
 
 
 ## Autre info
