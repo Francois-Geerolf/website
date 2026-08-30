@@ -7,7 +7,7 @@ author:
     url: https://fgeerolf.com
 format: html
 toc: true
-theme: flatly
+theme: [flatly, _fgeerolf.scss]
 embed-resources: false
 editor: source
 ---

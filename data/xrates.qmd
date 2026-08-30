@@ -9,7 +9,7 @@ format:
   html:
     code-fold: false
     toc: true
-    theme: flatly
+    theme: [flatly, _fgeerolf.scss]
     embed-resources: false
     include-in-header:
       - text: |

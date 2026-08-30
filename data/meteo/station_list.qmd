@@ -8,7 +8,7 @@ format:
   html:
     code-fold: true
     toc: true
-    theme: flatly
+    theme: [flatly, ../_fgeerolf.scss]
     embed-resources: false
 editor: source
 ---
