@@ -1,7 +1,5 @@
 ---
 title: INSEE - Institut national de la statistique et des études économiques
-metadata-files:
-  - _insee.yml
 ---
 
 

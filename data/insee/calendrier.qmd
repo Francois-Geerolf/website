@@ -1,7 +1,5 @@
 ---
 title: Calendrier des prochaines publications de l'Insee
-metadata-files:
-  - _insee.yml
 ---
 
 

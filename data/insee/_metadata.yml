@@ -1,0 +1,30 @@
+# Métadonnées de section INSEE (appliquées automatiquement par Quarto à
+# tous les data/insee/*.qmd -- plus besoin de `metadata-files:`).
+# Les pages des comptes détaillés ajoutent seulement `_ct_links.yml` /
+# `_ct_a_links.yml` pour le lien de sidebar spécifique.
+subtitle: Données - INSEE
+lang: fr
+filters:
+  - ../../code/genderize-fr.lua
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+editor: source
+format:
+  html:
+    code-fold: true
+    toc: true
+    theme: [flatly, ../_fgeerolf.scss]
+    embed-resources: false
+    other-links:
+      - text: "Données INSEE"
+        href: "https://fgeerolf.com/data/insee/"
+      - text: "Autres données"
+        href: "https://fgeerolf.com/data/"
+      - href: "https://fgeerolf.com/"
+        text: "Home"
+        icon: house
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    include-after-body: ../../statcounter.html

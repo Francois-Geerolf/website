@@ -5,7 +5,7 @@ format:
   html:
     code-fold: false
     toc: true
-    theme: flatly
+    theme: [flatly, data/_fgeerolf.scss]
     embed-resources: false
     include-in-header:
       - text: |

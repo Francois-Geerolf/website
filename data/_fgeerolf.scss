@@ -1,0 +1,65 @@
+/*-- scss:rules --*/
+
+// Feuille de style partagée par toutes les sections data/ (via
+// `theme: [flatly, ../_fgeerolf.scss]` dans chaque _metadata.yml / _*.yml).
+// Objectif : un seul endroit pour les correctifs transverses, notamment mobile.
+
+/* --- Tables interactives (reactable / gt::opt_interactive) --------------- */
+/* On les garde dans leur propre boîte scrollable et on autorise le retour à
+   la ligne, au lieu de tronquer le texte sur petit écran. */
+.reactable .rt-table { scrollbar-width: thin; }
+.reactable .rt-td,
+.reactable .rt-th { white-space: normal; }
+
+@media (max-width: 600px) {
+  .reactable { font-size: .8rem; }
+  .reactable .rt-td,
+  .reactable .rt-th { padding: 4px 6px !important; }
+  .cell, .rt-td-inner { white-space: normal !important; word-break: break-word; }
+}
+
+/* --- Liens communs du yml ("other-links") sur mobile ------------------- */
+/* Sous 768px Quarto masque toute la sidebar de marge (#quarto-margin-sidebar),
+   donc aussi le bloc "other-links" (Home, Autres données…). On le réaffiche
+   en pied de page, sans le reste du contenu de marge ni le TOC. */
+@media (max-width: 767.98px) {
+  #quarto-margin-sidebar {
+    display: block !important;
+    grid-column: body-content-start / body-content-end !important;
+    grid-row: content-bottom / page-bottom !important;
+    position: static !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    transform: none !important;
+    margin: 1.5rem 0 0 !important;
+    padding: 1rem 0 0 !important;
+    border-top: 1px solid #dee2e6 !important;
+  }
+  #quarto-margin-sidebar > *:not(#TOC),
+  #quarto-margin-sidebar #TOC > *:not(.quarto-other-links) { display: none !important; }
+  #quarto-margin-sidebar #TOC { display: block !important; }
+  #quarto-margin-sidebar .quarto-other-links { display: block !important; margin: 0 !important; }
+  #quarto-margin-sidebar .quarto-other-links > h2 {
+    font-size: .8rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: .03em !important;
+    color: #6c757d !important;
+    margin: 0 0 .5rem !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+  #quarto-margin-sidebar .quarto-other-links ul {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .4rem 1.1rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+  }
+  #quarto-margin-sidebar .quarto-other-links li { margin: 0 !important; }
+  #quarto-margin-sidebar .quarto-other-links a { white-space: nowrap !important; }
+}
