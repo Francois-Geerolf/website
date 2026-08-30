@@ -56,14 +56,18 @@ jobs:
         run: Rscript data/_build.R
 
       - name: 💾 Commit calendrier history
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Rebase first: --autostash unstages the CSV, so (re-)stage it after.
+          git pull --rebase --autostash --quiet || true
           git add data/insee/calendrier_historique.csv || true
-          if ! git diff --staged --quiet; then
-            git pull --rebase --autostash --quiet || true
+          if git diff --staged --quiet; then
+            echo "calendrier: rien de nouveau"
+          else
             git commit -m "calendrier: historique des publications Insee [skip ci]"
-            git push
+            git push || (git pull --rebase --autostash --quiet && git push) || true
           fi
 
       - name: 🔐 Set up SSH
