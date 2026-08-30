@@ -217,10 +217,33 @@ main_datasets %>%
 # [Themes](https://fgeerolf.com/data/themes.html)
 
 ```{r, echo = F}
-themes |>
-  gt() |>
-  gt::fmt_markdown(columns = "Link") |>
-  gt::opt_interactive(use_search = T, use_resizers = T, use_compact_mode = T)
+# Nom du thème cliquable vers sa page (comme la colonne dataset ci-dessous),
+# au lieu d'une colonne "Link" séparée.
+themes %>%
+  dplyr::transmute(
+    theme = sprintf('<a href="https://fgeerolf.com/data/%s.html">%s</a>', theme, theme),
+    Title
+  ) %>%
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 20,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(5, 10, 15, 20),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      theme = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 200),
+      Title = reactable::colDef(minWidth = 160)
+    )
+  )
 ```
 
 # All Datasets
