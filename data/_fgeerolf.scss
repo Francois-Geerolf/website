@@ -40,6 +40,15 @@
   table.gt_table th { white-space: nowrap; }
   table.gt_table th,
   table.gt_table td { word-break: normal !important; overflow-wrap: break-word; }
+  /* Colonne "Updated" des tables source/dataset (ex. RPP.html "Données sur
+     l'immobilier") : une date YYYY-MM-DD ne doit jamais s'empiler sur 8
+     lignes. Seule colonne courte assez fiable pour un nowrap (source /
+     dataset peuvent être longs). */
+  table.gt_table td[headers="Updated"] {
+    white-space: nowrap;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+  }
 }
 
 /* --- Liens communs du yml ("other-links") sur mobile ------------------- */
