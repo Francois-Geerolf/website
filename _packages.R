@@ -7,6 +7,7 @@ packages <- c(
   "quarto", "readxl", "rsdmx", "tools", "kableExtra",
   "knitr", "scales", "viridis", "zoo", "lubridate",
   "ggrepel", "curl", "rmarkdown", "rvest", "jsonlite",
-  "here", "i18n", "r2country", "eurostat", "textcat"
+  "here", "i18n", "r2country", "eurostat", "textcat",
+  "reactable", "htmltools"
 )
 

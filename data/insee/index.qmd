@@ -32,16 +32,23 @@ datasets |>
 # (régénérés par t_index.R / t_index_a.R, qui tournent en local) -> cette
 # page se compile à distance sans accès à ~/iCloud.
 .cdn_react <- function(csv, page_size) {
-  readr::read_csv(here::here("data", "insee", csv), show_col_types = FALSE) |>
+  d <- readr::read_csv(here::here("data", "insee", csv), show_col_types = FALSE) |>
     dplyr::transmute(
       Catégorie = categorie,
       Tableau   = sprintf('<a href="%s.html">%s</a>', fichier, fichier),
-      Intitulé  = intitule) |>
+      Intitulé  = intitule)
+  if (requireNamespace("reactable", quietly = TRUE)) {
     reactable::reactable(
-      groupBy = "Catégorie", searchable = TRUE, defaultPageSize = page_size,
+      d, groupBy = "Catégorie", searchable = TRUE, defaultPageSize = page_size,
       compact = TRUE, resizable = TRUE, striped = TRUE, highlight = TRUE,
       defaultExpanded = FALSE,
       columns = list(Tableau = reactable::colDef(html = TRUE, maxWidth = 240)))
+  } else {
+    d |>
+      gt::gt(groupname_col = "Catégorie") |>
+      gt::fmt_markdown(columns = Tableau) |>
+      gt::tab_options(table.width = "100%", row_group.font.weight = "bold")
+  }
 }
 ```
 
