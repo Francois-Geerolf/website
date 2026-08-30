@@ -12,7 +12,7 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 ```
 
 
-```{r, echo = F}
+```{r, echo = F, message = FALSE, warning = FALSE}
 horodatage <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
 mois_fr <- c(janvier = 1, "février" = 2, mars = 3, avril = 4, mai = 5, juin = 6,
@@ -20,9 +20,17 @@ mois_fr <- c(janvier = 1, "février" = 2, mars = 3, avril = 4, mai = 5, juin = 6
              "décembre" = 12)
 
 parse_date_evenement <- function(donnees, mise_a_jour, annee) {
-  semaine <- stringr::str_match(donnees, "^Semaine du (\\d{1,2}) au \\d{1,2} (\\p{L}+)")
+  # Sans année (repère de semaine non reconnu en amont) on ne fabrique pas de
+  # date : renvoyer "" plutôt qu'un "NA-09-03..." instable qui casse la dé-dup.
+  if (is.na(annee)) return("")
+  # Repère de semaine : "Semaine du 17 au 21 août 2026" ou, quand la semaine
+  # est à cheval sur deux mois, "Semaine du 31 août au 4 septembre 2026".
+  semaine <- stringr::str_match(
+    donnees, "^Semaine du (\\d{1,2})(?: (\\p{L}+))? au (\\d{1,2}) (\\p{L}+)")
   if (!is.na(semaine[1, 1])) {
-    return(sprintf("%04d-%02d-%02d 00:00:00", annee, mois_fr[[semaine[1, 3]]], as.integer(semaine[1, 2])))
+    mois <- if (!is.na(semaine[1, 3])) semaine[1, 3] else semaine[1, 5]
+    return(sprintf("%04d-%02d-%02d 00:00:00", annee, mois_fr[[mois]],
+                   as.integer(semaine[1, 2])))
   }
   item <- stringr::str_match(mise_a_jour, "^(\\d{1,2}) (\\p{L}+) à (\\d{1,2})h(\\d{0,2})$")
   if (!is.na(item[1, 1])) {
@@ -51,7 +59,9 @@ calendrier_donnees <- "https://www.insee.fr/fr/information/5235017" |>
          `Mise à jour` = stringr::str_replace_all(`Mise à jour`, " ", " ")) |>
   dplyr::filter(!(`Données` == "" & `Mise à jour` == "")) |>
   dplyr::mutate(
-    Annee_semaine = stringr::str_match(`Données`, "^Semaine du \\d{1,2} au \\d{1,2} \\p{L}+ (\\d{4})")[, 2],
+    # Année du repère de semaine : on prend les 4 chiffres en fin de ligne
+    # (éventuel "*" toléré), robuste aux semaines à cheval sur deux mois.
+    Annee_semaine = stringr::str_match(`Données`, "^Semaine du .*?(\\d{4})\\s*\\*?\\s*$")[, 2],
     Annee_semaine = as.integer(Annee_semaine)
   ) |>
   tidyr::fill(Annee_semaine, .direction = "down") |>
@@ -69,15 +79,17 @@ calendrier_historique_path <- here::here("data", "insee", "calendrier_historique
 # Historique : on ne persiste QUE les repères de semaine et les évènements
 # datés -- pas les en-têtes de section ("INDICATEURS CONJONCTURELS", etc.),
 # qui ne servent qu'au style du tableau "courant" ci-dessous.
-# Clé de dé-dup : titre normalisé + date -> une semaine de rendus
+# Clé de dé-dup : titre normalisé + date normalisée -> une semaine de rendus
 # identiques n'ajoute rien ; seuls les vrais changements sont écrits (1x).
+# (les deux membres passent par str_squish : un espace ou un "NA" résiduel
+# ne doit pas transformer une ligne inchangée en "nouveauté".)
 cle <- function(df) paste(stringr::str_squish(df[["Données"]]),
-                          df[["Date/heure"]], sep = " |~| ")
+                          stringr::str_squish(df[["Date/heure"]]), sep = " |~| ")
 
 nouveau <- calendrier_donnees |>
   dplyr::mutate(dplyr::across(dplyr::everything(), as.character)) |>
   dplyr::filter(stringr::str_detect(`Données`, "^Semaine du") |
-                  (!is.na(`Date/heure`) & `Date/heure` != ""))
+                  (!is.na(`Date/heure`) & stringr::str_squish(`Date/heure`) != ""))
 if (file.exists(calendrier_historique_path)) {
   existant <- readr::read_csv(calendrier_historique_path,
                               col_types = readr::cols(.default = "c"), na = character())
@@ -142,7 +154,7 @@ calendrier_donnees |>
 
 ## Historique
 
-```{r, echo = F}
+```{r, echo = F, message = FALSE, warning = FALSE}
 if (file.exists(calendrier_historique_path)) {
   readr::read_csv(calendrier_historique_path,
                    col_types = readr::cols(.default = "c"),

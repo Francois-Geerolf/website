@@ -58,18 +58,34 @@ jobs:
       - name: 💾 Commit calendrier history
         if: github.event_name != 'pull_request'
         continue-on-error: true   # best-effort : ne doit jamais bloquer le deploy
+        env:
+          BR: ${{ github.ref_name }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Rebase first: --autostash unstages the CSV, so (re-)stage it after.
-          git pull --rebase --autostash --quiet || true
-          git add data/insee/calendrier_historique.csv || true
-          if git diff --staged --quiet; then
-            echo "calendrier: rien de nouveau"
-          else
-            git commit -m "calendrier: historique des publications Insee [skip ci]"
-            git push || (git pull --rebase --autostash --quiet && git push) || true
-          fi
+
+          # Le build ne modifie qu'un seul fichier suivi : le CSV d'historique.
+          # On le met de côté, puis à chaque tentative on repart de la version
+          # distante la plus fraîche et on reconstruit l'union (aucun merge git,
+          # donc jamais de marqueur "<<<<<<<" dans le fichier publié).
+          BUILT="$RUNNER_TEMP/calendrier_built.csv"
+          cp data/insee/calendrier_historique.csv "$BUILT"
+
+          pushed=""
+          for i in 1 2 3 4 5; do
+            git fetch origin "$BR" --quiet || true
+            git reset --hard "origin/$BR" --quiet   # sûr : ne touche pas aux HTML non suivis
+            python3 data/insee/_merge_historique.py \
+              data/insee/calendrier_historique.csv "$BUILT" data/insee/calendrier_historique.csv
+            git add data/insee/calendrier_historique.csv
+            if git diff --staged --quiet; then
+              echo "calendrier: rien de nouveau"; pushed="skip"; break
+            fi
+            git commit -m "calendrier: historique des publications Insee [skip ci]" --quiet
+            if git push origin "HEAD:$BR" --quiet; then pushed="ok"; break; fi
+            echo "push refusé, nouvelle tentative ($i)"; sleep 3
+          done
+          [ -n "$pushed" ] || echo "calendrier: abandon après 5 tentatives"
 
       - name: 🔐 Set up SSH
         uses: webfactory/ssh-agent@v0.9.0
@@ -94,6 +110,7 @@ jobs:
             *.zip
             *.csv
             *.sh
+            *.py
             *.parquet
             *.crdownload
             *.curltmp
