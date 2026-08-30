@@ -260,28 +260,40 @@ source_dataset_file_updates2 <- . %>%
 
 
 source_dataset_file_updates2i <- . %>%
-  mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)")) %>%
-  select(-source) %>%
-  gt::gt() %>%
-  fmt_markdown(columns = c("dataset")) %>%
-  gt::cols_align(align = "center", columns = everything()) %>% 
-  gt::tab_options(column_labels.font.weight = "bold") %>% 
-  # Make the 3rd column wider
-  gt::cols_width(
-    1 ~ gt::px(120),
-    2 ~ gt::px(400),
-    3 ~ gt::px(90),
-    4 ~ gt::px(90),
-    gt::everything() ~ gt::px(120)  # optional: set a default for others
+  mutate(
+    dataset = sprintf(
+      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>',
+      source, dataset, dataset
+    ),
+    data_updated = as.Date(data_updated)
   ) %>%
-  # Interactive gt
-  gt::opt_interactive(use_search = T,
-                      use_pagination = T,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      use_resizers = TRUE,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20))
+  select(-source) %>%
+  # Native reactable rather than gt::opt_interactive(): column widths stay
+  # flexible and cells wrap. The old fixed gt::cols_width() forced an 820px
+  # table that overflowed and clipped columns mid-word on mobile.
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 20,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(5, 10, 15, 20),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      dataset      = reactable::colDef(html = TRUE, minWidth = 80, maxWidth = 150),
+      Title        = reactable::colDef(minWidth = 150),
+      `.html`      = reactable::colDef(name = "html", minWidth = 55, maxWidth = 95),
+      data_updated = reactable::colDef(name = "updated", minWidth = 70, maxWidth = 110),
+      Nobs         = reactable::colDef(minWidth = 45, maxWidth = 70, align = "right")
+    )
+  )
 
 
 source_dataset_file_updates3 <- . %>%

@@ -23,4 +23,15 @@ format:
     include-in-header:
       - text: |
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+          <style>
+          /* Wide interactive tables: keep them inside their own scroll box
+             and let cells wrap instead of clipping text on narrow screens. */
+          .reactable .rt-table { scrollbar-width: thin; }
+          .reactable .rt-td, .reactable .rt-th { white-space: normal; }
+          @media (max-width: 600px) {
+            .reactable { font-size: .8rem; }
+            .reactable .rt-td, .reactable .rt-th { padding: 4px 6px !important; }
+            .cell, .rt-td-inner { white-space: normal !important; word-break: break-word; }
+          }
+          </style>
     include-after-body: ../../statcounter.html
