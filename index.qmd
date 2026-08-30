@@ -7,7 +7,7 @@ format:
   html:
     code-fold: false
     toc: true
-    theme: flatly
+    theme: [flatly, data/_fgeerolf.scss]
     embed-resources: false
     other-links:
       - text: "UCLA"
