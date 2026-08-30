@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 # Télécharge un petit logo (favicon) pour chaque organisation de data/index.qmd
-# dans data/logos/<id>.png. Sources essayées dans l'ordre : unavatar.io (agrège
-# Google/DuckDuckGo/favicon/...) puis le service favicon de Google.
-# À relancer manuellement si on ajoute des sources ; les PNG sont committés.
+# ET du catalogue `datasets` (colonne source) dans data/logos/<id>.png.
+# Sources essayées dans l'ordre : unavatar.io (agrège Google/DuckDuckGo/
+# favicon/...), puis Google, puis DuckDuckGo.
+# À relancer manuellement quand on ajoute une source ; les PNG sont committés.
+# Sans logo à ce jour : gfd (globalfinancialdata : aucune favicon exposée) ;
+# et les "sources" qui ne sont pas des organismes (crosswalks, elasticity,
+# log, pareto, phillips, pouvoir-achat) -> source_logo_md() renvoie "".
 set -u
 cd "$(dirname "$0")"
 mkdir -p logos
@@ -18,6 +22,15 @@ buba bundesbank.de
 cbp census.gov
 census census.gov
 comtrade comtrade.un.org
+ademe ademe.fr
+aft aft.gouv.fr
+cgedd igedd.developpement-durable.gouv.fr
+dgafp fonction-publique.gouv.fr
+iea iea.org
+notaires notaires.fr
+opendata data.gouv.fr
+rba rba.gov.au
+shiller shillerdata.com
 dallas-fed dallasfed.org
 destatis destatis.de
 ec ec.europa.eu
