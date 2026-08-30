@@ -259,43 +259,6 @@ source_dataset_file_updates2 <- . %>%
   gt::tab_options(column_labels.font.weight = "bold")
 
 
-source_dataset_file_updates2i <- . %>%
-  mutate(
-    dataset = sprintf(
-      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>',
-      source, dataset, dataset
-    ),
-    data_updated = as.Date(data_updated)
-  ) %>%
-  select(-source) %>%
-  # Native reactable rather than gt::opt_interactive(): column widths stay
-  # flexible and cells wrap. The old fixed gt::cols_width() forced an 820px
-  # table that overflowed and clipped columns mid-word on mobile.
-  reactable::reactable(
-    searchable = TRUE,
-    pagination = TRUE,
-    defaultPageSize = 20,
-    showPageSizeOptions = TRUE,
-    pageSizeOptions = c(5, 10, 15, 20),
-    compact = TRUE,
-    resizable = TRUE,
-    highlight = TRUE,
-    wrap = TRUE,
-    defaultColDef = reactable::colDef(
-      align = "left",
-      headerStyle = list(fontWeight = "bold"),
-      style = list(whiteSpace = "normal", wordBreak = "break-word")
-    ),
-    columns = list(
-      dataset      = reactable::colDef(html = TRUE, minWidth = 80, maxWidth = 150),
-      Title        = reactable::colDef(minWidth = 150),
-      `.html`      = reactable::colDef(name = "html", minWidth = 55, maxWidth = 95),
-      data_updated = reactable::colDef(name = "updated", minWidth = 70, maxWidth = 110),
-      Nobs         = reactable::colDef(minWidth = 45, maxWidth = 70, align = "right")
-    )
-  )
-
-
 source_dataset_file_updates3 <- . %>%
   mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
          source = glue::glue("[{source}](https://fgeerolf.com/data/{source})")) %>%

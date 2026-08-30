@@ -19,10 +19,43 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 ## Toutes les données
 
 ```{r, echo = F}
+# Table interactive des jeux de données INSEE. reactable natif (et non
+# gt::opt_interactive) : largeurs de colonnes flexibles + retour à la ligne,
+# pour ne pas déborder / tronquer sur mobile. CSS mobile : _insee.yml.
 datasets |>
-  select(-7, -8) |>
-  filter(source == "insee") |>
-  source_dataset_file_updates2i()
+  dplyr::filter(source == "insee") |>
+  dplyr::transmute(
+    dataset = sprintf(
+      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
+    ),
+    Title,
+    html    = as.Date(.html),
+    updated = as.Date(data_updated),
+    Nobs
+  ) |>
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 20,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(5, 10, 15, 20),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      dataset = reactable::colDef(html = TRUE, minWidth = 80, maxWidth = 150),
+      Title   = reactable::colDef(minWidth = 150),
+      html    = reactable::colDef(minWidth = 55, maxWidth = 95),
+      updated = reactable::colDef(minWidth = 70, maxWidth = 110),
+      Nobs    = reactable::colDef(minWidth = 45, maxWidth = 70, align = "right")
+    )
+  )
 ```
 
 
