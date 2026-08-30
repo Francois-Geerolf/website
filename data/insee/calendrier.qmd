@@ -76,20 +76,19 @@ calendrier_donnees <- "https://www.insee.fr/fr/information/5235017" |>
 # stockage persistant. Le workflow themes.yml committe le CSV après build.
 calendrier_historique_path <- here::here("data", "insee", "calendrier_historique.csv")
 
-# Historique : on ne persiste QUE les repères de semaine et les évènements
-# datés -- pas les en-têtes de section ("INDICATEURS CONJONCTURELS", etc.),
-# qui ne servent qu'au style du tableau "courant" ci-dessous.
-# Clé de dé-dup : titre normalisé + date normalisée -> une semaine de rendus
+# Historique : on ne persiste QUE les vraies publications datées -- ni les
+# repères "Semaine du …" (simple structure visuelle du tableau courant), ni
+# les en-têtes de section ("INDICATEURS CONJONCTURELS", etc.).
+# Clé de dé-dup : titre normalisé + date (YYYY-MM-DD) -> une semaine de rendus
 # identiques n'ajoute rien ; seuls les vrais changements sont écrits (1x).
-# (les deux membres passent par str_squish : un espace ou un "NA" résiduel
-# ne doit pas transformer une ligne inchangée en "nouveauté".)
 cle <- function(df) paste(stringr::str_squish(df[["Données"]]),
-                          stringr::str_squish(df[["Date/heure"]]), sep = " |~| ")
+                          substr(stringr::str_squish(df[["Date/heure"]]), 1, 10),
+                          sep = " |~| ")
 
 nouveau <- calendrier_donnees |>
   dplyr::mutate(dplyr::across(dplyr::everything(), as.character)) |>
-  dplyr::filter(stringr::str_detect(`Données`, "^Semaine du") |
-                  (!is.na(`Date/heure`) & stringr::str_squish(`Date/heure`) != ""))
+  dplyr::filter(!stringr::str_detect(`Données`, "^Semaine du"),
+                stringr::str_detect(`Date/heure`, "^\\d{4}-\\d{2}-\\d{2}"))
 if (file.exists(calendrier_historique_path)) {
   existant <- readr::read_csv(calendrier_historique_path,
                               col_types = readr::cols(.default = "c"), na = character())
@@ -159,7 +158,16 @@ if (file.exists(calendrier_historique_path)) {
   readr::read_csv(calendrier_historique_path,
                    col_types = readr::cols(.default = "c"),
                    na = character()) |>
-    dplyr::arrange(dplyr::desc(Horodatage)) |>
+    # Sécurité (vieux CSV) : pas de repères de semaine, pas de date non résolue.
+    dplyr::filter(!stringr::str_detect(`Données`, "^Semaine du"),
+                  stringr::str_detect(`Date/heure`, "^\\d{4}-\\d{2}-\\d{2}")) |>
+    # Date d'embargo au format YYYY-MM-DD = clé de tri (et non l'horodatage).
+    dplyr::transmute(
+      `Date d'embargo` = substr(`Date/heure`, 1, 10),
+      `Données`, `Mise à jour`,
+      `Vu le` = substr(Horodatage, 1, 10)
+    ) |>
+    dplyr::arrange(dplyr::desc(`Date d'embargo`), dplyr::desc(`Vu le`)) |>
     gt::gt() |>
     gt::opt_interactive(use_search = T,
                         use_resizers = T,
@@ -169,38 +177,6 @@ if (file.exists(calendrier_historique_path)) {
                         use_compact_mode = T,
                         page_size_default = 20,
                         page_size_values = c(20, 50, 100)) |>
-    tab_style(
-      style = cell_fill(color = alpha("#7A57FF", 0.10)),  # couleur fond
-      locations = cells_body(
-        rows = grepl("Semaine du", `Données`)
-      )
-    ) |>
-    tab_style(
-      style = cell_fill(color = alpha("#F5A623", 0.15)),  # couleur fond
-      locations = cells_body(
-        rows = str_detect(`Données`, "^[^a-z]*$") & `Données` != ""
-      )
-    ) |>
-    tab_style(
-      style = cell_borders(
-        sides = "top",
-        color = "#7A57FF",   # couleur Insee
-        weight = px(2)
-      ),
-      locations = cells_body(
-        rows = str_detect(`Données`, "Semaine du")
-      )
-    ) |>
-    tab_style(
-      style = cell_borders(
-        sides = "top",
-        color = "#F5A623",   # couleur Insee
-        weight = px(2)
-      ),
-      locations = cells_body(
-        rows = str_detect(`Données`, "^[^a-z]*$")  & `Données` != ""
-      )
-    ) |>
     gt::tab_options(table.width = "100%")
 }
 ```

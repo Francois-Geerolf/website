@@ -7,14 +7,24 @@ des marqueurs `<<<<<<<` dans le fichier publié), on reconstruit le fichier
 entièrement : lignes de `base` (version distante la plus fraîche) + lignes de
 `ajout` (build courant) absentes de `base`.
 
-Clé de dé-dup : (Données, Date/heure) normalisés -- identique à cle() dans
+Clé de dé-dup : (Données, date d'embargo YYYY-MM-DD) -- identique à cle() dans
 calendrier.qmd. L'Horodatage (1re colonne) est ignoré dans la clé : un rendu
-sans changement réel n'ajoute rien.
+sans changement réel n'ajoute rien. On écarte aussi les repères "Semaine du …"
+et les lignes dont la date n'est pas résolue (vieux CSV).
 
     python3 _merge_historique.py <base.csv> <ajout.csv> <sortie.csv>
 """
 import csv
+import re
 import sys
+
+_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}")
+
+
+def garder(r):
+    return (len(r) == 4
+            and not " ".join(r[1].split()).startswith("Semaine du")
+            and _DATE.match(r[3].strip()) is not None)
 
 
 def lire(chemin):
@@ -25,11 +35,11 @@ def lire(chemin):
         return [], []
     if not rows:
         return [], []
-    return rows[0], [r for r in rows[1:] if len(r) == 4]
+    return rows[0], [r for r in rows[1:] if garder(r)]
 
 
 def cle(r):
-    return (" ".join(r[1].split()), " ".join(r[3].split()))
+    return (" ".join(r[1].split()), r[3].strip()[:10])
 
 
 def main():
