@@ -21,6 +21,7 @@ format:
         href: "https://fgeerolf.com/data/insee/"
       - text: "Autres données"
         href: "https://fgeerolf.com/data/"
+        icon: bar-chart-line
       - href: "https://fgeerolf.com/"
         text: "Home"
         icon: house
