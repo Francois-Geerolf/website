@@ -24,15 +24,19 @@
 
 <!-- Logo de la source dans le bloc "Autres liens" : remplace l'icône
      générique du lien de section (…/data/<source>/) par le logo de
-     l'organisation quand data/logos/<source>.png existe. Quarto échappe le
+     l'organisation quand data/logos/<slug>.png existe : les liens de section
+     …/data/<source>/ (INSEE, BDF…) comme les sections du site …/ucla/,
+     …/cepii/, …/ofce/ -> data/logos/{ucla,cepii,ofce}.png. Quarto échappe le
      HTML du champ other-links.text, d'où ce petit script plutôt qu'un <img>
-     dans les _*.yml. "Home" et "Autres données" gardent leur icône. -->
+     dans les _*.yml. "Home" et "Autres données" gardent leur icône
+     (fallback sur l'icône si le logo n'existe pas). -->
 <script>
 (function () {
   function run() {
     document.querySelectorAll('.quarto-other-links a, .quarto-alternate-formats a').forEach(function (a) {
-      var m = /^https:\/\/fgeerolf\.com\/data\/([a-z0-9_-]+)\/?$/.exec(a.getAttribute('href') || '');
-      if (!m) return;
+      // https://fgeerolf.com/<slug>/  ou  https://fgeerolf.com/data/<slug>/
+      var m = /^https:\/\/fgeerolf\.com\/(?:data\/)?([a-z0-9_-]+)\/$/.exec(a.getAttribute('href') || '');
+      if (!m || m[1] === 'data') return;
       var ic = a.querySelector('i.bi');
       if (!ic || a.querySelector('img.ol-source-logo')) return;
       var img = document.createElement('img');
