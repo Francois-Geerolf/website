@@ -10,82 +10,13 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 ```
 
-
-# Calendrier des prochaines publications de l'Insee
-
-```{r, echo = F}
-"https://www.insee.fr/fr/information/5235017" |>
-  rvest::read_html() |>
-  rvest::html_table(header = F, fill = T) |>
-  purrr::pluck(1) |>
-  dplyr::mutate(X2 = ifelse(is.na(X2), X1, X2),
-                X3 = ifelse(is.na(X3), "", X3))|>
-  dplyr::select(-X1) |>
-  #dplyr::filter(X3 != "DATE D'EMBARGO", X3 != "") |>
-  dplyr::select(`Données` = X2, `Mise à jour` = X3) |>
-  dplyr::mutate(`Données` = stringr::str_remove_all(`Données`, "\\\t|\\\n|\\\r"),
-         `Données` = substr(`Données`, 1,190)) |>
-  dplyr::filter(!(`Données` == "" & `Mise à jour` == "")) |>
-  gt::gt() |>
-  #gt::cols_width(`Données` ~ gt::px(400), everything() ~ gt::px(150)) |>
-  gt::cols_label(`Données` = "", `Mise à jour` = "") |>
-  gt::opt_interactive(use_search = F,
-                      use_resizers = T,
-                      use_highlight = T,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T) |>
-  tab_style(
-    style = cell_fill(color = alpha("#7A57FF", 0.10)),  # couleur fond
-    locations = cells_body(
-      rows = grepl("Semaine du", `Données`)
-    )
-  ) |>
-  tab_style(
-    style = cell_fill(color = alpha("#F5A623", 0.15)),  # couleur fond
-    locations = cells_body(
-      rows = str_detect(`Données`, "^[^a-z]*$") & `Données` != ""
-    )
-  ) |>
-  tab_style(
-    style = cell_borders(
-      sides = "top",
-      color = "#7A57FF",   # couleur Insee
-      weight = px(2)
-    ),
-    locations = cells_body(
-      rows = str_detect(`Données`, "Semaine du")
-    )
-  ) |>
-  tab_style(
-    style = cell_borders(
-      sides = "top",
-      color = "#F5A623",   # couleur Insee
-      weight = px(2)
-    ),
-    locations = cells_body(
-      rows = str_detect(`Données`, "^[^a-z]*$")  & `Données` != ""
-    )
-  ) |>
-  gt::tab_footnote(
-  footnote = gt::md(
-    paste0(
-      "Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"),
-      ". Mis à jour: [fgeerolf.com](https://fgeerolf.com/data/insee/calendrier.html). ",
-      "Source: [Insee](https://www.insee.fr/fr/information/5235017)"
-    )
-  )
-) |>
-  gt::tab_options(table.width = "100%")
-```
-
 - Calendrier des prochaines publications. [html](https://fgeerolf.com/data/insee/calendrier.html)
 
 - Actualités des indices et séries chronologiques. [html](https://www.insee.fr/fr/information/2862832)
 
-# List of Insee Datasets
+# Données de l'Insee
 
-## Interactive
+## Toutes les données
 
 ```{r, echo = F}
 datasets |>
@@ -94,31 +25,7 @@ datasets |>
 ```
 
 
-## Flat
-
-```{r, echo = F}
-datasets |>
-  filter(source == "insee") |>
-  source_dataset_file_updates2()
-```
-
-
-# Statistique publique
-
-## Autres organismes
-
-```{r, echo = F}
-ig_b("insee", "blogInsee_2025_08_l_insee_et_les_services_statistiques_ministeriels_fig1-1-scaled")
-```
-
-## Liens
-
-```{r, echo = F}
-ig_b("insee", "blogInsee_2025_08_l_insee_et_les_services_statistiques_ministeriels_fig2-scaled")
-```
-
-
-# Comptes de la Nation
+## Comptes de la Nation
 
 ```{r, echo = F}
 # Catalogues {categorie, fichier, intitule} versionnés dans le dépôt
@@ -133,30 +40,18 @@ ig_b("insee", "blogInsee_2025_08_l_insee_et_les_services_statistiques_ministerie
     reactable::reactable(
       groupBy = "Catégorie", searchable = TRUE, defaultPageSize = page_size,
       compact = TRUE, resizable = TRUE, striped = TRUE, highlight = TRUE,
-      defaultExpanded = TRUE,
+      defaultExpanded = FALSE,
       columns = list(Tableau = reactable::colDef(html = TRUE, maxWidth = 240)))
 }
 ```
 
-## Annuels
-
-- **Liste des tableaux détaillés** (base 2020, ~180 tableaux). [[html](t_index_a.html)]
-
-- Les comptes de la Nation en 2025 - résultats détaillés (Insee Résultats). [html](https://www.insee.fr/fr/statistiques/8988934)
-
-- Les comptes de la Nation en 2025 - synthèse. [html](https://www.insee.fr/fr/statistiques/8988793?sommaire=8988934)
-
-- Note de révisions 2023 à 2025. [pdf](https://www.insee.fr/fr/statistiques/fichier/8988934/Note_revisions_2023a2025.pdf)
+- **Comptes annuels : Liste des tableaux détaillés** (base 2020, ~180 tableaux). [[html](t_index_a.html)]
 
 ```{r, echo = F}
 .cdn_react("comptes-annuels-tableaux.csv", page_size = 20)
 ```
 
-## Trimestriels
-
-- **Liste des tableaux détaillés** (base 2020, 46 tableaux). [[html](t_index.html)]
-
-- Comptes nationaux trimestriels au 2e trimestre 2026 - résultats détaillés (Insee Résultats). [html](https://www.insee.fr/fr/statistiques/9007859)
+- **Comptes trimestriels: Liste des tableaux détaillés** (base 2020, 46 tableaux). [[html](t_index.html)]
 
 ```{r, echo = F}
 .cdn_react("comptes-trimestriels-tableaux.csv", page_size = 15)
@@ -541,3 +436,86 @@ ig_d("insee", "TAUX-CHOMAGE", "carte-chomage-2019Q4")
 
 
 
+
+
+# Calendrier des prochaines publications de l'Insee
+
+```{r, echo = F}
+"https://www.insee.fr/fr/information/5235017" |>
+  rvest::read_html() |>
+  rvest::html_table(header = F, fill = T) |>
+  purrr::pluck(1) |>
+  dplyr::mutate(X2 = ifelse(is.na(X2), X1, X2),
+                X3 = ifelse(is.na(X3), "", X3))|>
+  dplyr::select(-X1) |>
+  #dplyr::filter(X3 != "DATE D'EMBARGO", X3 != "") |>
+  dplyr::select(`Données` = X2, `Mise à jour` = X3) |>
+  dplyr::mutate(`Données` = stringr::str_remove_all(`Données`, "\\\t|\\\n|\\\r"),
+         `Données` = substr(`Données`, 1,190)) |>
+  dplyr::filter(!(`Données` == "" & `Mise à jour` == "")) |>
+  gt::gt() |>
+  #gt::cols_width(`Données` ~ gt::px(400), everything() ~ gt::px(150)) |>
+  gt::cols_label(`Données` = "", `Mise à jour` = "") |>
+  gt::opt_interactive(use_search = F,
+                      use_resizers = T,
+                      use_highlight = T,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T) |>
+  tab_style(
+    style = cell_fill(color = alpha("#7A57FF", 0.10)),  # couleur fond
+    locations = cells_body(
+      rows = grepl("Semaine du", `Données`)
+    )
+  ) |>
+  tab_style(
+    style = cell_fill(color = alpha("#F5A623", 0.15)),  # couleur fond
+    locations = cells_body(
+      rows = str_detect(`Données`, "^[^a-z]*$") & `Données` != ""
+    )
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "top",
+      color = "#7A57FF",   # couleur Insee
+      weight = px(2)
+    ),
+    locations = cells_body(
+      rows = str_detect(`Données`, "Semaine du")
+    )
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "top",
+      color = "#F5A623",   # couleur Insee
+      weight = px(2)
+    ),
+    locations = cells_body(
+      rows = str_detect(`Données`, "^[^a-z]*$")  & `Données` != ""
+    )
+  ) |>
+  gt::tab_footnote(
+  footnote = gt::md(
+    paste0(
+      "Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"),
+      ". Mis à jour: [fgeerolf.com](https://fgeerolf.com/data/insee/calendrier.html). ",
+      "Source: [Insee](https://www.insee.fr/fr/information/5235017)"
+    )
+  )
+) |>
+  gt::tab_options(table.width = "100%")
+```
+
+# Statistique publique
+
+## Autres organismes
+
+```{r, echo = F}
+ig_b("insee", "blogInsee_2025_08_l_insee_et_les_services_statistiques_ministeriels_fig1-1-scaled")
+```
+
+## Liens
+
+```{r, echo = F}
+ig_b("insee", "blogInsee_2025_08_l_insee_et_les_services_statistiques_ministeriels_fig2-scaled")
+```
