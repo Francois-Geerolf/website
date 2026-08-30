@@ -21,3 +21,30 @@
   gtag('js', new Date()); 
   gtag('config', 'UA-134935813-1'); 
 </script>
+
+<!-- Logo de la source dans le bloc "Autres liens" : remplace l'icône
+     générique du lien de section (…/data/<source>/) par le logo de
+     l'organisation quand data/logos/<source>.png existe. Quarto échappe le
+     HTML du champ other-links.text, d'où ce petit script plutôt qu'un <img>
+     dans les _*.yml. "Home" et "Autres données" gardent leur icône. -->
+<script>
+(function () {
+  function run() {
+    document.querySelectorAll('.quarto-other-links a, .quarto-alternate-formats a').forEach(function (a) {
+      var m = /^https:\/\/fgeerolf\.com\/data\/([a-z0-9_-]+)\/?$/.exec(a.getAttribute('href') || '');
+      if (!m) return;
+      var ic = a.querySelector('i.bi');
+      if (!ic || a.querySelector('img.ol-source-logo')) return;
+      var img = document.createElement('img');
+      img.className = 'ol-source-logo';
+      img.alt = '';
+      img.style.cssText = 'height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em';
+      img.onerror = function () { img.replaceWith(ic); };
+      img.src = 'https://fgeerolf.com/data/logos/' + m[1] + '.png';
+      ic.replaceWith(img);
+    });
+  }
+  if (document.readyState !== 'loading') run();
+  else document.addEventListener('DOMContentLoaded', run);
+})();
+</script>
