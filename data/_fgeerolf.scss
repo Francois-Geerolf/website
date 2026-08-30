@@ -11,21 +11,30 @@
 .reactable .rt-td,
 .reactable .rt-th { white-space: normal; }
 
-@media (max-width: 600px) {
-  .reactable { font-size: .8rem; }
-  .reactable .rt-td,
-  .reactable .rt-th { padding: 4px 6px !important; }
-  .cell, .rt-td-inner { white-space: normal !important; word-break: break-word; }
-}
-
-/* --- Tables gt statiques (gt::gt(), p. ex. la fiche Source/Dataset/PNG/PDF
-   de ig_d() présente sur presque toutes les pages) --------------------- */
-/* Sur petit écran ces tableaux se tassaient au point de couper les en-têtes
-   au milieu d'un mot ("Dataset" -> "Data / set"). On garde les en-têtes
-   d'un seul tenant, on réduit un peu la police, on n'autorise la coupure
-   qu'au sein d'un mot trop long (URL...), et le tableau défile
-   horizontalement dans sa boîte s'il dépasse -- plutôt que d'être illisible. */
+/* --- Correctifs tableaux sur petit écran ------------------------------- */
+/* Deux soucis récurrents (ex. data/conjoncture.html) :
+   - tables interactives : police du contenu à 16px alors que l'en-tête est
+     réduit, et coupure au milieu d'un mot ("Consommatio / n"). Une table à
+     6 colonnes défile de toute façon horizontalement dans sa boîte -- au
+     moins qu'elle soit lisible.
+   - tables gt statiques (fiche Source/Dataset/PNG/PDF de ig_d(), sur presque
+     toutes les pages) : en-têtes coupés au milieu d'un mot ("Data / set").
+   On homogénéise la police, on interdit la coupure intra-mot (sauf mot
+   unique trop long : URL), en-têtes gt d'un seul tenant, et défilement
+   horizontal de la boîte si dépassement. */
 @media (max-width: 767.98px) {
+  .reactable { font-size: .8rem; }
+  .reactable .rt-th,
+  .reactable .rt-td { font-size: .8rem; padding: 6px 8px !important; }
+  .reactable .rt-th,
+  .reactable .rt-td,
+  .reactable .rt-td-inner,
+  .reactable .cell {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word;
+  }
+
   .cell-output-display { overflow-x: auto; }
   table.gt_table { font-size: .8rem; }
   table.gt_table th { white-space: nowrap; }
