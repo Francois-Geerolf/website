@@ -18,6 +18,21 @@
   .cell, .rt-td-inner { white-space: normal !important; word-break: break-word; }
 }
 
+/* --- Tables gt statiques (gt::gt(), p. ex. la fiche Source/Dataset/PNG/PDF
+   de ig_d() présente sur presque toutes les pages) --------------------- */
+/* Sur petit écran ces tableaux se tassaient au point de couper les en-têtes
+   au milieu d'un mot ("Dataset" -> "Data / set"). On garde les en-têtes
+   d'un seul tenant, on réduit un peu la police, on n'autorise la coupure
+   qu'au sein d'un mot trop long (URL...), et le tableau défile
+   horizontalement dans sa boîte s'il dépasse -- plutôt que d'être illisible. */
+@media (max-width: 767.98px) {
+  .cell-output-display { overflow-x: auto; }
+  table.gt_table { font-size: .8rem; }
+  table.gt_table th { white-space: nowrap; }
+  table.gt_table th,
+  table.gt_table td { word-break: normal !important; overflow-wrap: break-word; }
+}
+
 /* --- Liens communs du yml ("other-links") sur mobile ------------------- */
 /* Sous 768px Quarto masque toute la sidebar de marge (#quarto-margin-sidebar),
    donc aussi le bloc "other-links" (Home, Autres données…). On le réaffiche
