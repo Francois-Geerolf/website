@@ -2,7 +2,7 @@
 # tous les data/insee/*.qmd -- plus besoin de `metadata-files:`).
 # Les pages des comptes détaillés ajoutent seulement `_ct_links.yml` /
 # `_ct_a_links.yml` pour le lien de sidebar spécifique.
-subtitle: Données - INSEE
+subtitle: '<img src="https://fgeerolf.com/data/logos/insee.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Données - INSEE'
 lang: fr
 filters:
   - ../../code/genderize-fr.lua
