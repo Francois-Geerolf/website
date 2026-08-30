@@ -57,6 +57,7 @@ jobs:
 
       - name: 💾 Commit calendrier history
         if: github.event_name != 'pull_request'
+        continue-on-error: true   # best-effort : ne doit jamais bloquer le deploy
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

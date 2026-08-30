@@ -23,6 +23,7 @@ I created this website for our [2nd year PhD class](https://fgeerolf.com/econ221
 # gt::opt_interactive) : 4 colonnes, largeurs flexibles + retour à la ligne,
 # pour ne pas déborder / tronquer sur mobile. CSS mobile : _common.yml.
 # updated = min(date des données, date du .html), comme ailleurs sur le site.
+# (rebuild forcé : voir themes.yml, étape commit calendrier corrigée)
 datasets %>%
   dplyr::mutate(
     updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
