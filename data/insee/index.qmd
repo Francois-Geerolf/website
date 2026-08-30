@@ -20,6 +20,7 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 
 ```{r, echo = F}
 datasets |>
+  select(-7 -8) |>
   filter(source == "insee") |>
   source_dataset_file_updates2i()
 ```
@@ -55,7 +56,7 @@ datasets |>
 - **Comptes annuels : Liste des tableaux détaillés** (base 2020, ~180 tableaux). [[html](t_index_a.html)]
 
 ```{r, echo = F}
-.cdn_react("comptes-annuels-tableaux.csv", page_size = 20)
+.cdn_react("comptes-annuels-tableaux.csv", page_size = 10)
 ```
 
 - **Comptes trimestriels: Liste des tableaux détaillés** (base 2020, 46 tableaux). [[html](t_index.html)]
