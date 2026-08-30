@@ -23,7 +23,7 @@ format:
         href: "https://fgeerolf.com/data/"
         icon: bar-chart-line
       - href: "https://fgeerolf.com/"
-        text: "Home"
+        text: "Accueil"
         icon: house
     include-in-header:
       - text: |
