@@ -29,8 +29,9 @@ datasets |>
       '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
     ),
     Title,
-    html    = as.Date(.html),
-    updated = as.Date(data_updated),
+    # Une seule colonne : min(date des données, date du .html), comme
+    # source_dataset_file_updates() ailleurs sur le site.
+    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
     Nobs
   ) |>
   reactable::reactable(
@@ -49,11 +50,10 @@ datasets |>
       style = list(whiteSpace = "normal", wordBreak = "break-word")
     ),
     columns = list(
-      dataset = reactable::colDef(html = TRUE, minWidth = 80, maxWidth = 150),
-      Title   = reactable::colDef(minWidth = 150),
-      html    = reactable::colDef(minWidth = 55, maxWidth = 95),
-      updated = reactable::colDef(minWidth = 70, maxWidth = 110),
-      Nobs    = reactable::colDef(minWidth = 45, maxWidth = 70, align = "right")
+      dataset = reactable::colDef(html = TRUE, minWidth = 80, maxWidth = 160),
+      Title   = reactable::colDef(minWidth = 160),
+      updated = reactable::colDef(minWidth = 80, maxWidth = 120),
+      Nobs    = reactable::colDef(minWidth = 45, maxWidth = 75, align = "right")
     )
   )
 ```
