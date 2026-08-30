@@ -9,7 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-load(here::here("flags", "colors.RData"))
+colors <- arrow::read_parquet(here::here("flags", "colors.parquet"))
 
 `interest-rates` <- tribble(
   ~source, ~dataset,

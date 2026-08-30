@@ -8,6 +8,6 @@ packages <- c(
   "knitr", "scales", "viridis", "zoo", "lubridate",
   "ggrepel", "curl", "rmarkdown", "rvest", "jsonlite",
   "here", "i18n", "r2country", "eurostat", "textcat",
-  "reactable", "htmltools"
+  "reactable", "htmltools", "arrow"
 )
 
