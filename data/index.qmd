@@ -19,8 +19,41 @@ I created this website for our [2nd year PhD class](https://fgeerolf.com/econ221
 ## All sources
 
 ```{r, echo = F}
+# Table interactive de tous les jeux de données. reactable natif (et non
+# gt::opt_interactive) : 4 colonnes, largeurs flexibles + retour à la ligne,
+# pour ne pas déborder / tronquer sur mobile. CSS mobile : _common.yml.
+# updated = min(date des données, date du .html), comme ailleurs sur le site.
 datasets %>%
-  source_dataset_file_updates4()
+  dplyr::mutate(
+    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
+    dataset = sprintf(
+      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
+    ),
+    source  = sprintf('<a href="https://fgeerolf.com/data/%s">%s</a>', source, source)
+  ) %>%
+  dplyr::select(source, dataset, Title, updated) %>%
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 20,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(5, 10, 15, 20),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      source  = reactable::colDef(html = TRUE, minWidth = 65, maxWidth = 110),
+      dataset = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 170),
+      Title   = reactable::colDef(minWidth = 150),
+      updated = reactable::colDef(minWidth = 80, maxWidth = 120)
+    )
+  )
 ```
 
 
