@@ -196,24 +196,16 @@ microeconomic_datasets <- tibble(id = c("compustat",
                                            "Center for Research for Security Prices - crsp"))
 
 # add_links : rend la colonne `id` cliquable vers la page de la base de données
-# (p. ex. insee -> https://fgeerolf.com/data/insee) et la préfixe d'un petit
-# logo quand data/logos/<id>.png existe (voir _logos_download.sh).
+# (p. ex. insee -> https://fgeerolf.com/data/insee) et la préfixe du petit logo
+# de l'organisation via source_logo_md() (_rinit.R, voir _logos_download.sh).
 add_links <- function(df) {
   df %>%
     dplyr::mutate(
-      .logo = file.path("logos", paste0(id, ".png")),
-      id = ifelse(
-        file.exists(.logo),
-        as.character(glue::glue(
-          '<img src="{.logo}" alt="" ',
-          'style="height:1.1em;width:1.1em;object-fit:contain;',
-          'vertical-align:-0.2em;margin-right:.45em">',
-          '[{id}](https://fgeerolf.com/data/{id})'
-        )),
+      id = paste0(
+        source_logo_md(id),
         as.character(glue::glue('[{id}](https://fgeerolf.com/data/{id})'))
       )
-    ) %>%
-    dplyr::select(-.logo)
+    )
 }
 
 main_datasets %>%
@@ -276,7 +268,10 @@ datasets %>%
     dataset = sprintf(
       '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
     ),
-    source  = sprintf('<a href="https://fgeerolf.com/data/%s">%s</a>', source, source)
+    source  = paste0(
+      source_logo_md(source),
+      sprintf('<a href="https://fgeerolf.com/data/%s">%s</a>', source, source)
+    )
   ) %>%
   dplyr::select(source, dataset, Title, updated) %>%
   reactable::reactable(
@@ -295,7 +290,7 @@ datasets %>%
       style = list(whiteSpace = "normal", wordBreak = "break-word")
     ),
     columns = list(
-      source  = reactable::colDef(html = TRUE, minWidth = 65, maxWidth = 110),
+      source  = reactable::colDef(html = TRUE, minWidth = 80, maxWidth = 130),
       dataset = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 170),
       Title   = reactable::colDef(minWidth = 150),
       updated = reactable::colDef(minWidth = 80, maxWidth = 120)

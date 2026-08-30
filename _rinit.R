@@ -28,6 +28,26 @@ knitr::opts_chunk$set(echo = T)
 ig_r <-function(paper, file) i_g(paste0("replications/", paper, "_files/figure-html/", file, "-1.png"))
 
 
+# Petit logo d'une source de données, à accoler devant son nom (p. ex.
+# "insee" -> <img insee.png> insee). Renvoie une chaîne HTML `<img>` quand
+# data/logos/<source>.png existe, "" sinon. URL absolue -> fonctionne quelle
+# que soit la page qui l'affiche (ig_d() sur data/<src>/<ds>.qmd, tables de
+# data/index.qmd, pages de thèmes...). Vectorisé. Les logos sont récupérés
+# par data/_logos_download.sh et versionnés dans data/logos/.
+source_logo_md <- function(source) {
+  if (!isTRUE(knitr::is_html_output())) return(rep("", length(source)))
+  f <- here::here("data", "logos", paste0(source, ".png"))
+  ifelse(
+    file.exists(f),
+    sprintf(paste0('<img src="https://fgeerolf.com/data/logos/%s.png" alt="" ',
+                   'style="height:1.1em;width:1.1em;object-fit:contain;',
+                   'vertical-align:-0.2em;margin-right:.4em">'),
+            source),
+    ""
+  )
+}
+
+
 ig_d <- function(source, dataset, file){
   path_base <- paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1")
   img_path <- paste0(path_base, ".png")
@@ -56,7 +76,8 @@ ig_d <- function(source, dataset, file){
   # eurostat's databrowser, dropped here in favor of this fully general
   # pattern).
   links <- tibble::tibble(
-    Source = paste0("[", source, "](https://fgeerolf.com/data/", source, ")"),
+    Source = paste0(source_logo_md(source),
+                    "[", source, "](https://fgeerolf.com/data/", source, ")"),
     Dataset = paste0("[", dataset, "](https://fgeerolf.com/data/", source, "/", dataset, ".html)"),
     Updated = updated,
     PNG = paste0("[png](https://fgeerolf.com/", path_base, ".png)"),
@@ -243,7 +264,7 @@ source_dataset_file_updates <- . %>%
   ) %>%
   mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
          dataset = map(dataset, gt::md),
-         source = glue::glue("[{source}](https://fgeerolf.com/data/{source})"),
+         source = glue::glue("{source_logo_md(source)}[{source}](https://fgeerolf.com/data/{source})"),
          source = map(source, gt::md)) %>%
   gt::gt() %>%
   gt::cols_align(align = "center", columns = everything()) %>%
@@ -261,7 +282,7 @@ source_dataset_file_updates2 <- . %>%
 
 source_dataset_file_updates3 <- . %>%
   mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
-         source = glue::glue("[{source}](https://fgeerolf.com/data/{source})")) %>%
+         source = glue::glue("{source_logo_md(source)}[{source}](https://fgeerolf.com/data/{source})")) %>%
   gt::gt() %>%
   fmt_markdown(columns = c("dataset", "source")) %>%
   gt::cols_align(align = "center", columns = everything()) %>% 
@@ -289,7 +310,7 @@ source_dataset_title_file_updates <- . %>%
   select(Title, everything()) %>%
   mutate(dataset = glue::glue("[{dataset}](https://fgeerolf.com/data/{source}/{dataset}.html)"),
          dataset = map(dataset, gt::md),
-         source = glue::glue("[{source}](https://fgeerolf.com/data/{source})"),
+         source = glue::glue("{source_logo_md(source)}[{source}](https://fgeerolf.com/data/{source})"),
          source = map(source, gt::md)) %>%
   gt::gt() %>%
   gt::cols_align(align = "center", columns = everything()) %>%
