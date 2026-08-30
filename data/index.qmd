@@ -14,77 +14,8 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 I created this website for our [2nd year PhD class](https://fgeerolf.com/econ221) "Evidence-Based Macroeconomics and Finance", to help you find macroeconomic datasets. You should find the main sources for macroeconomic datasets out there (as well as a selection of series in each), but this list is by no means not exhaustive. You may find more available at the [UCLA Rosenfeld Library dictionary of databases](https://www.anderson.ucla.edu/rosenfeld-library/databases/business-databases-by-name).
 
 
-# All Datasets
-
-## All sources
-
-```{r, echo = F}
-# Table interactive de tous les jeux de données. reactable natif (et non
-# gt::opt_interactive) : 4 colonnes, largeurs flexibles + retour à la ligne,
-# pour ne pas déborder / tronquer sur mobile. CSS mobile : _common.yml.
-# updated = min(date des données, date du .html), comme ailleurs sur le site.
-# (rebuild forcé : voir themes.yml, étape commit calendrier corrigée)
-datasets %>%
-  dplyr::mutate(
-    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
-    dataset = sprintf(
-      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
-    ),
-    source  = sprintf('<a href="https://fgeerolf.com/data/%s">%s</a>', source, source)
-  ) %>%
-  dplyr::select(source, dataset, Title, updated) %>%
-  reactable::reactable(
-    searchable = TRUE,
-    pagination = TRUE,
-    defaultPageSize = 20,
-    showPageSizeOptions = TRUE,
-    pageSizeOptions = c(5, 10, 15, 20),
-    compact = TRUE,
-    resizable = TRUE,
-    highlight = TRUE,
-    wrap = TRUE,
-    defaultColDef = reactable::colDef(
-      align = "left",
-      headerStyle = list(fontWeight = "bold"),
-      style = list(whiteSpace = "normal", wordBreak = "break-word")
-    ),
-    columns = list(
-      source  = reactable::colDef(html = TRUE, minWidth = 65, maxWidth = 110),
-      dataset = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 170),
-      Title   = reactable::colDef(minWidth = 150),
-      updated = reactable::colDef(minWidth = 80, maxWidth = 120)
-    )
-  )
-```
-
-
-## By Source
-
-- Datasets by source. [html](https://fgeerolf.com/data/datasets.html)
-
-# [Themes](https://fgeerolf.com/data/themes.html)
-
-## Javascript
-
-```{r, echo = F}
-themes |>
-  gt() |>
-  gt::fmt_markdown(columns = "Link") |>
-  gt::opt_interactive(use_search = T, use_resizers = T, use_compact_mode = T)
-```
-
-
-## Flat
-
-```{r, echo = FALSE}
-themes |>
-  gt() |>
-  gt::fmt_markdown(columns = "Link")
-```
 
 # Main Datasets
-
-## Javascript
 
 ```{r, echo = FALSE}
 
@@ -263,8 +194,18 @@ microeconomic_datasets <- tibble(id = c("compustat",
                                         "crsp"),
                                  label = c("Compustat - compustat",
                                            "Center for Research for Security Prices - crsp"))
+
+# add_links : transforme la colonne `id` en lien vers la page de la base de
+# données correspondante, p. ex. insee -> https://fgeerolf.com/data/insee
+add_links <- function(df) {
+  df %>%
+    dplyr::mutate(id = as.character(glue::glue("[{id}](https://fgeerolf.com/data/{id})")))
+}
+
 main_datasets %>%
+  add_links() %>%
   gt::gt()  |>
+  gt::fmt_markdown(columns = "id") |>
   gt::opt_interactive(
     use_search = T,
     use_resizers = T,
@@ -272,104 +213,115 @@ main_datasets %>%
   )
 ```
 
-## Flat
 
-```{r, echo = FALSE}
-main_datasets %>%
-  gt::gt()
+# [Themes](https://fgeerolf.com/data/themes.html)
+
+```{r, echo = F}
+themes |>
+  gt() |>
+  gt::fmt_markdown(columns = "Link") |>
+  gt::opt_interactive(use_search = T, use_resizers = T, use_compact_mode = T)
+```
+
+# All Datasets
+
+## All sources
+
+```{r, echo = F}
+# Table interactive de tous les jeux de données. reactable natif (et non
+# gt::opt_interactive) : 4 colonnes, largeurs flexibles + retour à la ligne,
+# pour ne pas déborder / tronquer sur mobile. CSS mobile : _common.yml.
+# updated = min(date des données, date du .html), comme ailleurs sur le site.
+# (rebuild forcé : voir themes.yml, étape commit calendrier corrigée)
+datasets %>%
+  dplyr::mutate(
+    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
+    dataset = sprintf(
+      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
+    ),
+    source  = sprintf('<a href="https://fgeerolf.com/data/%s">%s</a>', source, source)
+  ) %>%
+  dplyr::select(source, dataset, Title, updated) %>%
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 20,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(5, 10, 15, 20),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      source  = reactable::colDef(html = TRUE, minWidth = 65, maxWidth = 110),
+      dataset = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 170),
+      Title   = reactable::colDef(minWidth = 150),
+      updated = reactable::colDef(minWidth = 80, maxWidth = 120)
+    )
+  )
 ```
 
 
+## By Source
 
+- Datasets by source. [html](https://fgeerolf.com/data/datasets.html)
 
 # WRDS - Microeconomic Data
 
 Probably the greatest resource for macro / finance data is provided through Wharton Research Data Services. It includes for example Compustat, CRSP, BlockHolders, TRACE, ExecuComp, I/B/E/S, Markit, and many more... All these resources are available through APIs. I provide only some examples below.
 
-
-
-## Javascript
-
 ```{r, echo = FALSE}
 microeconomic_datasets %>%
   mutate(`.html` = as.Date(file.info(paste0(id, "/index.html"))$mtime),
          `.html` = glue::glue("[{.html}](https://fgeerolf.com/data/{id}/index.html)")) %>%
+  add_links() %>%
   gt::gt()|>
-  gt::fmt_markdown(columns = ".html")|>
+  gt::fmt_markdown(columns = c("id", ".html"))|>
   gt::opt_interactive(
     use_search = T,
     use_resizers = T,
     use_compact_mode = T
   )
 ```
-
-## Flat
-
-```{r, echo = FALSE}
-microeconomic_datasets %>%
-  mutate(`.html` = as.Date(file.info(paste0(id, "/index.html"))$mtime),
-         `.html` = glue::glue("[{.html}](https://fgeerolf.com/data/{id}/index.html)")) %>%
-  gt::gt()|>
-  gt::fmt_markdown(columns = ".html")
-```
-
-
-
 
 
 # Databanks
 
-## Javascript
-
 ```{r, echo = FALSE}
 databanks %>%
+  add_links() %>%
   gt::gt()|>
+  gt::fmt_markdown(columns = "id") |>
   gt::opt_interactive(
     use_search = T,
     use_resizers = T,
     use_compact_mode = T
   )
 ```
-
-## Flat
-
-```{r, echo = FALSE}
-databanks %>%
-  gt::gt()
-```
-
-
-
 
 
 # France
 
-
-## Javascript
-
 ```{r, echo = FALSE}
 france %>%
+  add_links() %>%
   gt::gt()|>
+  gt::fmt_markdown(columns = "id") |>
   gt::opt_interactive(
     use_search = T,
     use_resizers = T,
     use_compact_mode = T
   )
 ```
-
-## Flat
-
-```{r, echo = FALSE}
-france %>%
-  gt::gt()
-```
-
 
 
 # All Datasets
 
-## Javascript
-
 ```{r, echo = FALSE}
 main_datasets %>%
   bind_rows(microeconomic_datasets) %>%
@@ -377,26 +329,15 @@ main_datasets %>%
   bind_rows(france) %>%
   add_row(id = "flags", label = "Flag Colors - flags") %>%
   arrange(id) %>%
+  add_links() %>%
   gt::gt()|>
+  gt::fmt_markdown(columns = "id") |>
   gt::opt_interactive(
     use_search = T,
     use_resizers = T,
     use_compact_mode = T
   )
 ```
-
-## Flat
-
-```{r, echo = FALSE}
-main_datasets %>%
-  bind_rows(microeconomic_datasets) %>%
-  bind_rows(databanks) %>%
-  bind_rows(france) %>%
-  add_row(id = "flags", label = "Flag Colors - flags") %>%
-  arrange(id) %>%
-  gt::gt()
-```
-
 
 # APIs - Application Programming Interfaces
 
@@ -406,7 +347,9 @@ main_datasets %>%
 
 ```{r, echo = FALSE}
 api %>%
-  gt::gt()
+  add_links() %>%
+  gt::gt() |>
+  gt::fmt_markdown(columns = "id")
 ```
 
 ## `getSDMXServiceProviders`

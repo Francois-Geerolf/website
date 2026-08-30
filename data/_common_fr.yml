@@ -11,6 +11,10 @@ format:
     toc: true
     theme: [flatly, _fgeerolf.scss]
     embed-resources: false
+    other-links:
+      - href: "https://fgeerolf.com/"
+        text: "Home"
+        icon: house
     include-in-header:
       - text: |
           <meta name="twitter:card" content="summary">
