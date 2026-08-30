@@ -63,12 +63,10 @@ calendrier_donnees <- "https://www.insee.fr/fr/information/5235017" |>
   dplyr::select(-Annee_semaine) |>
   dplyr::mutate(Horodatage = horodatage, .before = 1)
 
-# Historique cumulatif : hors dépôt (comme qmd_status.csv / qmd_detail.csv),
-# pour qu'il s'accumule quel que soit l'arbre (~/github vs ~/Dropbox) qui
-# rend cette page, et sans bruit git. Voir data/_status/dump_qmd_status.R.
-calendrier_historique_dir  <- path.expand("~/Library/Application Support/website_status")
-dir.create(calendrier_historique_dir, showWarnings = FALSE, recursive = TRUE)
-calendrier_historique_path <- file.path(calendrier_historique_dir, "calendrier_historique.csv")
+# Historique cumulatif : versionné dans le dépôt, car cette page est
+# compilée par le CI (GitHub Actions) sur un runner neuf qui n'a pas de
+# stockage persistant. Le workflow themes.yml committe le CSV après build.
+calendrier_historique_path <- here::here("data", "insee", "calendrier_historique.csv")
 
 # Historique : on ne persiste QUE les repères de semaine et les évènements
 # datés -- pas les en-têtes de section ("INDICATEURS CONJONCTURELS", etc.),
