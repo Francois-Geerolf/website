@@ -7,6 +7,8 @@
 # Sans logo à ce jour : gfd (globalfinancialdata : aucune favicon exposée) ;
 # et les "sources" qui ne sont pas des organismes (crosswalks, elasticity,
 # log, pareto, phillips, pouvoir-achat) -> source_logo_md() renvoie "".
+# data/logos/meteo.png : pictogramme cloud-sun de Bootstrap Icons (teinté),
+# posé à la main -- ne pas le récupérer via favicon (d'où l'absence ici).
 set -u
 cd "$(dirname "$0")"
 mkdir -p logos
@@ -76,7 +78,6 @@ drees drees.solidarites-sante.gouv.fr
 dvf data.gouv.fr
 ined ined.fr
 ipp ipp.eu
-meteo meteofrance.com
 mtes ecologie.gouv.fr
 olap observatoire-des-loyers.fr
 rei impots.gouv.fr
