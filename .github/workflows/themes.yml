@@ -74,7 +74,9 @@ jobs:
           pushed=""
           for i in 1 2 3 4 5; do
             git fetch origin "$BR" --quiet || true
-            git reset --hard "origin/$BR" --quiet   # sûr : ne touche pas aux HTML non suivis
+            # FETCH_HEAD : toujours positionné par le fetch ci-dessus, contrairement
+            # à origin/$BR selon la config de refspec du checkout.
+            git reset --hard FETCH_HEAD --quiet   # sûr : ne touche pas aux HTML non suivis
             python3 data/insee/_merge_historique.py \
               data/insee/calendrier_historique.csv "$BUILT" data/insee/calendrier_historique.csv
             git add data/insee/calendrier_historique.csv
