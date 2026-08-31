@@ -1,6 +1,6 @@
 ---
 title: Données sur les dépenses publiques
-subtitle: Data
+subtitle: '<img src="https://fgeerolf.com/data/logos/_data.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Data'
 lang: fr
 filters:
   - ../code/genderize-fr.lua
@@ -13,6 +13,13 @@ format:
     toc: true
     theme: [flatly, _fgeerolf.scss]
     embed-resources: false
+    other-links:
+      - text: "Autres données"
+        href: "https://fgeerolf.com/data/"
+        icon: bar-chart-line
+      - href: "https://fgeerolf.com/"
+        text: "Accueil"
+        icon: house
 editor: source
 ---
 

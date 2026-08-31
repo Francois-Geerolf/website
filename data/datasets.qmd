@@ -1,6 +1,6 @@
 ---
 title: "Datasets Overview"
-subtitle: Data
+subtitle: '<img src="https://fgeerolf.com/data/logos/_data.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Data'
 lang: en
 author:
   - name: François Geerolf

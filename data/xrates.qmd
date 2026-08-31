@@ -1,6 +1,6 @@
 ---
 title: Exchange Rate Data (X rates)
-subtitle: Data
+subtitle: '<img src="https://fgeerolf.com/data/logos/_data.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Data'
 lang: en
 author:
   - name: François Geerolf
@@ -11,6 +11,13 @@ format:
     toc: true
     theme: [flatly, _fgeerolf.scss]
     embed-resources: false
+    other-links:
+      - text: "Other Data"
+        href: "https://fgeerolf.com/data/"
+        icon: bar-chart-line
+      - href: "https://fgeerolf.com/"
+        text: "Home"
+        icon: house
     include-in-header:
       - text: |
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
