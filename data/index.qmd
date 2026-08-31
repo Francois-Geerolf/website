@@ -11,9 +11,7 @@ invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 ```
 
-I created this website for our [2nd year PhD class](https://fgeerolf.com/econ221) "Evidence-Based Macroeconomics and Finance", to help you find macroeconomic datasets. You should find the main sources for macroeconomic datasets out there (as well as a selection of series in each), but this list is by no means not exhaustive. You may find more available at the [UCLA Rosenfeld Library dictionary of databases](https://www.anderson.ucla.edu/rosenfeld-library/databases/business-databases-by-name).
-
-
+I originally created this website for [Econ 221](https://fgeerolf.com/econ221), "Evidence-Based Macroeconomics and Finance," a second-year PhD class I taught at UCLA, to help students find macroeconomic data. It brings together what I found to be the main sources of macroeconomic datasets over the years, but is by no means exhaustive. Many more are listed in the [UCLA Rosenfeld Library's dictionary of databases](https://www.anderson.ucla.edu/rosenfeld-library/databases/business-databases-by-name).
 
 # Main Datasets
 
