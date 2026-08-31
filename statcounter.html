@@ -28,15 +28,17 @@
      …/data/<source>/ (INSEE, BDF…) comme les sections du site …/ucla/,
      …/cepii/, …/ofce/ -> data/logos/{ucla,cepii,ofce}.png. Quarto échappe le
      HTML du champ other-links.text, d'où ce petit script plutôt qu'un <img>
-     dans les _*.yml. "Home" et "Autres données" gardent leur icône
-     (fallback sur l'icône si le logo n'existe pas). -->
+     dans les _*.yml. Le lien …/data/ reçoit le logo dédié _data.png ; "Home"
+     garde son icône (fallback sur l'icône si le logo n'existe pas). -->
 <script>
 (function () {
   function run() {
     document.querySelectorAll('.quarto-other-links a, .quarto-alternate-formats a').forEach(function (a) {
       // https://fgeerolf.com/<slug>/  ou  https://fgeerolf.com/data/<slug>/
       var m = /^https:\/\/fgeerolf\.com\/(?:data\/)?([a-z0-9_-]+)\/$/.exec(a.getAttribute('href') || '');
-      if (!m || m[1] === 'data') return;
+      if (!m) return;
+      // …/data/ -> logo dédié data/logos/_data.png ; sinon le logo de la source.
+      var slug = (m[1] === 'data') ? '_data' : m[1];
       var ic = a.querySelector('i.bi');
       if (!ic || a.querySelector('img.ol-source-logo')) return;
       var img = document.createElement('img');
@@ -44,7 +46,7 @@
       img.alt = '';
       img.style.cssText = 'height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em';
       img.onerror = function () { img.replaceWith(ic); };
-      img.src = 'https://fgeerolf.com/data/logos/' + m[1] + '.png';
+      img.src = 'https://fgeerolf.com/data/logos/' + slug + '.png';
       ic.replaceWith(img);
     });
   }

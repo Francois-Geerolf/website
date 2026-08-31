@@ -10,6 +10,9 @@ format:
     theme: [flatly, data/_fgeerolf.scss]
     embed-resources: false
     other-links:
+      - text: "Data"
+        href: "https://fgeerolf.com/data/"
+        icon: bar-chart-line
       - text: "UCLA"
         href: "https://fgeerolf.com/ucla/"
       - text: "CEPII"
