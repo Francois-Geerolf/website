@@ -22,7 +22,7 @@ colors <- arrow::read_parquet(here::here("flags", "colors.parquet"))
   "ecb",  "MIR",
   "eurostat", "ei_mfir_m",
   "eurostat", "irt_st_m",
-  "eurostat", "irt_lt_mcby_d",
+  "eurostat", "irt_lt_mcby_m",
   "fred",  "r",
   "oecd",  "MEI",
   "oecd",  "MEI_FIN",
@@ -338,7 +338,7 @@ taux_souverains %>%
 # sh ~/iCloud/website/website_short.sh
 # cd ~/iCloud/website/data/fred; /usr/local/bin/R -f "r.R"; /usr/local/bin/R -e 'quarto::quarto_render("r.qmd")'
 # cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R ei_mfir_m; /usr/local/bin/R -e 'quarto::quarto_render("ei_mfir_m.qmd")'
-# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R irt_lt_mcby_d; /usr/local/bin/R -e 'quarto::quarto_render("irt_lt_mcby_d.qmd")'
+# cd ~/iCloud/website/data/eurostat; /usr/local/bin/Rscript --vanilla _download_one.R irt_lt_mcby_m; /usr/local/bin/R -e 'quarto::quarto_render("irt_lt_mcby_m.qmd")'
 # cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 # cd ~/iCloud/website/data/oecd; /usr/local/bin/R -e 'quarto::quarto_render("api.qmd")'
 # sh ~/iCloud/website/website_short.sh
@@ -353,7 +353,7 @@ taux_souverains %>%
 (Discontinued)
 
 ```{r}
-ig_d("eurostat", "irt_lt_mcby_d", "FR-DE-IT-ES-EL-2020")
+ig_d("eurostat", "irt_lt_mcby_m", "FR-DE-IT-ES-EL-2020")
 ```
 
 
