@@ -10,6 +10,9 @@ format:
     theme: [flatly, _fgeerolf.scss]
     embed-resources: false
     other-links:
+      - text: "Other Data"
+        href: "https://fgeerolf.com/data/"
+        icon: bar-chart-line
       - href: "https://fgeerolf.com/"
         text: "Home"
         icon: house
