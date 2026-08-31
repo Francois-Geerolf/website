@@ -40,8 +40,19 @@ load(here::here("data", "meteo", "station_list.RData"))
 ## Tous
 
 ```{r}
-read_delim(paste0("https://www.meteo60.fr/stations-releves/jour-csv?date=", paste0(format(Sys.Date() - days(1), "%d/%m/%Y"))), show_col_types = FALSE) %>%
-  select(-...7) %>%
+# Le CSV meteo60 a un « ; » final dans l'entête (colonne vide « ...7 ») alors que
+# les lignes de données n'ont que 6 champs : on saute l'entête et on fournit les
+# noms de colonnes nous-mêmes pour éviter les messages de renommage / parsing.
+read_delim(
+  paste0("https://www.meteo60.fr/stations-releves/jour-csv?date=",
+         format(Sys.Date() - days(1), "%d/%m/%Y")),
+  delim = ";",
+  skip = 1,
+  col_names = c("Station", "Temperature_mini", "Temperature_maxi",
+                "Temperature_moy", "Precipitations", "Ensoleillement"),
+  col_types = readr::cols(.default = "c"),
+  show_col_types = FALSE
+) %>%
   print_table_conditional()
 ```
 
