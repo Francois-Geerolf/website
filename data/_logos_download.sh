@@ -9,6 +9,10 @@
 # log, pareto, phillips, pouvoir-achat) -> source_logo_md() renvoie "".
 # data/logos/meteo.png : pictogramme cloud-sun de Bootstrap Icons (teinté),
 # posé à la main -- ne pas le récupérer via favicon (d'où l'absence ici).
+# data/logos/insee.png : emblème actuel de l'Insee (3 barres, identité 2024
+# commune aux SSM Dares/Drees/...), converti de
+# https://www.insee.fr/static/img/favicon.svg -- unavatar.io sert encore
+# l'ancien logo, donc posé à la main lui aussi (d'où l'absence ici).
 set -u
 cd "$(dirname "$0")"
 mkdir -p logos
@@ -64,7 +68,6 @@ compustat spglobal.com
 crsp crsp.org
 dbnomics db.nomics.world
 rdb db.nomics.world
-insee insee.fr
 wrds wharton.upenn.edu
 acoss urssaf.org
 acpr acpr.banque-france.fr

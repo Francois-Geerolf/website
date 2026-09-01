@@ -146,7 +146,9 @@ ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
   pluck(1) |>
-  mutate(across(1, ~ as.numeric(.))) |>
+  # La 1re colonne contient « 2025 (p) », « 2024 (sd) », … : on extrait l'année
+  # plutôt que de forcer as.numeric() (qui produit un warning « NAs introduced »).
+  mutate(across(1, ~ readr::parse_number(as.character(.)))) |>
   dplyr::filter(dplyr::pick(1)[[1]] >= 2017) |>
   gt::gt() |>
   gt::cols_width(1 ~ gt::px(70), everything() ~ gt::px(150)) |>
