@@ -9,6 +9,30 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+
+# Audience par source (data/_pageviews.R -> GoatCounter + logs). Sert à
+# classer les tables de sources par intérêt des visiteurs. Dégrade
+# proprement : sans _pageviews.RData, `pv_src` est vide et l'ordre reste
+# alphabétique.
+pv_src <- tryCatch({
+  e <- new.env(); load(here::here("data", "_pageviews.RData"), envir = e)
+  e$pageviews_source
+}, error = function(err) tibble::tibble(source = character(),
+                                        visitors_90d = integer(),
+                                        rank_score = double()))
+
+# Trie un tableau {id, label, ...} du plus consulté au moins consulté.
+# Le nombre de vues sert seulement au tri : il n'est pas ajouté au tableau
+# affiché.
+rank_by_views <- function(df) {
+  df %>%
+    dplyr::left_join(
+      pv_src %>% dplyr::transmute(id = source, .rk = rank_score),
+      by = "id"
+    ) %>%
+    dplyr::arrange(dplyr::desc(dplyr::coalesce(.rk, -Inf)), id) %>%
+    dplyr::select(-.rk)
+}
 ```
 
 I originally created this website for [Econ 221](https://fgeerolf.com/econ221), "Evidence-Based Macroeconomics and Finance," a second-year PhD class I taught at UCLA, to help students find macroeconomic data. It brings together what I found to be the main sources of macroeconomic datasets over the years, but is by no means exhaustive. Many more are listed in the [UCLA Rosenfeld Library's dictionary of databases](https://www.anderson.ucla.edu/rosenfeld-library/databases/business-databases-by-name).
@@ -209,6 +233,7 @@ add_links <- function(df) {
 }
 
 main_datasets %>%
+  rank_by_views() %>%
   add_links() %>%
   gt::gt()  |>
   gt::fmt_markdown(columns = "id") |>
@@ -218,6 +243,8 @@ main_datasets %>%
     use_compact_mode = T
   )
 ```
+
+*Classées par nombre de visiteurs uniques sur les 90 derniers jours (source : GoatCounter). Cliquer sur l'en-tête d'une colonne pour trier autrement.*
 
 
 # [Themes](https://fgeerolf.com/data/themes.html)
@@ -265,6 +292,8 @@ themes %>%
 datasets %>%
   dplyr::mutate(
     updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
+    # visiteurs uniques 90 j : sert seulement à trier, pas affiché
+    .rank = dplyr::coalesce(rank_score, -Inf),
     dataset = sprintf(
       '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
     ),
@@ -273,6 +302,7 @@ datasets %>%
       sprintf('<a href="https://fgeerolf.com/data/%s">%s</a>', source, source)
     )
   ) %>%
+  dplyr::arrange(dplyr::desc(.rank), dplyr::desc(updated)) %>%
   dplyr::select(source, dataset, Title, updated) %>%
   reactable::reactable(
     searchable = TRUE,
@@ -297,6 +327,9 @@ datasets %>%
     )
   )
 ```
+
+*Classées par popularité (visiteurs uniques sur 90 jours, source&nbsp;: GoatCounter),
+puis par date de mise à jour. Cliquer sur l'en-tête d'une colonne pour trier autrement.*
 
 
 ## By Source
@@ -326,6 +359,7 @@ microeconomic_datasets %>%
 
 ```{r, echo = FALSE}
 databanks %>%
+  rank_by_views() %>%
   add_links() %>%
   gt::gt()|>
   gt::fmt_markdown(columns = "id") |>
@@ -341,6 +375,7 @@ databanks %>%
 
 ```{r, echo = FALSE}
 france %>%
+  rank_by_views() %>%
   add_links() %>%
   gt::gt()|>
   gt::fmt_markdown(columns = "id") |>
@@ -360,7 +395,8 @@ main_datasets %>%
   bind_rows(databanks) %>%
   bind_rows(france) %>%
   add_row(id = "flags", label = "Flag Colors - flags") %>%
-  arrange(id) %>%
+  dplyr::distinct(id, .keep_all = TRUE) %>%
+  rank_by_views() %>%
   add_links() %>%
   gt::gt()|>
   gt::fmt_markdown(columns = "id") |>

@@ -204,6 +204,32 @@ if (length(complete_bases) == 0) {
   print(datasets)
 }
 
+# --- Audience : colonnes visitors_90d / pageviews_90d / pageviews_all /
+# rank_score, produites par data/_pageviews.R (GoatCounter + logs). Jointure
+# souple : si _pageviews.RData n'existe pas encore, colonnes = NA (le tri
+# par popularité retombe alors sur l'ordre alphabétique). On (re)génère
+# _pageviews.RData d'abord si le script est présent.
+if (file.exists("_pageviews.R")) {
+  try(system2(file.path(R.home("bin"), "Rscript"),
+              c("--vanilla", "-e", shQuote("source('_pageviews.R')")),
+              stdout = "", stderr = ""), silent = TRUE)
+}
+if (file.exists("_pageviews.RData")) {
+  pv_env <- new.env(); load("_pageviews.RData", envir = pv_env)
+  datasets <- datasets %>%
+    dplyr::left_join(
+      pv_env$pageviews %>%
+        dplyr::select(source, dataset, visitors_90d, pageviews_90d,
+                      pageviews_all, rank_score),
+      by = c("source", "dataset")
+    )
+} else {
+  datasets$visitors_90d  <- NA_integer_
+  datasets$pageviews_90d <- NA_integer_
+  datasets$pageviews_all <- NA_integer_
+  datasets$rank_score    <- NA_real_
+}
+
 save(datasets, file = "_datasets.RData")
 
 

@@ -1,7 +1,7 @@
 categorie,fichier,intitule
 PIB et grands agrégats économiques,T_1101_1103,1.101-103 - Le produit intérieur brut et ses composantes
 PIB et grands agrégats économiques,T_1104,1.104 - Contributions à l’évolution du produit intérieur brut aux prix de l'année précédente (En points de PIB)
-PIB et grands agrégats économiques,T_1105,1.105 - Produit intérieur brut : les trois approches à prix courants
+PIB et grands agrégats économiques,T_1105,1.105 – Produit intérieur brut - les trois approches à prix courants (En milliards d'euros) - t_1105
 PIB et grands agrégats économiques,T_1106,1.106 - Valeur ajoutée brute par secteur institutionnel à prix courants
 PIB et grands agrégats économiques,T_1107,1.107 - Partage de la valeur ajoutée brute à prix courants
 PIB et grands agrégats économiques,T_1108,1.108 - Emploi intérieur total par secteur institutionnel en nombre de personnes
@@ -27,7 +27,7 @@ Consommation des ménages,T_5204_5206,5.204-206 - Consommation finale effective 
 Consommation des ménages,T_5204d_5206d,5.204d-206d - Consommation finale effective des ménages par produit (88 postes)
 Consommation des ménages,T_CONSO_EFF_PRODUITS,Consommation finale effective par produit (niveaux diffusables les plus fins)
 Consommation des ménages,T_2201_2202,2.201-202 - Consommation finale effective par fonction
-Consommation des ménages,T_CONSO_EFF_FONCTION,Consommation finale effective par fonction (niveaux diffusables les plus fins)
+Consommation des ménages,T_CONSO_EFF_FONCTION,Consommation effective des ménages par fonction
 Consommation des ménages,T_2203_2204,2.203-204 - Consommation finale effective par durabilité
 Consommation des ménages,T_CONSO_EFF_DURABILITE,Consommation finale effective par durabilité (niveaux diffusables les plus fins)
 Consommation des ménages,T_CONSO_EFF_PRODUITS_MENAGES,Dépenses de consommation finale des ménages (niveaux diffusables les plus fins)
@@ -38,7 +38,7 @@ Consommation des ménages,T_5201_5203,5.201-203 - Dépense de consommation final
 Consommation des ménages,T_5201d_5203d,5.201d-203d - Dépense de consommation finale des ménages par produit (88 postes)
 Échanges extérieurs,T_5401_5403,5.401-403 - Exportations de biens et de services par produit (38 postes)
 Échanges extérieurs,T_5404_5406,5.404-406 - Importations de biens et de services par produit (38 postes)
-Échanges extérieurs,T_5407,5.407 - Solde extérieur de biens et de services par produit (38 postes)
+Échanges extérieurs,T_5407,5.407 – Solde extérieur de biens et de services par produit à prix courants (En milliards d'euros) - t_5407
 Échanges extérieurs,T_5408,5.408 - Taux de couverture par produit (38 postes)
 Échanges extérieurs,T_5401d_5403d,5.401d-403d - Exportations de biens et de services par produit (88 postes)
 Échanges extérieurs,T_5404d_5406d,5.404d-406d - Importations de biens et de services par produit (88 postes)
@@ -73,10 +73,10 @@ Activité des branches - Emploi,T_6211d,6.211d - Emploi intérieur salarié par 
 Secteurs institutionnels - Entreprises non financières,PRINCIPAUX-AGREGATS-ENF,Variation annuelle en % des principales opérations des comptes des sociétés et entreprises individuelles non financières
 Secteurs institutionnels - Entreprises non financières,T_4101,4.101 - Principaux ratios des comptes des sociétés non financières (S11) et des entreprises individuelles non financières (S14AA)
 Secteurs institutionnels - Entreprises non financières,T_4102,4.102 - Éléments du compte d'exploitation des sociétés et des entreprises individuelles non financières (S11 et S14AA)
-Secteurs institutionnels - Entreprises non financières,T_7101,7.101 - Compte des sociétés non financières (S11)
+Secteurs institutionnels - Entreprises non financières,T_7101,7.101 – Compte des sociétés non financières (S11) (En milliards d'euros) - t_7101
 Secteurs institutionnels - Entreprises non financières,T_7102,7.102 - Compte des entreprises individuelles non financières (S14AA)
 Secteurs institutionnels - Entreprises non financières,T_7103,7.103 - Compte des entreprises non financières (S11 et S14AA)
-Secteurs institutionnels - Sociétés financières,T_7201,7.201 - Compte des sociétés financières (S12)
+Secteurs institutionnels - Sociétés financières,T_7201,7.201 – Compte des sociétés financières (S12) (En milliards d'euros) - t_7201
 Secteurs institutionnels - Sociétés financières,T_7202,7.202 - Compte des intermédiaires financiers hors assurances et fonds de pension (S12K64) (En milliards d'euros)
 Secteurs institutionnels - Sociétés financières,T_7203,7.203 - Compte des sociétés d'assurance et fonds de pension (S12K65) (En milliards d'euros)
 Secteurs institutionnels - Sociétés financières,T_7204,7.204 - Compte des auxiliaires financiers (S12K66) (En milliards d'euros)
@@ -87,7 +87,7 @@ Secteurs institutionnels - Administrations publiques,T_7303,7.303 - Compte de l'
 Secteurs institutionnels - Administrations publiques,T_7304,7.304 - Compte des organismes divers d'administration centrale (S13112)
 Secteurs institutionnels - Administrations publiques,T_7305,7.305 - Compte des administrations publiques locales (S1313)
 Secteurs institutionnels - Administrations publiques,T_7306,7.306 - Compte des administrations de sécurité sociale (S1314)
-Secteurs institutionnels - Ménages,T_7401,7.401 - Compte des ménages (S14)
+Secteurs institutionnels - Ménages,T_7401,7.401 – Compte des ménages (S14) (En milliards d'euros)
 Secteurs institutionnels - ISBLSM,T_7501,7.501 - Compte des institutions sans but lucratif au service des ménages (S15)
 Secteurs institutionnels - Reste du monde,T_7601,7.601 - Compte du reste du monde (S2)
 Finances publiques - Dette et déficit (Maastricht),t_3101,- Dette des administrations publiques (S13) au sens de Maastricht et sa répartition par sous-secteur (En milliards d'euros et %)
@@ -98,9 +98,9 @@ Finances publiques - Dette et déficit (Maastricht),t_3105,- Passage du déficit
 Finances publiques - Dette et déficit (Maastricht),t_3106,- Déficit des administrations publiques (S13) au sens de Maastricht (En milliards d'euros et %)
 Finances publiques - Dette et déficit (Maastricht),t_3107,- Passage du résultat d'exécution des lois de finances au déficit de l'État (S13111) au sens de Maastricht (En milliards d'euros)
 Finances publiques - Dette et déficit (Maastricht),t_3108,- Passage du résultat comptable du régime général au déficit des administrations de sécurité sociale (S1314) au sens de Maastricht (En milliards d'euros)
-Finances publiques - Dépenses et recettes,t_3201,- Dépenses et recettes des administrations publiques (S13) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3201,3.201 – Dépenses et recettes des administrations publiques (S13) (En milliards d'euros) - T_3201
 Finances publiques - Dépenses et recettes,t_3202,- Dépenses et recettes de l'administration publique centrale (S1311) (En milliards d'euros)
-Finances publiques - Dépenses et recettes,t_3203,- Dépenses et recettes de l'État (S13111) (En milliards d'euros)
+Finances publiques - Dépenses et recettes,t_3203,3.203 – Dépenses et recettes des administrations publiques (S13) (En milliards d'euros)
 Finances publiques - Dépenses et recettes,t_3204,- Dépenses et recettes des organismes divers d'administration centrale (S13112) (En milliards d'euros)
 Finances publiques - Dépenses et recettes,t_3205,- Dépenses et recettes des administrations publiques locales (S1313) (En milliards d'euros)
 Finances publiques - Dépenses et recettes,t_3206,- Dépenses et recettes des collectivités locales (S13131) (En milliards d'euros)
@@ -113,16 +113,16 @@ Finances publiques - Dépenses et recettes,t_3212,- Dépenses et recettes des ad
 Finances publiques - Dépenses et recettes,t_3213,- Dépenses et recettes des régimes d'assurance sociale (S13141) (En milliards d'euros)
 Finances publiques - Dépenses et recettes,t_3214,"- Dépenses et recettes des organismes dépendant des assurances sociales dont hôpitaux, Pôle Emploi,... (S13142) (En milliards d'euros)"
 Finances publiques - Dépenses et recettes,t_3215,- Dépenses et recettes des Administrations publiques par sous-secteur (En milliards d'euros et %)
-Finances publiques - Dépenses et recettes,t_3216,- Prélèvements obligatoires des administrations publiques et des institutions communautaires (En milliards d'euros)
-Finances publiques - Dépenses et recettes,t_3217,- Principaux impôts par catégorie (En milliards d'euros)
-Ménages - Revenu et pouvoir d'achat,t_2101,2.101 - Revenu disponible brut des ménages et évolution du pouvoir d'achat
+Finances publiques - Dépenses et recettes,t_3216,3.216 – Prélèvements obligatoires des administrations publiques et des institutions communautaires (En milliards d'euros) 
+Finances publiques - Dépenses et recettes,t_3217,3.217 – Principaux impôts par catégorie (En milliards d'euros) - T_3217
+Ménages - Revenu et pouvoir d'achat,t_2101,"2.101 – Revenu disponible brut des ménages et évolution du pouvoir d'achat par personne, par ménage et par unité de consommation (En milliards euros et %) - T_2101"
 Ménages - Revenu et pouvoir d'achat,t_2102,2.102 - Revenu disponible « arbitrable » des ménages et évolution du pouvoir d'achat « arbitrable »
-Ménages - Revenu et pouvoir d'achat,t_2103,2.103 - Dépense de consommation finale pré-engagée des ménages
-Ménages - Revenu et pouvoir d'achat,t_2104,2.104 - Compte des ménages simplifié et ratios d'épargne
+Ménages - Revenu et pouvoir d'achat,t_2103,2.103 – Dépense de consommation finale pré-engagée des ménages à prix courants (En milliards d'euros et %) - T_2103
+Ménages - Revenu et pouvoir d'achat,t_2104,2.104 – Compte des ménages simplifié et ratios d'épargne (En milliards d'euros et %) 
 Patrimoine - Comptes financiers,T_8100_2025,8.100 - Tableau des opérations financières 2025
 Patrimoine - Comptes financiers,T_8100_2024,8.100 - Tableau des opérations financières 2024
 Patrimoine - Comptes financiers,T_8100_2023,8.100 - Tableau des opérations financières 2023
-Patrimoine - Comptes financiers,T_8101,8.101 - Comptes financiers - Économie nationale (S1)
+Patrimoine - Comptes financiers,T_8101,8.101 – Comptes financiers - Économie nationale (S1) (En milliards d'euros) - t_8101
 Patrimoine - Comptes financiers,T_8102,8.102 - Comptes financiers - Sociétés non financières (S11)
 Patrimoine - Comptes financiers,T_8103,8.103 - Comptes financiers - Sociétés financières (S12)
 Patrimoine - Comptes financiers,T_8104,"8.104 - Comptes financiers - Intermédiaires financiers, hors assurances et fonds de pension (S12K64)"
@@ -139,8 +139,8 @@ Patrimoine - Comptes de patrimoine,T_8200_2023,8.200 - Comptes de patrimoine ann
 Patrimoine - Comptes de patrimoine,T_8200_2022,8.200 - Comptes de patrimoine annuels 2022
 Patrimoine - Comptes de patrimoine,T_8200_2021,8.200 - Comptes de patrimoine annuels 2021
 Patrimoine - Comptes de patrimoine,T_8200_2020,8.200 - Comptes de patrimoine annuels 2020
-Patrimoine - Comptes de patrimoine,T_8201,8.200 - Comptes de patrimoine annuels (1959 à 2019)
-Patrimoine - Comptes de patrimoine,T_8202,"8.202 - Compte de patrimoine des sociétés non financières (S11), en fin d'année"
+Patrimoine - Comptes de patrimoine,T_8201,"8.201 – Compte de patrimoine de l'économie nationale (S1) (En milliards d'euros, en fin d'année) "
+Patrimoine - Comptes de patrimoine,T_8202,"8.202 – Compte de patrimoine des sociétés non financières (S11) (En milliards d'euros, en fin d'année) - t_8202"
 Patrimoine - Comptes de patrimoine,T_8203,"8.203 - Compte de patrimoine des sociétés financières (S12), en fin d'année"
 Patrimoine - Comptes de patrimoine,T_8204,"8.204 - Compte de patrimoine des administrations publiques (S13), en fin d'année"
 Patrimoine - Comptes de patrimoine,T_8205,"8.205 - Compte de patrimoine de l’administration publique centrale (S1311), en fin d'année"
