@@ -5,6 +5,8 @@
 # Adds, just before </head> of every catalogued dataset page:
 #   * <meta name="description">      (regular SEO snippet)
 #   * <link rel="canonical">
+#   * <link rel="icon"> / apple-touch-icon  (so Google's result favicon is
+#     the sharp UCLA seal, not whatever it guesses from /favicon.ico)
 #   * <script type="application/ld+json"> schema.org/Dataset  <-- the point:
 #     makes the page eligible for Google Dataset Search.
 #
@@ -159,11 +161,16 @@ inject_one <- function(path, src, ds, row) {
   }
 
   has_desc <- grepl('name=["\']description["\']', base)
+  has_icon <- grepl('rel=["\'][^"\']*icon', base)
   block <- paste0(
     BEG, "\n",
     if (!has_desc) paste0('<meta name="description" content="',
                           gsub('"', "&quot;", b$desc, fixed = TRUE), '">\n') else "",
     '<link rel="canonical" href="', b$url, '">\n',
+    if (!has_icon) paste0(
+      '<link rel="icon" href="', BASE, '/favicon.ico" sizes="any">\n',
+      '<link rel="icon" type="image/png" href="', BASE, '/favicon.png" sizes="96x96">\n',
+      '<link rel="apple-touch-icon" href="', BASE, '/apple-touch-icon.png">\n') else "",
     '<script type="application/ld+json">',
     gsub("</", "<\\/", j(b$ld), fixed = TRUE), "</script>\n",
     END, "\n")

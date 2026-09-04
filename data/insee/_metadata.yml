@@ -27,5 +27,8 @@ format:
         icon: house
     include-in-header:
       - text: |
+          <link rel="icon" href="https://fgeerolf.com/favicon.ico" sizes="any">
+          <link rel="icon" type="image/png" href="https://fgeerolf.com/favicon.png" sizes="96x96">
+          <link rel="apple-touch-icon" href="https://fgeerolf.com/apple-touch-icon.png">
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     include-after-body: ../../statcounter.html
