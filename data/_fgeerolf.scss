@@ -96,3 +96,22 @@
   #quarto-margin-sidebar .quarto-other-links li { margin: 0 !important; }
   #quarto-margin-sidebar .quarto-other-links a { white-space: nowrap !important; }
 }
+
+/* --- Cachet de fraîcheur des données (dataset_info_lines) -------------- */
+/* Anciennement une section « # Info » en tête de page ; désormais une note
+   discrète dans la marge de droite, sous le sommaire. */
+.column-margin .dataset-info {
+  font-size: .75rem;
+  line-height: 1.45;
+  color: #6c757d;
+}
+.column-margin .dataset-info p { margin-bottom: .3rem; }
+.column-margin .dataset-info strong { font-weight: 600; color: inherit; }
+
+@media (max-width: 767.98px) {
+  .column-margin .dataset-info {
+    margin: .25rem 0 1rem !important;
+    padding-top: .4rem;
+    border-top: 1px solid #dee2e6;
+  }
+}
