@@ -4,9 +4,12 @@
 # Sources essayées dans l'ordre : unavatar.io (agrège Google/DuckDuckGo/
 # favicon/...), puis Google, puis DuckDuckGo.
 # À relancer manuellement quand on ajoute une source ; les PNG sont committés.
-# Sans logo à ce jour : gfd (globalfinancialdata : aucune favicon exposée) ;
-# et les "sources" qui ne sont pas des organismes (crosswalks, elasticity,
-# log, pareto, phillips, pouvoir-achat) -> source_logo_md() renvoie "".
+# Sans logo à ce jour : les "sources" qui ne sont pas des organismes
+# (crosswalks, elasticity, log, pareto, phillips, pouvoir-achat) ->
+# source_logo_md() renvoie "".
+# data/logos/gfd.png : marque Finaeon (plateforme de Global Financial Data),
+# cropped-Finaeon-favicon-192x192.png de finaeon.com -- globalfinancialdata.com
+# n'expose pas de favicon exploitable, d'où l'entrée `gfd finaeon.com` ci-dessous.
 # data/logos/meteo.png : pictogramme cloud-sun de Bootstrap Icons (teinté),
 # posé à la main -- ne pas le récupérer via favicon (d'où l'absence ici).
 # data/logos/insee.png : emblème actuel de l'Insee (3 barres, identité 2024
@@ -46,7 +49,7 @@ fhfa fhfa.gov
 frb federalreserve.gov
 frb-ny newyorkfed.org
 freddie freddiemac.com
-gfd globalfinancialdata.com
+gfd finaeon.com
 ilo ilo.org
 imf imf.org
 investing investing.com
