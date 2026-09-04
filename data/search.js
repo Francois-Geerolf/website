@@ -20,7 +20,8 @@
     return m ? m[1] : "";
   })();
   var JSON_URL = "/data/search.json" + (V ? "?v=" + V : "");
-  var MAX = 25;
+  var MAX = 40;          // rows shown
+  var PER_SRC = 6;       // …but no more than this many from one source
 
   // --- styles (once) -----------------------------------------------------
   if (!document.getElementById("dataset-search-css")) {
@@ -152,9 +153,14 @@
           var pos = wb ? (" " + hay).indexOf(" " + tk) : hay.indexOf(tk);
           if (pos < 0) continue;
           var exact = v === 0 ? 1 : 0.6;   // synonym hit worth a bit less
+          // whole-word hit in the title reads better than a mid-word one
+          var wholeWord = p === 2 &&
+            new RegExp("(^|[^a-z0-9])" + tk.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") +
+                       "([^a-z0-9]|$)").test(hay);
           var s = pools[p][1] * exact
                 * (pos === 0 && p !== 3 ? 2.2 : 1)
-                * (hay === tk ? 1.7 : 1);
+                * (hay === tk ? 1.7 : 1)
+                * (wholeWord ? 1.25 : 1);
           if (s > best) best = s;
         }
       }
@@ -162,7 +168,8 @@
       total += best;
     }
     total += KIND_BONUS[it.k] || 0;
-    if (it.r) total += Math.min(it.r, 5) * 0.25;   // audience nudge
+    if (it.r) total += Math.min(it.r, 5) * 0.25;          // audience nudge
+    total -= Math.min((it._t || "").length, 120) / 350;   // prefer concise titles
     return total;
   }
 
@@ -179,7 +186,16 @@
     }
     out.sort(function (a, b) { return b[0] - a[0]; });
     var n = out.length;
-    out = out.slice(0, MAX);
+    // don't let one source (eurostat has ~16 near-identical unemployment
+    // series) fill the list — cap per source so every source that matches
+    // gets seen.
+    var per = {}, capped = [];
+    for (var k = 0; k < out.length && capped.length < MAX; k++) {
+      var sk = out[k][1].s || out[k][1].k;
+      per[sk] = (per[sk] || 0) + 1;
+      if (per[sk] <= PER_SRC) capped.push(out[k]);
+    }
+    out = capped;
     if (!out.length) {
       res.innerHTML = '<div class="ds-hint">No match for “' +
         q.replace(/[<>&]/g, "") + "”</div>";
@@ -197,8 +213,9 @@
         '<span class="ds-t">' + esc(it.t) + "</span>" +
         (it.m ? '<span class="ds-m">' + it.m + "</span>" : "") + "</a>";
     }).join("");
-    if (n > MAX) html += '<div class="ds-hint">' + (n - MAX) +
-      " more… refine your search</div>";
+    if (n > out.length) html += '<div class="ds-hint">' + (n - out.length) +
+      " more match" + (n - out.length === 1 ? "" : "es") +
+      " — add a word to narrow it down</div>";
     res.innerHTML = html;
     sel = -1;
   }
