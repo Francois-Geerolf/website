@@ -55,6 +55,11 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: Rscript data/_build.R
 
+      - name: 🔖 SEO — inject schema.org/Dataset into freshly built pages
+        continue-on-error: true   # best-effort : ne doit jamais bloquer le deploy
+        working-directory: ${{ github.workspace }}
+        run: Rscript code/_seo_inject.R "$GITHUB_WORKSPACE/data"
+
       - name: 💾 Commit calendrier history
         if: github.event_name != 'pull_request'
         continue-on-error: true   # best-effort : ne doit jamais bloquer le deploy
@@ -101,7 +106,7 @@ jobs:
   
       - name: 📤 Deploy to remote server via rsync
         run: |
-          rsync --exclude-from=<(cat <<EOF
+          rsync --include='/robots.txt' --exclude-from=<(cat <<EOF
             .git
             *.RData
             *.Rmd

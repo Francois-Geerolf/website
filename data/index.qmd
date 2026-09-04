@@ -12,30 +12,43 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
 # Audience par source (data/_pageviews.R -> GoatCounter + logs). Sert à
 # classer les tables de sources par intérêt des visiteurs. Dégrade
-# proprement : sans _pageviews.RData, `pv_src` est vide et l'ordre reste
-# alphabétique.
-pv_src <- tryCatch({
-  e <- new.env(); load(here::here("data", "_pageviews.RData"), envir = e)
+# proprement : sans _pageviews.RData (cas de la CI, où le fichier n'est ni
+# committé ni régénéré), `pv_src` est vide et l'ordre reste alphabétique.
+# file.exists() d'abord : load() sur un fichier absent émet un warning
+# (visible dans la page rendue) avant même de lever l'erreur.
+pv_src <- local({
+  f <- here::here("data", "_pageviews.RData")
+  empty <- tibble::tibble(source = character(), visitors_90d = integer(),
+                          rank_score = double())
+  if (!file.exists(f)) return(empty)
+  e <- new.env()
+  if (inherits(try(load(f, envir = e), silent = TRUE), "try-error")) return(empty)
   e$pageviews_source
-}, error = function(err) tibble::tibble(source = character(),
-                                        visitors_90d = integer(),
-                                        rank_score = double()))
+})
 
-# Trie un tableau {id, label, ...} du plus consulté au moins consulté.
-# Le nombre de vues sert seulement au tri : il n'est pas ajouté au tableau
-# affiché.
-rank_by_views <- function(df) {
+# Trie un tableau du plus consulté au moins consulté, sur le rank_score
+# d'audience de sa colonne clé (`key`, jointe à pv_src$source). Le score
+# sert seulement au tri : il n'est pas ajouté au tableau affiché. Clé
+# absente de pv_src -> -Inf -> rejetée en fin de liste (ordre alphabétique).
+rank_by_views <- function(df, key = "id") {
   df %>%
     dplyr::left_join(
-      pv_src %>% dplyr::transmute(id = source, .rk = rank_score),
-      by = "id"
+      pv_src %>% dplyr::transmute(!!key := source, .rk = rank_score),
+      by = key
     ) %>%
-    dplyr::arrange(dplyr::desc(dplyr::coalesce(.rk, -Inf)), id) %>%
+    dplyr::arrange(dplyr::desc(dplyr::coalesce(.rk, -Inf)), .data[[key]]) %>%
     dplyr::select(-.rk)
 }
 ```
 
 I originally created this website for [Econ 221](https://fgeerolf.com/econ221), "Evidence-Based Macroeconomics and Finance," a second-year PhD class I taught at UCLA, to help students find macroeconomic data. It brings together what I found to be the main sources of macroeconomic datasets over the years, but is by no means exhaustive. Many more are listed in the [UCLA Rosenfeld Library's dictionary of databases](https://www.anderson.ucla.edu/rosenfeld-library/databases/business-databases-by-name).
+
+```{=html}
+<!-- Recherche plein-catalogue : sources + datasets + thèmes. Index statique
+     data/search.json (code/_seo_search.R), widget autonome data/search.js. -->
+<div id="dataset-search"></div>
+<script src="/data/search.js" defer></script>
+```
 
 # Main Datasets
 
@@ -251,8 +264,11 @@ main_datasets %>%
 
 ```{r, echo = F}
 # Nom du thème cliquable vers sa page (comme la colonne dataset ci-dessous),
-# au lieu d'une colonne "Link" séparée.
+# au lieu d'une colonne "Link" séparée. Les pages de thèmes vivent en
+# /data/<theme>.html -> _pageviews.R les classe comme une "source", donc
+# rank_by_views("theme") les trie par audience.
 themes %>%
+  rank_by_views("theme") %>%
   dplyr::transmute(
     theme = sprintf('<a href="https://fgeerolf.com/data/%s.html">%s</a>', theme, theme),
     Title
@@ -342,6 +358,7 @@ Probably the greatest resource for macro / finance data is provided through Whar
 
 ```{r, echo = FALSE}
 microeconomic_datasets %>%
+  rank_by_views() %>%
   mutate(`.html` = as.Date(file.info(paste0(id, "/index.html"))$mtime),
          `.html` = glue::glue("[{.html}](https://fgeerolf.com/data/{id}/index.html)")) %>%
   add_links() %>%
@@ -415,6 +432,7 @@ main_datasets %>%
 
 ```{r, echo = FALSE}
 api %>%
+  rank_by_views() %>%
   add_links() %>%
   gt::gt() |>
   gt::fmt_markdown(columns = "id")

@@ -232,4 +232,18 @@ if (file.exists("_pageviews.RData")) {
 
 save(datasets, file = "_datasets.RData")
 
+# --- SEO / discovery artefacts -----------------------------------------
+# Derived from the catalog we just saved, regenerated on every refresh:
+#   code/_seo_search.R   -> data/search.json   (catalog search box)
+#   code/_seo_sitemap.R  -> sitemap.xml + robots.txt   (repo root)
+#   code/_seo_inject.R   -> schema.org/Dataset + <meta description> in every
+#                           already-rendered data/<source>/<ds>.html
+# search.json / sitemap.xml / robots.txt are committed and shipped as-is by
+# rsync; the CI workflows re-run _seo_inject.R on the HTML they build.
+Rscript_bin <- file.path(R.home("bin"), "Rscript")
+try(system2(Rscript_bin, c("--vanilla", shQuote(here::here("code", "_seo_search.R")))))
+try(system2(Rscript_bin, c("--vanilla", shQuote(here::here("code", "_seo_sitemap.R")))))
+try(system2(Rscript_bin, c("--vanilla", shQuote(here::here("code", "_seo_inject.R")),
+                           shQuote(path.expand(root_dir)))))
+
 

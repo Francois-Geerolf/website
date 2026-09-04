@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.positai
+
+# Cache d'audience GoatCounter (régénéré par data/_pageviews.R à chaque build,
+# aucun intérêt à versionner).
+data/_pageviews.RData
+_pageviews.RData
