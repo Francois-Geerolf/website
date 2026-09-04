@@ -16,6 +16,9 @@
 # commune aux SSM Dares/Drees/...), converti de
 # https://www.insee.fr/static/img/favicon.svg -- unavatar.io sert encore
 # l'ancien logo, donc posé à la main lui aussi (d'où l'absence ici).
+# data/logos/eurostat.png : favicon 96x96 du databrowser Eurostat (drapeau UE
+# 12 étoiles). ec.europa.eu ne sert que l'icône générique "document + drapeau"
+# de la Commission (identique à ec/ameco, illisible en petit) -> posé à la main.
 set -u
 cd "$(dirname "$0")"
 mkdir -p logos
@@ -44,7 +47,6 @@ dallas-fed dallasfed.org
 destatis destatis.de
 ec ec.europa.eu
 ecb ecb.europa.eu
-eurostat ec.europa.eu
 fhfa fhfa.gov
 frb federalreserve.gov
 frb-ny newyorkfed.org
