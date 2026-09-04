@@ -26,6 +26,8 @@
 # data/logos/oecd.png : logo OCDE globe + chevrons, favicon oecd.org en 256px
 # (Google s2/favicons sz=256) réduit à 128 -- la version sz=64 du script était
 # floue ; posé à la main, hors MAP.
+# data/logos/paris.png : blason de la Ville de Paris, favicon.ico de paris.fr
+# (frame 48px) réduit à 64 -- opendata.paris.fr n'expose qu'une icône 32px.
 set -u
 cd "$(dirname "$0")"
 mkdir -p logos
@@ -92,6 +94,7 @@ ined ined.fr
 ipp ipp.eu
 mtes ecologie.gouv.fr
 olap observatoire-des-loyers.fr
+paris paris.fr
 rei impots.gouv.fr
 sdes statistiques.developpement-durable.gouv.fr
 fred stlouisfed.org

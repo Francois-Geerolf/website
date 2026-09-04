@@ -1,0 +1,69 @@
+---
+title: Ville de Paris — données ouvertes (opendata.paris.fr)
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+# cd ~/iCloud/website/data/paris; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; sh _status/run_all_silent.sh --only paris
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/paris/
+```
+
+Jeux de données publiés par la Ville de Paris sur
+[opendata.paris.fr](https://opendata.paris.fr), récupérés localement en
+Parquet par `_catalogue.R` / `_datasets.R` (rafraîchis par
+`run_all_silent.sh --only paris`, comme les autres sources du site).
+
+Le **[catalogue complet](catalogue.html)** (près de 500 jeux de données, cherchable)
+recense tout ce qui est disponible sur le portail.
+
+# Jeux de données traités ici
+
+```{r, echo = FALSE}
+# Table interactive des jeux de données Paris, sur le même modèle que
+# data/insee/index.qmd -- lit le catalogue global `datasets` (chargé par
+# _rinit.R depuis data/_datasets.RData, alimenté par _update_parquet_folder.R
+# / _update_qmd_folder.R via dirs.txt), pas un scan local du dossier :
+# cette page se compile donc aussi bien en local qu'à distance.
+datasets |>
+  dplyr::filter(source == "paris") |>
+  dplyr::transmute(
+    dataset = sprintf(
+      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
+    ),
+    Title,
+    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
+    Nobs
+  ) |>
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 20,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(5, 10, 15, 20),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      dataset = reactable::colDef(html = TRUE, minWidth = 120, maxWidth = 220),
+      Title   = reactable::colDef(minWidth = 160),
+      updated = reactable::colDef(minWidth = 80, maxWidth = 120),
+      Nobs    = reactable::colDef(minWidth = 45, maxWidth = 80, align = "right",
+                                  format = reactable::colFormat(separators = TRUE))
+    )
+  )
+```
+
+# Pour en savoir plus
+
+- Encadrement des loyers à Paris — [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/F1314)
+- Observatoire des Loyers de l'Agglomération Parisienne (OLAP) — [observatoire-des-loyers.fr](https://www.observatoire-des-loyers.fr)
+- Données Insee sur les loyers — [fgeerolf.com/data/loyers.html](https://fgeerolf.com/data/loyers.html)

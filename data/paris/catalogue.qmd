@@ -1,0 +1,76 @@
+---
+title: Catalogue des données ouvertes de la Ville de Paris
+---
+
+```{r, echo = TRUE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+# Régénérer le catalogue :
+#   cd ~/github/website && Rscript data/paris/_catalogue.R
+# cd ~/iCloud/website/data/paris; /usr/local/bin/R -e 'quarto::quarto_render("catalogue.qmd")'
+```
+
+Les `r nrow(readr::read_csv(here::here("data", "paris", "catalogue.csv"), show_col_types = FALSE))`
+jeux de données publiés sur
+[opendata.paris.fr](https://opendata.paris.fr/pages/catalogue/), récupérés via
+l'API Opendatasoft Explore (`/api/explore/v2.1/catalog/`) par le script
+`data/paris/_catalogue.R` et versionnés dans `data/paris/catalogue.csv`.
+
+# Tous les jeux de données
+
+## Détails
+
+Tableau cherchable : filtre plein texte en haut à droite, filtres par colonne
+sous chaque en-tête, tri en cliquant sur l'en-tête, export CSV de la sélection.
+
+```{r catalogue, echo = TRUE}
+cat_df <- readr::read_csv(here::here("data", "paris", "catalogue.csv"),
+                          show_col_types = FALSE)
+
+cat_df |>
+  dplyr::transmute(
+    Titre = sprintf('<a href="https://opendata.paris.fr/explore/dataset/%s/" target="_blank">%s</a>',
+                    id, titre),
+    `Thème` = theme,
+    `Mots-clés` = mots_cles,
+    Producteur = producteur,
+    `Fréquence` = frequence,
+    `Modifié` = modifie,
+    Lignes = lignes
+  ) |>
+  DT::datatable(
+    escape = FALSE,
+    rownames = FALSE,
+    filter = "top",
+    extensions = "Buttons",
+    options = list(
+      pageLength = 25,
+      lengthMenu = c(10, 25, 50, 100),
+      order = list(list(5, "desc")),
+      dom = "Bfrtip",
+      buttons = list(list(extend = "csv", filename = "catalogue-opendata-paris")),
+      columnDefs = list(
+        list(targets = 2, render = DT::JS(
+          "function(data, type, row){",
+          "  if(type !== 'display' || data === null) return data;",
+          "  return data.length > 60 ? data.substr(0,60)+'…' : data;",
+          "}"))
+      )
+    )
+  ) |>
+  DT::formatRound("Lignes", digits = 0, mark = " ") |>
+  DT::formatDate("Modifié", method = "toLocaleDateString")
+```
+
+# Interroger l'API directement
+
+- Catalogue JSON : `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets?limit=100`
+- Export du catalogue (CSV / JSON) : `https://opendata.paris.fr/api/explore/v2.1/catalog/exports/csv`
+- Un jeu de données : `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/<id>/records?limit=100`
+- Export d'un jeu (CSV, JSON, Parquet, GeoJSON…) : `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/<id>/exports/parquet`
+- Documentation : [help.opendatasoft.com](https://help.opendatasoft.com/apis/ods-explore-v2/)
+
+# Voir aussi
+
+- [Jeux de données traités sur ce site](index.html)
+- [Logement — encadrement des loyers](logement-encadrement-des-loyers.html)
