@@ -8,15 +8,48 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 # Régénérer le catalogue :
 #   cd ~/github/website && Rscript data/paris/_catalogue.R
 # cd ~/iCloud/website/data/paris; /usr/local/bin/R -e 'quarto::quarto_render("catalogue.qmd")'
+
+cat_df <- readr::read_csv(here::here("data", "paris", "catalogue.csv"),
+                          show_col_types = FALSE)
 ```
 
-Les `r nrow(readr::read_csv(here::here("data", "paris", "catalogue.csv"), show_col_types = FALSE))`
-jeux de données publiés sur
+Les `r nrow(cat_df)` jeux de données publiés sur
 [opendata.paris.fr](https://opendata.paris.fr/pages/catalogue/), récupérés via
 l'API Opendatasoft Explore (`/api/explore/v2.1/catalog/`) par le script
 `data/paris/_catalogue.R` et versionnés dans `data/paris/catalogue.csv`.
 
 # Tous les jeux de données
+
+## Liste
+
+```{r catalogue-liste, echo = TRUE}
+cat_df |>
+  dplyr::transmute(
+    Code = sprintf('<a href="https://opendata.paris.fr/explore/dataset/%s/information/" target="_blank">%s</a>',
+                   id, id),
+    Titre = titre
+  ) |>
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 25,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(10, 25, 50, 100),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      Code  = reactable::colDef(html = TRUE, minWidth = 160, maxWidth = 320),
+      Titre = reactable::colDef(minWidth = 200)
+    )
+  )
+```
 
 ## Détails
 
@@ -24,9 +57,6 @@ Tableau cherchable : recherche plein texte, filtres par colonne sous chaque
 en-tête, tri en cliquant sur l'en-tête.
 
 ```{r catalogue, echo = TRUE}
-cat_df <- readr::read_csv(here::here("data", "paris", "catalogue.csv"),
-                          show_col_types = FALSE)
-
 cat_df |>
   dplyr::transmute(
     Titre = sprintf('<a href="https://opendata.paris.fr/explore/dataset/%s/" target="_blank">%s</a>',
