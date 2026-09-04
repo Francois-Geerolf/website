@@ -43,11 +43,19 @@ rank_by_views <- function(df, key = "id") {
 
 I originally created this website for [Econ 221](https://fgeerolf.com/econ221), "Evidence-Based Macroeconomics and Finance," a second-year PhD class I taught at UCLA, to help students find macroeconomic data. It brings together what I found to be the main sources of macroeconomic datasets over the years, but is by no means exhaustive. Many more are listed in the [UCLA Rosenfeld Library's dictionary of databases](https://www.anderson.ucla.edu/rosenfeld-library/databases/business-databases-by-name).
 
-```{=html}
-<!-- Recherche plein-catalogue : sources + datasets + thèmes. Index statique
-     data/search.json (code/_seo_search.R), widget autonome data/search.js. -->
-<div id="dataset-search"></div>
-<script src="/data/search.js" defer></script>
+```{r}
+#| echo: false
+#| output: asis
+# Recherche plein-catalogue : sources + datasets + thèmes. Index statique
+# data/search.json (code/_seo_search.R), widget autonome data/search.js.
+# ?v=<hash> : le serveur sert search.js avec Cache-Control max-age=7j, donc
+# sans ça une nouvelle version reste invisible une semaine. Le hash suit le
+# contenu de search.js ; search.js réutilise ce ?v pour charger search.json.
+.sjs <- here::here("data", "search.js")
+.v <- if (file.exists(.sjs)) substr(tools::md5sum(.sjs), 1, 10) else "1"
+cat(sprintf(
+  '<div id="dataset-search"></div>\n<script src="/data/search.js?v=%s" defer></script>\n',
+  .v))
 ```
 
 # Main Datasets

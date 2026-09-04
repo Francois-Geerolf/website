@@ -12,7 +12,14 @@
   var mount = document.getElementById("dataset-search");
   if (!mount) return;
 
-  var JSON_URL = "/data/search.json";
+  // reuse the ?v= cache-buster from our own <script src> for the JSON too
+  var V = (function () {
+    var s = document.currentScript ||
+            document.querySelector('script[src*="/data/search.js"]');
+    var m = s && /[?&]v=([^&]+)/.exec(s.getAttribute("src") || "");
+    return m ? m[1] : "";
+  })();
+  var JSON_URL = "/data/search.json" + (V ? "?v=" + V : "");
   var MAX = 25;
 
   // --- styles (once) -----------------------------------------------------
@@ -76,7 +83,7 @@
   function load() {
     if (ITEMS || LOADING) return;
     LOADING = true;
-    var tryUrls = [JSON_URL, "search.json"], i = 0;
+    var tryUrls = [JSON_URL, "search.json" + (V ? "?v=" + V : "")], i = 0;
     (function next() {
       if (i >= tryUrls.length) { LOADING = false; render(); return; }
       fetch(tryUrls[i++], { credentials: "omit" })
