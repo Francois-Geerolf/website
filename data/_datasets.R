@@ -246,4 +246,9 @@ try(system2(Rscript_bin, c("--vanilla", shQuote(here::here("code", "_seo_sitemap
 try(system2(Rscript_bin, c("--vanilla", shQuote(here::here("code", "_seo_inject.R")),
                            shQuote(path.expand(root_dir)))))
 
+# Stage the regenerated artefacts so the usual `git add data/_datasets.RData;
+# git commit; git push` picks them up too (they change every run).
+try(system2("git", c("-C", shQuote(here::here()), "add", "--",
+                     "data/search.json", "sitemap.xml", "robots.txt")))
+
 

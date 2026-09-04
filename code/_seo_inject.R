@@ -65,6 +65,29 @@ SRC <- list(
   yahoo=c("Yahoo! Finance",NA), zillow=c("Zillow Research","United States")
 )
 
+# source slug -> license URL. Only the well-established open licences; a
+# source that isn't here just omits `license` (Rich Results Test flags that
+# as a non-critical "optional field missing", which is fine).
+LIC <- local({
+  etalab  <- "https://www.etalab.gouv.fr/licence-ouverte-open-licence/"
+  usgov   <- "https://www.usa.gov/government-works"
+  ogl     <- "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  ccby4   <- "https://creativecommons.org/licenses/by/4.0/"
+  dlde    <- "https://www.govdata.de/dl-de/by-2-0"
+  g <- list(
+    c(c("acoss","acpr","ademe","aft","bdf","citepa","cre","dares","dgafp",
+        "douanes","drees","dvf","ined","insee","ipp","mtes","notaires","olap",
+        "rei","sdes"), etalab),
+    c(c("bea","bls","cbp","census","dallas-fed","fhfa","frb","frb-ny","fred",
+        "freddie","us","john-fernald-tfp"), usgov),
+    c(c("ons","boe"), ogl),
+    c(c("ameco","ec","eurostat","oecd","wb","wdi","wid","maddison","pwt"), ccby4),
+    c(c("buba","destatis"), dlde))
+  m <- character(0)
+  for (grp in g) { u <- grp[length(grp)]; for (s in grp[-length(grp)]) m[s] <- u }
+  m
+})
+
 j <- function(x) jsonlite::toJSON(x, auto_unbox = TRUE, pretty = FALSE, null = "null")
 
 clean_title <- function(title, slug) {
@@ -113,6 +136,7 @@ build_ld <- function(src, ds, row) {
   if (!is.na(upd)) ld$dateModified <- format(upd, "%Y-%m-%d")
   tc <- temporal(as.character(row$Title)); if (!is.null(tc)) ld$temporalCoverage <- tc
   if (!is.null(space)) ld$spatialCoverage <- list("@type" = "Place", name = space)
+  if (!is.na(LIC[src])) ld$license <- unname(LIC[src])
   list(ld = ld, desc = desc, url = url)
 }
 
