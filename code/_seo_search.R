@@ -16,7 +16,9 @@
 #   t  title / label
 #   u  absolute URL
 #   m  last-modified date "YYYY-MM-DD"  (omitted when unknown)
-#   r  rank_score (audience) rounded 3dp (omitted when unknown / 0)
+#   r  rank_score (audience, GoatCounter) rounded 3dp  (omitted when 0 / NA)
+#   f  number of chart images on the page (page "richness")  (omitted when 0)
+# search.js turns r + f into gentle log-scaled ranking bonuses.
 # ---------------------------------------------------------------------------
 
 suppressWarnings(suppressMessages(library(dplyr)))
@@ -31,6 +33,28 @@ clean_title <- function(title, slug) seo_clean_title(title, slug)
 
 if (!exists("datasets")) load(file.path(data_dir, "_datasets.RData"))
 if (!exists("themes"))   load(file.path(data_dir, "_themes.RData"))
+
+# audience score for sources & theme pages (datasets already carry rank_score
+# via _datasets.R). pageviews_source keys on the /data/<x>/ or /data/<x>.html
+# path stem, so it covers both.
+pv_src <- local({
+  f <- file.path(data_dir, "_pageviews.RData")
+  if (!file.exists(f)) return(setNames(numeric(0), character(0)))
+  e <- new.env(); try(load(f, e), silent = TRUE)
+  if (!exists("pageviews_source", e)) return(setNames(numeric(0), character(0)))
+  s <- e$pageviews_source
+  setNames(s$rank_score, s$source)
+})
+
+# chart count on a page = .png files under <render_root>/<...>_files/figure-html/.
+# render_root is the local build tree; on CI (no tree) f is simply omitted and
+# the committed search.json keeps the counts from the last local run.
+render_root <- path.expand("~/iCloud/website/data")
+n_figs <- function(stub) {   # stub = "insee/CHOMAGE..." or "chomage"
+  d <- file.path(render_root, paste0(stub, "_files"), "figure-html")
+  if (dir.exists(d)) length(list.files(d, pattern = "\\.png$")) else 0L
+}
+rk <- function(x) ifelse(is.na(x) | x == 0, NA_real_, round(x, 3))
 
 # Country / language hints so "german inflation", "french gdp", "uk debt"…
 # match even though the titles say "Germany" / nothing / "United Kingdom".
@@ -69,7 +93,8 @@ ds <- datasets %>%
     c = unname(SRC_KW[source]),
     u = sprintf("%s/data/%s/%s.html", BASE, source, dataset),
     m = as_day(pmax(as.Date(data_updated), as.Date(`.html`), na.rm = TRUE)),
-    r = ifelse(is.na(rank_score), NA_real_, round(rank_score, 3))
+    r = rk(rank_score),
+    f = mapply(function(s, d) n_figs(file.path(s, d)), source, dataset, USE.NAMES = FALSE)
   )
 
 curated <- seo_curated_sources(data_dir)
@@ -94,7 +119,7 @@ src <- tibble(s = all_src) %>%
     },
     c = unname(SRC_KW[s]),
     u = sprintf("%s/data/%s/", BASE, s),
-    m, r = NA_real_
+    m, r = rk(unname(pv_src[s])), f = 0L
   )
 
 # --- themes ---------------------------------------------------------------
@@ -105,16 +130,18 @@ th <- themes %>%
     u = sprintf("%s/data/%s.html", BASE, theme),
     m = as_day(suppressWarnings(
           as.Date(file.info(file.path(data_dir, paste0(theme, ".qmd")))$mtime))),
-    r = NA_real_
+    r = rk(unname(pv_src[theme])),
+    f = vapply(theme, n_figs, 0L, USE.NAMES = FALSE)
   )
 
 idx <- bind_rows(src, th, ds)
 
-# Drop all-NA optional keys row-by-row so the payload stays small.
+# Drop NA / empty / zero optional keys row-by-row so the payload stays small.
 records <- lapply(seq_len(nrow(idx)), function(i) {
   row <- as.list(idx[i, ])
-  row <- row[!vapply(row, function(v) is.na(v) || (is.character(v) && !nzchar(v)),
-                     logical(1))]
+  row <- row[!vapply(row, function(v)
+      is.na(v) || (is.character(v) && !nzchar(v)) || (is.numeric(v) && v == 0),
+      logical(1))]
   row
 })
 
@@ -133,6 +160,8 @@ writeLines(paste0("{\"generated\":\"", format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", 
                   ",\"items\":", json, "}"),
            out_file, useBytes = TRUE)
 
-message(sprintf("[_seo_search] %d items (%d sources, %d themes, %d datasets), %d logos -> %s",
+message(sprintf(paste("[_seo_search] %d items (%d sources, %d themes, %d datasets),",
+                      "%d logos, %d with chart counts, %d with audience -> %s"),
                 length(records), nrow(src), nrow(th), nrow(ds), length(logos),
+                sum(idx$f > 0, na.rm = TRUE), sum(!is.na(idx$r)),
                 sub(paste0("^", root, "/?"), "", out_file)))

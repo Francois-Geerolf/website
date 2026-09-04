@@ -168,8 +168,11 @@
       total += best;
     }
     total += KIND_BONUS[it.k] || 0;
-    if (it.r) total += Math.min(it.r, 5) * 0.25;          // audience nudge
     total -= Math.min((it._t || "").length, 120) / 350;   // prefer concise titles
+    // "how interesting is the page": number of charts on it (f, broad
+    // coverage) + GoatCounter audience (r, thin but a strong signal when set)
+    if (it.f) total += Math.min(Math.log(1 + it.f), 3.5) * 0.16;
+    if (it.r) total += Math.min(it.r, 6) * 0.4;
     return total;
   }
 
