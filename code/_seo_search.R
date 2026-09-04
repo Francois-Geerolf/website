@@ -118,11 +118,21 @@ records <- lapply(seq_len(nrow(idx)), function(i) {
   row
 })
 
-json <- jsonlite::toJSON(records, auto_unbox = TRUE, null = "null")
+# Source slugs that have a logo at /data/logos/<slug>.png — the widget shows
+# it next to the result so you can tell insee / eurostat / oecd apart at a
+# glance. Shipped once as a top-level list, not per record.
+logos <- sub("\\.png$", "", list.files(file.path(data_dir, "logos"),
+                                       pattern = "\\.png$"))
+logos <- sort(logos[logos %in% unique(idx$s)])
+
+json  <- jsonlite::toJSON(records, auto_unbox = TRUE, null = "null")
+lgj   <- jsonlite::toJSON(logos, auto_unbox = FALSE)
 writeLines(paste0("{\"generated\":\"", format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
-                  "\",\"n\":", length(records), ",\"items\":", json, "}"),
+                  "\",\"n\":", length(records),
+                  ",\"logos\":", lgj,
+                  ",\"items\":", json, "}"),
            out_file, useBytes = TRUE)
 
-message(sprintf("[_seo_search] %d items (%d sources, %d themes, %d datasets) -> %s",
-                length(records), nrow(src), nrow(th), nrow(ds),
+message(sprintf("[_seo_search] %d items (%d sources, %d themes, %d datasets), %d logos -> %s",
+                length(records), nrow(src), nrow(th), nrow(ds), length(logos),
                 sub(paste0("^", root, "/?"), "", out_file)))

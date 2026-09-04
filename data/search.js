@@ -34,6 +34,9 @@
       "padding:.45rem .7rem;text-decoration:none;color:inherit;border-bottom:1px solid rgba(0,0,0,.06)}",
       "#dataset-search a.ds-row:last-child{border-bottom:0}",
       "#dataset-search a.ds-row.sel,#dataset-search a.ds-row:hover{background:#e8f2f8}",
+      "#dataset-search .ds-logo{flex:0 0 auto;width:18px;height:18px;object-fit:contain;",
+      "border-radius:3px;background:#fff}",
+      "#dataset-search .ds-logo.ph{background:transparent}",
       "#dataset-search .ds-k{flex:0 0 auto;font-size:.68rem;text-transform:uppercase;",
       "letter-spacing:.03em;padding:.08rem .35rem;border-radius:.25rem;background:#d9e6ee;color:#245}",
       "#dataset-search .ds-k.d{background:#e5e5e5;color:#444}",
@@ -64,7 +67,7 @@
   mount.appendChild(res);
 
   // --- data -----------------------------------------------------------
-  var ITEMS = null, LOADING = false, PENDING = null;
+  var ITEMS = null, LOADING = false, PENDING = null, LOGOS = null;
   var norm = function (s) {
     s = (s || "").toLowerCase();
     return s.normalize ? s.normalize("NFD").replace(/[̀-ͯ]/g, "") : s;
@@ -79,6 +82,8 @@
       fetch(tryUrls[i++], { credentials: "omit" })
         .then(function (r) { if (!r.ok) throw 0; return r.json(); })
         .then(function (j) {
+          LOGOS = {};
+          (j.logos || []).forEach(function (s) { LOGOS[s] = 1; });
           ITEMS = (j.items || []).map(function (it) {
             it._t = norm(it.t); it._s = norm(it.s);
             it._d = norm(it.d || ""); it._c = norm(it.c || "");
@@ -176,7 +181,11 @@
     var label = { s: "source", d: "dataset", t: "theme" };
     var html = out.map(function (r) {
       var it = r[1];
-      return '<a class="ds-row" role="option" href="' + it.u + '">' +
+      var logo = (LOGOS && LOGOS[it.s])
+        ? '<img class="ds-logo" src="/data/logos/' + encodeURIComponent(it.s) +
+          '.png" alt="" decoding="async" onerror="this.className=\'ds-logo ph\'">'
+        : '<span class="ds-logo ph"></span>';
+      return '<a class="ds-row" role="option" href="' + it.u + '">' + logo +
         '<span class="ds-k ' + it.k + '">' + label[it.k] + "</span>" +
         '<span class="ds-t">' + esc(it.t) + "</span>" +
         (it.m ? '<span class="ds-m">' + it.m + "</span>" : "") + "</a>";
