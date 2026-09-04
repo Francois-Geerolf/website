@@ -16,16 +16,19 @@
 # commune aux SSM Dares/Drees/...), converti de
 # https://www.insee.fr/static/img/favicon.svg -- unavatar.io sert encore
 # l'ancien logo, donc posé à la main lui aussi (d'où l'absence ici).
-# data/logos/eurostat.png : favicon 96x96 du databrowser Eurostat (drapeau UE
-# 12 étoiles). ec.europa.eu ne sert que l'icône générique "document + drapeau"
-# de la Commission (identique à ec/ameco, illisible en petit) -> posé à la main.
+# ec.europa.eu ne sert qu'une icône générique "document + drapeau" (illisible
+# en petit, et identique pour eurostat/ec/ameco) -> les trois sont posés à la
+# main et hors MAP :
+#   eurostat.png : drapeau UE 12 étoiles (favicon 96x96 du databrowser Eurostat)
+#   ec.png       : emblème "ailes" de la Commission (android-chrome-192 du même)
+#   ameco.png    : € doré sur bleu UE (Bootstrap Icons currency-euro) --
+#                  base macro-éco DG ECFIN, pas de logo propre.
 set -u
 cd "$(dirname "$0")"
 mkdir -p logos
 
 # id domaine
 MAP=$(cat <<'EOF'
-ameco ec.europa.eu
 bea bea.gov
 bis bis.org
 bls bls.gov
@@ -45,7 +48,6 @@ rba rba.gov.au
 shiller shillerdata.com
 dallas-fed dallasfed.org
 destatis destatis.de
-ec ec.europa.eu
 ecb ecb.europa.eu
 fhfa fhfa.gov
 frb federalreserve.gov
