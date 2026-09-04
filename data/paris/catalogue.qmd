@@ -20,8 +20,8 @@ l'API Opendatasoft Explore (`/api/explore/v2.1/catalog/`) par le script
 
 ## Détails
 
-Tableau cherchable : filtre plein texte en haut à droite, filtres par colonne
-sous chaque en-tête, tri en cliquant sur l'en-tête, export CSV de la sélection.
+Tableau cherchable : recherche plein texte, filtres par colonne sous chaque
+en-tête, tri en cliquant sur l'en-tête.
 
 ```{r catalogue, echo = TRUE}
 cat_df <- readr::read_csv(here::here("data", "paris", "catalogue.csv"),
@@ -35,31 +35,43 @@ cat_df |>
     `Mots-clés` = mots_cles,
     Producteur = producteur,
     `Fréquence` = frequence,
-    `Modifié` = modifie,
+    Modifié = modifie,
     Lignes = lignes
   ) |>
-  DT::datatable(
-    escape = FALSE,
-    rownames = FALSE,
-    filter = "top",
-    extensions = "Buttons",
-    options = list(
-      pageLength = 25,
-      lengthMenu = c(10, 25, 50, 100),
-      order = list(list(5, "desc")),
-      dom = "Bfrtip",
-      buttons = list(list(extend = "csv", filename = "catalogue-opendata-paris")),
-      columnDefs = list(
-        list(targets = 2, render = DT::JS(
-          "function(data, type, row){",
-          "  if(type !== 'display' || data === null) return data;",
-          "  return data.length > 60 ? data.substr(0,60)+'…' : data;",
-          "}"))
-      )
+  reactable::reactable(
+    searchable = TRUE,
+    filterable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 25,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(10, 25, 50, 100),
+    defaultSorted = list(Modifié = "desc"),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      Titre = reactable::colDef(html = TRUE, minWidth = 220),
+      `Thème` = reactable::colDef(minWidth = 140, maxWidth = 220),
+      `Mots-clés` = reactable::colDef(
+        minWidth = 180,
+        cell = function(value) {
+          if (is.na(value)) return("")
+          if (nchar(value) > 60) paste0(substr(value, 1, 60), "…") else value
+        }
+      ),
+      Producteur = reactable::colDef(minWidth = 160),
+      `Fréquence` = reactable::colDef(minWidth = 90, maxWidth = 120),
+      Modifié = reactable::colDef(minWidth = 90, maxWidth = 110, align = "right"),
+      Lignes = reactable::colDef(minWidth = 70, maxWidth = 100, align = "right",
+                                 format = reactable::colFormat(separators = TRUE))
     )
-  ) |>
-  DT::formatRound("Lignes", digits = 0, mark = " ") |>
-  DT::formatDate("Modifié", method = "toLocaleDateString")
+  )
 ```
 
 # Interroger l'API directement
