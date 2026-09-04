@@ -23,6 +23,9 @@
 #   ec.png       : emblème "ailes" de la Commission (android-chrome-192 du même)
 #   ameco.png    : € doré sur bleu UE (Bootstrap Icons currency-euro) --
 #                  base macro-éco DG ECFIN, pas de logo propre.
+# data/logos/oecd.png : logo OCDE globe + chevrons, favicon oecd.org en 256px
+# (Google s2/favicons sz=256) réduit à 128 -- la version sz=64 du script était
+# floue ; posé à la main, hors MAP.
 set -u
 cd "$(dirname "$0")"
 mkdir -p logos
@@ -59,7 +62,6 @@ imf imf.org
 investing investing.com
 john-fernald-tfp frbsf.org
 maddison rug.nl
-oecd oecd.org
 ons ons.gov.uk
 pwt rug.nl
 statjp stat.go.jp
