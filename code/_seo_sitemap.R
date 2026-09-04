@@ -117,6 +117,45 @@ for (p in qmds) {
   add(qmd_url(p), if (!is.na(gitdates[p])) gitdates[p] else today)
 }
 
+# --- papers / talks / slides / handouts : .html + .pdf deliverables -----
+# The catalog + .qmd scan above miss these -- they're rendered outputs
+# (often a project's .qmd never committed, e.g. mesurer-le-pouvoir-d-achat,
+# or a committed paper PDF). Take: everything at the site root, plus the
+# .pdf/.html that git tracks in the curated section folders. Skip Quarto
+# asset dirs, book scans (bib/), search-console verification files.
+junk_name <- "^(google[0-9a-f]|statcounter|bingsiteauth|yandex|_)"
+asset_dir <- "(_files|/libs|/site_libs|/\\.quarto)/"
+
+# percent-encode each path segment, keep "/" as separators
+enc_path <- function(p)
+  paste(vapply(strsplit(p, "/", fixed = TRUE)[[1]],
+               function(s) utils::URLencode(s, reserved = TRUE), ""),
+        collapse = "/")
+
+render_root <- path.expand("~/iCloud/website")
+if (dir.exists(render_root)) {
+  froot <- list.files(render_root, pattern = "\\.(html|pdf)$", full.names = FALSE,
+                      recursive = FALSE, ignore.case = TRUE)
+  for (f in froot) {
+    if (grepl(junk_name, f, ignore.case = TRUE)) next
+    if (identical(tolower(f), "index.html")) next   # already added as /
+    add(paste0(BASE, "/", enc_path(f)),
+        as_day(file.info(file.path(render_root, f))$mtime))
+  }
+}
+
+tracked_docs <- git("ls-files", shQuote("*.pdf"), shQuote("*.html"))
+for (p in tracked_docs) {
+  if (startsWith(p, '"')) next   # git-quoted pathological name (spaces, |, ...)
+  if (grepl(asset_dir, p) || grepl(junk_name, basename(p), ignore.case = TRUE)) next
+  if (grepl("^(code|files|flags|icon|cnis)/", p))    next   # not content
+  if (grepl("(^|/)(bib|_bib|_extensions)/", p))      next   # cited works, not ours
+  if (grepl("^data/", p))                            next   # catalog
+  add(paste0(BASE, "/", enc_path(p)),
+      if (!is.na(gitdates[p])) gitdates[p]
+      else as_day(file.info(file.path(root, p))$mtime))
+}
+
 # --- de-dupe, write -----------------------------------------------------
 m <- do.call(rbind, urls)
 m <- m[!duplicated(m[, 1]), , drop = FALSE]
