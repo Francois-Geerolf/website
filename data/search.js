@@ -50,8 +50,12 @@
       "#dataset-search .ds-k.d{background:#e5e5e5;color:#444}",
       "#dataset-search .ds-k.t{background:#e6efd9;color:#354a1c}",
       "#dataset-search .ds-t{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}",
-      "#dataset-search .ds-m{flex:0 0 auto;font-size:.75rem;color:#888}",
+      "#dataset-search .ds-src{flex:0 1 auto;min-width:0;max-width:7rem;overflow:hidden;",
+      "text-overflow:ellipsis;white-space:nowrap;font-size:.75rem;color:#888}",
       "#dataset-search .ds-hint{padding:.5rem .7rem;color:#888;font-size:.85rem}",
+      // Narrow phones: drop the source badge rather than let it shrink to
+      // an unreadable "p." sliver -- the title gets the room instead.
+      "@media (max-width:420px){#dataset-search .ds-src{display:none}}",
       "@media (prefers-color-scheme:dark){",
       "#dataset-search a.ds-row.sel,#dataset-search a.ds-row:hover{background:#1f2d36}",
       "#dataset-search .ds-k{background:#2a3f4c;color:#bcd}",
@@ -211,10 +215,16 @@
         ? '<img class="ds-logo" src="/data/logos/' + encodeURIComponent(it.s) +
           '.png" alt="" decoding="async" onerror="this.className=\'ds-logo ph\'">'
         : '<span class="ds-logo ph"></span>';
+      // Source slug next to the title, dataset rows only -- a source-level
+      // or theme row's title already says "insee" / "inflation-france", so
+      // repeating it there is just noise. Was the last-modified date (it.m)
+      // until it turned out no one reads it and on mobile its fixed-width
+      // span squeezed the title down to an unreadable sliver.
       return '<a class="ds-row" role="option" href="' + it.u + '">' + logo +
         '<span class="ds-k ' + it.k + '">' + label[it.k] + "</span>" +
         '<span class="ds-t">' + esc(it.t) + "</span>" +
-        (it.m ? '<span class="ds-m">' + it.m + "</span>" : "") + "</a>";
+        (it.k === "d" && it.s ? '<span class="ds-src">' + esc(it.s) + "</span>" : "") +
+        "</a>";
     }).join("");
     if (n > out.length) html += '<div class="ds-hint">' + (n - out.length) +
       " more match" + (n - out.length === 1 ? "" : "es") +
