@@ -40,23 +40,32 @@ SRC <- list(
   boe=c("Bank of England","United Kingdom"), buba=c("Deutsche Bundesbank","Germany"),
   cbp=c("U.S. Census Bureau (County Business Patterns)","United States"),
   census=c("U.S. Census Bureau","United States"), cepii=c("CEPII",NA),
+  cgedd=c("Conseil général de l'environnement et du développement durable (CGEDD)","France"),
   citepa=c("Citepa","France"), comtrade=c("UN Comtrade",NA), cre=c("Commission de régulation de l'énergie","France"),
   crosswalks=c("Crosswalks",NA), dallas_fed=c("Federal Reserve Bank of Dallas","United States"),
-  dares=c("Dares (Ministère du Travail)","France"), destatis=c("Statistisches Bundesamt (Destatis)","Germany"),
+  dares=c("Dares (Ministère du Travail)","France"), dbnomics=c("DBnomics (CEPREMAP)",NA),
+  destatis=c("Statistisches Bundesamt (Destatis)","Germany"),
   dgafp=c("DGAFP (Ministère de la Fonction publique)","France"), douanes=c("Douanes françaises","France"),
   drees=c("DREES (Ministère de la Santé)","France"), dvf=c("Demandes de valeurs foncières (DGFiP)","France"),
   ec=c("European Commission","European Union"), ecb=c("European Central Bank","Euro area"),
+  elasticity=c("François Geerolf",NA),
   eurostat=c("Eurostat","European Union"), "fama-french"=c("Kenneth R. French Data Library","United States"),
   fhfa=c("Federal Housing Finance Agency","United States"), frb=c("Federal Reserve Board","United States"),
   "frb-ny"=c("Federal Reserve Bank of New York","United States"),
   fred=c("Federal Reserve Bank of St. Louis (FRED)",NA), freddie=c("Freddie Mac","United States"),
-  gfd=c("Global Financial Data",NA), ilo=c("International Labour Organization",NA),
+  gfd=c("Global Financial Data",NA), iea=c("International Energy Agency",NA),
+  ilo=c("International Labour Organization",NA),
   imf=c("International Monetary Fund",NA), ined=c("Institut national d'études démographiques","France"),
   insee=c("Insee","France"), investing=c("Investing.com",NA),
-  ipp=c("Institut des politiques publiques","France"), maddison=c("Maddison Project Database",NA),
+  ipp=c("Institut des politiques publiques","France"), log=c("François Geerolf",NA),
+  maddison=c("Maddison Project Database",NA),
   mtes=c("Ministère de la Transition écologique","France"), notaires=c("Notaires de France","France"),
   oecd=c("OECD",NA), olap=c("Observatoire des loyers de l'agglomération parisienne","France"),
-  ons=c("Office for National Statistics","United Kingdom"), pwt=c("Penn World Table",NA),
+  ons=c("Office for National Statistics","United Kingdom"),
+  opendata=c("François Geerolf",NA), pareto=c("François Geerolf",NA),
+  paris=c("Ville de Paris (Paris Data)","France"), phillips=c("François Geerolf",NA),
+  "pouvoir-achat"=c("François Geerolf",NA),
+  pwt=c("Penn World Table",NA),
   quandl=c("Nasdaq Data Link (Quandl)",NA), rba=c("Reserve Bank of Australia","Australia"),
   rei=c("Direction générale des collectivités locales (REI)","France"),
   sdes=c("SDES (Ministère de la Transition écologique)","France"),
@@ -67,9 +76,17 @@ SRC <- list(
   yahoo=c("Yahoo! Finance",NA), zillow=c("Zillow Research","United States")
 )
 
-# source slug -> license URL. Only the well-established open licences; a
-# source that isn't here just omits `license` (Rich Results Test flags that
-# as a non-critical "optional field missing", which is fine).
+# source slug -> license URL. `license` in schema.org/Dataset just needs to
+# point to whatever terms actually govern the data -- it doesn't have to be
+# an open licence -- so below covers both the well-established open licences
+# AND sources with their own (sometimes restrictive) official terms page,
+# as long as the URL is one actually confirmed to apply. A handful of
+# sources are still deliberately left out: dbnomics (data inherits its
+# original source's licence per-series, no single URL applies), gfd
+# (institutional-subscription-only terms, not a public reuse licence), and
+# shiller (no terms-of-use page exists). Google's Rich Results Test flags a missing
+# `license` as a non-critical "optional field missing", which is fine --
+# better to omit it than to assert a licence that isn't actually confirmed.
 LIC <- local({
   etalab  <- "https://www.etalab.gouv.fr/licence-ouverte-open-licence/"
   usgov   <- "https://www.usa.gov/government-works"
@@ -77,16 +94,41 @@ LIC <- local({
   ccby4   <- "https://creativecommons.org/licenses/by/4.0/"
   dlde    <- "https://www.govdata.de/dl-de/by-2-0"
   g <- list(
-    c(c("acoss","acpr","ademe","aft","bdf","citepa","cre","dares","dgafp",
+    c(c("acoss","acpr","ademe","aft","bdf","cepii","cgedd","citepa","cre","dares","dgafp",
         "douanes","drees","dvf","ined","insee","ipp","mtes","notaires","olap",
         "rei","sdes"), etalab),
-    c(c("bea","bls","cbp","census","dallas-fed","fhfa","frb","frb-ny","fred",
+    c(c("bea","bls","cbp","census","dallas_fed","fhfa","frb","frb-ny","fred",
         "freddie","us","john-fernald-tfp"), usgov),
     c(c("ons","boe"), ogl),
-    c(c("ameco","ec","eurostat","oecd","wb","wdi","wid","maddison","pwt"), ccby4),
-    c(c("buba","destatis"), dlde))
+    c(c("ameco","ec","eurostat","ilo","oecd","wb","wdi","wid","maddison","pwt"), ccby4),
+    c(c("buba","destatis"), dlde),
+    # François Geerolf's own compiled/derived data pages, not third-party
+    # redistribution -- his to license, released as CC BY 4.0 to match the
+    # open, reproducible-code ethos of the rest of the site.
+    c(c("crosswalks","elasticity","log","opendata","pareto","phillips",
+        "pouvoir-achat"), ccby4))
   m <- character(0)
   for (grp in g) { u <- grp[length(grp)]; for (s in grp[-length(grp)]) m[s] <- u }
+
+  # Sources with their own official terms/usage page rather than a
+  # well-known open licence (some are genuinely restrictive -- e.g. BIS,
+  # IMF, IEA, UN Comtrade limit reuse to non-commercial/internal use --
+  # citing the real terms is more accurate than a generic open licence).
+  m["bis"]       <- "https://www.bis.org/terms_conditions.htm"
+  m["comtrade"]  <- "https://comtrade.un.org/db/help/licenseAgreement.aspx"
+  m["ecb"]       <- "https://www.ecb.europa.eu/stats/ecb_statistics/governance_and_quality_framework/html/usage_policy.en.html"
+  m["iea"]       <- "https://www.iea.org/terms"
+  m["imf"]       <- "https://www.imf.org/en/about/copyright-and-terms"
+  m["investing"] <- "https://www.investing.com/about-us/terms-and-conditions"
+  m["paris"]     <- "https://opendata.paris.fr/pages/lalicence/"
+  m["quandl"]    <- "https://data.nasdaq.com/terms"
+  m["rba"]       <- "https://www.rba.gov.au/copyright/"
+  m["statjp"]    <- "https://www.e-stat.go.jp/en/terms-of-use"
+  m["un"]        <- "https://data.un.org/Host.aspx?Content=UNdataUse"
+  m["undata"]    <- "https://data.un.org/Host.aspx?Content=UNdataUse"
+  m["yahoo"]     <- "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html"
+  m["zillow"]    <- "https://www.zillow.com/corporate/terms-of-use/"
+
   m
 })
 
