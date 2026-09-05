@@ -58,7 +58,85 @@ cat(sprintf(
   .v))
 ```
 
-# Main Datasets
+
+# Datasets
+
+```{r, echo = F}
+datasets %>%
+  dplyr::mutate(
+    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
+    # visiteurs uniques 90 j : sert seulement à trier, pas affiché
+    .rank = dplyr::coalesce(rank_score, -Inf),
+    dataset = sprintf(
+      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
+    ),
+    source  = paste0(
+      source_logo_md(source),
+      sprintf('<a href="https://fgeerolf.com/data/%s">%s</a>', source, source)
+    )
+  ) %>%
+  dplyr::arrange(dplyr::desc(.rank), dplyr::desc(updated)) %>%
+  dplyr::select(source, dataset, Title, updated) %>%
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 20,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(5, 10, 15, 20),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      source  = reactable::colDef(html = TRUE, minWidth = 80, maxWidth = 130),
+      dataset = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 170),
+      Title   = reactable::colDef(minWidth = 150),
+      updated = reactable::colDef(minWidth = 80, maxWidth = 120)
+    )
+  )
+```
+
+# [Themes](https://fgeerolf.com/data/themes.html)
+
+```{r, echo = F}
+# Nom du thème cliquable vers sa page (comme la colonne dataset ci-dessous),
+# au lieu d'une colonne "Link" séparée. Les pages de thèmes vivent en
+# /data/<theme>.html -> _pageviews.R les classe comme une "source", donc
+# rank_by_views("theme") les trie par audience.
+themes %>%
+  rank_by_views("theme") %>%
+  dplyr::transmute(
+    theme = sprintf('<a href="https://fgeerolf.com/data/%s.html">%s</a>', theme, theme),
+    Title
+  ) %>%
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 20,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(5, 10, 15, 20),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      theme = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 200),
+      Title = reactable::colDef(minWidth = 160)
+    )
+  )
+```
+
+# Sources
 
 ```{r, echo = FALSE}
 
@@ -267,100 +345,11 @@ main_datasets %>%
   )
 ```
 
-*Classées par nombre de visiteurs uniques sur les 90 derniers jours (source : GoatCounter). Cliquer sur l'en-tête d'une colonne pour trier autrement.*
 
-
-# [Themes](https://fgeerolf.com/data/themes.html)
-
-```{r, echo = F}
-# Nom du thème cliquable vers sa page (comme la colonne dataset ci-dessous),
-# au lieu d'une colonne "Link" séparée. Les pages de thèmes vivent en
-# /data/<theme>.html -> _pageviews.R les classe comme une "source", donc
-# rank_by_views("theme") les trie par audience.
-themes %>%
-  rank_by_views("theme") %>%
-  dplyr::transmute(
-    theme = sprintf('<a href="https://fgeerolf.com/data/%s.html">%s</a>', theme, theme),
-    Title
-  ) %>%
-  reactable::reactable(
-    searchable = TRUE,
-    pagination = TRUE,
-    defaultPageSize = 20,
-    showPageSizeOptions = TRUE,
-    pageSizeOptions = c(5, 10, 15, 20),
-    compact = TRUE,
-    resizable = TRUE,
-    highlight = TRUE,
-    wrap = TRUE,
-    defaultColDef = reactable::colDef(
-      align = "left",
-      headerStyle = list(fontWeight = "bold"),
-      style = list(whiteSpace = "normal", wordBreak = "break-word")
-    ),
-    columns = list(
-      theme = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 200),
-      Title = reactable::colDef(minWidth = 160)
-    )
-  )
-```
-
-# All Datasets
-
-## All sources
-
-```{r, echo = F}
-# Table interactive de tous les jeux de données. reactable natif (et non
-# gt::opt_interactive) : 4 colonnes, largeurs flexibles + retour à la ligne,
-# pour ne pas déborder / tronquer sur mobile. CSS mobile : _common.yml.
-# updated = min(date des données, date du .html), comme ailleurs sur le site.
-# (rebuild forcé : voir themes.yml, étape commit calendrier corrigée)
-datasets %>%
-  dplyr::mutate(
-    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
-    # visiteurs uniques 90 j : sert seulement à trier, pas affiché
-    .rank = dplyr::coalesce(rank_score, -Inf),
-    dataset = sprintf(
-      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
-    ),
-    source  = paste0(
-      source_logo_md(source),
-      sprintf('<a href="https://fgeerolf.com/data/%s">%s</a>', source, source)
-    )
-  ) %>%
-  dplyr::arrange(dplyr::desc(.rank), dplyr::desc(updated)) %>%
-  dplyr::select(source, dataset, Title, updated) %>%
-  reactable::reactable(
-    searchable = TRUE,
-    pagination = TRUE,
-    defaultPageSize = 20,
-    showPageSizeOptions = TRUE,
-    pageSizeOptions = c(5, 10, 15, 20),
-    compact = TRUE,
-    resizable = TRUE,
-    highlight = TRUE,
-    wrap = TRUE,
-    defaultColDef = reactable::colDef(
-      align = "left",
-      headerStyle = list(fontWeight = "bold"),
-      style = list(whiteSpace = "normal", wordBreak = "break-word")
-    ),
-    columns = list(
-      source  = reactable::colDef(html = TRUE, minWidth = 80, maxWidth = 130),
-      dataset = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 170),
-      Title   = reactable::colDef(minWidth = 150),
-      updated = reactable::colDef(minWidth = 80, maxWidth = 120)
-    )
-  )
-```
 
 *Classées par popularité (visiteurs uniques sur 90 jours, source&nbsp;: GoatCounter),
 puis par date de mise à jour. Cliquer sur l'en-tête d'une colonne pour trier autrement.*
 
-
-## By Source
-
-- Datasets by source. [html](https://fgeerolf.com/data/datasets.html)
 
 # WRDS - Microeconomic Data
 
