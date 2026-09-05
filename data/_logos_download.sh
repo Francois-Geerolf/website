@@ -28,6 +28,10 @@
 # floue ; posé à la main, hors MAP.
 # data/logos/paris.png : blason de la Ville de Paris, favicon.ico de paris.fr
 # (frame 48px) réduit à 64 -- opendata.paris.fr n'expose qu'une icône 32px.
+# data/logos/fred.png : favicon.ico de fred.stlouisfed.org (16x16, agrandi à
+# 64 -- FRED n'expose pas d'icône plus grande), PAS le logo de stlouisfed.org
+# (l'aigle doré de la Fed de Saint-Louis) que le domaine générique du MAP
+# ci-dessous récupérerait -- posé à la main, hors MAP.
 set -u
 cd "$(dirname "$0")"
 mkdir -p logos
@@ -97,7 +101,6 @@ olap observatoire-des-loyers.fr
 paris paris.fr
 rei impots.gouv.fr
 sdes statistiques.developpement-durable.gouv.fr
-fred stlouisfed.org
 quandl nasdaq.com
 EOF
 )
