@@ -154,11 +154,11 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acoss/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acpr/</loc>
@@ -658,7 +658,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/bls/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/boe/</loc>
@@ -694,7 +694,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/cbp/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/census/</loc>
@@ -762,7 +762,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/compustat/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/comtrade/</loc>
@@ -818,11 +818,11 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/crsp/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dallas-fed/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dares/</loc>
@@ -934,7 +934,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/drees/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dvf/</loc>
@@ -1825,8 +1825,12 @@
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/europe-slack.html</loc>
+    <lastmod>2026-09-05</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/europe.html</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-05</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/</loc>
@@ -3158,7 +3162,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fhfa/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/finance.html</loc>
@@ -3178,7 +3182,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/frb-ny/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/frb/</loc>
@@ -3730,6 +3734,10 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/inflation-europe.html</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/inflation-expectations.html</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
@@ -6126,7 +6134,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/john-fernald-tfp/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/log-scales.html</loc>
@@ -6162,7 +6170,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/maddison/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/matieres-premieres.html</loc>
@@ -6174,7 +6182,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/meteo/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/monetary-policy.html</loc>
@@ -6186,7 +6194,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/mtes/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/niveau-de-vie-2017.html</loc>
@@ -7758,7 +7766,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/rei/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/retraites.html</loc>
@@ -7834,7 +7842,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/uk/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/un/</loc>
@@ -8262,7 +8270,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/wid/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/xrates.html</loc>
