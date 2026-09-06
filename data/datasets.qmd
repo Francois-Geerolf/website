@@ -74,6 +74,14 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
+# bls
+
+```{r}
+datasets %>%
+  filter(source == "bls") %>%
+  source_dataset_file_updates2()
+```
+
 # boe
 
 ```{r}
