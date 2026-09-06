@@ -28,9 +28,13 @@
 # floue ; posé à la main, hors MAP.
 # data/logos/paris.png : blason de la Ville de Paris, favicon.ico de paris.fr
 # (frame 48px) réduit à 64 -- opendata.paris.fr n'expose qu'une icône 32px.
-# data/logos/ssmsi.png : bloc-marque « Marianne » du ministère de l'Intérieur,
-# recadré du logo de l'organisation « Ministère de l'intérieur » sur data.gouv.fr
-# (le favicon interieur.gouv.fr est un 32px illisible) -- posé à la main, hors MAP.
+# data/logos/depp.png : Marianne tricolore, favicon.ico d'education.gouv.fr
+# (frame 48px) réduit à 64 -- la DEPP n'a pas de logo propre ; MAP =
+# "depp education.gouv.fr" mais unavatar renvoie l'.ico (converti à la main).
+# data/logos/ssmsi.png : emblème « 3 barres » de la statistique publique
+# (identité 2024, comme insee/dares/drees mais palette bleu marine / bleu /
+# orange du SSMSI), recadré de LOGO_SSMSI_LOGO_SIGNATURE_RVB.png (Wikimedia
+# Commons) -- posé à la main, hors MAP.
 # data/logos/fred.png : favicon.ico de fred.stlouisfed.org (16x16, agrandi à
 # 64 -- FRED n'expose pas d'icône plus grande), PAS le logo de stlouisfed.org
 # (l'aigle doré de la Fed de Saint-Louis) que le domaine générique du MAP
@@ -94,6 +98,7 @@ cepii cepii.fr
 citepa citepa.org
 cre cre.fr
 dares dares.travail-emploi.gouv.fr
+depp education.gouv.fr
 douanes douane.gouv.fr
 drees drees.solidarites-sante.gouv.fr
 dvf data.gouv.fr
