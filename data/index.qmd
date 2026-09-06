@@ -265,7 +265,8 @@ france <- tibble(id = c("acoss",
                         "olap",
                         "paris",
                         "rei",
-                        "sdes"),
+                        "sdes",
+                        "ssmsi"),
                  label = c("Agence centrale des organismes de sécurité sociale - ACOSS",
                            "Autorité de Contrôle Prudentiel et de Résolution - ACPR",
                            "Banque de France - BDF",
@@ -286,7 +287,8 @@ france <- tibble(id = c("acoss",
                            "Observatoire des Loyers de l’Agglomération Parisienne - OLAP",
                            "Ville de Paris — données ouvertes (opendata.paris.fr) - paris",
                            "Relevé des Elements d'Imposition - REI",
-                           "Service des Données et des Etudes Statistiques - SDES"))
+                           "Service des Données et des Etudes Statistiques - SDES",
+                           "Service statistique ministériel de la sécurité intérieure - SSMSI"))
 
 # databanks -------
 

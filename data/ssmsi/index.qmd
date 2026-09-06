@@ -1,0 +1,69 @@
+---
+title: "SSMSI — délinquance enregistrée par la police et la gendarmerie"
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+# cd ~/iCloud/website/data/ssmsi; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
+# cd ~/iCloud/website/data; sh _status/run_all_silent.sh --only ssmsi
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/ssmsi/
+```
+
+Données de la **délinquance enregistrée** par la police et la gendarmerie
+nationales, diffusées par le **Service statistique ministériel de la sécurité
+intérieure** ([SSMSI](https://www.interieur.gouv.fr/Interstats), ministère de
+l'Intérieur), récupérées localement en Parquet depuis
+[data.gouv.fr](https://www.data.gouv.fr/organizations/ministere-de-linterieur/)
+(rafraîchies par `run_all_silent.sh --only ssmsi`, comme les autres sources du
+site).
+
+# Jeux de données traités ici
+
+```{r, echo = FALSE}
+# Table interactive, sur le même modèle que data/paris/index.qmd et
+# data/insee/index.qmd -- lit le catalogue global `datasets` (chargé par
+# _rinit.R depuis data/_datasets.RData, alimenté par _update_parquet_folder.R
+# / _update_qmd_folder.R via dirs.txt), pas un scan local du dossier : cette
+# page se compile donc aussi bien en local qu'à distance.
+datasets |>
+  dplyr::filter(source == "ssmsi") |>
+  dplyr::transmute(
+    dataset = sprintf(
+      '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
+    ),
+    Title,
+    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
+    Nobs
+  ) |>
+  reactable::reactable(
+    searchable = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 20,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(5, 10, 15, 20),
+    compact = TRUE,
+    resizable = TRUE,
+    highlight = TRUE,
+    wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = list(
+      dataset = reactable::colDef(html = TRUE, minWidth = 120, maxWidth = 260),
+      Title   = reactable::colDef(minWidth = 160),
+      updated = reactable::colDef(minWidth = 80, maxWidth = 120),
+      Nobs    = reactable::colDef(minWidth = 45, maxWidth = 90, align = "right",
+                                  format = reactable::colFormat(separators = TRUE))
+    )
+  )
+```
+
+# Pour en savoir plus
+
+- SSMSI — Interstats : [interieur.gouv.fr/Interstats](https://www.interieur.gouv.fr/Interstats)
+- Organisation « Ministère de l'intérieur » sur data.gouv.fr : [data.gouv.fr/organizations/ministere-de-linterieur](https://www.data.gouv.fr/organizations/ministere-de-linterieur/)
+- Bases communale, départementale et régionale de la délinquance : [data.gouv.fr](https://www.data.gouv.fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/)

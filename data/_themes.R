@@ -48,12 +48,14 @@ first_title <- function(path, theme) {
   sub(paste0("\\s*-\\s*\\Q", theme, "\\E\\s*$"), "", t, perl = TRUE)
 }
 
+# `themes` = la colonne vertébrale : un thème = une page qmd + son titre.
+# Ne se dérive PAS de `theme_datasets` : (1) le Title vient du YAML du qmd,
+# (2) ~9 pages (datasets, inegalites, investment, meteo, niveau-de-vie,
+# pauvrete, productivite, ...) n'ont aucun ig_d() donc sont absentes de
+# `theme_datasets`. L'URL de la page est `.../data/{theme}.html` (aucune
+# colonne Link stockée : elle n'était lue nulle part).
 themes <- qmd |>
-  dplyr::mutate(
-    Title = purrr::map2_chr(path, theme, first_title),
-    Link  = glue::glue("[Link](https://fgeerolf.com/data/{theme}.html)")
-  ) |>
-  dplyr::select(theme, Title, Link)
+  dplyr::transmute(theme, Title = purrr::map2_chr(path, theme, first_title))
 
 # --- (source, dataset, file) tracés sur chaque page, extraits des appels
 # ig_d("source", "dataset", "file"). Remplace le tribble

@@ -28,6 +28,9 @@
 # floue ; posé à la main, hors MAP.
 # data/logos/paris.png : blason de la Ville de Paris, favicon.ico de paris.fr
 # (frame 48px) réduit à 64 -- opendata.paris.fr n'expose qu'une icône 32px.
+# data/logos/ssmsi.png : bloc-marque « Marianne » du ministère de l'Intérieur,
+# recadré du logo de l'organisation « Ministère de l'intérieur » sur data.gouv.fr
+# (le favicon interieur.gouv.fr est un 32px illisible) -- posé à la main, hors MAP.
 # data/logos/fred.png : favicon.ico de fred.stlouisfed.org (16x16, agrandi à
 # 64 -- FRED n'expose pas d'icône plus grande), PAS le logo de stlouisfed.org
 # (l'aigle doré de la Fed de Saint-Louis) que le domaine générique du MAP
