@@ -49,7 +49,6 @@ knitr::opts_chunk$set(echo = T)
 # cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R ecb      only=INW.qmd
 # cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R ecb      only=EWT.qmd
 # cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R ecb      only=ICP.qmd
-# cd ~/github/website/data; /usr/local/bin/R -e 'quarto::quarto_render("europe-slack.qmd")'
 # sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/europe-slack.html
 ```
 
@@ -148,7 +147,7 @@ ig_d("oecd", "INVPT_I", "SHINV-EMP-FRA-DEU-ITA-ESP-GRC")
 
 
 
-# Firms report weak demand, not supply constraints
+# Demand adressed to firms
 
 ## Assessment of order-book levels, euro-area industry
 
@@ -199,6 +198,14 @@ level with care — the direction is the point.)
 
 ```{r}
 ig_d("eurostat", "migr_emi2", "emigration-young-south")
+```
+
+# Slack through tight credit
+
+## Bank Lending Survey
+
+```{r}
+ig_d("ecb", "BLS", "BLS.Q.U2.ALL.Z.H.H-C.B3.ZZ.D.WFNET")
 ```
 
 # Datasets
