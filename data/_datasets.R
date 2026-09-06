@@ -91,6 +91,54 @@ df <- tibble(path = files) %>%
     basepath = file.path(rel_dir, stem)
   )
 
+# --- Split-file pages ------------------------------------------------------
+# Some pages have <stem>.qmd + <stem>.html but never a bare <stem>.parquet --
+# their data is spread across sibling files named <stem>.<part>.parquet or
+# <stem>_<part>.parquet. Every data/bls/ page is like this (cu.qmd is fed by
+# cu.data.1.AllItems.parquet, cu.series.parquet, ...); several data/bea/
+# T-tables too (T10101.qmd <- T10101_A.parquet, T10101_Q.parquet). The
+# "qmd + html + SAME-stem data file" rule below would drop them from the
+# catalog entirely. So: for such a page, stand in a synthetic df row that
+# points at its "main" sibling data file (the biggest <stem>.data* file, or
+# just the biggest sibling), so the page gets a catalog entry dated by when
+# that data file was last written.
+{
+  core_bp <- df %>%
+    filter(ext %in% targets_core) %>%
+    group_by(basepath) %>%
+    summarize(has_core = all(targets_core %in% ext),
+              rel_dir  = dplyr::first(rel_dir),
+              stem     = dplyr::first(stem), .groups = "drop") %>%
+    filter(has_core,
+           !grepl("(^|/)_", rel_dir),          # skip _archives/, _status/, ...
+           !stem %in% c("index", "api", "apis"))
+  bp_with_data <- df %>% filter(ext %in% targets_data) %>% pull(basepath) %>% unique()
+  need <- core_bp %>% filter(!basepath %in% bp_with_data)
+  data_rows <- df %>% filter(ext %in% targets_data)
+
+  synth <- purrr::pmap_dfr(need, function(basepath, has_core, rel_dir, stem) {
+    pre <- substr(data_rows$fname, 1, nchar(stem) + 1)
+    sib <- data_rows[data_rows$rel_dir == rel_dir &
+                       pre %in% c(paste0(stem, "."), paste0(stem, "_")), ]
+    if (nrow(sib) == 0) return(tibble())
+    # prefer real data files over metadata side-files when choosing "main"
+    meta <- grepl("(_var|_VAR|_COU|_struct|_structure|_concepts|_datastructure)\\.", sib$fname,
+                  ignore.case = TRUE)
+    if (any(!meta)) sib <- sib[!meta, ]
+    sz <- file.info(sib$path)$size
+    is_main <- grepl(paste0("^", stem, "[._]data[._]"), sib$fname, ignore.case = TRUE)
+    pick <- if (any(is_main)) which(is_main)[which.max(sz[is_main])] else which.max(sz)
+    main <- sib$path[pick]
+    tibble(path = main, rel_dir = rel_dir, fname = basename(main),
+           ext_raw = tools::file_ext(main), ext = tolower(tools::file_ext(main)),
+           stem = stem, basepath = file.path(rel_dir, stem))
+  })
+  if (nrow(synth) > 0) {
+    message("split-file pages picked up: ", paste(synth$basepath, collapse = ", "))
+    df <- bind_rows(df, synth)
+  }
+}
+
 # Identify basenames that have BOTH core files and AT LEAST ONE data file
 complete_bases <- df %>%
   group_by(basepath) %>%
