@@ -9,11 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-`poland` <-tribble(
-  ~source, ~dataset,
-  "oecd", "QNA",
-  "wdi", "NY.GDP.PCAP.PP.CD") %>%
-  arrange(source, dataset)
+# (was: poland <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("poland"))
 ```
 
 # Info
@@ -66,7 +62,7 @@ ig_d("eurostat", "tec00114", "FR-DE-IT-ES-EL-PL-HU")
 # Datasets
 
 ```{r, echo = F}
-`poland` |>
+theme_source_datasets("poland") |>
   source_dataset_file_updates()
 ```
 

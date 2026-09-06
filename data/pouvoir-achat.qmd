@@ -37,23 +37,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
 ## sh ~/iCloud/website/website_short.sh
-`pouvoir-achat` <- tribble(
-  ~source, ~dataset,
-  "insee",  "CNA-2014-RDB",
-  "insee",  "CNT-2014-CSI",
-  "insee",  "conso-eff-fonction",
-  "insee", "reve-niv-vie-individu-activite",
-  "insee", "reve-niv-vie-pouv-achat-trim",
-  "insee", "reve-conso-evo-dep-pa",
-  "insee", "t_men_val",
-  "insee", "t_pouvachat_val",
-  "insee", "econ-gen-revenu-dispo-pouv-achat-2",
-  "insee", "t_salaire_val",
-  "insee", "t_recapAgent_val",
-  "oecd",  "HH_DASH",
-  "insee",  "T_7401",
-  "insee", "T_2101") %>%
-  arrange(source, dataset)
+# (was: pouvoir-achat <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("pouvoir-achat"))
 ```
 
 
@@ -477,7 +461,7 @@ ig_d("oecd", "PRICES_CPI", "CPHPTT01-CPALTT01-IXOB-M-FRA-DEU-1996")
 # Bases de données
 
 ```{r, echo = F}
-`pouvoir-achat` |>
+theme_source_datasets("pouvoir-achat") |>
   source_dataset_file_updates()
 ```
 

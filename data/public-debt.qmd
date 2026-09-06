@@ -9,24 +9,7 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
-`public-debt` <- tribble(
-  ~source, ~dataset,
-  "eurostat",  "ei_mfir_m",
-  "eurostat",  "gov_10q_ggdebt",
-  "fred",  "r",
-  "fred",  "saving",
-  "gfd",  "debt",
-  "imf",  "FM",
-  "imf",  "HPDD",
-  "imf",  "GGXWDN_G01_GDP_PT",
-  "imf", "GGXONLB_G01_GDP_PT",
-  "imf", "GGXCNL_G01_GDP_PT",
-  "oecd", "QASA_TABLE7PSD",
-  "wdi",  "GC.XPN.INTP.ZS",
-  "wdi",  "GC.XPN.INTP.CN",
-  "wdi",  "GC.DOD.TOTL.GD.ZS",
-  "wdi",  "GC.XPN.INTP.RV.ZS") %>%
-  arrange(source, dataset)
+# (was: public-debt <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("public-debt"))
 ```
 
 
@@ -351,7 +334,7 @@ ig_d("bdf", "DET", "detention-non-residents")
 # Datasets
 
 ```{r, echo = F}
-`public-debt` |>
+theme_source_datasets("public-debt") |>
   source_dataset_file_updates()
 ```
 

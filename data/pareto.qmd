@@ -14,11 +14,7 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pareto.qmd")'
 # open https://fgeerolf.com/data/pareto.html
 # sh ~/iCloud/website/website_short.sh
-pareto <-tribble(
-  ~source, ~dataset,
-  "insee", "ip1863",
-  "insee", "ip2020") %>%
-  arrange(source, dataset)
+# (was: pareto <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("pareto"))
 ```
 
 
@@ -59,6 +55,6 @@ ig_d("insee", "ip1863", "salaires-distribution-80")
 # Datasets
 
 ```{r, echo = F}
-`pareto` |>
+theme_source_datasets("pareto") |>
   source_dataset_file_updates()
 ```

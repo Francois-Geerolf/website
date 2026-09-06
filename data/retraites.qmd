@@ -10,11 +10,7 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 
-retraites <- tribble(
-  ~source, ~dataset,
-  "insee",  "DECES-MORTALITE",
-  "ipp",  "revalorisation_pension") %>%
-  arrange(source, dataset)
+# (was: retraites <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("retraites"))
 ```
 
 # Info
@@ -90,7 +86,7 @@ ig_d("insee", "T_3301", "GF1002-GF1003")
 # Bases de données
 
 ```{r, echo = F}
-`retraites` |>
+theme_source_datasets("retraites") |>
   source_dataset_file_updates()
 ```
 

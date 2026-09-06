@@ -9,24 +9,7 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 knitr::opts_chunk$set(echo = T)
-`europe-slack` <- tribble(
-  ~source, ~dataset,
-  "ameco", "AVGDGP",
-  "ameco", "ZNAWRU",
-  "oecd", "EO_GAP",
-  "oecd", "INVPT_I",
-  "eurostat", "lfsi_sla_q",
-  "eurostat", "une_rt_m",
-  "eurostat", "namq_10_lp_ulc",
-  "eurostat", "tipslm80",
-  "eurostat", "edat_lfse_18",
-  "eurostat", "lfsa_urgaed",
-  "eurostat", "migr_emi2",
-  "eurostat", "ei_bsin_m_r2",
-  "ecb", "INW",
-  "ecb", "EWT",
-  "ecb", "ICP") %>%
-  arrange(source, dataset)
+# (was: europe-slack <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("europe-slack"))
 ```
 
 # Info
@@ -211,6 +194,6 @@ ig_d("ecb", "BLS", "BLS.Q.U2.ALL.Z.H.H-C.B3.ZZ.D.WFNET")
 # Datasets
 
 ```{r, echo = F}
-`europe-slack` |>
+theme_source_datasets("europe-slack") |>
   source_dataset_file_updates()
 ```

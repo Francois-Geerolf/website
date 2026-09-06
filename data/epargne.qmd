@@ -10,16 +10,7 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 knitr::opts_chunk$set(echo = T)
-epargne <- tribble(
-  ~source, ~dataset,
-  "bdf",  "CFT",
-  "insee",  "bdf2017",
-  "insee",  "ip1815",
-  "insee", "T_7401",
-  "insee", "t_men_val",
-  "insee", "t_recapAgent_val",
-  "insee", "t_pouvachat_val") %>%
-  arrange(source, dataset)
+# (was: epargne <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("epargne"))
 ```
 
 ```{r, echo = F}
@@ -414,7 +405,7 @@ ig_d("insee", "T_7401", "D1-D11-rdb")
 # Bases de données
 
 ```{r, echo = F}
-`epargne` |>
+theme_source_datasets("epargne") |>
   source_dataset_file_updates()
 ```
 

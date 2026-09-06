@@ -9,20 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-employment <- tribble(
-  ~source, ~dataset,
-  "bls", "jt",
-  "bls", "la",
-  "bls", "ln",
-  "eurostat",  "namq_10_a10_e",
-  "eurostat",  "nama_10_a10_e",
-  "eurostat",  "nama_10_a64_e",
-  "eurostat", "une_rt_m",
-  "oecd", "STLABOUR",
-  "oecd", "LFS_SEXAGE_I_R",
-  "oecd", "ALFS_EMP",
-  "oecd", "EPL_T") %>%
-  arrange(source, dataset)
+# (was: employment <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("employment"))
 ```
 
 # Info
@@ -144,6 +131,6 @@ ig_d("oecd", "FTPT_COMMON_INC", "FRA-NLD-DEU-EA20")
 # Datasets
 
 ```{r, echo = F}
-`employment` |>
+theme_source_datasets("employment") |>
   source_dataset_file_updates()
 ```

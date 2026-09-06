@@ -9,18 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-unemployment <- tribble(
-  ~source, ~dataset,
-  "bls", "jt",
-  "bls", "la",
-  "bls", "ln",
-  "eurostat", "une_rt_m",
-  "oecd", "STLABOUR",
-  "oecd", "LFS_SEXAGE_I_R",
-  "oecd", "ALFS_EMP",
-  "oecd", "EPL_T",
-  "oecd", "NRR") %>%
-  arrange(source, dataset)
+# (was: unemployment <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("unemployment"))
 ```
 
 # Info
@@ -92,6 +81,6 @@ ig_d("eurostat", "une_rt_m", "FR-DE-IT-ES-NL-EA20")
 # Datasets
 
 ```{r, echo = F}
-`unemployment` |>
+theme_source_datasets("unemployment") |>
   source_dataset_file_updates()
 ```

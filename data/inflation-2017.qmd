@@ -9,30 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-`inflation-2017` <- tribble(
-  ~source, ~dataset,
-  "bis",  "CPI",
-  "ecb", "CES",
-  "eurostat", "nama_10_co3_p3",
-  "eurostat",  "prc_hicp_manr",
-  "eurostat",  "prc_hicp_midx",
-  "eurostat",  "prc_hicp_mmor",
-  "eurostat",  "prc_hicp_inw",
-  "eurostat",  "prc_hicp_cow",
-  "eurostat",  "prc_ppp_ind",
-  "eurostat",  "prc_hicp_ctrb",
-  "eurostat",  "sts_inpp_m",
-  "eurostat",  "sts_inppd_m",
-  "eurostat",  "sts_inppnd_m",
-  "fred",  "cpi",
-  "fred",  "inflation",
-  "imf", "CPI",
-  "oecd",  "MEI_PRICES_PPI",
-  "oecd",  "PRICES_CPI",
-  "oecd", "PPP2017",
-  "wdi",  "NY.GDP.DEFL.KD.ZG",
-  "wdi",  "FP.CPI.TOTL.ZG") %>%
-  arrange(source, dataset)
+# (was: inflation-2017 <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("inflation-2017"))
 ```
 
 
@@ -66,7 +43,7 @@ ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA20-FRA-ITA-2017-01")
 # Datasets
 
 ```{r, echo = F}
-`inflation-2017` |>
+theme_source_datasets("inflation-2017") |>
   source_dataset_file_updates()
 ```
 

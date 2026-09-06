@@ -9,12 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-demography <- tribble(
-  ~source, ~dataset,
-  "eurostat", "demo_minfind",
-  "wdi", "SP.POP.TOTL",
-  "oecd", "FAMILY") %>%
-  arrange(source, dataset)
+# (was: demography <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("demography"))
 ```
 
 
@@ -78,6 +73,6 @@ ig_d("wdi", "SP.POP.TOTL", "DE-FR-IT")
 # Datasets
 
 ```{r, echo = F}
-demography |>
+theme_source_datasets("demography") |>
   source_dataset_file_updates()
 ```

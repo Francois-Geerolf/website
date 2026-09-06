@@ -8,12 +8,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-finance <- tribble(
-  ~source, ~dataset,
-  "yahoo",  "CAC40",
-  "yahoo",  "SP500",
-  "yahoo", "indices") %>%
-  arrange(source, dataset)
+# (was: finance <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("finance"))
 ```
 
 # Info
@@ -49,6 +44,6 @@ ig_d("eurostat", "nasq_10_nf_tr", "B2A3G-S11-BE-DE-FR-EA20-SCA-GVA")
 # Datasets
 
 ```{r, echo = F}
-`finance` |>
+theme_source_datasets("finance") |>
   source_dataset_file_updates()
 ```

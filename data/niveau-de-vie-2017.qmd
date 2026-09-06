@@ -43,14 +43,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
 ## sh ~/iCloud/website/website_short.sh
-`niveau-de-vie` <- tribble(
-  ~source, ~dataset,
-  "insee", "reve-niv-vie-individu-activite",
-  "insee", "reve-niv-vie-pouv-achat-trim",
-  "insee", "reve-conso-evo-dep-pa",
-  "insee", "t_men_val",
-  "insee", "econ-gen-revenu-dispo-pouv-achat-2") %>%
-  arrange(source, dataset)
+# (was: niveau-de-vie <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("niveau-de-vie-2017"))
 ```
 
 
@@ -332,7 +325,7 @@ tribble(~ theme,
 # Bases de données
 
 ```{r, echo = F}
-`niveau-de-vie` |>
+theme_source_datasets("niveau-de-vie-2017") |>
   source_dataset_file_updates()
 ```
 

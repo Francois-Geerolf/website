@@ -10,11 +10,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-`productivity` <- tribble(
-  ~source, ~dataset,
-  "oecd",  "PDBI_I4",
-  "oecd",  "ULC_EEQ") %>%
-  arrange(source, dataset)
+# (was: productivity <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("productivity"))
 ```
 
 
@@ -84,7 +80,7 @@ ig_d("oecd", "ULC_EEQ", "EA-US-FRA-all-2019-Q4")
 # Datasets
 
 ```{r, echo = F}
-`productivity` |>
+theme_source_datasets("productivity") |>
   source_dataset_file_updates()
 ```
 

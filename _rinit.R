@@ -250,6 +250,19 @@ print_table_noname <- . %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
                             latex_options = c("striped", "hold_position", "repeat_header"))
 
+# (source, dataset) tracés sur une page de thème, extraits de ses appels
+# ig_d() par data/_themes.R et stockés (au format long, avec une colonne
+# `theme`) dans data/_themes.RData sous le nom `theme_datasets`. Remplace le
+# `<theme> <- tribble(~source, ~dataset, ...)` qui était maintenu à la main
+# en tête de chaque data/<theme>.qmd. Se branche directement sur
+# source_dataset_file_updates().
+theme_source_datasets <- function(theme) {
+  theme_datasets %>%
+    dplyr::filter(.data$theme == .env$theme) %>%
+    dplyr::distinct(source, dataset) %>%
+    dplyr::arrange(source, dataset)
+}
+
 # Joins in just Title + Updated (single pmin(data_updated, .html) date,
 # same as ig_d()'s Updated above) -- not the full raw catalog
 # (Nobs/qmd_duration_sec/qmd_rendered_at etc), which is what this used to

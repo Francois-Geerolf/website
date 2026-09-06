@@ -9,11 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-redistribution <- tribble(
-  ~source, ~dataset,
-  "insee", "IA88",
-  "insee", "RPM2021_D2") %>%
-  arrange(source, dataset)
+# (was: redistribution <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("redistribution"))
 ```
 
 # Redistribution élargie
@@ -76,7 +72,7 @@ tribble(~ theme,
 # Bases de données
 
 ```{r, echo = F}
-`redistribution` |>
+theme_source_datasets("redistribution") |>
   source_dataset_file_updates()
 ```
 

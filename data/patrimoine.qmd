@@ -9,12 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-patrimoine <- tribble(
-  ~source, ~dataset,
-  "bdf",  "CFT",
-  "insee",  "T_8201",
-  "insee",  "T_82XX") %>%
-  arrange(source, dataset)
+# (was: patrimoine <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("patrimoine"))
 ```
 
 # Info
@@ -68,7 +63,7 @@ ig_b("insee", "ip2028", "fig2")
 # Bases de données
 
 ```{r, echo = F}
-`patrimoine` |>
+theme_source_datasets("patrimoine") |>
   source_dataset_file_updates()
 ```
 

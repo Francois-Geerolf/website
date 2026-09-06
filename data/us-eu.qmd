@@ -9,15 +9,7 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 knitr::opts_chunk$set(echo = T)
-`us-eu` <- tribble(
-  ~source, ~dataset,
-  "bis", "CBPOL_D",
-  "oecd", "BOP",
-  "oecd",  "QNA_EXPENDITURE_CAPITA",
-  "wdi", "NY.GDP.PCAP.CD",
-  "wdi", "NY.GDP.PCAP.PP.CD",
-  "wdi", "NY.GDP.MKTP.PP.CD") %>%
-  arrange(source, dataset)
+# (was: us-eu <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("us-eu"))
 ```
 
 # Info
@@ -165,7 +157,7 @@ ig_d("fred", "money", "assets-ECB-FED")
 # Datasets
 
 ```{r, echo = F}
-`us-eu` |>
+theme_source_datasets("us-eu") |>
   source_dataset_file_updates()
 ```
 

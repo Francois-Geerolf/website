@@ -9,24 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-`europe` <-tribble(
-  ~source, ~dataset,
-  "eurostat", "bop_gdp6_q",
-  "eurostat",  "nama_10_a10_e",
-  "eurostat",  "namq_10_a10_e",
-  "eurostat",  "nama_10_a10",
-  "eurostat",  "namq_10_a10",
-  "eurostat",  "nama_10_gdp",
-  "eurostat",  "namq_10_gdp",
-  "eurostat",  "nama_10_lp_ulc",
-  "eurostat",  "namq_10_lp_ulc",
-  "eurostat",  "namq_10_pc",
-  "eurostat", "nasa_10_nf_tr",
-  "eurostat", "nasq_10_nf_tr",
-  "eurostat", "tipsii40",
-  "eurostat", "tec00114",
-  "eurostat", "tec00113") %>%
-  arrange(source, dataset)
+# (was: europe <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("europe"))
 ```
 
 
@@ -398,6 +381,6 @@ ig_d("eurostat", "tipsbp20", "mean-sd-EU27-FR-DE")
 # Datasets
 
 ```{r, echo = F}
-`europe` |>
+theme_source_datasets("europe") |>
   source_dataset_file_updates()
 ```

@@ -10,10 +10,7 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 knitr::opts_chunk$set(echo = T)
-pauvrete <- tribble(
-  ~source, ~dataset,
-  "insee",  "ECRT2023") %>%
-  arrange(source, dataset)
+# (was: pauvrete <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("pauvrete"))
 ```
 
 
@@ -195,7 +192,7 @@ ig_b("insee", "FPS2024", "F18", "fig2")
 # Bases de données
 
 ```{r, echo = F}
-`pauvrete` |>
+theme_source_datasets("pauvrete") |>
   source_dataset_file_updates()
 ```
 

@@ -9,13 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-`macro-us` <- tribble(
-  ~source, ~dataset,
-  "fred",  "gdp",
-  "fred",  "unr",
-  "oecd",  "QNA",
-  "oecd",  "SNA_TABLE1") %>%
-  arrange(source, dataset)
+# (was: macro-us <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("macro-us"))
 ```
 
 
@@ -157,6 +151,6 @@ ig_d("bea", "T10105", "net-exports-plain")
 # Datasets
 
 ```{r, echo = F}
-`macro-us` |>
+theme_source_datasets("macro-us") |>
   source_dataset_file_updates()
 ```

@@ -40,24 +40,7 @@ editor: source
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-`pouvoir-achat-2017` <- tribble(
-  ~source, ~dataset,
-  "insee",  "CNA-2014-RDB",
-  "insee",  "CNT-2014-CSI",
-  "insee",  "conso-eff-fonction",
-  "insee", "reve-niv-vie-individu-activite",
-  "insee", "reve-niv-vie-pouv-achat-trim",
-  "insee", "reve-conso-evo-dep-pa",
-  "insee", "t_men_val",
-  "insee", "t_pouvachat_val",
-  "insee", "econ-gen-revenu-dispo-pouv-achat-2",
-  "insee", "t_salaire_val",
-  "insee", "t_recapAgent_val",
-  "insee", "SALAIRES-ANNUELS",
-  "oecd",  "HH_DASH",
-  "insee",  "T_7401",
-  "insee", "T_2101") %>%
-  arrange(source, dataset)
+# (was: pouvoir-achat-2017 <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("pouvoir-achat-2017"))
 ```
 
 
@@ -479,6 +462,6 @@ ig_d("insee", "IPEA-2021", "43-IPEA-2017")
 # Bases de données
 
 ```{r, echo = F}
-`pouvoir-achat-2017` |>
+theme_source_datasets("pouvoir-achat-2017") |>
   source_dataset_file_updates()
 ```

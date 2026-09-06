@@ -9,19 +9,7 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
-wealth <- tribble(
-  ~source, ~dataset,
-  "bdf",  "CFT",
-  "bea", "T50100",
-  "frb", "B1",
-  "frb", "B101",
-  "frb", "B103",
-  "fred", "saving",
-  "fred", "wealth",
-  "oecd", "NAAG",
-  "wdi", "NY.GNS.ICTR.ZS",
-  "wdi", "NY.GDS.TOTL.ZS") %>%
-  arrange(source, dataset)
+# (was: wealth <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("wealth"))
 ```
 
 
@@ -94,7 +82,7 @@ ig_d("frb", "B101", "line-3-23-27")
 # Datasets
 
 ```{r, echo = F}
-`wealth` |>
+theme_source_datasets("wealth") |>
   source_dataset_file_updates()
 ```
 

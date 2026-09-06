@@ -8,21 +8,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-housing <- tribble(
-  ~source, ~dataset,
-  "bdf",  "RPP",
-  "bis",  "LONG_PP",
-  "bis",  "SELECTED_PP",
-  "ecb",  "RPP",
-  "eurostat",  "ei_hppi_q",
-  "eurostat", "hbs_str_t223",
-  "eurostat",  "prc_hpi_q",
-  "eurostat",  "prc_hicp_midx",
-  "fred",  "housing",
-  "insee", "IPLA-IPLNA-2015",
-  "oecd",  "housing",
-  "oecd",  "SNA_TABLE5") %>%
-  arrange(source, dataset)
+# (was: housing <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("housing"))
 ```
 
 
@@ -263,7 +249,7 @@ ig_d("eurostat", "prc_hicp_midx", "CP041-FR-DE-EL-PT")
 # Datasets
 
 ```{r, echo = F}
-housing |>
+theme_source_datasets("housing") |>
   source_dataset_file_updates()
 ```
 

@@ -8,35 +8,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-immobilier <- tribble(
-  ~source, ~dataset,
-  "acpr",  "as151",
-  "acpr",  "as160",
-  "acpr",  "as174",
-  "bdf",  "BSI1",
-  "bdf",  "FM",
-  "bdf",  "CPP",
-  "bdf",  "immobilier",
-  "bdf",  "MIR",
-  "bdf",  "MIR1",
-  "bdf",  "RPP",
-  "cgedd", "nombre-vente-maison-appartement-ancien",
-  "insee", "CONSTRUCTION-LOGEMENTS",
-  "insee", "ENQ-CONJ-PROMO-IMMO",
-  "insee", "ENQ-CONJ-ART-BAT",
-  "insee", "ENQ-CONJ-IND-BAT",
-  "insee", "ENQ-CONJ-TP",
-  "insee", "ILC-ILAT-ICC",
-  "insee", "INDICES_LOYERS",
-  "insee", "IPLA-IPLNA-2015",
-  "insee", "IRL",
-  "insee", "PARC-LOGEMENTS",
-  "insee", "SERIES_LOYERS",
-  "insee", "t_dpe_val",
-  "notaires", "arrdt",
-  "notaires", "dep",
-  "olap", "loyers") %>%
-  arrange(source, dataset)
+# (was: immobilier <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("immobilier"))
 ```
 
 
@@ -587,7 +559,7 @@ ig_d("insee", "ENQ-CONJ-IND-BAT", "ECB-DMAN-DQUA-DSPE-DTEC")
 # Bases de données
 
 ```{r, echo = F}
-immobilier |>
+theme_source_datasets("immobilier") |>
   source_dataset_file_updates()
 ```
 

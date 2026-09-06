@@ -46,11 +46,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
 ## sh ~/iCloud/website/website_short.sh
-`loyers` <- tribble(
-  ~source, ~dataset,
-  "insee",  "IRL",
-  "insee",  "INDICES_LOYERS") %>%
-  arrange(source, dataset)
+# (was: loyers <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("loyers"))
 ```
 
 
@@ -169,7 +165,7 @@ ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-INSEE-vs-OLAP-2017-2025")
 # Bases de données
 
 ```{r, echo = F}
-`loyers` |>
+theme_source_datasets("loyers") |>
   source_dataset_file_updates()
 ```
 

@@ -9,12 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-`finances-publiques` <- tribble(
-  ~source, ~dataset,
-  "insee",  "T_3201",
-  "insee",  "T_7301",
-  "insee", "T_3217") %>%
-  arrange(source, dataset)
+# (was: finances-publiques <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("finances-publiques"))
 ```
 
 
@@ -116,7 +111,7 @@ ig_d("insee", "T_3201", "3-20-1-19-9-1981")
 # Bases de données
 
 ```{r, echo = F}
-`finances-publiques` |>
+theme_source_datasets("finances-publiques") |>
   source_dataset_file_updates()
 ```
 

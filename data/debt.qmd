@@ -9,11 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-debt <- tribble(
-  ~source, ~dataset,
-  "bis", "DSR",
-  "bis", "CREDIT_GAP") %>%
-  arrange(source, dataset)
+# (was: debt <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("debt"))
 ```
 
 # Debt Service Ratios
@@ -58,7 +54,7 @@ ig_d("bis", "DSR", "FR-DE-US-N")
 # Datasets
 
 ```{r, echo = F}
-debt |>
+theme_source_datasets("debt") |>
   source_dataset_file_updates()
 ```
 

@@ -9,18 +9,14 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-productivite <- tribble(
-  ~source, ~dataset,
-  "insee",  "EMPLOI-SALARIE-TRIM-NATIONAL",
-  "insee",  "ICA-2015-IND-CONS") %>%
-  arrange(source, dataset)
+# (was: productivite <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("productivite"))
 ```
 
 
 # Bases de données
 
 ```{r, echo = F}
-`productivite` |>
+theme_source_datasets("productivite") |>
   source_dataset_file_updates()
 ```
 

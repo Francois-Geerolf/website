@@ -1,5 +1,9 @@
+# Versionné dans github mais partie du tooling de build local. Symlinké
+# depuis ~/iCloud/website/data/_datasets.R ; ce setwd (avant le 1er appel
+# here::here(), donc il fixe la racine du projet sur github) le rend lançable de
+# n'importe où, y compris `cd ~/iCloud/website/data`.
+setwd(path.expand("~/github/website/data"))
 source(here::here("_rinit.R"))
-setwd(here::here("data"))
 
 # Set your root folder here
 root_dir <- "~/iCloud/website/data"

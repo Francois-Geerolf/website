@@ -9,27 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-`inflation-france-2017` <- tribble(
-  ~source, ~dataset,
-  "insee", "bdf2017",
-  "insee", "ILC-ILAT-ICC",
-  "insee", "INDICES_LOYERS",
-  "insee", "IPC-1990",
-  "insee", "IPC-1970-1980",
-  "insee", "IPC-2015",
-        "insee", "echantillon-agglomerations-IPC-2024",
-        "insee", "ponderations-elementaires-IPC-2024",
-        "insee", "liste-varietes-IPC-2024",
-  "insee", "IPC-PM-2015",
-  "insee", "IPCH-2015",
-  "insee", "IPCH-IPC-2015-ensemble",
-  "insee", "IPLA-IPLNA-2015",
-  "insee", "IPPI-2015",
-  "insee", "IRL",
-  "insee", "IPGD-2015",
-  "insee", "SERIES_LOYERS",
-  "insee", "T_CONSO_EFF_FONCTION") %>%
-  arrange(source, dataset)
+# (was: inflation-france-2017 <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("inflation-france-2017"))
 ```
 
 
@@ -287,7 +267,7 @@ ig_d("insee", "IPC-2015", "remplacements-habillement-2017")
 # Bases de données
 
 ```{r, echo = F}
-`inflation-france-2017` |>
+theme_source_datasets("inflation-france-2017") |>
   source_dataset_file_updates()
 ```
 

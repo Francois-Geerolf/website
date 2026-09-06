@@ -9,10 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-`france` <-tribble(
-  ~source, ~dataset,
-  "eurostat", "nama_10_pc") %>%
-  arrange(source, dataset)
+# (was: france <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("france"))
 ```
 
 # Relative importance vs. European countries
@@ -35,6 +32,6 @@ ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT-main-EU")
 # Datasets
 
 ```{r, echo = F}
-`france` |>
+theme_source_datasets("france") |>
   source_dataset_file_updates()
 ```

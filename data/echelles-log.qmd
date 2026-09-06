@@ -28,11 +28,7 @@ editor: source
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-`echelles-log` <- tribble(
-  ~source, ~dataset,
-  "insee", "reve-niv-vie-pouv-achat-trim",
-  "insee", "marc-salair-net-moy-sexe") %>%
-  arrange(source, dataset)
+# (was: echelles-log <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("echelles-log"))
 ```
 
 
@@ -161,6 +157,6 @@ ig_d("fred", "cpi", "CPIAUCSL-bind")
 # Bases de données
 
 ```{r, echo = F}
-`echelles-log` |>
+theme_source_datasets("echelles-log") |>
   source_dataset_file_updates()
 ```

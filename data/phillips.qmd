@@ -13,16 +13,7 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 # cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("phillips.qmd")'
 # cd ~/iCloud/website/data/eurostat; /usr/local/bin/R -e 'quarto::quarto_render("phillips.qmd")'
 # sh ~/iCloud/website/website_short.sh
-phillips <- tribble(
-  ~source, ~dataset,
-  "eurostat",  "tipsna62",
-  "eurostat",  "phillips",
-  "fred",  "phillips",
-  "wdi",  "phillips",
-  "ilo",  "phillips",
-  "oecd",  "phillips",
-  "gfd", "phillips") %>%
-  arrange(source, dataset)
+# (was: phillips <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("phillips"))
 ```
 
 
@@ -93,6 +84,6 @@ ig_d("eurostat", "phillips", "nama-10-lp-ulc-FR")
 # Datasets
 
 ```{r, echo = F}
-`phillips` |>
+theme_source_datasets("phillips") |>
   source_dataset_file_updates()
 ```

@@ -9,15 +9,7 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
-saving <- tribble(
-  ~source, ~dataset,
-  "bdf",  "CFT",
-  "bea", "T50100",
-  "fred", "saving",
-  "oecd", "NAAG",
-  "wdi", "NY.GNS.ICTR.ZS",
-  "wdi", "NY.GDS.TOTL.ZS") %>%
-  arrange(source, dataset)
+# (was: saving <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("saving"))
 ```
 
 # Info
@@ -156,7 +148,7 @@ ig_d("eurostat", "nasq_10_ki", "IRGS11-FR-DE-IT-ES-EA20-2000")
 # Datasets
 
 ```{r, echo = F}
-`saving` |>
+theme_source_datasets("saving") |>
   source_dataset_file_updates()
 ```
 

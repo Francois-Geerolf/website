@@ -9,12 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-chomage <- tribble(
-  ~source, ~dataset,
-  "insee", "DEMANDES-EMPLOIS-NATIONALES",
-  "insee", "CHOMAGE-TRIM-NATIONAL",
-  "oecd", "FAMILY") %>%
-  arrange(source, dataset)
+# (was: chomage <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("chomage"))
 ```
 
 # Taux de chômage
@@ -81,7 +76,7 @@ ig_b("insee", "ECRT19e_D4_chomeurs", "fig2")
 ## Bases de données
 
 ```{r, echo = F}
-chomage |>
+theme_source_datasets("chomage") |>
   source_dataset_file_updates()
 ```
 

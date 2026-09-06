@@ -9,33 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-macro <-tribble(
-  ~source, ~dataset,
-  "eurostat",  "nama_10_a10_e",
-  "eurostat",  "namq_10_a10_e",
-  "eurostat",  "nama_10_a10",
-  "eurostat",  "namq_10_a10",
-  "eurostat",  "nama_10_gdp",
-  "eurostat",  "namq_10_gdp",
-  "eurostat",  "nama_10_lp_ulc",
-  "eurostat",  "namq_10_lp_ulc",
-  "eurostat",  "namq_10_pc",
-  "eurostat", "nasa_10_nf_tr",
-  "eurostat", "nasq_10_nf_tr",
-  "fred",  "gdp",
-  "oecd",  "QNA",
-  "oecd",  "SNA_TABLE1",
-  "oecd",  "SNA_TABLE2",
-  "oecd",  "SNA_TABLE6A",
-  "oecd",  "SNA_TABLE14A",
-  "wdi",  "NY.GDP.MKTP.CD",
-  "wdi",  "NY.GDP.PCAP.PP.KD",
-  "wdi",  "NY.GDP.PCAP.PP.CD",
-  "wdi",  "NE.RSB.GNFS.ZS",
-  "wdi",  "NY.GDP.MKTP.PP.CD",
-  "wdi",  "NY.GDP.PCAP.CD",
-  "wdi",  "NY.GDP.PCAP.KD") %>%
-  arrange(source, dataset)
+# (was: macro <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("macro"))
 ```
 
 
@@ -176,6 +150,6 @@ ig_d("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-2008")
 # Datasets
 
 ```{r, echo = F}
-macro |>
+theme_source_datasets("macro") |>
   source_dataset_file_updates()
 ```

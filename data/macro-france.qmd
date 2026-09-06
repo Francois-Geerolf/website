@@ -9,27 +9,7 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-`macro-france` <-tribble(
-  ~source, ~dataset,
-  "bdf", "CFT",
-  "insee", "t_1101",
-  "insee", "t_1102",
-  "insee", "t_1105",
-  "insee", "CNA-2020-PIB",
-  "insee", "CNA-2020-CONSO-MEN",
-  "insee", "CNA-2014-CONSO-SI",
-  "insee", "CONSO-MENAGES-2020",
-  "insee", "CNA-2014-CSI",
-  "insee", "CNA-2014-RDB",
-  "insee",  "CNT-2014-CB",
-  "insee",  "CNT-2014-CSI",
-  "insee",  "CNT-2014-PIB-EQB-RF",
-  "insee",  "CNT-2014-OPERATIONS",
-  "insee",  "conso-mensuelle",
-  "insee", "CNA-2014-FBCF-BRANCHE",
-  "insee", "CNA-2014-FBCF-SI",
-  "insee", "ICA-2015-IND-CONS") %>%
-  arrange(source, dataset)
+# (was: macro-france <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("macro-france"))
 ```
 
 
@@ -618,6 +598,6 @@ ig_b("imf", "france-IIP-2023T2")
 # Bases de données
 
 ```{r, echo = F}
-`macro-france` |>
+theme_source_datasets("macro-france") |>
   source_dataset_file_updates()
 ```
