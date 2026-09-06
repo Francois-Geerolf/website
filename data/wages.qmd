@@ -143,15 +143,34 @@ ig_d("fred", "wage", "real-wages-1970")
 ```
 
 
-## Negociated wages
+
+## Negotiated wage rates, euro area
+
+Negotiated pay grew around 1.5-2% for most of 2013-2021 — well below the ~3%
+(2% inflation + ~1% productivity) that would be consistent with the target.
 
 - Definition. [pdf](https://www.ecb.europa.eu/pub/pdf/other/mb200209_focus05.en.pdf)
+
+```{r}
+ig_d("ecb", "INW", "U2-negotiated-wages")
+```
+
+- Another source:
 
 ```{r}
 ig_d("ecb", "STS", "M-I8-N-UNEH-RTT000-4-000-2017")
 ```
 
 
+## ECB wage tracker
+
+The wage tracker, built from the actual collective agreements in force,
+tells the same story of a long stretch of sub-3% growth before the 2022-2024
+catch-up.
+
+```{r}
+ig_d("ecb", "EWT", "U2-wage-tracker")
+```
 
 ## Wages and salaries
 
@@ -203,6 +222,16 @@ ig_d("eurostat", "lc_lci_r2_q", "FR-DE-ES-IT-B-S-D1D4MD5-2020")
 
 ```{r}
 ig_d("oecd", "EAR_MEI", "LCEAPRIXOBSA-USA-EA19-GBR-FRA-2015-real")
+```
+
+## Nominal unit labour costs
+
+Nominal unit labour cost growth — pay per worker net of productivity — ran
+below 2% (dashed line) across the euro area for most of 2010-2019, and turned
+negative in the stressed economies during the sovereign-debt crisis.
+
+```{r}
+ig_d("eurostat", "namq_10_lp_ulc", "NULC-PER-GROWTH-EA20-FR-DE-IT-ES")
 ```
 
 # Real minimum wages - OECD

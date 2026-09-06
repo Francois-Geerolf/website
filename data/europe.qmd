@@ -35,6 +35,7 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 ```{r, echo = F}
 tribble(~ theme,
         "us-eu",
+        "europe-slack",
         "euro",
         "germany",
         "poland",

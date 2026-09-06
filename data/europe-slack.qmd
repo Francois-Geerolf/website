@@ -1,0 +1,209 @@
+---
+title: Is there slack in the Euro area?
+metadata-files:
+  - _common.yml
+---
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
+invisible(Sys.setenv(TZ = "America/Los_Angeles"))
+knitr::opts_chunk$set(echo = T)
+`europe-slack` <- tribble(
+  ~source, ~dataset,
+  "ameco", "AVGDGP",
+  "ameco", "ZNAWRU",
+  "oecd", "EO_GAP",
+  "oecd", "INVPT_I",
+  "eurostat", "lfsi_sla_q",
+  "eurostat", "une_rt_m",
+  "eurostat", "namq_10_lp_ulc",
+  "eurostat", "tipslm80",
+  "eurostat", "edat_lfse_18",
+  "eurostat", "lfsa_urgaed",
+  "eurostat", "migr_emi2",
+  "eurostat", "ei_bsin_m_r2",
+  "ecb", "INW",
+  "ecb", "EWT",
+  "ecb", "ICP") %>%
+  arrange(source, dataset)
+```
+
+# Info
+
+```{r, echo = F}
+# Rebuild the individual dataset pages (each holds the labelled chunk that
+# ig_d() below embeds), then this page:
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R ameco    only=AVGDGP.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R ameco    only=ZNAWRU.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R oecd     only=EO_GAP.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R oecd     only=INVPT_I.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R eurostat only=lfsi_sla_q.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R eurostat only=une_rt_m.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R eurostat only=namq_10_lp_ulc.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R eurostat only=tipslm80.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R eurostat only=edat_lfse_18.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R eurostat only=lfsa_urgaed.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R eurostat only=migr_emi2.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R eurostat only=ei_bsin_m_r2.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R ecb      only=INW.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R ecb      only=EWT.qmd
+# cd ~/iCloud/website/data; Rscript --vanilla _update_qmd_folder.R ecb      only=ICP.qmd
+# cd ~/github/website/data; /usr/local/bin/R -e 'quarto::quarto_render("europe-slack.qmd")'
+# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/europe-slack.html
+```
+
+**Slack** — the gap between what the economy *does* produce and what it *could*
+produce without pushing up inflation — is not observed directly. This page
+gathers the pieces of evidence that, taken together, suggest the euro area
+operated with substantial and persistent slack for most of the decade that
+followed the 2008 crisis, and that pockets of it are still visible.
+
+The individual charts live on their own dataset pages; here they are lined up
+by theme.
+
+# Output gap and potential output
+
+## AMECO: output gap, euro area and the big four
+
+The European Commission's own accounts put the euro area below potential from
+2009 to 2019, with double-digit gaps in Spain and Italy at the trough.
+
+```{r}
+ig_d("ameco", "AVGDGP", "EA19-DEU-FRA-ITA-ESP")
+```
+
+## OECD: euro area vs the United States
+
+The euro area suffered a *double dip* (2011-2013) that the United States did
+not: activity fell back below potential a second time as fiscal policy
+tightened and the sovereign-debt crisis spread.
+
+```{r}
+ig_d("oecd", "EO_GAP", "EA17-USA")
+```
+
+# Unemployment and the unemployment gap
+
+## Euro area unemployment since 1998
+
+```{r}
+ig_d("eurostat", "une_rt_m", "EA21-since-1998")
+```
+
+## Euro area and the big four
+
+The aggregate hides a wide and long-lasting dispersion: Spanish and Italian
+unemployment stayed in double digits for most of the 2010s.
+
+```{r}
+ig_d("eurostat", "une_rt_m", "EA21-FR-DE-IT-ES-2002")
+```
+
+## Actual unemployment vs the NAWRU
+
+AMECO's estimate of *structural* unemployment (the NAWRU) drifts up whenever
+actual unemployment rises, mechanically re-labelling cyclical joblessness as
+structural and shrinking the measured amount of slack. Even so, actual
+unemployment stayed above the NAWRU from 2009 to 2018.
+
+```{r}
+ig_d("ameco", "ZNAWRU", "EA19-unemp-vs-nawru")
+```
+
+# Broad labour-market slack
+
+## Eurostat labour-market slack: euro area and the big four
+
+The unemployment rate understates slack. Eurostat's broad measure adds
+involuntary part-timers, people available to work but not searching, and
+people searching but not immediately available. On that gauge roughly one in
+seven members of the extended euro-area labour force was under-used even in
+2018-2019.
+
+```{r}
+ig_d("eurostat", "lfsi_sla_q", "SLACK-EA20-FR-DE-ES-IT")
+```
+
+## Slack the unemployment rate misses
+
+On top of the unemployed, three groups make up broad slack: people working
+part-time who want more hours, people available to work but not currently
+searching, and people searching but not immediately available. Together they
+add several percentage points of the extended labour force.
+
+```{r}
+ig_d("eurostat", "lfsi_sla_q", "EA20-slack-components")
+```
+
+## Involuntary part-time work
+
+Involuntary part-time employment — people working short hours because they
+cannot find full-time work — roughly doubled in France, Italy, Spain and
+Greece after 2008 while it *fell* in Germany.
+
+```{r}
+ig_d("oecd", "INVPT_I", "SHINV-EMP-FRA-DEU-ITA-ESP-GRC")
+```
+
+
+
+# Firms report weak demand, not supply constraints
+
+## Assessment of order-book levels, euro-area industry
+
+In the European Commission's industry survey, the balance of firms judging
+their order books "above" vs "below" normal stayed deeply negative from 2008
+through 2013, briefly recovered around 2017-2018, and has turned negative
+again since 2023: for long stretches the binding constraint has been
+customers, not capacity.
+
+```{r}
+ig_d("eurostat", "ei_bsin_m_r2", "BS-IOB-EA20-2000")
+```
+
+# Skills under-used
+
+## Euro area unemployment by education level
+
+Slack reached the highly educated too: the unemployment rate of the
+tertiary-educated in the euro area rose after 2008 and stayed elevated,
+a sign that the shortfall in jobs was economy-wide rather than a
+qualifications problem.
+
+```{r}
+ig_d("eurostat", "lfsa_urgaed", "EA-unemployment-by-education")
+```
+
+# Young people: unemployment, inactivity, emigration
+
+## Youth unemployment
+
+```{r}
+ig_d("eurostat", "tipslm80", "EA20-EL-ES-IT-DE")
+```
+
+## NEET rate (15-29): not in employment, education or training
+
+```{r}
+ig_d("eurostat", "edat_lfse_18", "NEET-EA21-IT-ES-EL-DE")
+```
+
+## Emigration of young adults from southern Europe
+
+When domestic labour markets stay slack, workers leave. Emigration of
+20-34 year-olds from Italy rose through the 2010s and is still climbing;
+Spain and Greece spiked during the crisis years. (Spain's series also
+reflects large numbers of foreign nationals leaving again, so read the
+level with care — the direction is the point.)
+
+```{r}
+ig_d("eurostat", "migr_emi2", "emigration-young-south")
+```
+
+# Datasets
+
+```{r, echo = F}
+`europe-slack` |>
+  source_dataset_file_updates()
+```
