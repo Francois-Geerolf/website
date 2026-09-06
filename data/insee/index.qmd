@@ -8,10 +8,6 @@ source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 ```
 
-- Calendrier des prochaines publications. [html](https://fgeerolf.com/data/insee/calendrier.html)
-
-- Actualités des indices et séries chronologiques. [html](https://www.insee.fr/fr/information/2862832)
-
 # Données de l'Insee
 
 ## Toutes les données
@@ -479,6 +475,8 @@ ig_d("insee", "TAUX-CHOMAGE", "carte-chomage-2019Q4")
 
 # Calendrier des prochaines publications de l'Insee
 
+- Calendrier des prochaines publications. [html](https://fgeerolf.com/data/insee/calendrier.html)
+
 ```{r, echo = F}
 "https://www.insee.fr/fr/information/5235017" |>
   rvest::read_html() |>
@@ -546,6 +544,8 @@ ig_d("insee", "TAUX-CHOMAGE", "carte-chomage-2019Q4")
 ```
 
 # Statistique publique
+
+- Actualités des indices et séries chronologiques. [html](https://www.insee.fr/fr/information/2862832)
 
 ## Autres organismes
 
