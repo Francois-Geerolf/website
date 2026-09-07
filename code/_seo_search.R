@@ -148,8 +148,11 @@ records <- lapply(seq_len(nrow(idx)), function(i) {
 # Source slugs that have a logo at /data/logos/<slug>.png — the widget shows
 # it next to the result so you can tell insee / eurostat / oecd apart at a
 # glance. Shipped once as a top-level list, not per record.
-logos <- sub("\\.png$", "", list.files(file.path(data_dir, "logos"),
-                                       pattern = "\\.png$"))
+# The PNGs live only in ~/iCloud (not in git); data/logos/logos.txt is the
+# committed manifest -- read it, fall back to a directory scan if absent.
+logo_mf <- file.path(data_dir, "logos", "logos.txt")
+logos <- if (file.exists(logo_mf)) trimws(readLines(logo_mf, warn = FALSE)) else
+  sub("\\.png$", "", list.files(file.path(data_dir, "logos"), pattern = "\\.png$"))
 logos <- sort(logos[logos %in% unique(idx$s)])
 
 json  <- jsonlite::toJSON(records, auto_unbox = TRUE, null = "null")

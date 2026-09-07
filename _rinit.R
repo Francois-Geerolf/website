@@ -32,13 +32,22 @@ ig_r <-function(paper, file) i_g(paste0("replications/", paper, "_files/figure-h
 # "insee" -> <img insee.png> insee). Renvoie une chaîne HTML `<img>` quand
 # data/logos/<source>.png existe, "" sinon. URL absolue -> fonctionne quelle
 # que soit la page qui l'affiche (ig_d() sur data/<src>/<ds>.qmd, tables de
-# data/index.qmd, pages de thèmes...). Vectorisé. Les logos sont récupérés
-# par data/_logos_download.sh et versionnés dans data/logos/.
+# data/index.qmd, pages de thèmes...). Vectorisé.
+#
+# Les PNG des logos vivent dans ~/iCloud/website/data/logos/ (publiés par
+# rsync), PAS dans le dépôt git -- on ne peut donc pas se fier à file.exists()
+# côté CI. Seul le manifeste data/logos/logos.txt (un identifiant par ligne,
+# régénéré par data/_logos_download.sh) est versionné : c'est lui qui dit à
+# la CI quels logos existent. On garde en plus un file.exists() local pour
+# les rendus faits directement dans ~/iCloud (manifeste éventuellement en
+# retard).
 source_logo_md <- function(source) {
   if (!isTRUE(knitr::is_html_output())) return(rep("", length(source)))
-  f <- here::here("data", "logos", paste0(source, ".png"))
+  mf    <- here::here("data", "logos", "logos.txt")
+  avail <- if (file.exists(mf)) trimws(readLines(mf, warn = FALSE)) else character()
+  f     <- here::here("data", "logos", paste0(source, ".png"))
   ifelse(
-    file.exists(f),
+    source %in% avail | file.exists(f),
     sprintf(paste0('<img src="https://fgeerolf.com/data/logos/%s.png" alt="" ',
                    'style="height:1.1em;width:1.1em;object-fit:contain;',
                    'vertical-align:-0.2em;margin-right:.4em">'),
