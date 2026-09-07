@@ -351,10 +351,6 @@ main_datasets %>%
 
 
 
-*Classées par popularité (visiteurs uniques sur 90 jours, source&nbsp;: GoatCounter),
-puis par date de mise à jour. Cliquer sur l'en-tête d'une colonne pour trier autrement.*
-
-
 # WRDS - Microeconomic Data
 
 Probably the greatest resource for macro / finance data is provided through Wharton Research Data Services. It includes for example Compustat, CRSP, BlockHolders, TRACE, ExecuComp, I/B/E/S, Markit, and many more... All these resources are available through APIs. I provide only some examples below.

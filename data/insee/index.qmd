@@ -18,14 +18,21 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 # pour ne pas déborder / tronquer sur mobile. CSS mobile : _insee.yml.
 datasets |>
   dplyr::filter(source == "insee") |>
+  dplyr::mutate(
+    # Une seule colonne : min(date des données, date du .html), comme
+    # source_dataset_file_updates() ailleurs sur le site.
+    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
+    # Popularité (visiteurs uniques 90 j + pages vues, cf. data/_pageviews.R) :
+    # sert seulement à trier, pas affiché. Même critère que data/index.qmd.
+    .rank = dplyr::coalesce(rank_score, -Inf)
+  ) |>
+  dplyr::arrange(dplyr::desc(.rank), dplyr::desc(updated)) |>
   dplyr::transmute(
     dataset = sprintf(
       '<a href="https://fgeerolf.com/data/%s/%s.html">%s</a>', source, dataset, dataset
     ),
     Title,
-    # Une seule colonne : min(date des données, date du .html), comme
-    # source_dataset_file_updates() ailleurs sur le site.
-    updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
+    updated,
     Nobs
   ) |>
   reactable::reactable(
@@ -54,6 +61,20 @@ datasets |>
 
 
 ## Comptes de la Nation
+
+```{=html}
+<style>
+/* Lignes de groupe reactable (intitulé de catégorie) : une seule ligne, qui
+   déborde sur les cellules voisines vides de la même ligne au lieu de wrapper.
+   Cible la cellule .rt-td-expandable ET son .rt-td-inner (que colDef(style=)
+   n'atteint pas). */
+#comptes-de-la-nation .rt-td-expandable,
+#comptes-de-la-nation .rt-td-expandable .rt-td-inner {
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+</style>
+```
 
 ```{r, echo = F}
 # Catalogues {categorie, fichier, intitule} versionnés dans le dépôt
