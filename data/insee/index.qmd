@@ -91,7 +91,13 @@ datasets |>
       d, groupBy = "Catégorie", searchable = TRUE, defaultPageSize = page_size,
       compact = TRUE, resizable = TRUE, striped = TRUE, highlight = TRUE,
       defaultExpanded = FALSE,
-      columns = list(Tableau = reactable::colDef(html = TRUE, maxWidth = 240)))
+      columns = list(
+        # Les intitulés de catégorie s'affichent dans les lignes de groupe qui
+        # débordent sur toute la largeur (cf. <style> ci-dessus) : la colonne
+        # elle-même n'a besoin que de la place du chevron ▸.
+        Catégorie = reactable::colDef(name = "", maxWidth = 42, minWidth = 42,
+                                      align = "center"),
+        Tableau   = reactable::colDef(html = TRUE, maxWidth = 240)))
   } else {
     d |>
       gt::gt(groupname_col = "Catégorie") |>
