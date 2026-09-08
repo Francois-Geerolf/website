@@ -13,14 +13,9 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 ## Toutes les données
 
 ```{r, echo = F}
-# Table interactive des jeux de données INSEE. reactable natif (et non
-# gt::opt_interactive) : largeurs de colonnes flexibles + retour à la ligne,
-# pour ne pas déborder / tronquer sur mobile. CSS mobile : _insee.yml.
 datasets |>
   dplyr::filter(source == "insee") |>
   dplyr::mutate(
-    # Une seule colonne : min(date des données, date du .html), comme
-    # source_dataset_file_updates() ailleurs sur le site.
     updated = pmin(as.Date(data_updated), as.Date(.html), na.rm = TRUE),
     # Popularité (visiteurs uniques 90 j + pages vues, cf. data/_pageviews.R) :
     # sert seulement à trier, pas affiché. Même critère que data/index.qmd.

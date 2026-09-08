@@ -16,7 +16,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   "insee", "INDICES_LOYERS",
   "insee", "IPC-1990",
   "insee", "IPC-1970-1980",
-  "insee", "IPC-2015",
+  "insee", "IPC-2025",
         "insee", "echantillon-agglomerations-IPC-2024",
         "insee", "ponderations-elementaires-IPC-2024",
         "insee", "liste-varietes-IPC-2024",
@@ -27,7 +27,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
         "insee", "table_poste_au_sein_sous_classe_ecoicopv2_france_entiere_",
   "insee", "table_conso_moyenne_par_categorie_menages",
   "insee", "IPC-PM-2015",
-  "insee", "IPCH-2015",
+  "insee", "IPCH-2025",
   "insee", "IPCH-IPC-2015-ensemble",
   "insee", "IPLA-IPLNA-2015",
   "insee", "IPPI-2015",
@@ -55,8 +55,8 @@ tribble(~ theme,
 ## Inflation en moyenne annuelle
 
 ```{r, echo = F}
-c("001762489", #
-  "001764363") |>
+c("011812233", # IPCH annuel, base 2025
+  "011814639") |> # IPC annuel, base 2025
   paste(i = _, collapse = "+") |>
   paste0("https://www.bdm.insee.fr/series/sdmx/data/SERIES_BDM/", i = _) |>
   rsdmx::readSDMX() |>
@@ -83,16 +83,16 @@ c("001762489", #
     columns = everything()
   ) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001764363](https://www.insee.fr/fr/statistiques/serie/001764363) (IPC), [001762489](https://www.insee.fr/fr/statistiques/serie/001762489) (IPCH)"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [011814639](https://www.insee.fr/fr/statistiques/serie/011814639) (IPC), [011812233](https://www.insee.fr/fr/statistiques/serie/011812233) (IPCH)"))
   )
 ```
 
 ## Inflation en glissement annuel
 
 ```{r, echo = F}
-c("001759971", # IPCH
-  "001759970"  #  IPC
-  ) |> 
+c("011812231", # IPCH mensuel, base 2025
+  "011814630"  # IPC mensuel, base 2025
+  ) |>
   paste(i = _, collapse = "+") |>
   paste0("https://www.bdm.insee.fr/series/sdmx/data/SERIES_BDM/", i = _) |>
   rsdmx::readSDMX() |>
@@ -119,7 +119,7 @@ c("001759971", # IPCH
     columns = everything()
   ) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001759970](https://www.insee.fr/fr/statistiques/serie/001759970) (IPC), [001759971](https://www.insee.fr/fr/statistiques/serie/001759971) (IPCH)"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [011814630](https://www.insee.fr/fr/statistiques/serie/011814630) (IPC), [011812231](https://www.insee.fr/fr/statistiques/serie/011812231) (IPCH)"))
   )
 ```
 
@@ -153,8 +153,8 @@ ig_d("insee", "IPGD-2015", "produits-2022")
 # Glissement sur 2 ans
 
 ```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPC-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPC-2015.qmd")'
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPC-2025; /usr/local/bin/R -e 'quarto::quarto_render("IPC-2025.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2025; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2025.qmd")'
 # sh ~/iCloud/website/website_short.sh
 ```
 
@@ -164,13 +164,13 @@ ig_d("insee", "IPGD-2015", "produits-2022")
 ### IPC
 
 ```{r}
-ig_d("insee", "IPC-2015", "041-045-01-00-2ans")
+ig_d("insee", "IPC-2025", "041-045-01-00-2ans")
 ```
 
 ### IPCH
 
 ```{r}
-ig_d("insee", "IPCH-2015", "041-045-01-00-2ans")
+ig_d("insee", "IPCH-2025", "041-045-01-00-2ans")
 ```
 
 
@@ -178,7 +178,7 @@ ig_d("insee", "IPCH-2015", "041-045-01-00-2ans")
 ## IPC - Ensemble, hors tabac, avec loyers fictifs
 
 ```{r}
-ig_d("insee", "IPC-2015", "tabac-2ans")
+ig_d("insee", "IPC-2025", "tabac-2ans")
 ```
 
 ## Loyers effectifs, Ensemble
@@ -186,13 +186,13 @@ ig_d("insee", "IPC-2015", "tabac-2ans")
 ### IPC
 
 ```{r}
-ig_d("insee", "IPC-2015", "041-00-2ans")
+ig_d("insee", "IPC-2025", "041-00-2ans")
 ```
 
 ### IPCH
 
 ```{r}
-ig_d("insee", "IPCH-2015", "041-00-2ans")
+ig_d("insee", "IPCH-2025", "041-00-2ans")
 ```
 
 
@@ -200,7 +200,7 @@ ig_d("insee", "IPCH-2015", "041-00-2ans")
 ## IPC - 1er quintile vs. ensemble
 
 ```{r}
-ig_d("insee", "IPC-2015", "PREMIERQUINTILE-ENSEMBLE-2ans")
+ig_d("insee", "IPC-2025", "PREMIERQUINTILE-ENSEMBLE-2ans")
 ```
 
 ## IPC - 2 digit
@@ -208,26 +208,26 @@ ig_d("insee", "IPC-2015", "PREMIERQUINTILE-ENSEMBLE-2ans")
 ### Boissons Alcoolisées, Logement, Restaurants et hôtels
 
 ```{r}
-ig_d("insee", "IPC-2015", "00-02-11-04-2ans")
+ig_d("insee", "IPC-2025", "00-02-11-04-2ans")
 ```
 
 ### Transports, Enseignement, B&S Divers
 
 ```{r}
-ig_d("insee", "IPC-2015", "00-10-07-12-2ans")
+ig_d("insee", "IPC-2025", "00-10-07-12-2ans")
 ```
 
 ### Alimentation, Habillement, Meubles
 
 ```{r}
-ig_d("insee", "IPC-2015", "00-05-01-03-2ans")
+ig_d("insee", "IPC-2025", "00-05-01-03-2ans")
 ```
 
 
 ### Santé, Communications, Loisirs
 
 ```{r}
-ig_d("insee", "IPC-2015", "00-06-09-08-2ans")
+ig_d("insee", "IPC-2025", "00-06-09-08-2ans")
 ```
 
 
@@ -239,15 +239,15 @@ ig_d("insee", "IPC-2015", "00-06-09-08-2ans")
 # Inflation annuelle
 
 ```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPC-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPC-2015.qmd")'
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPC-2025; /usr/local/bin/R -e 'quarto::quarto_render("IPC-2025.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2025; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2025.qmd")'
 # sh ~/iCloud/website/website_short.sh
 ```
 
 ## 3 dernières années
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-inflation-3-dernieres-annees")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-inflation-3-dernieres-annees")
 ```
 
 
@@ -255,7 +255,7 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-inflation-3-dernieres-annees")
 ## 2 dernières années
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-inflation-2-dernieres-annees")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-inflation-2-dernieres-annees")
 ```
 
 
@@ -265,13 +265,13 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-inflation-2-dernieres-annees")
 ### Sans labels
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1996")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-annual-1996")
 ```
 
 ### Avec labels
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1996-labels")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-annual-1996-labels")
 ```
 
 
@@ -280,13 +280,13 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1996-labels")
 ### Sans labels
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1999")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-annual-1999")
 ```
 
 ### Avec labels
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1999-labels")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-annual-1999-labels")
 ```
 
 
@@ -295,25 +295,25 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1999-labels")
 ## 5 dernières années
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-5-annees")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-5-annees")
 ```
 
 ## 10 dernières années
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-10-annees")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-10-annees")
 ```
 
 ## 15 dernières années
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-15-annees")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-15-annees")
 ```
 
 ## Cadre, ouvrier, retraité, actif
 
 ```{r}
-ig_d("insee", "IPC-2015", "CADRE-OUVRIER-RETRAITE")
+ig_d("insee", "IPC-2025", "CADRE-OUVRIER-RETRAITE")
 ```
 
 # Indice de Production
@@ -332,26 +332,26 @@ ig_d("insee", "IPPI-2015", "10-12-importation-2017")
 # Pondérations Importantes
 
 ```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2015.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R IPCH-2025; /usr/local/bin/R -e 'quarto::quarto_render("IPCH-2025.qmd")'
 # sh ~/iCloud/website/website_short.sh
 ```
 
 ## Alimentation
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-01")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-ponderation-01")
 ```
 
 ## Logement
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-04")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-ponderation-04")
 ```
 
 ## Loyers
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-041")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-ponderation-041")
 ```
 
 

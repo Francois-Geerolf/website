@@ -284,6 +284,14 @@ if (file.exists("_pageviews.RData")) {
 
 save(datasets, file = "_datasets.RData")
 
+# --- Lint des _metadata.yml de section --------------------------------
+# Signale les configs de dossier oubliées (filtre écriture inclusive
+# genderize-fr sur un dossier lang: fr, statcounter, thème...). Faute de
+# _quarto.yml, Quarto ne lit que le _metadata.yml du dossier de chaque
+# .qmd -> pas de centralisation possible, ce lint fait la police.
+try(system2(file.path(R.home("bin"), "Rscript"),
+            c("--vanilla", shQuote(here::here("data", "_lint_metadata.R")))))
+
 # --- SEO / discovery artefacts -----------------------------------------
 # Derived from the catalog we just saved, regenerated on every refresh:
 #   code/_seo_search.R   -> data/search.json   (catalog search box)
