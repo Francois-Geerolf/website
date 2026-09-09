@@ -59,43 +59,73 @@ tribble(~ theme,
 ### Trimestrielle (%)
 
 ```{r echo = F}
-"https://www.insee.fr/fr/statistiques/2830166" |>
+tbl <- "https://www.insee.fr/fr/statistiques/2830166" |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
-  pluck(1) |>
+  pluck(1)
+names(tbl)       <- gsub(" ", " ", names(tbl))       # espaces insécables Insee
+tbl$Indicateur  <- gsub(" ", " ", tbl$Indicateur)
+
+## colonnes : trimestres du plus récent au plus ancien, puis les colonnes annuelles
+periods <- names(tbl)[-1]
+q_cols  <- periods[grepl("T[1-4]", periods)]
+a_cols  <- setdiff(periods, q_cols)
+tbl <- dplyr::select(tbl, Indicateur, dplyr::all_of(rev(q_cols)), dplyr::all_of(a_cols))
+
+tbl |>
   gt::gt() |>
-  gt::cols_width(Indicateur ~ gt::px(250), everything() ~ gt::px(90)) |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::cols_align("center", columns = everything()) |>
+  gt::cols_align("left", columns = 1) |>
+  ## ligne importante, en discret
+  gt::tab_style(
+    style = gt::cell_fill(color = "#dbe7f4"),
+    locations = gt::cells_body(rows = grepl("RDB par UC$", Indicateur))
+  ) |>
+  ## dernier trimestre disponible (2e colonne après réordonnancement)
+  gt::tab_style(
+    style = list(gt::cell_fill(color = "#d7e6f4"), gt::cell_text(weight = "bold")),
+    locations = list(gt::cells_body(columns = 2),
+                     gt::cells_column_labels(columns = 2))
+  ) |>
   gt::tab_footnote(
     footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830166#tableau-figure1>"))
   ) |>
-  gt::tab_options(table.width = "100%")
+  gt::tab_options(table.font.size = gt::pct(85), container.overflow.x = TRUE)
 ```
 
 ### Annuelle (%)
 
 ```{r echo = F}
-"https://www.insee.fr/fr/statistiques/2830244" |>
+tbl <- "https://www.insee.fr/fr/statistiques/2830244" |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
-  pluck(1) |>
+  pluck(1)
+names(tbl)      <- gsub(" ", " ", names(tbl))
+tbl$Indicateur <- gsub(" ", " ", tbl$Indicateur)
+
+## colonnes (années) de la plus récente à la plus ancienne
+yr_cols <- names(tbl)[-1]
+tbl <- dplyr::select(tbl, Indicateur, dplyr::all_of(rev(yr_cols)))
+
+tbl |>
   gt::gt() |>
-  gt::cols_width(Indicateur ~ gt::px(300), everything() ~ gt::px(60)) |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::cols_align("center", columns = everything()) |>
+  gt::cols_align("left", columns = 1) |>
+  ## ligne importante, en discret
+  gt::tab_style(
+    style = gt::cell_fill(color = "#dbe7f4"),
+    locations = gt::cells_body(rows = grepl("unité de consommation$", Indicateur))
+  ) |>
+  ## dernière année disponible (2e colonne après réordonnancement)
+  gt::tab_style(
+    style = list(gt::cell_fill(color = "#d7e6f4"), gt::cell_text(weight = "bold")),
+    locations = list(gt::cells_body(columns = 2),
+                     gt::cells_column_labels(columns = 2))
+  ) |>
   gt::tab_footnote(
     footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2830244#tableau-figure1_radio1>"))
   ) |>
-  gt::tab_options(table.width = "100%")
+  gt::tab_options(table.font.size = gt::pct(85), container.overflow.x = TRUE)
 ```
 
 
@@ -105,22 +135,33 @@ tribble(~ theme,
 
 
 ```{r echo = F}
-"https://www.insee.fr/fr/statistiques/2385829" |>
+tbl <- "https://www.insee.fr/fr/statistiques/2385829" |>
   rvest::read_html() |>
   rvest::html_table(header = T, fill = T) |>
-  pluck(1) |>
+  pluck(1)
+names(tbl)  <- gsub(" ", " ", names(tbl))
+tbl[[1]]    <- gsub(" ", " ", tbl[[1]])
+names(tbl)[1] <- "Année"   # années déjà classées de la plus récente à la plus ancienne
+
+tbl |>
   gt::gt() |>
-  gt::cols_width(1 ~ gt::px(70), everything() ~ gt::px(150)) |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::cols_align("center", columns = everything()) |>
+  gt::cols_align("left", columns = 1) |>
+  ## dernière année disponible, en discret
+  gt::tab_style(
+    style = gt::cell_fill(color = "#dbe7f4"),
+    locations = gt::cells_body(rows = 1)
+  ) |>
+  ## pouvoir d'achat du RDB
+  gt::tab_style(
+    style = list(gt::cell_fill(color = "#d7e6f4"), gt::cell_text(weight = "bold")),
+    locations = list(gt::cells_body(columns = 3),
+                     gt::cells_column_labels(columns = 3))
+  ) |>
   gt::tab_footnote(
     footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/2385829#tableau-figure1_radio1>"))
   ) |>
-  gt::tab_options(table.width = "100%")
+  gt::tab_options(table.font.size = gt::pct(90), container.overflow.x = TRUE)
 ```
 
 
