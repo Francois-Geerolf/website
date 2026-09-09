@@ -80,7 +80,7 @@ datasets %>%
   reactable::reactable(
     searchable = TRUE,
     pagination = TRUE,
-    defaultPageSize = 20,
+    defaultPageSize = 10,
     showPageSizeOptions = TRUE,
     pageSizeOptions = c(5, 10, 15, 20),
     compact = TRUE,
