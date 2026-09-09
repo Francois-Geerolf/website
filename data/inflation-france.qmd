@@ -54,7 +54,7 @@ tribble(~ theme,
 
 ## Inflation mensuelle
 
-En glissement annuel (mois / mois de l'année précédente)
+En glissement annuel (mois / même mois de l'année précédente)
 
 ```{r, echo = F}
 c("011812231", # IPCH mensuel, base 2025
