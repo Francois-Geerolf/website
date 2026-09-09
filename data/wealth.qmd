@@ -87,3 +87,9 @@ theme_source_datasets("wealth") |>
 ```
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

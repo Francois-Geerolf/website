@@ -87,3 +87,9 @@ ig_d("eurostat", "phillips", "nama-10-lp-ulc-FR")
 theme_source_datasets("phillips") |>
   source_dataset_file_updates()
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

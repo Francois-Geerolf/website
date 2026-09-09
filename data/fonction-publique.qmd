@@ -91,3 +91,9 @@ ig_b("dgafp", "RA_2022", "figure10-FPE-contractuels")
 
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

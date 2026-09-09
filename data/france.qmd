@@ -35,3 +35,8 @@ ig_d("eurostat", "nama_10_pc", "FR-EU-PL-HU-PL-EL-IT-main-EU")
 theme_source_datasets("france") |>
   source_dataset_file_updates()
 ```
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

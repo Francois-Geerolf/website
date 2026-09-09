@@ -384,3 +384,8 @@ ig_d("eurostat", "tipsbp20", "mean-sd-EU27-FR-DE")
 theme_source_datasets("europe") |>
   source_dataset_file_updates()
 ```
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

@@ -401,3 +401,9 @@ ig_d("ipp", "indicefp", "indicefp-reel-1999-cpih-percent-net-brut-mensuel")
 
 {{< include ../working-papers/en/Geerolf2020.qmd >}}
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

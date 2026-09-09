@@ -117,3 +117,9 @@ theme_source_datasets("finances-publiques") |>
 
 # Bibliographie
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

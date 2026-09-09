@@ -601,3 +601,8 @@ ig_b("imf", "france-IIP-2023T2")
 theme_source_datasets("macro-france") |>
   source_dataset_file_updates()
 ```
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

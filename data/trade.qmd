@@ -46,3 +46,9 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 ```{r}
 ig_d("oecd", "QNA_EXPENDITURE_NATIO_CURR", "B11-B1GQ-EA20-USA-FRA-DEU-1990")
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

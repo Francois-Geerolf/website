@@ -199,3 +199,9 @@ theme_source_datasets("pauvrete") |>
 
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

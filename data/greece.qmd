@@ -105,3 +105,9 @@ ig_d("oecd", "BOP", "GRC-FRA-USA-1999-smoothed")
 ```
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

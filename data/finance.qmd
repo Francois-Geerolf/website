@@ -47,3 +47,9 @@ ig_d("eurostat", "nasq_10_nf_tr", "B2A3G-S11-BE-DE-FR-EA20-SCA-GVA")
 theme_source_datasets("finance") |>
   source_dataset_file_updates()
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

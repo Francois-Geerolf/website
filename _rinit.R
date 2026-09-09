@@ -154,6 +154,41 @@ ig_b <- function(source = "", folder = "", folder2 = "", folder3 = "", file = ""
   i_g(path)
 }
 
+# --- Cachet "derniere compilation" pour les pages de themes -------------
+# Pendant de dataset_info_lines() pour les pages data/*.qmd : elles
+# agregent des dizaines de graphiques pre-rendus via ig_d() et ne possedent
+# aucun parquet propre, donc "Last data update" n'a pas de sens ici -- seul
+# compte le moment ou la page elle-meme a ete reconstruite. Memes mecaniques
+# de pied de page que dataset_info_lines(position = "footer") : appeler
+# depuis un chunk `output: asis` (n'importe ou -- un petit script inline
+# deplace le bloc en fin de #quarto-document-content au chargement). Style
+# .dataset-info-footer dans data/_fgeerolf.scss. GARDER SYNCHRO entre
+# ~/github/website/_rinit.R et ~/Dropbox/website/_rinit.R.
+page_compile_line <- function() {
+  cat("::: {.dataset-info .dataset-info-footer}\n\n",
+      "**Last compile**: ", format(Sys.time(), "%d %b %Y, %H:%M"),
+      "\n\n:::\n\n",
+      "```{=html}\n",
+      "<script>\n",
+      "(function(){\n",
+      "  function move(){\n",
+      "    var note = document.querySelector('.dataset-info-footer');\n",
+      "    var main = document.getElementById('quarto-document-content');\n",
+      "    if (!note || !main) return;\n",
+      "    var cell = note.closest('.cell, .column-container');\n",
+      "    main.appendChild(note);\n",
+      "    if (cell && cell !== main && !cell.querySelector('*:not(script)')) cell.remove();\n",
+      "  }\n",
+      "  if (document.readyState === 'loading')\n",
+      "    document.addEventListener('DOMContentLoaded', move);\n",
+      "  else move();\n",
+      "})();\n",
+      "</script>\n",
+      "```\n",
+      sep = "")
+  invisible(NULL)
+}
+
 add_flags <- ggimage::geom_image(
   data = function(df) {
     # Guard empty/invalid

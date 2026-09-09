@@ -115,3 +115,17 @@
     border-top: 1px solid #dee2e6;
   }
 }
+
+/* Variante « pied de page » (dataset_info_lines(position = "footer")) :
+   même contenu, mais rejeté tout en bas de l'article et sur toute la
+   largeur, pour ne pas recouvrir le menu de la marge de droite. */
+.dataset-info-footer {
+  margin-top: 3rem;
+  padding-top: .6rem;
+  border-top: 1px solid #dee2e6;
+  font-size: .75rem;
+  line-height: 1.45;
+  color: #6c757d;
+}
+.dataset-info-footer p { margin-bottom: .2rem; }
+.dataset-info-footer strong { font-weight: 600; color: inherit; }

@@ -44,3 +44,9 @@ ig_d("citepa", "emissions_2020", "emissions")
 ig_d("citepa", "emissions_2020", "emissions-log-100")
 ```
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

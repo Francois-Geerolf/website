@@ -58,3 +58,9 @@ theme_source_datasets("debt") |>
   source_dataset_file_updates()
 ```
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

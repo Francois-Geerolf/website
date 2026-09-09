@@ -186,3 +186,9 @@ ig_d("eurostat", "nama_10_co3_p3", "FR-CP04-CP07-CP01-CPMEUR")
 
 
 {{< include ../publications/inflation.qmd >}}
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

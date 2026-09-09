@@ -69,3 +69,9 @@ ig_d("ecb", "BSI", "M3-M2-E")
 
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

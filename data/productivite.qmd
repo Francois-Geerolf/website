@@ -23,3 +23,9 @@ theme_source_datasets("productivite") |>
 
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

@@ -736,3 +736,9 @@ ig_d("wdi", "NV.IND.MANF.ZS", "FR-DE-OE")
 ```
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

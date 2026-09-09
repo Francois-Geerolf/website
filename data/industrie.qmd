@@ -601,3 +601,9 @@ ig_d("insee", "CNT-2014-CB", "B2-gdp-DI-DIM-DS-DSM")
 
 {{< include ../publications/fr/Geerolf2024d.qmd >}}
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

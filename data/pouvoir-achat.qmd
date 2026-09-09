@@ -468,3 +468,9 @@ theme_source_datasets("pouvoir-achat") |>
 # Bibliographie
 
 {{< include ../publications/pouvoir-dachat.qmd >}}
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

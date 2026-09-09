@@ -212,3 +212,9 @@ theme_source_datasets("inflation") |>
 
 
 {{< include ../publications/inflation.qmd >}}
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

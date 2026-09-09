@@ -197,3 +197,9 @@ ig_d("ecb", "BLS", "BLS.Q.U2.ALL.Z.H.H-C.B3.ZZ.D.WFNET")
 theme_source_datasets("europe-slack") |>
   source_dataset_file_updates()
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

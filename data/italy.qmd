@@ -74,3 +74,9 @@ ig_d("eurostat", "demo_fmonth", "DE-FR-IT-1980-12months")
 
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

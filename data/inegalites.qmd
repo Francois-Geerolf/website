@@ -64,3 +64,9 @@ tribble(~ theme,
 
 {{< include ../public-debate/fr/Geerolf2025b.qmd >}}
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

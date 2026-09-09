@@ -395,3 +395,9 @@ ig_d("bdf", "DET", "detention-non-residents")
 
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

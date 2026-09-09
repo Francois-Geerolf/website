@@ -272,3 +272,9 @@ theme_source_datasets("inflation-france-2017") |>
 ```
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

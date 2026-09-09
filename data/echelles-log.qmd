@@ -160,3 +160,9 @@ ig_d("fred", "cpi", "CPIAUCSL-bind")
 theme_source_datasets("echelles-log") |>
   source_dataset_file_updates()
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

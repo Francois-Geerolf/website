@@ -42,3 +42,9 @@ ig_b("europe", "carte-zone-euro-1152x644")
 ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA20-EU2027-1999")
 ```
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

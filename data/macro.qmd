@@ -153,3 +153,9 @@ ig_d("wdi", "NY.GDP.PCAP.KD", "US-XC-FR-base-100-2008")
 theme_source_datasets("macro") |>
   source_dataset_file_updates()
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

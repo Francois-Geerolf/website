@@ -76,3 +76,9 @@ ig_d("ecb", "CES", "c1220-mean")
 
 
 {{< include ../publications/inflation.qmd >}}
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

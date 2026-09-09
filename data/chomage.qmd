@@ -89,3 +89,9 @@ theme_source_datasets("chomage") |>
 - Les chômeurs au sens du BIT et les demandeurs d’emploi inscrits à Pôle emploi : une divergence de mesure du chômage aux causes multiples. [[<i class="fas fa-file-pdf"></i> pdf](https://www.insee.fr/fr/statistiques/fichier/4183055/ECRT19e_D4_chomeurs.pdf)] 
 
 - Insee. L'essentiel sur... le chômage. <https://www.insee.fr/fr/statistiques/4805248>
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

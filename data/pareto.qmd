@@ -58,3 +58,9 @@ ig_d("insee", "ip1863", "salaires-distribution-80")
 theme_source_datasets("pareto") |>
   source_dataset_file_updates()
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

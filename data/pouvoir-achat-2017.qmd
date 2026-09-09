@@ -465,3 +465,9 @@ ig_d("insee", "IPEA-2021", "43-IPEA-2017")
 theme_source_datasets("pouvoir-achat-2017") |>
   source_dataset_file_updates()
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

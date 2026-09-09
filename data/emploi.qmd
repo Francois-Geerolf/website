@@ -228,3 +228,9 @@ ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU-2017-Q2")
 ```{r}
 ig_d("insee", "EMPLOI-SALARIE-TRIM-NATIONAL", "BE-FZ-GU")
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

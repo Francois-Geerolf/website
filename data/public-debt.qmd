@@ -363,3 +363,9 @@ theme_source_datasets("public-debt") |>
 {{< include ../publications/fr/Geerolf2021c.qmd >}}
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

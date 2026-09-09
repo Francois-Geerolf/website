@@ -114,3 +114,9 @@ ig_b("eurostat", "prc_hicp_inw_ex3")
 ```
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

@@ -106,3 +106,9 @@ ig_d("bdf", "DET", "detention-non-residents")
 {{< include ../publications/en/Geerolf2013.qmd >}}
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

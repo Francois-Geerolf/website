@@ -354,3 +354,9 @@ ig_b("salaires", "blogInsee_2023_10-les_indicateurs_stats_pour_mesurer_les_salai
 theme_source_datasets("salaires") |>
   source_dataset_file_updates()
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

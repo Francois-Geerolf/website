@@ -955,3 +955,9 @@ ig_d("oecd", "QNA_EXPENDITURE_NATIO_CURR", "P6-P7-B1GQ-DEU")
 
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

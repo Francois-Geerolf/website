@@ -313,3 +313,9 @@ ig_d("eurostat", "nama_10_lp_ulc", "D1-SAL-HW-HR-PL-HU-NAC-index")
 ```
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

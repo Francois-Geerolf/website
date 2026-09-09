@@ -76,3 +76,9 @@ ig_d("wdi", "SP.POP.TOTL", "DE-FR-IT")
 theme_source_datasets("demography") |>
   source_dataset_file_updates()
 ```
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

@@ -132,3 +132,9 @@ ig_d("fred", "industry", "TLMFGCONS-both")
 
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

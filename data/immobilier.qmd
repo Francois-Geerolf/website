@@ -595,3 +595,9 @@ tribble(~ theme,
 ## Anglais
 
 {{< include ../working-papers/en/Geerolf2020.qmd >}}
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

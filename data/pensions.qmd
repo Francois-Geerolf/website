@@ -55,3 +55,9 @@ theme_source_datasets("pensions") |>
 ```
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

@@ -272,3 +272,9 @@ theme_source_datasets("housing") |>
 {{< include ../publications/fr/Geerolf2021a.qmd >}}
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

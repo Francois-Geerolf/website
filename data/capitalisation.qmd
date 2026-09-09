@@ -76,3 +76,9 @@ ig_d("ipp", "revalorisation_pension", "reval-1996-reel")
 
 
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

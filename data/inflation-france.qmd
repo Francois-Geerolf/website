@@ -28,9 +28,9 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   "insee", "table_conso_moyenne_par_categorie_menages",
   "insee", "IPC-PM-2015",
   "insee", "IPCH-2025",
-  "insee", "IPCH-IPC-2015-ensemble",
+  "insee", "IPCH-IPC-2025-ensemble",
   "insee", "IPLA-IPLNA-2015",
-  "insee", "IPPI-2015",
+  "insee", "IPPI-2021",
   "insee", "IRL",
   "insee", "IPGD-2015",
   "insee", "SERIES_LOYERS",
@@ -319,14 +319,14 @@ ig_d("insee", "IPC-2025", "CADRE-OUVRIER-RETRAITE")
 # Indice de Production
 
 ```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPPI-2015; /usr/local/bin/R -e 'quarto::quarto_render("IPPI-2015.qmd")'
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one_pieces.R IPPI-2021; /usr/local/bin/R -e 'quarto::quarto_render("IPPI-2021.qmd")'
 # sh ~/iCloud/website/website_short.sh
 ```
 
 ## 10-12
 
 ```{r}
-ig_d("insee", "IPPI-2015", "10-12-importation-2017")
+ig_d("insee", "IPPI-2021", "10-12-importation-2017")
 ```
 
 # Pondérations Importantes
@@ -404,3 +404,9 @@ ig_d("insee", "CNA-2014-RDB", "menage-personne-UC-arbitrable-1996")
 
 {{< include ../publications/inflation-france.qmd >}}
 
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```
