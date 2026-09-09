@@ -12,8 +12,7 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 `inflation-europe` <- tribble(
   ~source, ~dataset,
   "ecb", "CES",
-  "eurostat",  "prc_hicp_manr",
-  "eurostat",  "prc_hicp_midx",
+  "eurostat", "prc_hicp_minr",
   "eurostat",  "prc_hicp_mmor",
   "eurostat",  "prc_hicp_inw",
   "eurostat",  "prc_hicp_cow",
