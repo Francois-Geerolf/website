@@ -390,8 +390,10 @@ source_dataset_title_file_updates <- . %>%
 theme_file_updates <- . %>%
   left_join(themes, by = c("theme")) %>%
   # Le nom du thème EST le lien (vers sa page) -- plus de colonne "Link"
-  # séparée avec un libellé "Link" peu parlant.
-  mutate(theme = glue::glue("[{theme}](https://fgeerolf.com/data/{theme}.html)")) %>%
+  # séparée avec un libellé "Link" peu parlant. Icône "pile de couches"
+  # devant, comme dans les tables du catalogue (theme_icon_md()).
+  mutate(theme = glue::glue(
+    "{theme_icon_md(theme)}[{theme}](https://fgeerolf.com/data/{theme}.html)")) %>%
   dplyr::select(-dplyr::any_of("Link")) %>%
   gt::gt() %>%
   gt::fmt_markdown(columns = "theme") %>%
