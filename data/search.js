@@ -45,6 +45,11 @@
       "#dataset-search .ds-logo{flex:0 0 auto;width:18px;height:18px;object-fit:contain;",
       "border-radius:3px;background:#fff}",
       "#dataset-search .ds-logo.ph{background:transparent}",
+      // theme rows have no org logo -- a grey layer-group glyph fills the
+      // slot so themes read as themes at a glance, mirroring theme_icon_md()
+      // in the catalog tables (_rinit.R).
+      "#dataset-search .ds-logo.ds-theme{display:flex;align-items:center;",
+      "justify-content:center;color:#8a8a8a;font-size:13px}",
       "#dataset-search .ds-k{flex:0 0 auto;font-size:.68rem;text-transform:uppercase;",
       "letter-spacing:.03em;padding:.08rem .35rem;border-radius:.25rem;background:#d9e6ee;color:#245}",
       "#dataset-search .ds-k.d{background:#e5e5e5;color:#444}",
@@ -60,7 +65,8 @@
       "#dataset-search a.ds-row.sel,#dataset-search a.ds-row:hover{background:#1f2d36}",
       "#dataset-search .ds-k{background:#2a3f4c;color:#bcd}",
       "#dataset-search .ds-k.d{background:#3a3a3a;color:#ccc}",
-      "#dataset-search .ds-k.t{background:#33401f;color:#cde0ac}}"
+      "#dataset-search .ds-k.t{background:#33401f;color:#cde0ac}",
+      "#dataset-search .ds-logo.ds-theme{color:#9aa0a6}}"
     ].join("");
     document.head.appendChild(css);
   }
@@ -214,7 +220,10 @@
       var logo = (LOGOS && LOGOS[it.s])
         ? '<img class="ds-logo" src="/data/logos/' + encodeURIComponent(it.s) +
           '.png" alt="" decoding="async" onerror="this.className=\'ds-logo ph\'">'
-        : '<span class="ds-logo ph"></span>';
+        : (it.k === "t"
+          ? '<span class="ds-logo ph ds-theme" aria-hidden="true">' +
+            '<i class="fas fa-layer-group"></i></span>'
+          : '<span class="ds-logo ph"></span>');
       // Source slug next to the title, dataset rows only -- a source-level
       // or theme row's title already says "insee" / "inflation-france", so
       // repeating it there is just noise. Was the last-modified date (it.m)

@@ -25,7 +25,10 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 # au lieu d'une colonne "Link" séparée.
 themes %>%
   dplyr::transmute(
-    theme = sprintf('<a href="https://fgeerolf.com/data/%s.html">%s</a>', theme, theme),
+    theme = sprintf(
+      '%s<a href="https://fgeerolf.com/data/%s.html">%s</a>',
+      theme_icon_md(theme), theme, theme
+    ),
     Title
   ) %>%
   reactable::reactable(
@@ -55,7 +58,9 @@ themes %>%
 ```{r, echo = F}
 themes %>%
   dplyr::transmute(
-    theme = sprintf('[%s](https://fgeerolf.com/data/%s.html)', theme, theme),
+    theme = sprintf(
+      '%s[%s](https://fgeerolf.com/data/%s.html)', theme_icon_md(theme), theme, theme
+    ),
     Title
   ) %>%
   gt() |>

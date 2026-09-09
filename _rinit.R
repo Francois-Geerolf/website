@@ -56,6 +56,20 @@ source_logo_md <- function(source) {
   )
 }
 
+# Marqueur des pages de thèmes dans les tables du catalogue (data/index.qmd,
+# data/themes.qmd). Un thème regroupe des graphiques issus de plusieurs
+# sources : il n'a pas de logo d'organisme. Une icône "pile de couches"
+# grise, à la même taille 1.1em que source_logo_md(), le signale comme
+# thème sans faire concurrence aux logos colorés des sources. HTML
+# seulement ; Font Awesome est chargé site-wide via data/_common.yml.
+theme_icon_md <- function(theme = character()) {
+  if (!isTRUE(knitr::is_html_output())) return(rep("", length(theme)))
+  rep(paste0('<i class="fas fa-layer-group" aria-hidden="true" title="Thème" ',
+             'style="font-size:1.1em;color:#888780;opacity:.75;',
+             'margin-right:.45em;vertical-align:-0.05em"></i>'),
+      length(theme))
+}
+
 
 ig_d <- function(source, dataset, file){
   path_base <- paste0("data/", source, "/", dataset, "_files/figure-html/", file, "-1")

@@ -111,7 +111,10 @@ datasets %>%
 themes %>%
   rank_by_views("theme") %>%
   dplyr::transmute(
-    theme = sprintf('<a href="https://fgeerolf.com/data/%s.html">%s</a>', theme, theme),
+    theme = sprintf(
+      '%s<a href="https://fgeerolf.com/data/%s.html">%s</a>',
+      theme_icon_md(theme), theme, theme
+    ),
     Title
   ) %>%
   reactable::reactable(
