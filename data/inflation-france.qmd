@@ -52,7 +52,6 @@ tribble(~ theme,
 
 # Derniers chiffres de l'inflation
 
-
 ## Inflation mensuelle
 
 En glissement annuel (mois / mois de l'année précédente)
@@ -75,10 +74,15 @@ c("011812231", # IPCH mensuel, base 2025
   ungroup() |>
   arrange(desc(TIME_PERIOD)) |>
   slice(1:8) |>
-  spread(TIME_PERIOD, OBS_VALUE)  |>
+  # pivot_wider (unlike spread) keeps the column order of the incoming
+  # rows, which are arrange(desc(TIME_PERIOD)) above -> most recent month
+  # leftmost, then anti-chronological.
+  pivot_wider(names_from = TIME_PERIOD, values_from = OBS_VALUE) |>
+  # IPCH first, then IPC
+  arrange(desc(`IPC ou IPCH ?`)) |>
   gt::gt() |>
   gt::fmt_percent(
-    columns = 2:5,
+    columns = where(is.numeric),
     decimals = 1,
     force_sign = T
   ) |>
@@ -86,8 +90,15 @@ c("011812231", # IPCH mensuel, base 2025
     align = "center",
     columns = everything()
   ) |>
+  # discreetly highlight the most recent month (first data column)
+  gt::tab_style(
+    style = list(gt::cell_fill(color = "#eef3f8"),
+                 gt::cell_text(weight = "bold")),
+    locations = list(gt::cells_body(columns = 2),
+                     gt::cells_column_labels(columns = 2))
+  ) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [011814630](https://www.insee.fr/fr/statistiques/serie/011814630) (IPC), [011812231](https://www.insee.fr/fr/statistiques/serie/011812231) (IPCH)"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [011812231](https://www.insee.fr/fr/statistiques/serie/011812231) (IPCH), [011814630](https://www.insee.fr/fr/statistiques/serie/011814630) (IPC)"))
   )
 ```
 
@@ -112,10 +123,15 @@ c("011812233", # IPCH annuel, base 2025
   ungroup() |>
   arrange(desc(TIME_PERIOD)) |>
   slice(1:8) |>
-  spread(TIME_PERIOD, OBS_VALUE)  |>
+  # pivot_wider (unlike spread) keeps the column order of the incoming
+  # rows, which are arrange(desc(TIME_PERIOD)) above -> most recent month
+  # leftmost, then anti-chronological.
+  pivot_wider(names_from = TIME_PERIOD, values_from = OBS_VALUE) |>
+  # IPCH first, then IPC
+  arrange(desc(`IPC ou IPCH ?`)) |>
   gt::gt() |>
   gt::fmt_percent(
-    columns = 2:5,
+    columns = where(is.numeric),
     decimals = 1,
     force_sign = T
   ) |>
@@ -123,12 +139,17 @@ c("011812233", # IPCH annuel, base 2025
     align = "center",
     columns = everything()
   ) |>
+  # discreetly highlight the most recent month (first data column)
+  gt::tab_style(
+    style = list(gt::cell_fill(color = "#eef3f8"),
+                 gt::cell_text(weight = "bold")),
+    locations = list(gt::cells_body(columns = 2),
+                     gt::cells_column_labels(columns = 2))
+  ) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [011814639](https://www.insee.fr/fr/statistiques/serie/011814639) (IPC), [011812233](https://www.insee.fr/fr/statistiques/serie/011812233) (IPCH)"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [011812233](https://www.insee.fr/fr/statistiques/serie/011812233) (IPCH), [011814639](https://www.insee.fr/fr/statistiques/serie/011814639) (IPC)"))
   )
 ```
-
-
 
 
 
