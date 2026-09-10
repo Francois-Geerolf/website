@@ -131,7 +131,15 @@ ig_d("ecb", "EXR", "ARS-bind")
 ig_d("fred", "industry", "TLMFGCONS-both")
 ```
 
+# Problematic representations
 
+## World Bank
+
+CMO April 2026
+
+```{r}
+ig_b("wb", "CMO-April-2026", "fig21A")
+```
 
 
 

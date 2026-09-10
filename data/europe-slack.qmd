@@ -46,6 +46,32 @@ by theme.
 
 # Output gap and potential output
 
+## Europe vs. U.S. since 1999
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA-1999-flags")
+```
+
+
+## Europe, US, OECD
+
+### 2011-
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA-OECD-2011-new-english")
+```
+
+### 2019-
+
+```{r}
+ig_d("oecd", "QNA_EXPENDITURE_CAPITA", "USA-EA-OECD-2019-new-english")
+```
+
+
+
+
+
+
 ## AMECO: output gap, euro area and the big four
 
 The European Commission's own accounts put the euro area below potential from
@@ -161,9 +187,13 @@ ig_d("eurostat", "lfsa_urgaed", "EA-unemployment-by-education")
 
 ## Youth unemployment
 
+### Germany, Greece, Europe, Spain
+
 ```{r}
 ig_d("eurostat", "tipslm80", "EA20-EL-ES-IT-DE")
 ```
+
+###
 
 ## NEET rate (15-29): not in employment, education or training
 
