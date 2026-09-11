@@ -638,11 +638,11 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/bis/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/bis/CBPOL.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/bis/CBS.html</loc>
@@ -925,7 +925,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/conjoncture.html</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/consumption/</loc>
@@ -1045,7 +1045,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/depp/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/depp/concours-recrutement-enseignants-second-degre-prive-sous-contrat.html</loc>
@@ -1149,7 +1149,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/depp/fr-en-ips-ecoles-ap2022.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/depp/mentions-au-baccalaureat-selon-la-voie.html</loc>
@@ -1305,7 +1305,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ec/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ec/CONSUMPTION.html</loc>
@@ -1321,11 +1321,11 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ec/WOB.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ecb/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ecb/AGR.html</loc>
@@ -1477,7 +1477,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ecb/EST.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ecb/EWT.html</loc>
@@ -2171,7 +2171,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/agr_r_accts.html</loc>
@@ -2535,7 +2535,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/hbs_str_t223.html</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/hbs_str_t224.html</loc>
@@ -2995,7 +2995,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/nasq_10_ki.html</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/nasq_10_nf_tr.html</loc>
@@ -3435,7 +3435,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/tipslm80.html</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/tipsna62.html</loc>
@@ -3551,19 +3551,19 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/cpi.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/debt.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/energy.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/fred_MD.html</loc>
@@ -3571,71 +3571,71 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/gdp.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/housing.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/industrie.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/industry.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/inflation.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/japan.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/log.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/minimum_wage.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/money.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/phillips.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/r.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/recessions.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/saving.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/unr.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/wage.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/wealth.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/fred/xrates.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/freddie/</loc>
@@ -6612,7 +6612,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/7HA_A_Q.html</loc>
@@ -6684,7 +6684,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/BOP.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/BPF1.html</loc>
@@ -6912,7 +6912,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/IALFS_UNE_M.html</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/ICT_HH2.html</loc>
@@ -7108,15 +7108,15 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/PRICES_ALL.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/PRICES_C2018_ALL.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/PRICES_CPI.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/PTR.html</loc>
@@ -7200,7 +7200,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/QNA_EXPENDITURE_CAPITA.html</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-11</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/QNA_EXPENDITURE_NATIO_CURR.html</loc>
