@@ -12,9 +12,16 @@ knitr::opts_chunk$set(echo = T)
 # (was: conjoncture <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("conjoncture"))
 ```
 
-# Prévision Insee
+# Prévisions de Croissance 
 
-## 10 septembre 2026
+## Gouvernement
+
+2026: croissance +0.5%
+2027: croissance +1.0%
+
+## Insee, NDC 10 septembre 2026
+
+2026: croissance +0.4%
 
 ```{r}
 ig_b("insee", "ndc-sept-2026", "annexe1-table1")
