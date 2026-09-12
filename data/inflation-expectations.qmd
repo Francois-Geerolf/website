@@ -41,6 +41,15 @@ inflation <- tribble(
 # sh ~/iCloud/website/website_short.sh
 ```
 
+# France: inflation
+
+## Presse
+
+```{r}
+ig_d("bdf", "PAI", "pai-anticipations-2015")
+```
+
+
 # Gas prices
 
 ## Gas prices and Inflation expectations
