@@ -12,14 +12,31 @@ knitr::opts_chunk$set(echo = T)
 # (was: conjoncture <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("conjoncture"))
 ```
 
-# Prévisions de Croissance 
+# Prévisions
 
-## Gouvernement
+## Gouvernement, 11 Septembre 2026
 
-2026: croissance +0.5%
-2027: croissance +1.0%
+```{r}
+tibble(
+  Année = c(2026L, 2027L),
+  Croissance = c(0.005, 0.010),
+  Inflation = c(0.021, 0.018)
+) |>
+  gt::gt() |>
+  gt::fmt_percent(columns = c(Croissance, Inflation), decimals = 1) |>
+  gt::cols_label(Croissance = "Croissance du PIB", Inflation = "Inflation") |>
+  gt::cols_align(align = "center", columns = everything()) |>
+  #gt::data_color(columns = Croissance, palette = c("#f4a582", "#92c5de"), domain = c(0, 0.015)) |>
+  #gt::data_color(columns = Inflation, palette = c("#92c5de", "#f4a582"), domain = c(0.015, 0.025)) |>
+  gt::tab_header(title = "Prévisions macroéconomiques du Gouvernement") |>
+  gt::tab_options(column_labels.font.weight = "bold",
+                   heading.title.font.weight = "bold",
+                   table.font.size = gt::px(14)) |>
+  gt::opt_row_striping()
+```
 
-## Insee, NDC 10 septembre 2026
+
+## Insee, note de conjoncture 10 septembre 2026
 
 2026: croissance +0.4%
 
