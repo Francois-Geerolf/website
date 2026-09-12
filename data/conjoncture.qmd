@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = T)
 
 ## Gouvernement, 11 Septembre 2026
 
-```{r}
+```{r, echo = F}
 tibble(
   Année = c(2026L, 2027L),
   Croissance = c(0.005, 0.010),
@@ -116,7 +116,7 @@ ig_d("insee", "CLIMAT-AFFAIRES", "CLIMAT-RETOURNEMENT-2006")
 ## Bases de données
 
 ```{r, echo = F}
-theme_source_datasets("conjoncture") |>
+theme_source_datasets("inflation-expectations") |>
   source_dataset_file_updates()
 ```
 

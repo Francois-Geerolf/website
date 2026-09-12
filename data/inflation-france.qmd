@@ -9,33 +9,6 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-`inflation-france` <- tribble(
-  ~source, ~dataset,
-  "insee", "bdf2017",
-  "insee", "ILC-ILAT-ICC",
-  "insee", "INDICES_LOYERS",
-  "insee", "IPC-1990",
-  "insee", "IPC-1970-1980",
-  "insee", "IPC-2025",
-        "insee", "echantillon-agglomerations-IPC-2024",
-        "insee", "ponderations-elementaires-IPC-2024",
-        "insee", "liste-varietes-IPC-2024",
-  "insee", "echantillon-agglomerations-IPC-2025",
-        "insee", "ponderations-elementaires-IPC-2025",
-        "insee", "liste-varietes-IPC-2025",
-        "insee", "tranches_unitesurbaines",
-        "insee", "table_poste_au_sein_sous_classe_ecoicopv2_france_entiere_",
-  "insee", "table_conso_moyenne_par_categorie_menages",
-  "insee", "IPC-PM-2015",
-  "insee", "IPCH-2025",
-  "insee", "IPCH-IPC-2025-ensemble",
-  "insee", "IPLA-IPLNA-2015",
-  "insee", "IPPI-2021",
-  "insee", "IRL",
-  "insee", "IPGD-2015",
-  "insee", "SERIES_LOYERS",
-  "insee", "T_CONSO_EFF_FONCTION") %>%
-  arrange(source, dataset)
 ```
 
 
