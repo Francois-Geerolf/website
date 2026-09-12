@@ -8,3 +8,9 @@
 # aucun intérêt à versionner).
 data/_pageviews.RData
 _pageviews.RData
+
+# Sorties de compilation Quarto des .qmd (régénérées à chaque render,
+# aucun intérêt à versionner).
+data/**/*.html
+data/**/*_files/
+data/**/*.rmarkdown

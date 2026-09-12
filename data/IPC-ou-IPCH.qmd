@@ -14,12 +14,12 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
   ~source, ~dataset,
   "insee", "IPC-1990",
   "insee", "IPC-1970-1980",
-  "insee", "IPC-2015",
+  "insee", "IPC-2025",
         "insee", "echantillon-agglomerations-IPC-2024",
         "insee", "ponderations-elementaires-IPC-2024",
         "insee", "liste-varietes-IPC-2024",
   "insee", "IPC-PM-2015",
-  "insee", "IPCH-2015") %>%
+  "insee", "IPCH-2025") %>%
   arrange(source, dataset)
 ```
 
@@ -138,7 +138,7 @@ c("011812233", # IPCH annuel, base 2025
 ### 1996-
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996-ratio-inverted")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-1996-ratio-inverted")
 ```
 
 
@@ -146,7 +146,7 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996-ratio-inverted")
 ### 1999-
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1999-ratio-inverted")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-1999-ratio-inverted")
 ```
 
 
@@ -159,13 +159,13 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1999-ratio-inverted")
 #### Mensuel
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996-ratio")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-1996-ratio")
 ```
 
 #### Annuel
 
 ```{r}
-ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel")
+ig_d("insee", "IPCH-IPC-2025-ensemble", "ratio-IPC-IPCH-annuel")
 ```
 
 
@@ -175,13 +175,13 @@ ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel")
 #### Mensuel
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1999-ratio")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-1999-ratio")
 ```
 
 #### Annuel
 
 ```{r}
-ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel-1999")
+ig_d("insee", "IPCH-IPC-2025-ensemble", "ratio-IPC-IPCH-annuel-1999")
 ```
 
 ### 2008-
@@ -189,7 +189,7 @@ ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel-1999")
 #### Annuel
 
 ```{r}
-ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel-2008")
+ig_d("insee", "IPCH-IPC-2025-ensemble", "ratio-IPC-IPCH-annuel-2008")
 ```
 
 ## Indices de Prix
@@ -201,14 +201,14 @@ ig_d("insee", "IPCH-IPC-2015-ensemble", "ratio-IPC-IPCH-annuel-2008")
 #### 1996-
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-1996")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-annual-1996")
 ```
 
 
 #### 2003-2022
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-2003-2022-labels")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-annual-2003-2022-labels")
 ```
 
 
@@ -218,7 +218,7 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-annual-2003-2022-labels")
 #### 1996-
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-1996")
 ```
 
 
@@ -226,14 +226,14 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-1996")
 #### 2008-
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-2008")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-2008")
 ```
 
 
 #### 2016-
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-2016")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-2016")
 ```
 
 ## Inflation
@@ -241,19 +241,19 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-2016")
 ### 10 années
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-10-annees")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-10-annees")
 ```
 
 ### 15 années
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-15-annees")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-15-annees")
 ```
 
 ### 5 années
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-00-5-annees")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-00-5-annees")
 ```
 
 
@@ -263,20 +263,20 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-00-5-annees")
 ## Poids santé
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-06")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-ponderation-06")
 ```
 
 
 ## Evolution santé
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-06")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-06")
 ```
 
 ## Figure 1
 
 ```{r}
-ig_d("insee", "IPCH-2015", "plot-sante-bind")
+ig_d("insee", "IPCH-2025", "plot-sante-bind")
 ```
 
 
@@ -285,7 +285,7 @@ ig_d("insee", "IPCH-2015", "plot-sante-bind")
 #### Tous
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-0611")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-0611")
 ```
 
 #### 2020-
@@ -293,7 +293,7 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-0611")
 À compter du 15 mai 2024, le montant de la participation forfaitaire passe de 1€ à 2€
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-0611-2020")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-0611-2020")
 ```
 
 # Enseignement
@@ -301,13 +301,13 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-0611-2020")
 ## Comparaison des pondérations (Figure 2)
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-ponderation-10-101-102-104")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-ponderation-10-101-102-104")
 ```
 
 ## Evolutions
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-10")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-10")
 ```
 
 
@@ -316,7 +316,7 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-10")
 ## Redevance audiovisuelle
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-094231")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-094231")
 ```
 
 
@@ -326,7 +326,7 @@ ig_d("insee", "IPCH-2015", "IPC-IPCH-094231")
 ### Poids
 
 ```{r}
-ig_d("insee", "IPC-2015", "POND-0943")
+ig_d("insee", "IPC-2025", "POND-0943")
 ```
 
 ### Comparaison
@@ -340,7 +340,7 @@ ig_b("insee", "ponderations-elementaires-IPC-2024", "liste-varietes-ponderations
 Pour 0.9%-1% de l'indice depuis 2016. (l'IPC base 2016)
 
 ```{r}
-ig_d("insee", "IPCH-2015", "IPC-IPCH-0943")
+ig_d("insee", "IPCH-2025", "IPC-IPCH-0943")
 ```
 
 ### 1er quintile pour le SMIC ?
