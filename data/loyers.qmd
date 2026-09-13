@@ -89,8 +89,6 @@ tribble(~ theme,
 
 # Depuis 2017
 
-
-
 ## Secteur social, libre
 
 ### France métropolitaine
@@ -146,6 +144,31 @@ ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2017-2025")
 
 ```{r}
 ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-INSEE-vs-OLAP-2017-2025")
+```
+
+# Source OLAP
+
+## Agglomération parisienne
+
+```{r}
+ig_d("olap", "loyers_agglo_paris", "loyers-2001")
+```
+
+# ILH
+
+## Législation
+
+Source: Revenus et patrimoine des ménages 2024
+
+```{r}
+ig_b("insee", "RPM2024", "F31", "variations-loyers")
+```
+
+
+## Evolution ILH
+
+```{r}
+ig_b("insee", "RPM2024", "F31", "fig4")
 ```
 
 # Pour en savoir plus...
