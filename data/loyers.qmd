@@ -53,10 +53,18 @@ tribble(~ theme,
   gt::tab_options(table.width = "100%")
 ```
 
-# Données historiques
+# Loi 1948
+
+## 1983-
 
 ```{r}
 ig_d("insee", "SERIES_LOYERS", "BASE100-SECTEURS-TRIMESTRIEL-1983")
+```
+
+## 1990-
+
+```{r}
+ig_d("insee", "SERIES_LOYERS", "BASE100-SECTEURS-TRIMESTRIEL-1990")
 ```
 
 
