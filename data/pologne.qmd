@@ -1,7 +1,7 @@
 ---
 title: Données sur la Pologne
 metadata-files: 
-  - _common.yml
+  - _common_fr.yml
 ---
 
 
