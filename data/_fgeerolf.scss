@@ -51,6 +51,16 @@
   }
 }
 
+/* --- Lien auteur du bloc titre ------------------------------------------ */
+/* "François Geerolf" (lien vers fgeerolf.com, injecté par data/_common.yml)
+   ressortait en bleu (couleur de lien par défaut du thème flatly), alors que
+   le sous-titre "Data - <Source>" juste au-dessus est en noir (style inline
+   color: inherit). Même traitement ici, lien conservé. */
+.quarto-title-meta-contents a {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* --- Liens communs du yml ("other-links") sur mobile ------------------- */
 /* Sous 768px Quarto masque toute la sidebar de marge (#quarto-margin-sidebar),
    donc aussi le bloc "other-links" (Home, Autres données…). On le réaffiche
