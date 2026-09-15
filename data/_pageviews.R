@@ -81,8 +81,14 @@ gc_hits <- function(start, end) {
     qs <- sprintf("start=%s&end=%s&limit=200",
                   iso(start), iso(as.Date(end) + 1))
     if (length(seen)) qs <- paste0(qs, "&exclude_paths=", paste(seen, collapse = ","))
+    # http_version = 2 (curl's CURL_HTTP_VERSION_1_1) : passe 10+ pages, l'URL
+    # (exclude_paths cumulatif) dépasse ~9 Ko et l'edge Cloudflare de
+    # GoatCounter ferme la connexion HTTP/2 ("Stream error ... ENHANCE_YOUR_CALM")
+    # -- ça casse silencieusement la pagination bien avant la vraie limite de
+    # débit (429). HTTP/1.1 n'a pas ce problème de framing.
     r <- try(httr::GET(paste0(base, "?", qs),
-                       httr::add_headers(Authorization = paste("Bearer", gc_token))),
+                       httr::add_headers(Authorization = paste("Bearer", gc_token)),
+                       httr::config(http_version = 2)),
              silent = TRUE)
     if (inherits(r, "try-error") || httr::status_code(r) != 200) {
       message("[_pageviews] GoatCounter HTTP ",
