@@ -29,7 +29,6 @@ colors <- arrow::read_parquet(here::here("flags", "colors.parquet"))
 
 ## Dette des administrations publiques au sens de Maastricht
 
-
 ```{r echo = F}
 "https://www.insee.fr/fr/statistiques/2830301#tableau-figure1" |>
   rvest::read_html() |>
@@ -113,7 +112,11 @@ ig_b("dette", "france-credit-rating", ext = ".jpeg")
 ig_b("public-debt", "credit-watch", ext = ".jpeg")
 ```
 
+## Spreads
 
+```{r}
+ig_d("investing", "spreads", "spreads-evolution")
+```
 
 # Déficit public
 
