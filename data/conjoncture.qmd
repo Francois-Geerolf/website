@@ -112,7 +112,11 @@ ig_d("insee", "CLIMAT-AFFAIRES", "CLIMAT-EMPLOI")
 ig_d("insee", "CLIMAT-AFFAIRES", "CLIMAT-RETOURNEMENT-2006")
 ```
 
+## Banque de France
 
+```{r}
+ig_d("bdf", "CONJ", "ICA-IN-BA-SM-5ans")
+```
 
 # Info
 
