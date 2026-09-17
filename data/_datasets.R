@@ -178,6 +178,21 @@ parquet_info <- map_dfr(tracked_dirs, function(d) {
          Nobs = x$nrow, parquet_updated = x$mtime)
 })
 
+# Split-file pages (see above: <stem>.<part>.parquet / <stem>_<part>.parquet,
+# no bare <stem>.parquet) have their row counts recorded per sibling file in
+# the checkpoint under EACH sibling's own stem, never under the page's stem
+# -- so an exact (source, dataset) join against parquet_info always misses
+# them and Nobs comes back NA. Sum every checkpoint entry whose filename
+# stem is the page stem itself or starts with "<stem>." / "<stem>_" instead.
+nobs_for_stem <- function(src, stem) {
+  cand <- parquet_info[parquet_info$source == src, ]
+  if (nrow(cand) == 0) return(NA_integer_)
+  pre <- substr(cand$dataset, 1, nchar(stem) + 1)
+  matches <- cand$dataset == stem | pre %in% c(paste0(stem, "."), paste0(stem, "_"))
+  if (!any(matches)) return(NA_integer_)
+  as.integer(sum(cand$Nobs[matches], na.rm = TRUE))
+}
+
 qmd_info <- map_dfr(tracked_dirs, function(d) {
   x <- read_checkpoint(file.path(root_dir, d), "_update_qmd.RData", "update_qmd")
   if (is.null(x)) return(tibble())
@@ -247,7 +262,8 @@ if (length(complete_bases) == 0) {
     left_join(parquet_info, by = c("source", "dataset")) %>%
     left_join(qmd_info, by = c("source", "dataset")) %>%
     mutate(
-      data_updated = pmax(parquet_updated, as.POSIXct(.data_mtime), na.rm = TRUE)
+      data_updated = pmax(parquet_updated, as.POSIXct(.data_mtime), na.rm = TRUE),
+      Nobs = coalesce(Nobs, map2_int(source, dataset, nobs_for_stem))
     ) %>%
     select(source, dataset, Title, `.html`, data_updated, Nobs,
            qmd_duration_sec, qmd_rendered_at) %>%

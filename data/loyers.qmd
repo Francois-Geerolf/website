@@ -135,6 +135,12 @@ ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-INSEE-vs-OLAP-2017-2025")
 ig_d("olap", "loyers_agglo_paris", "loyers-2001")
 ```
 
+## Paris: OLAP/Insee
+
+```{r}
+ig_d("insee", "if_ina_220", "figure-encadre-echelle-log")
+```
+
 # ILH
 
 ## Législation
