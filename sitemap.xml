@@ -925,7 +925,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/conjoncture.html</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-17</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/consumption/</loc>
@@ -1030,6 +1030,10 @@
   <url>
     <loc>https://fgeerolf.com/data/debt.html</loc>
     <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/declassement.html</loc>
+    <lastmod>2026-09-17</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/demographie.html</loc>
@@ -2171,7 +2175,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/agr_r_accts.html</loc>
@@ -3271,7 +3275,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/sts_inppd_m.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/sts_inppnd_m.html</loc>
@@ -4838,8 +4842,44 @@
     <lastmod>2026-09-17</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/ip2063.html</loc>
+    <lastmod>2026-09-17</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/IP2081.html</loc>
+    <lastmod>2026-09-17</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/IP2088.html</loc>
+    <lastmod>2026-09-17</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ip2090.html</loc>
+    <lastmod>2026-09-17</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/IP2104.html</loc>
+    <lastmod>2026-09-17</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ip2106.html</loc>
+    <lastmod>2026-09-17</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/IP2110.html</loc>
+    <lastmod>2026-09-17</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ip2115.html</loc>
+    <lastmod>2026-09-17</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/ip2117.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/IP2125.html</loc>
+    <lastmod>2026-09-17</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/IPAGRI-BASE-2015.html</loc>
@@ -5679,7 +5719,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_7205.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-17</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_7301.html</loc>
