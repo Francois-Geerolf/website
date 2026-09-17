@@ -35,6 +35,12 @@ tibble(
   gt::opt_row_striping()
 ```
 
+## Banque de France, 15 septembre 2026
+
+```{r}
+ig_b("bdf", "Projections_macroeconomiques_Septembre_2026_pdf", "points-cles")
+```
+
 
 ## Insee, note de conjoncture 10 septembre 2026
 
