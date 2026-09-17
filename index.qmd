@@ -12,7 +12,7 @@ format:
     other-links:
       - text: "Data"
         href: "https://fgeerolf.com/data/"
-        icon: bar-chart-line
+        icon: layers
       - text: "UCLA"
         href: "https://fgeerolf.com/ucla/"
       - text: "CEPII"
