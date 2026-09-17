@@ -1,0 +1,39 @@
+---
+title: Déclassement de la France
+metadata-files: 
+  - _common_fr.yml
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("declassement.qmd")'
+```
+
+# PIB Par habitant
+
+## 1996-
+
+```{r}
+ig_d("eurostat", "nama_10_pc", "FR-EA20-CPEURHAB-1996")
+```
+
+
+
+# Bases de données
+
+```{r, echo = F}
+theme_source_datasets("declassement") |>
+  source_dataset_file_updates()
+```
+
+# Bibliographie
+
+
+
+```{r, echo = F}
+#| output: asis
+page_compile_line()
+```

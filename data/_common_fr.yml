@@ -12,6 +12,9 @@ format:
     theme: [flatly, _fgeerolf.scss]
     embed-resources: false
     other-links:
+      - text: "Autres thèmes"
+        href: "https://fgeerolf.com/data/themes.html"
+        icon: layers
       - text: "Autres données"
         href: "https://fgeerolf.com/data/"
         icon: layers
