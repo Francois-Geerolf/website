@@ -1,8 +1,15 @@
 # Versionné dans github mais partie du tooling de build local. Symlinké
 # depuis ~/iCloud/website/data/_datasets.R ; ce setwd (avant le 1er appel
 # here::here(), donc il fixe la racine du projet sur github) le rend lançable de
-# n'importe où, y compris `cd ~/iCloud/website/data`.
+# n'importe où, y compris `cd ~/iCloud/website/data`. Mais setwd() seul ne
+# suffit pas si la session R a déjà exécuté here::i_am(...) plus tôt (c'est
+# le cas de quasi tous les .qmd de data/) : i_am() épingle la racine de
+# `here` pour le reste de la session, et un setwd() ultérieur ne la
+# déplace plus -- d'où des chemins qui pointent encore vers
+# ~/Dropbox/website (root de i_am) au lieu de ~/github/website. On ré-
+# épingle donc explicitement ici.
 setwd(path.expand("~/github/website/data"))
+here::i_am("data/_datasets.R")
 source(here::here("_rinit.R"))
 
 # Set your root folder here
