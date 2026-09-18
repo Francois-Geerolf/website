@@ -1,5 +1,5 @@
 ---
-title: Données sur l'évolution du pouvoir d'achat
+title: Évolution du pouvoir d'achat
 metadata-files: 
   - _common_fr.yml
 ---
