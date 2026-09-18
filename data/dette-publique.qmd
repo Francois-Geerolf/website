@@ -118,6 +118,22 @@ ig_b("public-debt", "credit-watch", ext = ".jpeg")
 ig_d("investing", "spreads", "spreads-evolution")
 ```
 
+
+# OAT indexées
+
+## Sur l'IPC hors tabac, OATi
+
+```{r}
+ig_d("aft", "list-OATi", "timeline")
+```
+
+ 
+## Sur l'IPCH zone euro, OAT€i
+
+```{r}
+ig_d("aft", "list-OATeuroi", "timeline")
+```
+
 # Déficit public
 
 
