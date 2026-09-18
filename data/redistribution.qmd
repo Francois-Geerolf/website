@@ -43,6 +43,18 @@ ig_b("insee", "RPM2021", "D2", "table2")
 ig_b("insee", "IA88", "fig2")
 ```
 
+## Politique familiale
+
+```{r}
+ig_b("igf", "Revue de dépenses_politiques familiales (2026)", "graphique3")
+```
+
+## Majoration de pension
+
+```{r}
+ig_b("igf", "Revue de dépenses_politiques familiales (2026)", "graphique6")
+```
+
 # Taux d'imposition
 
 ## Données

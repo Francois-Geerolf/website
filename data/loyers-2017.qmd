@@ -21,9 +21,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 
 ```{r, echo = F}
 tribble(~ theme,
-        "pouvoir-achat", 
         "pouvoir-achat-2017",
-        "inflation-france",
         "inflation-france-2017") |>
   theme_file_updates()
 ```
@@ -53,29 +51,15 @@ tribble(~ theme,
   gt::tab_options(table.width = "100%")
 ```
 
-# Loi 1948
 
-## 1983-
+# Depuis 2017
 
-```{r}
-ig_d("insee", "SERIES_LOYERS", "BASE100-SECTEURS-TRIMESTRIEL-1983")
-```
-
-## 1990-
-
-```{r}
-ig_d("insee", "SERIES_LOYERS", "BASE100-SECTEURS-TRIMESTRIEL-1990")
-```
-
-
-# Indices des loyers
-
-## Indice des Loyers d'Habitation (ILH)
+## Secteur social, libre
 
 ### France métropolitaine
 
 ```{r}
-ig_d("insee", "INDICES_LOYERS", "FM")
+ig_d("insee", "INDICES_LOYERS", "FM-2017")
 ```
 
 
@@ -83,14 +67,19 @@ ig_d("insee", "INDICES_LOYERS", "FM")
 ### Agglomération parisienne
 
 ```{r}
-ig_d("insee", "INDICES_LOYERS", "AGGLO-PARIS")
+ig_d("insee", "INDICES_LOYERS", "AGGLO-PARIS-2017")
 ```
 
 ### Secteur libre, Paris vs. province
 
 ```{r}
-ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE")
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-2017")
 ```
+
+
+
+
+
 
 
 ## Indice de Référence des Loyers (IRL)
@@ -100,60 +89,28 @@ ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE")
 Hausse supposément très inférieure à l'IRL...
 
 ```{r}
-ig_d("insee", "IRL", "indice")
+ig_d("insee", "IRL", "indice-100-2017")
 ```
 
 ### Tous
 
 ```{r}
-ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE")
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2017")
 ```
 
-
-
-# Source OLAP
-
-## Agglomération parisienne
+### 2017T1-2025T1
 
 ```{r}
-ig_d("olap", "loyers_agglo_paris", "loyers-2001")
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2017-2025")
 ```
 
-## Paris: OLAP/Insee
+
+## Comparaison Insee-OLAP sur l'agglomération parisienne
 
 ```{r}
-ig_d("insee", "if_ina_220", "figure-encadre-echelle-log")
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-INSEE-vs-OLAP-2017-2025")
 ```
 
-# ILH
-
-## Législation
-
-Source: Revenus et patrimoine des ménages 2024
-
-```{r}
-ig_b("insee", "RPM2024", "F31", "variations-loyers")
-```
-
-
-## Evolution ILH
-
-```{r}
-ig_b("insee", "RPM2024", "F31", "fig4")
-```
-
-# Pour en savoir plus...
-
-```{r, echo = F}
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("inflation-france.qmd")'
-# cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("macro.qmd")'
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/macro-france.html
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/inflation-france.html
-# sh ~/iCloud/website/website_short.sh; open https://fgeerolf.com/data/pouvoir-achat.html
-# sh ~/iCloud/website/website_short.sh
-```
 
 
 # Bases de données
