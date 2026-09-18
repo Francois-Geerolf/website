@@ -1,5 +1,5 @@
 ---
-title: Données sur l'évolution des loyers
+title: Évolution des loyers
 metadata-files: 
   - _common_fr.yml
 ---
