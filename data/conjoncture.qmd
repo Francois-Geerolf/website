@@ -93,7 +93,11 @@ ig_d("bdf", "DIREN", "PE-IG-TP3")
 ```
 
 
+## Procédures collectives
 
+```{r}
+ig_d("acoss", "procedures-collectives-france-entiere", "procedures-cvs")
+```
 
 
 
