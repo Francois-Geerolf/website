@@ -100,13 +100,22 @@ colors <- arrow::read_parquet(here::here("flags", "colors.parquet"))
 
 ## Agences de notation / de rating
 
+
+### Historique
+
+```{r}
+ig_b("dette", "france-credit-rating-20260919")
+```
+
+
+
 ### Historique
 
 ```{r}
 ig_b("dette", "france-credit-rating", ext = ".jpeg")
 ```
 
-## Historique 2
+### Historique 2
 
 ```{r}
 ig_b("public-debt", "credit-watch", ext = ".jpeg")
