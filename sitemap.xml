@@ -498,7 +498,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/bea/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/bea/CAINC1.html</loc>
@@ -570,7 +570,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/bea/T10105.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/bea/T10106.html</loc>
@@ -922,11 +922,11 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/circana/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/circana/iri.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/citepa/</loc>
@@ -2203,7 +2203,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/agr_r_accts.html</loc>
@@ -3203,7 +3203,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/prc_hpi_ooq.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/eurostat/prc_hpi_q.html</loc>
@@ -4179,7 +4179,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/bdf2017.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/canton2016.html</loc>
@@ -4615,7 +4615,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ENQ-CONJ-MENAGES.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ENQ-CONJ-PROMO-IMMO.html</loc>
@@ -4802,12 +4802,20 @@
     <lastmod>2026-09-17</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/IF-203-diffusion.html</loc>
+    <lastmod>2026-09-19</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/if203.html</loc>
     <lastmod>2026-09-18</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/if230.html</loc>
     <lastmod>2026-09-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/IF380.html</loc>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ILC-ILAT-ICC.html</loc>
@@ -4871,7 +4879,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/IP1855.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ip1863.html</loc>
@@ -4931,7 +4939,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/IP2110.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ip2115.html</loc>
@@ -6594,7 +6602,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/bareme_ir.html</loc>
@@ -6614,7 +6622,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/revalorisation_pension.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-19</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/taux_de_tva.html</loc>

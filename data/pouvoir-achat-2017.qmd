@@ -35,18 +35,20 @@ ig_d("insee", "econ-gen-revenu-dispo-pouv-achat-2", "pouvoir-achat-2017")
 ```
 
 
-## Trimestriel, 2017T1-
-
-```{r}
-ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T1")
-```
-
 
 ## Trimestriel, 2017T2-
 
 ```{r}
 ig_d("insee", "t_pouvachat_val", "pouvoir-achat-RDB-2017T2")
 ```
+
+## Le RDB inclut les revenus du capital...
+
+```{r}
+ig_d("insee", "t_men_val", "D11-B6-D4-log-2017T2")
+```
+
+
 
 ## Dernières évolutions trimestrielles (%)
 
