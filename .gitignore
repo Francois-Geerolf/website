@@ -11,6 +11,8 @@ _pageviews.RData
 
 # Sorties de compilation Quarto des .qmd (régénérées à chaque render,
 # aucun intérêt à versionner).
+*.html
+*_files/
 data/**/*.html
 data/**/*_files/
 data/**/*.rmarkdown
