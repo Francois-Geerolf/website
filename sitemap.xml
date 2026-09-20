@@ -158,7 +158,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acoss/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acoss/assiette-chomage-partiel-trimestrielle-du-secteur-prive-par-na38.html</loc>
@@ -174,7 +174,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acoss/effectifs-salaries-et-masse-salariale-du-secteur-prive-par-zone-demploi.html</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acoss/etablissements-et-effectifs-salaries-au-niveau-commune-x-ape-last.html</loc>
@@ -186,7 +186,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acoss/nombre-etab-effectifs-salaries-et-masse-salariale-secteur-prive-zones-emploi.html</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acoss/prime-partage-valeur-du-secteur-prive-par-trimestre-france-entiere-x-secteur-n38.html</loc>
@@ -198,7 +198,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acoss/procedures-collectives-france-entiere.html</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/acoss/taux-rar-horsto-mensuels-entreprises-de-10-salaries-ou-plus-par-ancienne-region.html</loc>
@@ -4175,7 +4175,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/A10.html</loc>
@@ -4244,6 +4244,10 @@
   <url>
     <loc>https://fgeerolf.com/data/insee/CHOMAGE-TRIM-NATIONAL.html</loc>
     <lastmod>2026-09-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/chomage-zone-t1-2003-t2-2026.html</loc>
+    <lastmod>2026-09-20</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/CLIMAT-AFFAIRES.html</loc>
@@ -6702,7 +6706,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/loyers-2017.html</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/loyers.html</loc>
