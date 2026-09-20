@@ -52,7 +52,7 @@ tribble(~ theme,
 ```
 
 
-# Depuis 2017
+# Ménages
 
 ## Secteur social, libre
 
@@ -111,7 +111,13 @@ ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2017-2025")
 ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-INSEE-vs-OLAP-2017-2025")
 ```
 
+# Loyers commerciaux (ILC) et activités tertiaires (ILAT)
 
+## ILC et ILAT
+
+```{r}
+ig_d("insee", "ILC-ILAT-ICC", "indice-2017")
+```
 
 # Bases de données
 
