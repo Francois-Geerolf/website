@@ -11,7 +11,7 @@ invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 ```
 
-# Latest work
+# Latest inflation data
 
 ```{r}
 include_graphics("https://ec.europa.eu/eurostat/statistics-explained/images/5/53/Euro_area_annual_inflation_and_its_main_components_table.png")
