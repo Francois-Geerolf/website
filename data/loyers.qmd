@@ -45,6 +45,36 @@ readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333") |>     as
 ```
 
 
+## Comparaison IRL et ILH
+
+```{r echo = F}
+readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333+010600351+010600352+010600353") |>     as_tibble() |>
+  select(Trimestre = TIME_PERIOD, indice = OBS_VALUE, TITLE_FR) |>
+  group_by(TITLE_FR) |>
+  arrange(desc(Trimestre)) |>
+  mutate(indice = as.numeric(indice),
+         Glissement = scales::percent(indice/lead(indice, 4)-1, acc = 0.01)) |>
+  select(TITLE_FR, Trimestre, Glissement) |>
+  spread(TITLE_FR, Glissement) |>
+  arrange(desc(Trimestre)) |>
+  slice(seq(1, 25, 4)) |>
+  rename(Trimestre = 1, IRL = 2, `ILH - Aggl. Paris` = 3, `ILH - France` = 4, `ILH - Province` = 5) |>
+  gt::gt() |>
+  gt::cols_width(3 ~ gt::px(250), 1:2 ~ gt::px(90)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001515333](https://www.insee.fr/fr/statistiques/serie/001515333), [010600351](https://www.insee.fr/fr/statistiques/serie/010600351), [010600352](https://www.insee.fr/fr/statistiques/serie/010600352), [010600353](https://www.insee.fr/fr/statistiques/serie/010600353)"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+
+
 # Loi 1948
 
 ## 1983-
