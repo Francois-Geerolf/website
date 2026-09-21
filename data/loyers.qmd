@@ -31,17 +31,12 @@ readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333") |>     as
   select(Trimestre, IRL, Glissement, DATE_JO) |>
   head(5) |>
   gt::gt() |>
-  gt::cols_width(3 ~ gt::px(250), 1:2 ~ gt::px(90)) |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_style(style = gt::cell_text(whitespace = "nowrap"),
+                locations = list(gt::cells_body(), gt::cells_column_labels())) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/serie/001515333>"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: [Insee](https://www.insee.fr/fr/statistiques/serie/001515333)"))
   ) |>
-  gt::tab_options(table.width = "100%")
+  gt::tab_options(table.width = "auto")
 ```
 
 
@@ -64,17 +59,12 @@ readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333+010600351+0
   arrange(desc(Trimestre)) |>
   slice(seq(1, 25, 4)) |>
   gt::gt() |>
-  gt::cols_width(3 ~ gt::px(250), 1:2 ~ gt::px(90)) |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_style(style = gt::cell_text(whitespace = "nowrap"),
+                locations = list(gt::cells_body(), gt::cells_column_labels())) |>
   gt::tab_footnote(
     footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y"), ". Source: Insee idbanks [001515333](https://www.insee.fr/fr/statistiques/serie/001515333), [010600351](https://www.insee.fr/fr/statistiques/serie/010600351), [010600352](https://www.insee.fr/fr/statistiques/serie/010600352), [010600353](https://www.insee.fr/fr/statistiques/serie/010600353)"))
   ) |>
-  gt::tab_options(table.width = "100%")
+  gt::tab_options(table.width = "auto")
 ```
 
 
@@ -156,6 +146,8 @@ ig_d("olap", "loyers_agglo_paris", "loyers-2001")
 ```{r}
 ig_d("insee", "if_ina_220", "figure-encadre-echelle-log")
 ```
+
+
 
 # ILH
 
