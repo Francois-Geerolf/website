@@ -18,12 +18,17 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 
 # Chiffres officiels de l'Insee
 
-## Indice de Référence des loyers
+## Indice de Référence des loyers (IRL)
+
+Pour les indexations:
 
 ```{r echo = F}
 readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333") |>     as_tibble() |>
   select(Trimestre = TIME_PERIOD, IRL = OBS_VALUE, DATE_JO) |>
-  arrange(desc(Trimestre)) |> 
+  arrange(desc(Trimestre)) |>
+  mutate(IRL = as.numeric(IRL),
+         Glissement = scales::percent(IRL/lead(IRL, 4)-1, acc = 0.01)) |>
+  select(Trimestre, IRL, Glissement, DATE_JO) |>
   head(5) |>
   gt::gt() |>
   gt::cols_width(3 ~ gt::px(250), 1:2 ~ gt::px(90)) |>
@@ -38,6 +43,7 @@ readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333") |>     as
   ) |>
   gt::tab_options(table.width = "100%")
 ```
+
 
 # Loi 1948
 
@@ -133,6 +139,15 @@ ig_b("insee", "RPM2024", "F31", "fig4")
 ```{r}
 ig_b("insee", "Note méthodologique_IndiceLoyers_décembre2021 def", "traitement-statistique")
 ```
+
+## Comparaison ILH / IRL
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2014")
+```
+
+
+
 
 # Pour en savoir plus...
 
