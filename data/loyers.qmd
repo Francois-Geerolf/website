@@ -45,7 +45,7 @@ readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333") |>     as
 ```
 
 
-## Comparaison IRL et ILH
+## Comparaison ILH et IRL
 
 ```{r echo = F}
 readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333+010600351+010600352+010600353") |>     as_tibble() |>
@@ -54,11 +54,15 @@ readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333+010600351+0
   arrange(desc(Trimestre)) |>
   mutate(indice = as.numeric(indice),
          Glissement = scales::percent(indice/lead(indice, 4)-1, acc = 0.01)) |>
-  select(TITLE_FR, Trimestre, Glissement) |>
-  spread(TITLE_FR, Glissement) |>
+  ungroup() |>
+  mutate(TITRE = case_when(grepl("IRL", TITLE_FR) ~ "IRL",
+                           grepl("Reste de la France métropolitaine", TITLE_FR) ~ "ILH - Province",
+                           grepl("France métropolitaine", TITLE_FR) ~ "ILH - France",
+                           grepl("Agglomération parisienne", TITLE_FR) ~ "ILH - Aggl. Paris")) |>
+  select(TITRE, Trimestre, Glissement) |>
+  spread(TITRE, Glissement) |>
   arrange(desc(Trimestre)) |>
   slice(seq(1, 25, 4)) |>
-  rename(Trimestre = 1, IRL = 2, `ILH - Aggl. Paris` = 3, `ILH - France` = 4, `ILH - Province` = 5) |>
   gt::gt() |>
   gt::cols_width(3 ~ gt::px(250), 1:2 ~ gt::px(90)) |>
   gt::opt_interactive(use_search = F,
@@ -68,9 +72,15 @@ readSDMX("https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333+010600351+0
                       page_size_default = 20,
                       page_size_values = c(5, 10, 15, 20)) |>
   gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: Insee idbanks [001515333](https://www.insee.fr/fr/statistiques/serie/001515333), [010600351](https://www.insee.fr/fr/statistiques/serie/010600351), [010600352](https://www.insee.fr/fr/statistiques/serie/010600352), [010600353](https://www.insee.fr/fr/statistiques/serie/010600353)"))
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y"), ". Source: Insee idbanks [001515333](https://www.insee.fr/fr/statistiques/serie/001515333), [010600351](https://www.insee.fr/fr/statistiques/serie/010600351), [010600352](https://www.insee.fr/fr/statistiques/serie/010600352), [010600353](https://www.insee.fr/fr/statistiques/serie/010600353)"))
   ) |>
   gt::tab_options(table.width = "100%")
+```
+
+
+
+```{r}
+ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2014")
 ```
 
 
@@ -170,11 +180,6 @@ ig_b("insee", "RPM2024", "F31", "fig4")
 ig_b("insee", "Note méthodologique_IndiceLoyers_décembre2021 def", "traitement-statistique")
 ```
 
-## Comparaison ILH / IRL
-
-```{r}
-ig_d("insee", "INDICES_LOYERS", "SECTEUR-LIBRE-IRL-2014")
-```
 
 
 
