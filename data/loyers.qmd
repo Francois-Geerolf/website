@@ -128,6 +128,12 @@ ig_b("insee", "RPM2024", "F31", "variations-loyers")
 ig_b("insee", "RPM2024", "F31", "fig4")
 ```
 
+## Méthodologie ILH
+
+```{r}
+ig_b("insee", "Note méthodologique_IndiceLoyers_décembre2021 def", "traitement-statistique")
+```
+
 # Pour en savoir plus...
 
 ```{r, echo = F}
