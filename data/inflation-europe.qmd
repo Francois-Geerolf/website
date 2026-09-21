@@ -9,24 +9,16 @@ metadata-files:
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "en_US.UTF-8"))
 invisible(Sys.setenv(TZ = "America/Los_Angeles"))
-`inflation-europe` <- tribble(
-  ~source, ~dataset,
-  "ecb", "CES",
-  "eurostat", "prc_hicp_minr",
-  "eurostat",  "prc_hicp_iw",
-  "eurostat",  "prc_hicp_mmor",
-  "eurostat",  "prc_hicp_inw",
-  "eurostat",  "prc_hicp_cw",
-  "eurostat",  "prc_hicp_cow",
-  "eurostat",  "prc_ppp_ind",
-  "eurostat",  "prc_hicp_ctrb",
-  "eurostat", "nama_10_co3_p3") %>%
-  arrange(source, dataset)
 ```
 
-# Food
+# Latest work
 
-Methodology is not harmonized across European countries... Some have scanner data, some don't. France switched to scanner data in early 2020.
+```{r}
+include_graphics("https://ec.europa.eu/eurostat/statistics-explained/images/5/53/Euro_area_annual_inflation_and_its_main_components_table.png")
+```
+
+
+# Food
 
 ## 2017-
 
