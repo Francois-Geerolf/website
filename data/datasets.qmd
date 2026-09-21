@@ -1,13 +1,13 @@
 ---
 title: "Datasets Overview"
-subtitle: '<i class="fas fa-layer-group" aria-hidden="true" title="Thème" style="font-size:1em;color:#888780;opacity:.75;margin-right:.35em;vertical-align:-0.15em"></i>Data'
+subtitle: Data
 lang: en
 author:
   - name: François Geerolf
     url: https://fgeerolf.com
 format: html
 toc: true
-theme: [flatly, _fgeerolf.scss]
+theme: flatly
 embed-resources: false
 editor: source
 ---
@@ -17,6 +17,14 @@ source(here::here("_rinit.R"))
 knitr::opts_chunk$set(echo = F)
 ```
 
+
+# acoss
+
+```{r}
+datasets %>%
+  filter(source == "acoss") %>%
+  source_dataset_file_updates2()
+```
 
 # acpr
 
@@ -98,6 +106,14 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
+# cbp
+
+```{r}
+datasets %>%
+  filter(source == "cbp") %>%
+  source_dataset_file_updates2()
+```
+
 # census
 
 ```{r}
@@ -122,11 +138,35 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
+# circana
+
+```{r}
+datasets %>%
+  filter(source == "circana") %>%
+  source_dataset_file_updates2()
+```
+
+# citepa
+
+```{r}
+datasets %>%
+  filter(source == "citepa") %>%
+  source_dataset_file_updates2()
+```
+
 # comtrade
 
 ```{r}
 datasets %>%
   filter(source == "comtrade") %>%
+  source_dataset_file_updates2()
+```
+
+# consumption
+
+```{r}
+datasets %>%
+  filter(source == "consumption") %>%
   source_dataset_file_updates2()
 ```
 
@@ -159,6 +199,14 @@ datasets %>%
 ```{r}
 datasets %>%
   filter(source == "dbnomics") %>%
+  source_dataset_file_updates2()
+```
+
+# depp
+
+```{r}
+datasets %>%
+  filter(source == "depp") %>%
   source_dataset_file_updates2()
 ```
 
@@ -322,11 +370,11 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-# meteo
+# mtes
 
 ```{r}
 datasets %>%
-  filter(source == "meteo") %>%
+  filter(source == "mtes") %>%
   source_dataset_file_updates2()
 ```
 
@@ -378,11 +426,19 @@ datasets %>%
   source_dataset_file_updates2()
 ```
 
-# pouvoir-achat
+# paris
 
 ```{r}
 datasets %>%
-  filter(source == "pouvoir-achat") %>%
+  filter(source == "paris") %>%
+  source_dataset_file_updates2()
+```
+
+# phillips
+
+```{r}
+datasets %>%
+  filter(source == "phillips") %>%
   source_dataset_file_updates2()
 ```
 
@@ -423,6 +479,14 @@ datasets %>%
 ```{r}
 datasets %>%
   filter(source == "shiller") %>%
+  source_dataset_file_updates2()
+```
+
+# ssmsi
+
+```{r}
+datasets %>%
+  filter(source == "ssmsi") %>%
   source_dataset_file_updates2()
 ```
 
