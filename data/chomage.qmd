@@ -38,6 +38,12 @@ ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "CTCHC-tous")
 ig_d("insee", "CHOMAGE-TRIM-NATIONAL", "chomage-tous")
 ```
 
+## Dares
+
+```{r}
+ig_d("dares", "demandeurs-emploi-inscrits-france-travail-donnees-mensuelles", "defm-abc")
+```
+
 # BIT vs. Pôle Emploi
 
 ## Polémique 2006-2007
@@ -69,6 +75,25 @@ ig_b("insee", "ECRT19e_D4_chomeurs", "definitions")
 ig_b("insee", "ECRT19e_D4_chomeurs", "fig2")
 ```
 
+# Données Dares
+
+## Licenciements
+
+```{r}
+ig_d("dares", "les-licenciements", "licenciements")
+```
+
+## Emplois vacants
+
+```{r}
+ig_d("dares", "les-emplois-vacants", "taux-emplois-vacants-CVS")
+```
+
+## Intérimaires
+
+```{r}
+ig_d("dares", "lemploi-interimaire", "nb-interimaires")
+```
 
 
 # Pour en savoir plus...
