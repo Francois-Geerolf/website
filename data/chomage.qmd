@@ -95,6 +95,11 @@ ig_d("dares", "les-emplois-vacants", "taux-emplois-vacants-CVS")
 ig_d("dares", "lemploi-interimaire", "nb-interimaires")
 ```
 
+## PSE
+
+```{r}
+ig_d("dares", "les-dispositifs-publics-daccompagnement-des-restructurations", "pse")
+```
 
 # Pour en savoir plus...
 
