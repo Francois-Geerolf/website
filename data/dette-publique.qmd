@@ -128,6 +128,20 @@ ig_d("investing", "spreads", "spreads-evolution")
 ```
 
 
+# OAT 
+
+## Encours par maturité
+
+```{r}
+ig_d("aft", "list-OAT", "encours-maturite")
+```
+
+## Encours des OAT en circulation
+
+```{r}
+ig_d("aft", "list-OAT", "timeline")
+```
+
 # OAT indexées
 
 ## Sur l'IPC hors tabac, OATi
