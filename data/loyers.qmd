@@ -172,7 +172,13 @@ ig_b("insee", "RPM2024", "F31", "fig4")
 ig_b("insee", "Note méthodologique_IndiceLoyers_décembre2021 def", "traitement-statistique")
 ```
 
+# Ile de France
 
+## Petite couronne
+
+```{r}
+ig_d("dhup", "loyers-appartements", "carte-petite-couronne")
+```
 
 
 
