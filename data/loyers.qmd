@@ -180,6 +180,15 @@ ig_b("insee", "Note méthodologique_IndiceLoyers_décembre2021 def", "traitement
 ig_d("dhup", "loyers-appartements", "carte-petite-couronne")
 ```
 
+
+## Distribution des loyers
+
+```{r}
+ig_d("dhup", "loyers-appartements", "distribution")
+```
+
+
+
 ## Part des meublés
 
 
