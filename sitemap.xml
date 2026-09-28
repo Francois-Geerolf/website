@@ -997,6 +997,70 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/cnam/</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/biologie_2026.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/ccam_2025.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/depenses_date_soins.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/lpp_2016_2025.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/lpp_agregats.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/medicam_2012_2014.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/open_medic_2025.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/resultats_detail.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/resultats_synthese.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/resultats_taux.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/risque_depense_totale.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/risque_hospitalisation.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/risque_lieu_execution.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/risque_medecins_specialites.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/cnam/risque_regions.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/commodities.html</loc>
   </url>
   <url>
@@ -1073,7 +1137,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dares/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dares/35-ans-devolutions-des-conditions-de-travail.html</loc>
@@ -1233,7 +1297,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dares/les-indices-de-salaire-de-base.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dares/les-inscrits-france-travail-donnees-communales.html</loc>
@@ -4602,6 +4666,10 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/base-cc-dads-salaires-communes.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/bdf2006.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
@@ -4632,6 +4700,10 @@
   <url>
     <loc>https://fgeerolf.com/data/insee/chomage-zone-t1-2003-t2-2026.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/chomage-zone.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/CLIMAT-AFFAIRES.html</loc>
@@ -4974,8 +5046,16 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/econ-com-ext-export-produit-trim.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/econ-com-ext-import-produit-trim.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/econ-fin-pub-dette-adm-pub.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/econ-gen-dette-trim-adm-pub-2.html</loc>
@@ -4986,12 +5066,44 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/econ-gen-revenu-dispo-pouv-achat-euro-2.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/econ-gen-solde-ech-ext-2.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/econ-gen-taux-inflation.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/econ-gen-tx-marge-invest.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT-salaires-csp-sexe.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT-salaires-fonction-publique.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT-salaires-secteur-taille.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT2020_distribution_salaires.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/ECRT2021.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT2022_distribution_salaires.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ECRT2022.html</loc>
@@ -5000,6 +5112,10 @@
   <url>
     <loc>https://fgeerolf.com/data/insee/ECRT2023.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT2025_distribution_salaires.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ECRT2025.html</loc>
@@ -5246,6 +5362,10 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/if152.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/if203.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
@@ -5275,7 +5395,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/INDICE-TRAITEMENT-FP.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/Indices_detailles_12_2019.html</loc>
@@ -5302,6 +5422,14 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/ip1288.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ip1315.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/ip1728.html</loc>
     <lastmod>2026-09-28</lastmod>
   </url>
@@ -5326,12 +5454,24 @@
     <lastmod>2026-09-28</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/ip1849.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/IP1855.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/ip1861.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/ip1863.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/IP1864_fig2.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ip1865.html</loc>
@@ -5350,6 +5490,10 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/ip1877.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/ip2016.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
@@ -5364,6 +5508,10 @@
   <url>
     <loc>https://fgeerolf.com/data/insee/ip2063.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ip2076.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/IP2081.html</loc>
@@ -5590,6 +5738,10 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/marc-salair-moy-mini.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/marc-salair-net-moy-sexe.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
@@ -5608,6 +5760,26 @@
   <url>
     <loc>https://fgeerolf.com/data/insee/MET.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/naf2008_liste_n1.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/naf2008_liste_n2.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/naf2008_liste_n3.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/naf2008_liste_n4.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/naf2008_liste_n5.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/naf2008.html</loc>
@@ -5754,8 +5926,24 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/reve-niv-vie-individu-activite-median.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/reve-niv-vie-individu-activite-moyen.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/reve-niv-vie-individu-activite.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/reve-niv-vie-individu-age-med.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/reve-niv-vie-individu-age-moy.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/reve-niv-vie-pouv-achat-trim.html</loc>
@@ -5764,6 +5952,14 @@
   <url>
     <loc>https://fgeerolf.com/data/insee/reve-pauv-seuil-mensuel.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/reve-pauv-taux-seuil-60-activite.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/reve-protec-cotisant-retraite.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/rp19682015.html</loc>
@@ -5803,7 +5999,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/SALAIRES-ANNUELS.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/SERIES_LOYERS.html</loc>
@@ -5818,8 +6014,164 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_CP02.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_CS02.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_CS03.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_DCS01.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_DCS02.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP01.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP02.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP03.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP04a.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP04b.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP05a.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP05b.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP06.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP07.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EQTP08.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EV01.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_EV02.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_IND01.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_IND02.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_IND03.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_IND04.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_SM01.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_SM02.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_SP01.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC01.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC02a.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC02b.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC03.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC04a.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC04b.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC04c.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC05a.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC05b.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC05c.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC06.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC07.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TC08.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TG01.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/SLS2010_TG02.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/SLS2010.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/SMIC-COTISATIONS.html</loc>
@@ -5918,8 +6270,40 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_2201.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_2201p.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_2202.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_2202p.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/T_2203_2204.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_2203.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_2203p.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_2204.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_2204p.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/t_3101.html</loc>
@@ -6038,16 +6422,64 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_5101.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/T_5101d_5103d.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5101d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5102.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5102d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5103.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5103d.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_5104_5106.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_5104.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/T_5104d_5106d.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5104d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5105.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5105d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5106.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5106d.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_5201_5203.html</loc>
@@ -6106,8 +6538,32 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_5301.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/T_5301d_5303d.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5301d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5302.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5302d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5303.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5303d.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_5401_5403.html</loc>
@@ -6122,8 +6578,24 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_5401d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/t_5402.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5402d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5403.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5403d.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_5404_5406.html</loc>
@@ -6138,8 +6610,24 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_5404d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/t_5405.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5405d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5406.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_5406d.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_5407.html</loc>
@@ -6158,12 +6646,56 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_6101d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6102.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6102d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6103.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6103d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/T_6104_6106.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_6104.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/T_6104d_6106d.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6104d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6105.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6105d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6106.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6106d.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_6201_6203.html</loc>
@@ -6178,8 +6710,24 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_6201d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/t_6202.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6202d.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6203.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6203d.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_6212.html</loc>
@@ -6206,8 +6754,252 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/t_6302.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6303.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/t_6401.html</loc>
     <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6402.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6403.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6404.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6405.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6406.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6407.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6408.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6409.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6410.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6411.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6412.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6413.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6414.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6415.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6416.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6417.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6418.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6419.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6420.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6421.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6422.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6423.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6424.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6425.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6426.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6427.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6428.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6429.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6430.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6431.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6432.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6433.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6434.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6435.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6436.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6437.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6438.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6439.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6440.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6441.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6442.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6443.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6444.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6445.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6446.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6447.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6448.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6449.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6450.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6451.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6452.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6453.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6454.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6455.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6456.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6457.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6458.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6459.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6460.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_6461_6462.html</loc>
@@ -6216,6 +7008,10 @@
   <url>
     <loc>https://fgeerolf.com/data/insee/T_6461.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/t_6462.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T_7101.html</loc>
@@ -6610,16 +7406,76 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/T101_salaires.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T102_salaires.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/T102B.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T103_salaires.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T104_salaires.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T105.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T201_salaires_eqtp.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T201.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/T202_salaires_eqtp.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/T202.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T203_salaires_eqtp.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T204_salaires_eqtp.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T207.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T207B.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T208.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T20F054.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T20F063.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/T20F072.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/T20F161.html</loc>
@@ -6642,8 +7498,20 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/TCRD_045.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/TCRD_057.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/TCRD_068.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/TCRD_087.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/TCRED-AGRICULTURE-CHEP-AGRI.html</loc>
@@ -7054,7 +7922,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/bareme_ir.html</loc>
@@ -7066,7 +7934,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/indicefp.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/ret_etat.html</loc>
@@ -7074,7 +7942,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/revalorisation_pension.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/taux_de_tva.html</loc>
@@ -7188,7 +8056,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/7HA_A_Q.html</loc>
@@ -7776,7 +8644,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/QNA_EXPENDITURE_CAPITA.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/QNA_EXPENDITURE_NATIO_CURR.html</loc>
@@ -7804,7 +8672,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/QNA_POP_EMPNC.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/oecd/QNA.html</loc>
@@ -8740,19 +9608,63 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/sdes/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/2021_t2_transports_emploi_salarie_marche_travail.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/sdes/bilan_circulation_2022.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/sdes/bilan_energetique_revisions.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/bilan_energetique_tableaux_synthese_revisions.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/sdes/bilan_energetique.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/chiffres_clefs_energie2021_donnees_figures.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/chiffres_clefs_logement2022.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/sdes/donnees_parc_automobile_des_menages_en_2023.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/immatriculations_voitures_particulieres.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/parc_vp_france_2024.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/prix_electricite_france_ue_2023_donnees.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/sdesstatistiques_donnees_des_figures_du_bilan_energetique_provisoire_de_la_france_2025.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/sdesstatistiques_tableaux_de_synthese_du_bilan_energetique_provisoire_de_la_france_en_2025.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/sdes/statistiques_sdes_empreinte_fonciere_2022.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/shiller/</loc>

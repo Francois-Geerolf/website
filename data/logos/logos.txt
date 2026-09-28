@@ -15,6 +15,7 @@ census
 cepii
 cgedd
 citepa
+cnam
 compustat
 comtrade
 cre
