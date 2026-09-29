@@ -20,6 +20,12 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 
 # Salaires, France
 
+## IP1288
+
+```{r}
+ig_d("insee", "ip1288", "pareto-loglog")
+```
+
 ## IP 2020
 
 ### Toute la distribution
