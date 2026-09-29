@@ -12,6 +12,10 @@ invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 
 ## Toutes les données
 
+```{r, echo = F, output = "asis"}
+source_search("insee")
+```
+
 ```{r, echo = F}
 datasets |>
   dplyr::filter(source == "insee") |>

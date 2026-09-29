@@ -613,3 +613,14 @@ yearqtr_to_date2 <- function(data){
     select(date, everything())
 }
 
+# Recherche plein texte limitée aux datasets d'UNE source (data/search.js en
+# mode data-source). Version dépôt github : chemin via here::here (compile à
+# distance) ; cf. la version ~/Dropbox/website/_rinit.R.
+source_search <- function(source_name) {
+  sjs <- here::here("data", "search.js")
+  v <- if (file.exists(sjs)) substr(tools::md5sum(sjs), 1, 10) else "1"
+  cat(sprintf(
+    '<div id="dataset-search" data-source="%s"></div>\n<script src="/data/search.js?v=%s" defer></script>\n',
+    source_name, v))
+}
+
