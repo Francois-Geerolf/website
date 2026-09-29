@@ -1713,11 +1713,63 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dgafp/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/calculs_coins_table.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT1.1-SL_Effectifs.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT1.2-3-SL_Localisation_ensemble.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT1.2-SL_Effectifs_ensemble_FP.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT1.3-SL_Fonction_publique_de_lEtat.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT1.4-SL_FPE_perimetres_decompte.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT1.5-SL_Fonction_publique_territoriale.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT1.6-SL_Fonction_publique_hospitaliere.html</loc>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dgafp/FT12_FPE_FPH_FPT.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT2.2-SL_Categories_hierarchiques.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT5.3-SL_Montant_pensions_FP.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT6.2-SL_Traitement_indiciaire.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/FT6.4-SL_Remunerations_FPE.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/dgafp/ra_2025_remu_niveaux_donnees_comp_depenses.html</loc>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/dgfip/</loc>
@@ -4623,7 +4675,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/A10.html</loc>
@@ -5038,6 +5090,10 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/DS_SRCV_PMS_2025.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/echantillon-agglomerations-IPC-2024.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
@@ -5120,6 +5176,22 @@
   <url>
     <loc>https://fgeerolf.com/data/insee/ECRT2025.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT2026_F26.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT2026_F27.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT2026_F28.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/ECRT2026_F29.html</loc>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ECRT2026.html</loc>
@@ -5236,6 +5308,10 @@
   <url>
     <loc>https://fgeerolf.com/data/insee/ia106.html</loc>
     <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fgeerolf.com/data/insee/IA107.html</loc>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/IA113.html</loc>
@@ -5410,6 +5486,10 @@
     <lastmod>2026-09-24</lastmod>
   </url>
   <url>
+    <loc>https://fgeerolf.com/data/insee/insee_premiere.html</loc>
+    <lastmod>2026-09-29</lastmod>
+  </url>
+  <url>
     <loc>https://fgeerolf.com/data/insee/IP-PROD-CONS-N-HAB-2010.html</loc>
     <lastmod>2026-09-24</lastmod>
   </url>
@@ -5423,7 +5503,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ip1288.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/ip1315.html</loc>
@@ -5999,7 +6079,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/SALAIRES-ANNUELS.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/SERIES_LOYERS.html</loc>
@@ -7922,7 +8002,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/bareme_ir.html</loc>
@@ -7934,7 +8014,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/indicefp.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/ipp/ret_etat.html</loc>
@@ -9148,7 +9228,7 @@
   </url>
   <url>
     <loc>https://fgeerolf.com/data/pareto.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/pareto/</loc>
