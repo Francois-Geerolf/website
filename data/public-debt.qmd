@@ -20,6 +20,19 @@ invisible(Sys.setenv(TZ = "America/Los_Angeles"))
 # sh ~/iCloud/website/website_short.sh
 ```
 
+# Interest rates
+
+## Spreads
+
+```{r}
+ig_d("investing", "spreads", "spreads-evolution")
+```
+
+## France vs. PIGS
+
+```{r}
+ig_d("investing", "sovereign_yields", "index-yield-curve-france-PIGS")
+```
 
 
 # Public debt data
