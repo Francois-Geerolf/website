@@ -11,6 +11,9 @@
   "use strict";
   var mount = document.getElementById("dataset-search");
   if (!mount) return;
+  // Per-source mode: <div id="dataset-search" data-source="insee"> restricts
+  // the search to that source's datasets (no cap per source, no badge).
+  var SRC = mount.getAttribute("data-source") || "";
 
   // reuse the ?v= cache-buster from our own <script src> for the JSON too
   var V = (function () {
@@ -20,7 +23,7 @@
     return m ? m[1] : "";
   })();
   var JSON_URL = "/data/search.json" + (V ? "?v=" + V : "");
-  var MAX = 40;          // rows shown
+  var MAX = SRC ? 100 : 40;          // rows shown
   var PER_SRC = 6;       // …but no more than this many from one source
 
   // --- styles (once) -----------------------------------------------------
@@ -75,7 +78,7 @@
   var input = document.createElement("input");
   input.type = "search";
   input.className = "ds-in";
-  input.placeholder = "Search datasets, sources, themes…";
+  input.placeholder = SRC ? "Search " + SRC + " datasets…" : "Search datasets, sources, themes…";
   input.setAttribute("aria-label", "Search the data catalog");
   input.autocomplete = "off";
   var res = document.createElement("div");
@@ -194,6 +197,7 @@
     var toks = norm(q).split(/\s+/).filter(Boolean);
     var out = [];
     for (var i = 0; i < ITEMS.length; i++) {
+      if (SRC && (ITEMS[i].k !== "d" || ITEMS[i].s !== SRC)) continue;
       var sc = scoreItem(ITEMS[i], toks);
       if (sc >= 0) out.push([sc, ITEMS[i]]);
     }
@@ -206,7 +210,7 @@
     for (var k = 0; k < out.length && capped.length < MAX; k++) {
       var sk = out[k][1].s || out[k][1].k;
       per[sk] = (per[sk] || 0) + 1;
-      if (per[sk] <= PER_SRC) capped.push(out[k]);
+      if (SRC || per[sk] <= PER_SRC) capped.push(out[k]);
     }
     out = capped;
     if (!out.length) {
@@ -232,7 +236,7 @@
       return '<a class="ds-row" role="option" href="' + it.u + '">' + logo +
         '<span class="ds-k ' + it.k + '">' + label[it.k] + "</span>" +
         '<span class="ds-t">' + esc(it.t) + "</span>" +
-        (it.k === "d" && it.s ? '<span class="ds-src">' + esc(it.s) + "</span>" : "") +
+        (it.k === "d" && it.s && !SRC ? '<span class="ds-src">' + esc(it.s) + "</span>" : "") +
         "</a>";
     }).join("");
     if (n > out.length) html += '<div class="ds-hint">' + (n - out.length) +
