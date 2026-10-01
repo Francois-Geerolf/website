@@ -123,6 +123,14 @@ ig_b("public-debt", "credit-watch", ext = ".jpeg")
 
 ## Spreads
 
+### Historique FR-DE
+
+```{r}
+ig_d("investing", "spreads", "spreads-fr-de-longterme")
+```
+
+### Récent
+
 ```{r}
 ig_d("investing", "spreads", "spreads-evolution")
 ```
