@@ -3,6 +3,7 @@ acoss
 acpr
 ademe
 aft
+agreste
 ameco
 bdf
 bea
@@ -24,13 +25,17 @@ dallas-fed
 dares
 dbnomics
 depp
+deps
 desf
+desl
 destatis
 dgafp
 dgfip
 dhup
 douanes
 drees
+dsece
+dsed
 dvf
 ec
 ecb
@@ -50,6 +55,7 @@ investing
 ipp
 john-fernald-tfp
 maddison
+medes
 meteo
 mtes
 notaires
@@ -64,8 +70,12 @@ quandl
 rba
 rdb
 rei
+s2e
 sdes
+sdessi
 shiller
+sies
+sser
 ssmsi
 statjp
 ucla
