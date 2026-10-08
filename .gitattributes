@@ -1,0 +1,6 @@
+
+# Fichiers générés (régénérés à chaque build) : jamais de conflit manuel
+data/_datasets.RData merge=generated
+data/_themes.RData   merge=generated
+data/search.json     merge=generated
+sitemap.xml          merge=generated
