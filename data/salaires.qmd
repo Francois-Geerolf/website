@@ -13,53 +13,6 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 # (was: salaires <- tribble(~source, ~dataset, ...) -- now auto: theme_source_datasets("salaires"))
 ```
 
-# SMIC
-
-```{r, echo = F}
-# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SMIC-COTISATIONS; /usr/local/bin/R -e 'quarto::quarto_render("SMIC-COTISATIONS.qmd")'
-# sh ~/iCloud/website/website_short.sh
-```
-
-## Montant du Smic en France hors Mayotte
-
-```{r echo = F}
-"https://www.insee.fr/fr/statistiques/1375188#figure1_radio1" |>
-  rvest::read_html() |>
-  rvest::html_table(header = T, fill = T) |>
-  pluck(1) |>
-  gt::gt() |>
-  gt::cols_width(1 ~ gt::px(60), 2 ~ gt::px(70), everything() ~ gt::px(120)) |>
-  gt::opt_interactive(use_search = F,
-                      use_pagination = F,
-                      use_pagination_info = F,
-                      use_compact_mode = T,
-                      page_size_default = 20,
-                      page_size_values = c(5, 10, 15, 20)) |>
-  gt::tab_footnote(
-    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/1375188#figure1_radio1>"))
-  ) |>
-  gt::tab_options(table.width = "100%")
-```
-
-## Tous
-
-```{r}
-ig_d("insee", "SMIC-COTISATIONS", "SMIC-2005")
-```
-
-
-
-## 2012-
-
-```{r}
-ig_d("insee", "SMIC-COTISATIONS", "SMIC-2012")
-```
-
-## 2020-
-
-```{r}
-ig_d("insee", "SMIC-COTISATIONS", "SMIC-2020")
-```
 
 # Salaire Moyen de Base (SMB)
 
@@ -303,6 +256,53 @@ ig_d("insee", "T_2101", "brut-net-rdb")
 ```
 
 
+# SMIC
+
+```{r, echo = F}
+# cd ~/iCloud/website/data/insee; /usr/local/bin/Rscript --vanilla _download_one.R SMIC-COTISATIONS; /usr/local/bin/R -e 'quarto::quarto_render("SMIC-COTISATIONS.qmd")'
+# sh ~/iCloud/website/website_short.sh
+```
+
+## Montant du Smic en France hors Mayotte
+
+```{r echo = F}
+"https://www.insee.fr/fr/statistiques/1375188#figure1_radio1" |>
+  rvest::read_html() |>
+  rvest::html_table(header = T, fill = T) |>
+  pluck(1) |>
+  gt::gt() |>
+  gt::cols_width(1 ~ gt::px(60), 2 ~ gt::px(70), everything() ~ gt::px(120)) |>
+  gt::opt_interactive(use_search = F,
+                      use_pagination = F,
+                      use_pagination_info = F,
+                      use_compact_mode = T,
+                      page_size_default = 20,
+                      page_size_values = c(5, 10, 15, 20)) |>
+  gt::tab_footnote(
+    footnote = gt::md(paste0("Date: ", format(Sys.time(), "%A %d %B %Y, %Hh%M"), ". Source: <https://www.insee.fr/fr/statistiques/1375188#figure1_radio1>"))
+  ) |>
+  gt::tab_options(table.width = "100%")
+```
+
+## Tous
+
+```{r}
+ig_d("insee", "SMIC-COTISATIONS", "SMIC-2005")
+```
+
+
+
+## 2012-
+
+```{r}
+ig_d("insee", "SMIC-COTISATIONS", "SMIC-2012")
+```
+
+## 2020-
+
+```{r}
+ig_d("insee", "SMIC-COTISATIONS", "SMIC-2020")
+```
 
 
 # Pour en savoir plus...
@@ -323,7 +323,20 @@ ig_d("insee", "T_2101", "brut-net-rdb")
 
 - Insee. L'essentiel sur... les salaires. <https://www.insee.fr/fr/statistiques/7457170>
 
-# Statistiques de court terme
+## Définitions Banque de France
+
+Banque de France. [html](https://www.banque-france.fr/fr/statistiques/inflation/salaires-negocies-2026-q2)
+
+- **Salaire mensuel de base (SMB)** : salaire brut avant déduction des cotisations sociales salariés et avant versement des prestations sociales. Il ne comprend ni les primes ni les heures supplémentaires. Son montant correspond généralement à celui de la première ligne du bulletin de paye d'un salarié (source : Insee). Il est fixé librement entre l'employeur et le salarié (généralement par le contrat de travail) en respectant le montant du Smic, les minima conventionnels et l'éventuel accord d'entreprise en vigueur.
+
+- **Salaire moyen par tête (SMPT)** : mesuré par l'Insee dans les comptes nationaux comme le rapport de la masse salariale brute versée par l'ensemble des employeurs sur le nombre total de salariés. La masse salariale comprend l'ensemble des éléments de la rémunération brute totale (salaire de base, éléments variables de rémunération (primes, 13ème mois...), heures supplémentaires, épargne salariale, et d'autres éléments de rémunération n'ayant pas le caractère de salaire (par exemple, indemnités de chômage partiel)). L'évolution du SMPT reflète donc l'évolution des salaires de base et celle des primes et des heures supplémentaires, mais aussi les changements dans la structure des rémunérations (liés aux entrées sorties de l'emploi, aux créations destructions d'emplois, à l'avancement, etc.).
+
+- **Salaires négociés dans un accord de branche** : Les accords de branche portent le plus souvent sur la révision d'une grille de salaires minimums conventionnels. Un minimum conventionnel est le salaire en dessous duquel un salarié ne peut pas être rémunéré, compte tenu de la position qu'il occupe dans la grille de classification des emplois définie par la convention collective de la branche à laquelle il est rattaché. Les salaires minima conventionnels sont fixés par des accords collectifs signés entre les partenaires sociaux au niveau des branches. Si un minimum conventionnel est inférieur au montant du Smic en vigueur, c'est le Smic qui s'applique pour la ou les positions de la grille concernée (source : Direction Générale du Travail).
+
+- **Salaire négocié dans un accord d'entreprise** : Les accords négociés au niveau des entreprises sont pour la plupart conclus dans le cadre des négociations annuelles obligatoires (NAO) (cf. Code du travail (articles L. 2241 8 et L. 2242 13)). Les négociations d'entreprise mentionnent généralement des hausses de salaire de base (mais aussi certains éléments variables de rémunération qui ne sont pas pris en compte dans le calcul des indicateurs présentés ici).
+
+- **Salaire minimum interprofessionnel de croissance (Smic)** : salaire horaire minimum légal en dessous duquel le salarié ne peut pas être rémunéré. Au 1er janvier 2026, le Smic horaire brut est fixé à 12,02 euros.
+
 
 ## Info
 
