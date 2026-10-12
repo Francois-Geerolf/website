@@ -1,0 +1,94 @@
+---
+title: "Météo — Chamonix (Les Praz)"
+lang: fr
+subtitle: '<img src="https://fgeerolf.com/data/logos/meteo.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Données - Météo'
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: true
+    toc: true
+    theme: [flatly, ../_fgeerolf.scss]
+    embed-resources: false
+    other-links:
+      - text: "Toutes les stations"
+        href: "https://fgeerolf.com/data/meteo/"
+      - text: "Autres données"
+        href: "https://fgeerolf.com/data/"
+        icon: layers
+      - href: "https://fgeerolf.com/"
+        text: "Accueil"
+        icon: house
+    include-after-body: ../../statcounter.html
+editor: source
+---
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+source(here::here("_rinit.R"))
+invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
+invisible(Sys.setenv(TZ = "Europe/Paris"))
+source(here::here("code/meteo.R"))
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                      dpi = 150, fig.align = "center", out.width = "560px")
+st <- meteo_station_info("chamonix")
+h7 <- meteo_hourly(st$id, from = Sys.Date() - 7)
+daily <- meteo_daily(setNames(st$court, st$id), 400)
+last30 <- dplyr::filter(daily, date > Sys.Date() - 30)
+```
+
+```{r}
+#| output: asis
+cat(st$lieu, " · station ", st$id, "\n\n", meteo_now_md(h7), "\n", sep = "")
+```
+
+# 7 derniers jours, heure par heure
+
+```{r, fig.width = 5, fig.height = 9.5}
+meteo_plot_hours(h = h7, title = "Chamonix (Les Praz) — 7 derniers jours", detail = TRUE)
+```
+
+# 30 derniers jours
+
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(last30, "Chamonix (Les Praz) — 30 derniers jours")
+```
+
+# Par rapport à l'an dernier
+
+```{r, fig.width = 5, fig.height = 3.8}
+meteo_plot_vs_last_year(daily, 30, paste("30 derniers jours vs mêmes jours en", format(Sys.Date() - 365, "%Y")))
+```
+
+# 12 derniers mois
+
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_year(daily, "Chamonix (Les Praz) — 12 derniers mois")
+```
+
+# Tableaux
+
+::: {.callout-note collapse="true"}
+## Heure par heure, 7 derniers jours
+
+```{r}
+meteo_station_heure_par_heure(st$id, from = Sys.Date() - 7)
+```
+:::
+
+::: {.callout-note collapse="true"}
+## Jour par jour, 30 derniers jours
+
+```{r}
+meteo_station_last_days(st$id, 30)
+```
+:::
+
+[← Toutes les stations](index.html)
+
+Source : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (relevés des stations Météo-France).
+
+```{r}
+#| output: asis
+page_compile_line()
+```

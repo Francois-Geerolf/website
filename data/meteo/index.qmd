@@ -1,5 +1,5 @@
 ---
-title: Météo
+title: "Météo"
 lang: fr
 subtitle: '<img src="https://fgeerolf.com/data/logos/meteo.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Données - Météo'
 author:
@@ -24,97 +24,132 @@ format:
 editor: source
 ---
 
-```{r, echo = FALSE, message = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 source(here::here("code/meteo.R"))
-# cd ~/iCloud/website/data/meteo; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
-# sh ~/iCloud/website/website_short.sh
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                      dpi = 150, fig.align = "center", out.width = "560px")
+# Mise à jour automatique : data/**/*.qmd est recompilé par .github/workflows/themes.yml
+stations <- setNames(meteo_stations$court, meteo_stations$id)
+daily <- meteo_daily(stations, 30)
 ```
 
+Six stations Météo-France, mises à jour automatiquement. Cliquer sur le nom d'une station pour la page détaillée (7 jours heure par heure, 12 mois, comparaison avec l'an dernier).
 
-# Paris-Montsouris (07156)
+# Comparaison par jour
 
-## Par heure, 2 derniers jours
+## Températures maximales, 30 derniers jours
 
-```{r echo = F, message = F, warning = F}
-meteo_station_heure_par_heure("07156", from = Sys.Date() - 2)
+```{r, fig.width = 5, fig.height = 9.5}
+meteo_plot_heatmap(daily, "tmax")
 ```
 
+## Température moyenne
 
-
-## 30 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_last_days("07156", 30)
+```{r, fig.width = 5, fig.height = 4}
+meteo_plot_lines(daily, "tmoy")
 ```
 
+# Paris-Montsouris
 
-
-# Lille (07015)
-
-## Par heure, 2 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_heure_par_heure("07015", from = Sys.Date() - 2)
+```{r}
+#| output: asis
+cat(meteo_stations$lieu[meteo_stations$slug == "paris-montsouris"], " · [**Page détaillée →**](paris-montsouris.html)\n")
 ```
 
-
-
-## 30 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_last_days("07015", 30)
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07156", "Paris-Montsouris — 48 dernières heures")
 ```
 
-# Montagne
-
-## Chamonix (07490)
-
-### Par heure, 2 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_heure_par_heure("07490", from = Sys.Date() - 2)
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Paris"), "Paris-Montsouris — 30 derniers jours")
 ```
 
+# Île de Batz
 
-
-### 30 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_last_days("07490", 30)
+```{r}
+#| output: asis
+cat(meteo_stations$lieu[meteo_stations$slug == "ile-de-batz"], " · [**Page détaillée →**](ile-de-batz.html)\n")
 ```
 
-
-# Région Parisienne
-
-## Roissy CDG (07157)
-
-### Par heure, 2 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_heure_par_heure("07157", from = Sys.Date() - 2)
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07116", "Île de Batz — 48 dernières heures")
 ```
 
-
-
-### 30 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_last_days("07157", 30)
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Île de Batz"), "Île de Batz — 30 derniers jours")
 ```
 
-# Marseille Marignane (07650)
+# Lille-Lesquin
 
-## Par heure, 2 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_heure_par_heure("07650", from = Sys.Date() - 2)
+```{r}
+#| output: asis
+cat(meteo_stations$lieu[meteo_stations$slug == "lille"], " · [**Page détaillée →**](lille.html)\n")
 ```
 
-## 30 derniers jours
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07015", "Lille-Lesquin — 48 dernières heures")
+```
 
-```{r echo = F, message = F, warning = F}
-meteo_station_last_days("07650", 30)
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Lille"), "Lille-Lesquin — 30 derniers jours")
+```
+
+# Marseille-Marignane
+
+```{r}
+#| output: asis
+cat(meteo_stations$lieu[meteo_stations$slug == "marseille"], " · [**Page détaillée →**](marseille.html)\n")
+```
+
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07650", "Marseille-Marignane — 48 dernières heures")
+```
+
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Marseille"), "Marseille-Marignane — 30 derniers jours")
+```
+
+# Chamonix (Les Praz)
+
+```{r}
+#| output: asis
+cat(meteo_stations$lieu[meteo_stations$slug == "chamonix"], " · [**Page détaillée →**](chamonix.html)\n")
+```
+
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07469", "Chamonix (Les Praz) — 48 dernières heures")
+```
+
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Chamonix"), "Chamonix (Les Praz) — 30 derniers jours")
+```
+
+# Samoëns
+
+```{r}
+#| output: asis
+cat(meteo_stations$lieu[meteo_stations$slug == "samoens"], " · [**Page détaillée →**](samoens.html)\n")
+```
+
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("74258002", "Samoëns — 48 dernières heures")
+```
+
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Samoëns"), "Samoëns — 30 derniers jours")
+```
+
+# Autres pages
+
+- [Paris-Montsouris : historique journalier](montsouris.html) · [historique horaire](montsouris-jour.html)
+- [Toutes les stations, hier](stations.html) · [Liste des stations Météo-France](station_list.html)
+
+Source : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (relevés des stations Météo-France).
+
+```{r}
+#| output: asis
+page_compile_line()
 ```

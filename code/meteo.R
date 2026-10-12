@@ -323,7 +323,8 @@ meteo_daily <- function(stations = c("07156" = "Paris"), n_days = 30) {
         station = nm, date,
         tmin = Temperature_mini, tmax = Temperature_maxi, tmoy = Temperature_moy,
         pluie = meteo_num(Precipitations),
-        soleil = lubridate::period_to_seconds(lubridate::hm(sub("h", ":", Ensoleillement))) / 3600
+        soleil = suppressWarnings(
+          lubridate::period_to_seconds(lubridate::hm(sub("h", ":", Ensoleillement))) / 3600)
       ) |>
       dplyr::filter(!is.na(tmax))) |>
     dplyr::mutate(station = factor(station, unname(stations)))
@@ -338,18 +339,21 @@ meteo_plot_heatmap <- function(daily, var = "tmax", rain_threshold = 1) {
     geom_tile(color = "white", linewidth = 0.8) +
     geom_text(aes(label = sprintf("%.0f°", v),
                   color = dplyr::if_else(v > 27 | v < 5, "white", "grey15")), size = 3.4) +
-    geom_text(aes(label = ifelse(pluie >= rain_threshold, "💧", "")), nudge_x = 0.33, size = 2.6) +
+    geom_point(data = dplyr::filter(daily, pluie >= rain_threshold),
+               position = position_nudge(x = 0.36), color = "#1f5fa8", size = 1.6) +
     scale_color_identity() +
     scale_fill_gradientn(colours = meteo_temp_pal, limits = c(-5, 35),
                          oob = scales::squish, guide = "none") +
-    scale_x_discrete(position = "top", expand = c(0, 0)) +
+    scale_x_discrete(position = "top", expand = c(0, 0),
+                     labels = \(x) stringr::str_wrap(x, 8)) +
     scale_y_date(date_labels = "%a %d",
                  breaks = seq(max(daily$date), min(daily$date), by = "-1 day"),
                  expand = c(0, 0)) +
     labs(title = paste0("Températures ", lib, " (°C)"),
-         subtitle = paste0("💧 pluie ≥ ", rain_threshold, " mm"), x = NULL, y = NULL) +
+         subtitle = paste0("<span style='color:#1f5fa8'>●</span> pluie ≥ ", rain_threshold, " mm"), x = NULL, y = NULL) +
     meteo_theme() +
-    theme(panel.grid = element_blank(), axis.text.x = element_text(face = "bold"))
+    theme(panel.grid = element_blank(), plot.subtitle = ggtext::element_markdown(),
+          axis.text.x = element_text(face = "bold", size = 9.5, lineheight = 0.9))
 }
 
 # meteo_plot_lines : température moyenne journalière, une courbe par station --------
@@ -401,48 +405,210 @@ meteo_plot_days <- function(daily, title = NULL) {
   top / bot + plot_layout(heights = c(2, 1.3))
 }
 
-# meteo_plot_hours : une station, 48 h : température, vent/rafales, pluie --------
+# meteo_stations : stations affichées (index + une page par station) --------
 
-meteo_plot_hours <- function(station_id = "07156", title = NULL, from = Sys.Date() - 2) {
-  h <- suppressWarnings(suppressMessages(
-    meteo_station_heure_par_heure(station_id, from = from, output = "raw"))) |>
-    dplyr::mutate(t = as.POSIXct(paste(date, Heure_legale), format = "%Y-%m-%d %Hh%M",
-                                 tz = "Europe/Paris"),
-                  vent = meteo_num(Vent_moyen), rafales = meteo_num(Vent_rafales),
-                  pluie = meteo_num(Precipitations)) |>
-    dplyr::filter(!is.na(Temperature), !is.na(t))
-  nights <- tibble::tibble(d = seq(min(h$date) - 1, max(h$date), by = "day")) |>
+meteo_stations <- tibble::tribble(
+  ~id,        ~slug,              ~court,        ~nom,                  ~lieu,
+  "07156",    "paris-montsouris", "Paris",       "Paris-Montsouris",    "Paris 14e (75) · 75 m",
+  "07116",    "ile-de-batz",      "Île de Batz", "Île de Batz",         "Roscoff / Santec (29) · 32 m",
+  "07015",    "lille",            "Lille",       "Lille-Lesquin",       "Nord (59) · 47 m",
+  "07650",    "marseille",        "Marseille",   "Marseille-Marignane", "Bouches-du-Rhône (13) · 9 m",
+  "07469",    "chamonix",         "Chamonix",    "Chamonix (Les Praz)", "Haute-Savoie (74) · 1042 m",
+  "74258002", "samoens",          "Samoëns",     "Samoëns",             "Haute-Savoie (74)"
+)
+
+meteo_station_info <- function(slug) {
+  s <- dplyr::filter(meteo_stations, slug == !!slug)
+  stopifnot(nrow(s) == 1)
+  as.list(s)
+}
+
+# meteo_hourly : relevés horaires propres (heure locale calculée depuis l'UTC) --------
+
+meteo_hourly <- function(station_id = "07156", from = Sys.Date() - 2, to = Sys.Date()) {
+  suppressWarnings(suppressMessages(
+    meteo_station_heure_par_heure(station_id, from = from, to = to, output = "raw"))) |>
+    dplyr::transmute(
+      t = lubridate::with_tz(as.POSIXct(paste(date, Heure_UTC), format = "%Y-%m-%d %Hh%M",
+                                        tz = "UTC"), "Europe/Paris"),
+      temp = meteo_num(Temperature), rosee = meteo_num(Point_rosee),
+      humidite = meteo_num(Humidite_relative),
+      vent = meteo_num(Vent_moyen), rafales = meteo_num(Vent_rafales),
+      direction = meteo_num(Direction),
+      pression = meteo_num(Pression_mer),
+      # à 06h UTC le CSV donne le cumul 24 h (« 65.5/24h ») : on ne garde que l'horaire
+      pluie = dplyr::if_else(grepl("/1h", Precipitations), meteo_num(Precipitations), NA_real_)
+    ) |>
+    dplyr::filter(!is.na(t), !is.na(temp)) |>
+    dplyr::distinct(t, .keep_all = TRUE) |>
+    dplyr::arrange(t)
+}
+
+# meteo_plot_hours : une station, heure par heure --------
+# detail = FALSE : température, vent/rafales, pluie (48 h, page d'accueil)
+# detail = TRUE  : + point de rosée, humidité, pression (7 jours, page station)
+# Les panneaux sans données (ex. pas d'anémomètre à Samoëns) sont omis.
+
+meteo_plot_hours <- function(station_id = "07156", title = NULL, from = Sys.Date() - 2,
+                             detail = FALSE, h = NULL) {
+  if (is.null(h)) h <- meteo_hourly(station_id, from = from)
+  ndays <- as.numeric(difftime(max(h$t), min(h$t), units = "days"))
+  nights <- tibble::tibble(d = seq(as.Date(min(h$t)) - 1, as.Date(max(h$t)), by = "day")) |>
     dplyr::transmute(xmin = as.POSIXct(paste(d, "20:00"), tz = "Europe/Paris"),
                      xmax = as.POSIXct(paste(d + 1, "07:00"), tz = "Europe/Paris"))
   base <- list(
     geom_rect(data = nights, aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
               inherit.aes = FALSE, fill = "grey93"),
-    scale_x_datetime(date_labels = "%a %Hh", date_breaks = "12 hours",
-                     limits = range(h$t), expand = c(0, 0)),
+    if (ndays > 3) scale_x_datetime(date_labels = "%a %d", date_breaks = "1 day",
+                                    limits = range(h$t), expand = c(0, 0))
+    else scale_x_datetime(date_labels = "%a %Hh", date_breaks = "12 hours",
+                          limits = range(h$t), expand = c(0, 0)),
     meteo_theme()
   )
-  ext <- dplyr::slice(h, c(which.max(Temperature), which.min(Temperature)))
-  pt <- ggplot(h, aes(t, Temperature)) + base +
+  no_x <- theme(axis.text.x = element_blank())
+  has <- \(v) any(!is.na(h[[v]]))
+
+  ext <- dplyr::slice(h, c(which.max(temp), which.min(temp)))
+  pt <- ggplot(h, aes(t, temp)) + base +
     geom_area(fill = "#f46d43", alpha = 0.12) +
-    geom_line(aes(color = Temperature), linewidth = 1.3) +
+    { if (detail && has("rosee")) geom_line(aes(y = rosee), color = "#4575b4",
+                                            linewidth = 0.6, linetype = "22", na.rm = TRUE) } +
+    geom_line(aes(color = temp), linewidth = if (detail) 1 else 1.3) +
     geom_point(data = ext, size = 2) +
-    geom_text(data = ext, aes(label = sprintf("%.1f°", Temperature)),
+    geom_text(data = ext, aes(label = sprintf("%.1f°", temp)),
               vjust = -0.9, hjust = "inward", size = 3.4, fontface = "bold") +
     scale_color_gradientn(colours = meteo_temp_pal, limits = c(-5, 30),
                           oob = scales::squish, guide = "none") +
-    coord_cartesian(ylim = c(min(h$Temperature) - 2, max(h$Temperature) + 2)) +
+    coord_cartesian(ylim = range(c(h$temp, if (detail) h$rosee), na.rm = TRUE) + c(-2, 2)) +
     scale_y_continuous(labels = \(x) paste0(x, "°")) +
-    labs(title = title, subtitle = "Température (nuit en gris)", x = NULL, y = NULL) +
-    theme(axis.text.x = element_blank())
-  pv <- ggplot(h, aes(t)) + base +
-    geom_ribbon(aes(ymin = vent, ymax = pmax(vent, rafales, na.rm = TRUE)),
-                fill = "#2ca58d", alpha = 0.2) +
-    geom_line(aes(y = vent), color = "#2ca58d", linewidth = 1) +
-    labs(subtitle = "Vent moyen et rafales (km/h)", x = NULL, y = NULL) +
-    theme(axis.text.x = element_blank())
-  pp <- ggplot(h, aes(t, pluie)) + base +
-    geom_col(fill = "#3a86c8", width = 3000, na.rm = TRUE) +
-    scale_y_continuous(limits = c(0, max(1, max(h$pluie, na.rm = TRUE)))) +
-    labs(subtitle = "Pluie (mm/h)", x = NULL, y = NULL)
-  pt / pv / pp + plot_layout(heights = c(2.2, 1, 0.8))
+    labs(title = title,
+         subtitle = if (detail && has("rosee")) "Température et point de rosée (pointillés) · nuit en gris"
+                    else "Température (nuit en gris)",
+         x = NULL, y = NULL) + no_x
+  panels <- list(pt); heights <- 2.2
+
+  if (detail && has("humidite")) {
+    panels <- c(panels, list(
+      ggplot(h, aes(t, humidite)) + base +
+        geom_line(color = "#5e81ac", linewidth = 0.8, na.rm = TRUE) +
+        scale_y_continuous(limits = c(NA, 100), labels = \(x) paste0(x, " %")) +
+        labs(subtitle = "Humidité relative", x = NULL, y = NULL) + no_x))
+    heights <- c(heights, 0.8)
+  }
+  if (has("vent")) {
+    pv <- ggplot(h, aes(t)) + base +
+      geom_ribbon(aes(ymin = vent, ymax = pmax(vent, rafales, na.rm = TRUE)),
+                  fill = "#2ca58d", alpha = 0.2, na.rm = TRUE) +
+      geom_line(aes(y = vent), color = "#2ca58d", linewidth = 1, na.rm = TRUE)
+    if (detail && has("direction")) {
+      # flèche = direction vers laquelle souffle le vent (1 sur 3 h)
+      arr <- h |> dplyr::filter(!is.na(direction), !is.na(vent), vent > 0,
+                                as.integer(format(t, "%H")) %% 3 == 0)
+      top <- max(h$rafales, h$vent, na.rm = TRUE) * 1.18
+      len <- as.numeric(diff(range(h$t)), units = "secs") / 70
+      pv <- pv + geom_segment(
+        data = arr,
+        aes(x = t + len / 2 * sin(direction * pi / 180), xend = t - len / 2 * sin(direction * pi / 180),
+            y = top + top * 0.06 * cos(direction * pi / 180), yend = top - top * 0.06 * cos(direction * pi / 180)),
+        arrow = grid::arrow(length = grid::unit(0.09, "cm")), color = "grey35", linewidth = 0.35,
+        na.rm = TRUE)
+    }
+    panels <- c(panels, list(pv + labs(subtitle = if (detail) "Vent moyen, rafales (km/h) et direction"
+                                                  else "Vent moyen et rafales (km/h)",
+                                       x = NULL, y = NULL) + no_x))
+    heights <- c(heights, 1)
+  }
+  if (detail && has("pression")) {
+    panels <- c(panels, list(
+      ggplot(h, aes(t, pression)) + base +
+        geom_line(color = "#7b5ea7", linewidth = 0.8, na.rm = TRUE) +
+        labs(subtitle = "Pression au niveau de la mer (hPa)", x = NULL, y = NULL) + no_x))
+    heights <- c(heights, 0.8)
+  }
+  panels <- c(panels, list(
+    ggplot(h, aes(t, pluie)) + base +
+      geom_col(fill = "#3a86c8", width = 3000, na.rm = TRUE) +
+      scale_y_continuous(limits = c(0, max(1, max(h$pluie, na.rm = TRUE)))) +
+      labs(subtitle = "Pluie (mm/h)", x = NULL, y = NULL)))
+  heights <- c(heights, 0.8)
+  patchwork::wrap_plots(panels, ncol = 1, heights = heights)
+}
+
+# meteo_now_md : dernière observation, en une ligne markdown --------
+
+meteo_now_md <- function(h) {
+  l <- dplyr::slice_tail(h, n = 1)
+  p24 <- sum(h$pluie[h$t > l$t - 24 * 3600], na.rm = TRUE)
+  parts <- c(
+    sprintf("**%.1f°**", l$temp),
+    if (!is.na(l$humidite)) sprintf("humidité %.0f %%", l$humidite),
+    if (!is.na(l$vent)) sprintf("vent %.0f km/h%s", l$vent,
+                                if (!is.na(l$rafales)) sprintf(" (rafales %.0f)", l$rafales) else ""),
+    if (!is.na(l$pression)) sprintf("%.0f hPa", l$pression),
+    sprintf("pluie sur 24 h : %.1f mm", p24)
+  )
+  paste0("Dernière observation, ", format(l$t, "%A %d %B à %Hh"), " : ",
+         paste(parts, collapse = " · "))
+}
+
+# meteo_plot_year : une station, 12 derniers mois --------
+
+meteo_plot_year <- function(daily, title = NULL) {
+  d <- dplyr::filter(daily, date > Sys.Date() - 365)
+  top <- ggplot(d, aes(date)) +
+    geom_ribbon(aes(ymin = tmin, ymax = tmax), fill = "#fdae61", alpha = 0.35, na.rm = TRUE) +
+    geom_line(aes(y = tmoy, color = tmoy), linewidth = 0.7, na.rm = TRUE) +
+    scale_color_gradientn(colours = meteo_temp_pal, limits = c(-5, 30),
+                          oob = scales::squish, guide = "none") +
+    scale_y_continuous(labels = \(x) paste0(x, "°")) +
+    scale_x_date(limits = range(d$date) + c(0, 1), expand = c(0.01, 0)) +
+    labs(title = title, subtitle = "Température moyenne et amplitude min–max", x = NULL, y = NULL) +
+    meteo_theme() + theme(axis.text.x = element_blank())
+  m <- d |>
+    dplyr::mutate(mois = lubridate::floor_date(date, "month")) |>
+    dplyr::filter(mois >= min(d$date)) |>   # pas de mois partiel au début
+    dplyr::group_by(mois) |>
+    dplyr::summarise(pluie = if (all(is.na(pluie))) NA else sum(pluie, na.rm = TRUE),
+                     soleil = if (all(is.na(soleil))) NA else sum(soleil, na.rm = TRUE),
+                     .groups = "drop") |>
+    tidyr::pivot_longer(c(pluie, soleil)) |>
+    dplyr::group_by(name) |> dplyr::filter(any(!is.na(value))) |> dplyr::ungroup() |>
+    dplyr::mutate(name = dplyr::recode(name, pluie = "Pluie (mm/mois)", soleil = "Soleil (h/mois)"))
+  bot <- ggplot(m, aes(mois + 14, value, fill = name)) +
+    geom_col(width = 24, na.rm = TRUE) +
+    geom_text(aes(label = round(value)), vjust = -0.3, size = 2.6, color = "grey30", na.rm = TRUE) +
+    facet_wrap(~name, ncol = 1, scales = "free_y", strip.position = "left") +
+    scale_fill_manual(values = c("Pluie (mm/mois)" = "#3a86c8", "Soleil (h/mois)" = "#f2b705"),
+                      guide = "none") +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.2))) +
+    scale_x_date(labels = \(x) stringr::str_to_upper(substr(format(x, "%b"), 1, 1)),
+                 date_breaks = "1 month",
+                 limits = range(d$date) + c(0, 1), expand = c(0.01, 0)) +
+    labs(x = NULL, y = NULL) + meteo_theme() +
+    theme(strip.placement = "outside", strip.text = element_text(face = "bold"))
+  top / bot + plot_layout(heights = c(2, if (length(unique(m$name)) > 1) 1.6 else 0.9))
+}
+
+# meteo_plot_vs_last_year : 30 derniers jours vs mêmes jours un an plus tôt --------
+
+meteo_plot_vs_last_year <- function(daily, n_days = 30, title = NULL) {
+  d <- daily |>
+    dplyr::mutate(annee = dplyr::case_when(
+      date > Sys.Date() - n_days ~ "cette année",
+      date > Sys.Date() - n_days - 365 & date <= Sys.Date() - 365 ~ "l'an dernier"),
+      jour = dplyr::if_else(annee == "l'an dernier", date + 365, date)) |>
+    dplyr::filter(!is.na(annee))
+  ecart <- d |> dplyr::select(jour, annee, tmoy) |>
+    tidyr::pivot_wider(names_from = annee, values_from = tmoy) |>
+    dplyr::summarise(e = mean(`cette année` - `l'an dernier`, na.rm = TRUE)) |> dplyr::pull(e)
+  ggplot(d, aes(jour, tmoy, color = annee, linetype = annee)) +
+    geom_line(linewidth = 1, na.rm = TRUE) +
+    scale_color_manual(values = c("cette année" = "#d73027", "l'an dernier" = "grey55"), name = NULL) +
+    scale_linetype_manual(values = c("cette année" = "solid", "l'an dernier" = "22"), name = NULL) +
+    scale_y_continuous(labels = \(x) paste0(x, "°")) +
+    scale_x_date(date_labels = "%d/%m") +
+    labs(title = title,
+         subtitle = sprintf("Température moyenne · écart moyen : %+.1f°", ecart),
+         x = NULL, y = NULL) +
+    meteo_theme()
 }
