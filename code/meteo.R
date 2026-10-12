@@ -316,18 +316,48 @@ meteo_num <- function(x) {
 # meteo_daily : données journalières de plusieurs stations, format long --------
 
 meteo_daily <- function(stations = c("07156" = "Paris"), n_days = 30) {
-  purrr::imap_dfr(stations, \(nm, id)
-    suppressWarnings(suppressMessages(meteo_station_last_days(id, n_days, output = "raw"))) |>
-      dplyr::filter(date >= Sys.Date() - n_days + 1, date <= Sys.Date()) |>
-      dplyr::transmute(
-        station = nm, date,
-        tmin = Temperature_mini, tmax = Temperature_maxi, tmoy = Temperature_moy,
-        pluie = meteo_num(Precipitations),
-        soleil = suppressWarnings(
-          lubridate::period_to_seconds(lubridate::hm(sub("h", ":", Ensoleillement))) / 3600)
-      ) |>
-      dplyr::filter(!is.na(tmax))) |>
+  purrr::imap_dfr(stations, \(nm, id) {
+    src <- meteo_stations$source[meteo_stations$id == id]
+    d <- if (length(src) && src == "iem") meteo_daily_iem(id, n_days) else meteo_daily_meteo60(id, n_days)
+    d |>
+      dplyr::filter(date >= Sys.Date() - n_days + 1, date <= Sys.Date(), !is.na(tmax)) |>
+      dplyr::mutate(station = nm, .before = 1)
+  }) |>
     dplyr::mutate(station = factor(station, unname(stations)))
+}
+
+meteo_daily_meteo60 <- function(id, n_days) {
+  suppressWarnings(suppressMessages(meteo_station_last_days(id, n_days, output = "raw"))) |>
+    dplyr::transmute(
+      date,
+      tmin = Temperature_mini, tmax = Temperature_maxi, tmoy = Temperature_moy,
+      pluie = meteo_num(Precipitations),
+      soleil = suppressWarnings(
+        lubridate::period_to_seconds(lubridate::hm(sub("h", ":", Ensoleillement))) / 3600)
+    )
+}
+
+# Stations hors de France : Iowa Environmental Mesonet (relevés ASOS/METAR,
+# sans clé). Résumés journaliers en °F / pouces -> °C / mm ; journée locale.
+meteo_daily_iem <- function(id, n_days, network = "CA_ASOS") {
+  tz <- meteo_stations$tz[meteo_stations$id == id]
+  today <- as.Date(lubridate::with_tz(Sys.time(), tz))
+  years <- unique(lubridate::year(c(today - n_days, today)))
+  purrr::map_dfr(years, \(y) {
+    j <- jsonlite::fromJSON(paste0(
+      "https://mesonet.agron.iastate.edu/api/1/daily.json?station=", id,
+      "&network=", network, "&year=", y))
+    tibble::as_tibble(j$data)
+  }) |>
+    dplyr::transmute(
+      date = as.Date(date),
+      tmin = round((min_tmpf - 32) * 5 / 9, 1),
+      tmax = round((max_tmpf - 32) * 5 / 9, 1),
+      tmoy = round((tmin + tmax) / 2, 1),
+      pluie = round(precip * 25.4, 1),
+      soleil = NA_real_
+    ) |>
+    dplyr::filter(date < today)   # journée en cours incomplète
 }
 
 # meteo_plot_heatmap : jours (lignes) × stations (colonnes) --------
@@ -408,13 +438,12 @@ meteo_plot_days <- function(daily, title = NULL) {
 # meteo_stations : stations affichées (index + une page par station) --------
 
 meteo_stations <- tibble::tribble(
-  ~id,        ~slug,              ~court,        ~nom,                  ~lieu,
-  "07156",    "paris-montsouris", "Paris",       "Paris-Montsouris",    "Paris 14e (75) · 75 m",
-  "07116",    "ile-de-batz",      "Île de Batz", "Île de Batz",         "Roscoff / Santec (29) · 32 m",
-  "07015",    "lille",            "Lille",       "Lille-Lesquin",       "Nord (59) · 47 m",
-  "07650",    "marseille",        "Marseille",   "Marseille-Marignane", "Bouches-du-Rhône (13) · 9 m",
-  "07469",    "chamonix",         "Chamonix",    "Chamonix (Les Praz)", "Haute-Savoie (74) · 1042 m",
-  "74258002", "samoens",          "Samoëns",     "Samoëns",             "Haute-Savoie (74)"
+  ~id,        ~slug,              ~court,        ~nom,                  ~lieu,                           ~source,   ~tz,
+  "07156",    "paris-montsouris", "Paris",       "Paris-Montsouris",    "Paris 14e (75) · 75 m",         "meteo60", "Europe/Paris",
+  "07116",    "ile-de-batz",      "Île de Batz", "Île de Batz",         "Roscoff / Santec (29) · 32 m",  "meteo60", "Europe/Paris",
+  "07650",    "marseille",        "Marseille",   "Marseille-Marignane", "Bouches-du-Rhône (13) · 9 m",   "meteo60", "Europe/Paris",
+  "74258002", "samoens",          "Samoëns",     "Samoëns",             "Haute-Savoie (74)",             "meteo60", "Europe/Paris",
+  "LAX",      "los-angeles",      "Los Angeles", "Los Angeles (LAX)",   "Californie, États-Unis · 30 m", "iem",     "America/Los_Angeles"
 )
 
 meteo_station_info <- function(slug) {
@@ -426,6 +455,16 @@ meteo_station_info <- function(slug) {
 # meteo_hourly : relevés horaires propres (heure locale calculée depuis l'UTC) --------
 
 meteo_hourly <- function(station_id = "07156", from = Sys.Date() - 2, to = Sys.Date()) {
+  src <- meteo_stations$source[meteo_stations$id == station_id]
+  h <- if (length(src) && src == "iem") meteo_hourly_iem(station_id, from, to)
+       else meteo_hourly_meteo60(station_id, from, to)
+  h |>
+    dplyr::filter(!is.na(t), !is.na(temp)) |>
+    dplyr::distinct(t, .keep_all = TRUE) |>
+    dplyr::arrange(t)
+}
+
+meteo_hourly_meteo60 <- function(station_id, from, to) {
   suppressWarnings(suppressMessages(
     meteo_station_heure_par_heure(station_id, from = from, to = to, output = "raw"))) |>
     dplyr::transmute(
@@ -438,10 +477,26 @@ meteo_hourly <- function(station_id = "07156", from = Sys.Date() - 2, to = Sys.D
       pression = meteo_num(Pression_mer),
       # à 06h UTC le CSV donne le cumul 24 h (« 65.5/24h ») : on ne garde que l'horaire
       pluie = dplyr::if_else(grepl("/1h", Precipitations), meteo_num(Precipitations), NA_real_)
+    )
+}
+
+# METAR horaires (report_type=3 : relevés de routine). Vent en nœuds -> km/h.
+meteo_hourly_iem <- function(station_id, from, to) {
+  tz <- meteo_stations$tz[meteo_stations$id == station_id]
+  url <- paste0(
+    "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=", station_id,
+    "&data=tmpc,dwpc,relh,sknt,gust,drct,mslp,p01m",
+    "&year1=", format(from - 1, "%Y"), "&month1=", format(from - 1, "%m"), "&day1=", format(from - 1, "%d"),
+    "&year2=", format(to + 1, "%Y"), "&month2=", format(to + 1, "%m"), "&day2=", format(to + 1, "%d"),
+    "&tz=Etc/UTC&format=onlycomma&missing=empty&trace=0.0001&report_type=3")
+  readr::read_csv(url, show_col_types = FALSE, col_types = readr::cols(.default = "c")) |>
+    dplyr::transmute(
+      t = lubridate::with_tz(as.POSIXct(valid, format = "%Y-%m-%d %H:%M", tz = "UTC"), tz),
+      temp = as.numeric(tmpc), rosee = as.numeric(dwpc), humidite = as.numeric(relh),
+      vent = as.numeric(sknt) * 1.852, rafales = as.numeric(gust) * 1.852,
+      direction = as.numeric(drct), pression = as.numeric(mslp), pluie = as.numeric(p01m)
     ) |>
-    dplyr::filter(!is.na(t), !is.na(temp)) |>
-    dplyr::distinct(t, .keep_all = TRUE) |>
-    dplyr::arrange(t)
+    dplyr::filter(t >= lubridate::force_tz(as.POSIXct(from), tz))
 }
 
 # meteo_plot_hours : une station, heure par heure --------
@@ -452,17 +507,18 @@ meteo_hourly <- function(station_id = "07156", from = Sys.Date() - 2, to = Sys.D
 meteo_plot_hours <- function(station_id = "07156", title = NULL, from = Sys.Date() - 2,
                              detail = FALSE, h = NULL) {
   if (is.null(h)) h <- meteo_hourly(station_id, from = from)
+  tz <- attr(h$t, "tzone") %||% "Europe/Paris"
   ndays <- as.numeric(difftime(max(h$t), min(h$t), units = "days"))
-  nights <- tibble::tibble(d = seq(as.Date(min(h$t)) - 1, as.Date(max(h$t)), by = "day")) |>
-    dplyr::transmute(xmin = as.POSIXct(paste(d, "20:00"), tz = "Europe/Paris"),
-                     xmax = as.POSIXct(paste(d + 1, "07:00"), tz = "Europe/Paris"))
+  nights <- tibble::tibble(d = seq(as.Date(min(h$t), tz = tz) - 1, as.Date(max(h$t), tz = tz), by = "day")) |>
+    dplyr::transmute(xmin = as.POSIXct(paste(d, "20:00"), tz = tz),
+                     xmax = as.POSIXct(paste(d + 1, "07:00"), tz = tz))
   base <- list(
     geom_rect(data = nights, aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
               inherit.aes = FALSE, fill = "grey93"),
     if (ndays > 3) scale_x_datetime(date_labels = "%a %d", date_breaks = "1 day",
-                                    limits = range(h$t), expand = c(0, 0))
+                                    limits = range(h$t), expand = c(0, 0), timezone = tz)
     else scale_x_datetime(date_labels = "%a %Hh", date_breaks = "12 hours",
-                          limits = range(h$t), expand = c(0, 0)),
+                          limits = range(h$t), expand = c(0, 0), timezone = tz),
     meteo_theme()
   )
   no_x <- theme(axis.text.x = element_blank())
@@ -503,7 +559,7 @@ meteo_plot_hours <- function(station_id = "07156", title = NULL, from = Sys.Date
     if (detail && has("direction")) {
       # flèche = direction vers laquelle souffle le vent (1 sur 3 h)
       arr <- h |> dplyr::filter(!is.na(direction), !is.na(vent), vent > 0,
-                                as.integer(format(t, "%H")) %% 3 == 0)
+                                as.integer(format(t, "%H", tz = tz)) %% 3 == 0)
       top <- max(h$rafales, h$vent, na.rm = TRUE) * 1.18
       len <- as.numeric(diff(range(h$t)), units = "secs") / 70
       pv <- pv + geom_segment(
@@ -547,7 +603,7 @@ meteo_now_md <- function(h) {
     if (!is.na(l$pression)) sprintf("%.0f hPa", l$pression),
     sprintf("pluie sur 24 h : %.1f mm", p24)
   )
-  paste0("Dernière observation, ", format(l$t, "%A %d %B à %Hh"), " : ",
+  paste0("Dernière observation, ", format(l$t, "%A %d %B à %Hh%M (heure locale)"), " : ",
          paste(parts, collapse = " · "))
 }
 
@@ -611,4 +667,78 @@ meteo_plot_vs_last_year <- function(daily, n_days = 30, title = NULL) {
          subtitle = sprintf("Température moyenne · écart moyen : %+.1f°", ecart),
          x = NULL, y = NULL) +
     meteo_theme()
+}
+
+# meteo_table_hours / meteo_table_days : tableaux communs à toutes les sources --------
+
+meteo_gt <- function(df, page_size = 24) {
+  df |>
+    gt::gt() |>
+    gt::sub_missing(missing_text = "–") |>
+    gt::data_color(columns = dplyr::any_of(c("T°", "T° moy")),
+                   fn = scales::col_numeric(meteo_temp_pal, domain = c(-5, 35))) |>
+    gt::cols_align("center", dplyr::everything()) |>
+    gt::opt_interactive(use_search = FALSE, use_pagination = TRUE,
+                        use_compact_mode = TRUE, page_size_default = page_size)
+}
+
+meteo_table_hours <- function(h) {
+  h |>
+    dplyr::arrange(dplyr::desc(t)) |>
+    dplyr::transmute(
+      Heure = format(t, "%a %d %Hh%M"),
+      `T°` = round(temp, 1), `Rosée` = round(rosee, 1), `Hum. %` = round(humidite),
+      `Vent km/h` = round(vent), Rafales = round(rafales), `Dir. °` = direction,
+      `Pression` = round(pression, 1), `Pluie mm` = pluie
+    ) |>
+    dplyr::select(dplyr::where(\(x) !all(is.na(x)))) |>
+    meteo_gt(24)
+}
+
+meteo_table_days <- function(daily) {
+  daily |>
+    dplyr::arrange(dplyr::desc(date)) |>
+    dplyr::transmute(
+      Jour = format(date, "%a %d/%m"),
+      `T° min` = tmin, `T° moy` = tmoy, `T° max` = tmax,
+      `Pluie mm` = pluie, `Soleil h` = round(soleil, 1)
+    ) |>
+    dplyr::select(dplyr::where(\(x) !all(is.na(x)))) |>
+    meteo_gt(15)
+}
+
+# meteo_pages_reactable : liste des pages du répertoire data/meteo --------
+
+meteo_pages_reactable <- function(dir = here::here("data", "meteo")) {
+  qmd <- setdiff(list.files(dir, "\\.qmd$"), "index.qmd")
+  title_of <- \(f) {
+    l <- grep("^title:", readLines(file.path(dir, f), n = 5, warn = FALSE), value = TRUE)[1]
+    gsub('^title:\\s*|"', "", l)
+  }
+  tibble::tibble(slug = sub("\\.qmd$", "", qmd),
+                 Title = vapply(qmd, title_of, ""),
+                 updated = as.Date(file.mtime(file.path(dir, qmd)))) |>
+    dplyr::left_join(dplyr::select(meteo_stations, slug, Lieu = lieu, source), by = "slug") |>
+    dplyr::mutate(
+      Title = sub("^Météo — ", "", Title),
+      Source = dplyr::recode(source, meteo60 = "Météo-France (meteo60)",
+                             iem = "NOAA ASOS (Iowa Mesonet)", .missing = "Météo-France"),
+      Type = dplyr::if_else(is.na(source), "Données", "Station"),
+      page = sprintf('<a href="https://fgeerolf.com/data/meteo/%s.html">%s</a>', slug, slug)
+    ) |>
+    dplyr::arrange(Type == "Données", match(slug, meteo_stations$slug), slug) |>
+    dplyr::select(page, Title, Lieu, Source) |>
+    reactable::reactable(
+      searchable = TRUE, pagination = TRUE, defaultPageSize = 10,
+      compact = TRUE, resizable = TRUE, highlight = TRUE, wrap = TRUE,
+      defaultColDef = reactable::colDef(
+        align = "left", na = "",
+        headerStyle = list(fontWeight = "bold"),
+        style = list(whiteSpace = "normal", wordBreak = "break-word")
+      ),
+      columns = list(
+        page  = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 170),
+        Title = reactable::colDef(minWidth = 140)
+      )
+    )
 }

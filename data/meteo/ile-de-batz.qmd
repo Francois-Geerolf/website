@@ -72,7 +72,7 @@ meteo_plot_year(daily, "Île de Batz — 12 derniers mois")
 ## Heure par heure, 7 derniers jours
 
 ```{r}
-meteo_station_heure_par_heure(st$id, from = Sys.Date() - 7)
+meteo_table_hours(h7)
 ```
 :::
 
@@ -80,13 +80,13 @@ meteo_station_heure_par_heure(st$id, from = Sys.Date() - 7)
 ## Jour par jour, 30 derniers jours
 
 ```{r}
-meteo_station_last_days(st$id, 30)
+meteo_table_days(last30)
 ```
 :::
 
 [← Toutes les stations](index.html)
 
-Source : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (relevés des stations Météo-France).
+Sources : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (stations Météo-France) ; [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/) (stations ASOS/METAR hors de France).
 
 ```{r}
 #| output: asis

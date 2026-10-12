@@ -36,7 +36,11 @@ stations <- setNames(meteo_stations$court, meteo_stations$id)
 daily <- meteo_daily(stations, 30)
 ```
 
-Six stations Météo-France, mises à jour automatiquement. Cliquer sur le nom d'une station pour la page détaillée (7 jours heure par heure, 12 mois, comparaison avec l'an dernier).
+# Pages
+
+```{r}
+meteo_pages_reactable()
+```
 
 # Comparaison par jour
 
@@ -82,21 +86,6 @@ meteo_plot_hours("07116", "Île de Batz — 48 dernières heures")
 meteo_plot_days(dplyr::filter(daily, station == "Île de Batz"), "Île de Batz — 30 derniers jours")
 ```
 
-# Lille-Lesquin
-
-```{r}
-#| output: asis
-cat(meteo_stations$lieu[meteo_stations$slug == "lille"], " · [**Page détaillée →**](lille.html)\n")
-```
-
-```{r, fig.width = 5, fig.height = 6.5}
-meteo_plot_hours("07015", "Lille-Lesquin — 48 dernières heures")
-```
-
-```{r, fig.width = 5, fig.height = 6}
-meteo_plot_days(dplyr::filter(daily, station == "Lille"), "Lille-Lesquin — 30 derniers jours")
-```
-
 # Marseille-Marignane
 
 ```{r}
@@ -110,21 +99,6 @@ meteo_plot_hours("07650", "Marseille-Marignane — 48 dernières heures")
 
 ```{r, fig.width = 5, fig.height = 6}
 meteo_plot_days(dplyr::filter(daily, station == "Marseille"), "Marseille-Marignane — 30 derniers jours")
-```
-
-# Chamonix (Les Praz)
-
-```{r}
-#| output: asis
-cat(meteo_stations$lieu[meteo_stations$slug == "chamonix"], " · [**Page détaillée →**](chamonix.html)\n")
-```
-
-```{r, fig.width = 5, fig.height = 6.5}
-meteo_plot_hours("07469", "Chamonix (Les Praz) — 48 dernières heures")
-```
-
-```{r, fig.width = 5, fig.height = 6}
-meteo_plot_days(dplyr::filter(daily, station == "Chamonix"), "Chamonix (Les Praz) — 30 derniers jours")
 ```
 
 # Samoëns
@@ -142,12 +116,22 @@ meteo_plot_hours("74258002", "Samoëns — 48 dernières heures")
 meteo_plot_days(dplyr::filter(daily, station == "Samoëns"), "Samoëns — 30 derniers jours")
 ```
 
-# Autres pages
+# Los Angeles (LAX)
 
-- [Paris-Montsouris : historique journalier](montsouris.html) · [historique horaire](montsouris-jour.html)
-- [Toutes les stations, hier](stations.html) · [Liste des stations Météo-France](station_list.html)
+```{r}
+#| output: asis
+cat(meteo_stations$lieu[meteo_stations$slug == "los-angeles"], " · [**Page détaillée →**](los-angeles.html)\n")
+```
 
-Source : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (relevés des stations Météo-France).
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("LAX", "Los Angeles (LAX) — 48 dernières heures")
+```
+
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Los Angeles"), "Los Angeles (LAX) — 30 derniers jours")
+```
+
+Sources : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (stations Météo-France) ; [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/) (stations ASOS/METAR hors de France).
 
 ```{r}
 #| output: asis

@@ -1,5 +1,5 @@
 ---
-title: "Météo — Lille-Lesquin"
+title: "Météo — Los Angeles (LAX)"
 lang: fr
 subtitle: '<img src="https://fgeerolf.com/data/logos/meteo.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Données - Météo'
 author:
@@ -31,7 +31,7 @@ invisible(Sys.setenv(TZ = "Europe/Paris"))
 source(here::here("code/meteo.R"))
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
                       dpi = 150, fig.align = "center", out.width = "560px")
-st <- meteo_station_info("lille")
+st <- meteo_station_info("los-angeles")
 h7 <- meteo_hourly(st$id, from = Sys.Date() - 7)
 daily <- meteo_daily(setNames(st$court, st$id), 400)
 last30 <- dplyr::filter(daily, date > Sys.Date() - 30)
@@ -45,13 +45,13 @@ cat(st$lieu, " · station ", st$id, "\n\n", meteo_now_md(h7), "\n", sep = "")
 # 7 derniers jours, heure par heure
 
 ```{r, fig.width = 5, fig.height = 9.5}
-meteo_plot_hours(h = h7, title = "Lille-Lesquin — 7 derniers jours", detail = TRUE)
+meteo_plot_hours(h = h7, title = "Los Angeles (LAX) — 7 derniers jours", detail = TRUE)
 ```
 
 # 30 derniers jours
 
 ```{r, fig.width = 5, fig.height = 6}
-meteo_plot_days(last30, "Lille-Lesquin — 30 derniers jours")
+meteo_plot_days(last30, "Los Angeles (LAX) — 30 derniers jours")
 ```
 
 # Par rapport à l'an dernier
@@ -63,7 +63,7 @@ meteo_plot_vs_last_year(daily, 30, paste("30 derniers jours vs mêmes jours en",
 # 12 derniers mois
 
 ```{r, fig.width = 5, fig.height = 6}
-meteo_plot_year(daily, "Lille-Lesquin — 12 derniers mois")
+meteo_plot_year(daily, "Los Angeles (LAX) — 12 derniers mois")
 ```
 
 # Tableaux
@@ -72,7 +72,7 @@ meteo_plot_year(daily, "Lille-Lesquin — 12 derniers mois")
 ## Heure par heure, 7 derniers jours
 
 ```{r}
-meteo_station_heure_par_heure(st$id, from = Sys.Date() - 7)
+meteo_table_hours(h7)
 ```
 :::
 
@@ -80,13 +80,13 @@ meteo_station_heure_par_heure(st$id, from = Sys.Date() - 7)
 ## Jour par jour, 30 derniers jours
 
 ```{r}
-meteo_station_last_days(st$id, 30)
+meteo_table_days(last30)
 ```
 :::
 
 [← Toutes les stations](index.html)
 
-Source : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (relevés des stations Météo-France).
+Sources : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (stations Météo-France) ; [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/) (stations ASOS/METAR hors de France).
 
 ```{r}
 #| output: asis
