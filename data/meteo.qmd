@@ -15,93 +15,184 @@ source(here::here("code", "meteo.R"))
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("index.qmd")'
 ## cd ~/iCloud/website/data; /usr/local/bin/R -e 'quarto::quarto_render("pouvoir-achat.qmd")'
 ## sh ~/iCloud/website/website_short.sh
+
+stations <- c("07156" = "Paris", "07157" = "Roissy", "07015" = "Lille", "07650" = "Marseille", "07490" = "Chamonix")
+daily <- meteo_daily(stations, 30)
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                      dpi = 150, fig.align = "center", out.width = "560px")
+```
+
+# Comparaison par jour
+
+## Températures maximales, 30 derniers jours
+
+```{r, fig.width = 4.2, fig.height = 9}
+meteo_plot_heatmap(daily, "tmax")
+```
+
+## Température moyenne
+
+```{r, fig.width = 5, fig.height = 4}
+meteo_plot_lines(daily, "tmoy")
 ```
 
 
 # Paris-Montsouris (07156)
 
-## Par heure, 2 derniers jours
+## 48 dernières heures
 
-```{r echo = F, message = F, warning = F}
-meteo_station_heure_par_heure("07156", from = Sys.Date() - 2)
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07156", "Paris-Montsouris — 48 dernières heures")
 ```
 
+::: {.callout-note collapse="true"}
+## Tableau heure par heure
 
+```{r}
+meteo_station_heure_par_heure("07156", from = Sys.Date() - 2)
+```
+:::
 
 ## 30 derniers jours
 
-```{r echo = F, message = F, warning = F}
-meteo_station_last_days("07156", 30)
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Paris"), "Paris-Montsouris — 30 derniers jours")
 ```
 
+::: {.callout-note collapse="true"}
+## Tableau jour par jour
+
+```{r}
+meteo_station_last_days("07156", 30)
+```
+:::
+
+
+# Roissy CDG (07157)
+
+## 48 dernières heures
+
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07157", "Roissy CDG — 48 dernières heures")
+```
+
+::: {.callout-note collapse="true"}
+## Tableau heure par heure
+
+```{r}
+meteo_station_heure_par_heure("07157", from = Sys.Date() - 2)
+```
+:::
+
+## 30 derniers jours
+
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Roissy"), "Roissy CDG — 30 derniers jours")
+```
+
+::: {.callout-note collapse="true"}
+## Tableau jour par jour
+
+```{r}
+meteo_station_last_days("07157", 30)
+```
+:::
 
 
 # Lille (07015)
 
-## Par heure, 2 derniers jours
+## 48 dernières heures
 
-```{r echo = F, message = F, warning = F}
-meteo_station_heure_par_heure("07015", from = Sys.Date() - 2)
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07015", "Lille — 48 dernières heures")
 ```
 
+::: {.callout-note collapse="true"}
+## Tableau heure par heure
 
+```{r}
+meteo_station_heure_par_heure("07015", from = Sys.Date() - 2)
+```
+:::
 
 ## 30 derniers jours
 
-```{r echo = F, message = F, warning = F}
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Lille"), "Lille — 30 derniers jours")
+```
+
+::: {.callout-note collapse="true"}
+## Tableau jour par jour
+
+```{r}
 meteo_station_last_days("07015", 30)
 ```
+:::
 
-# Montagne
-
-## Chamonix (07490)
-
-### Par heure, 2 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_heure_par_heure("07490", from = Sys.Date() - 2)
-```
-
-
-
-### 30 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_last_days("07490", 30)
-```
-
-
-# Région Parisienne
-
-## Roissy CDG (07157)
-
-### Par heure, 2 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_heure_par_heure("07157", from = Sys.Date() - 2)
-```
-
-
-
-### 30 derniers jours
-
-```{r echo = F, message = F, warning = F}
-meteo_station_last_days("07157", 30)
-```
 
 # Marseille Marignane (07650)
 
-## Par heure, 2 derniers jours
+## 48 dernières heures
 
-```{r echo = F, message = F, warning = F}
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07650", "Marseille Marignane — 48 dernières heures")
+```
+
+::: {.callout-note collapse="true"}
+## Tableau heure par heure
+
+```{r}
 meteo_station_heure_par_heure("07650", from = Sys.Date() - 2)
 ```
+:::
 
 ## 30 derniers jours
 
-```{r echo = F, message = F, warning = F}
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Marseille"), "Marseille Marignane — 30 derniers jours")
+```
+
+::: {.callout-note collapse="true"}
+## Tableau jour par jour
+
+```{r}
 meteo_station_last_days("07650", 30)
 ```
+:::
+
+
+# Chamonix (07490)
+
+## 48 dernières heures
+
+```{r, fig.width = 5, fig.height = 6.5}
+meteo_plot_hours("07490", "Chamonix — 48 dernières heures")
+```
+
+::: {.callout-note collapse="true"}
+## Tableau heure par heure
+
+```{r}
+meteo_station_heure_par_heure("07490", from = Sys.Date() - 2)
+```
+:::
+
+## 30 derniers jours
+
+```{r, fig.width = 5, fig.height = 6}
+meteo_plot_days(dplyr::filter(daily, station == "Chamonix"), "Chamonix — 30 derniers jours")
+```
+
+::: {.callout-note collapse="true"}
+## Tableau jour par jour
+
+```{r}
+meteo_station_last_days("07490", 30)
+```
+:::
 
 
 ```{r, echo = F}
