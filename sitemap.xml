@@ -1029,10 +1029,6 @@
     <lastmod>2026-09-22</lastmod>
   </url>
   <url>
-    <loc>https://fgeerolf.com/data/circana/</loc>
-    <lastmod>2026-09-22</lastmod>
-  </url>
-  <url>
     <loc>https://fgeerolf.com/data/circana/iri.html</loc>
     <lastmod>2026-09-22</lastmod>
   </url>
@@ -4302,10 +4298,6 @@
     <lastmod>2026-10-10</lastmod>
   </url>
   <url>
-    <loc>https://fgeerolf.com/data/fred/fred_MD.html</loc>
-    <lastmod>2023-12-02</lastmod>
-  </url>
-  <url>
     <loc>https://fgeerolf.com/data/fred/gdp.html</loc>
     <lastmod>2026-10-10</lastmod>
   </url>
@@ -6158,28 +6150,12 @@
     <lastmod>2026-10-10</lastmod>
   </url>
   <url>
-    <loc>https://fgeerolf.com/data/insee/presidentielles_2002.html</loc>
-    <lastmod>2026-09-02</lastmod>
-  </url>
-  <url>
-    <loc>https://fgeerolf.com/data/insee/presidentielles_2017.html</loc>
-    <lastmod>2026-09-02</lastmod>
-  </url>
-  <url>
     <loc>https://fgeerolf.com/data/insee/PRINCIPAUX-AGREGATS-ENF.html</loc>
     <lastmod>2026-10-10</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/reference_IRIS_geo2019.html</loc>
     <lastmod>2026-10-10</lastmod>
-  </url>
-  <url>
-    <loc>https://fgeerolf.com/data/insee/referendum_1992.html</loc>
-    <lastmod>2026-09-02</lastmod>
-  </url>
-  <url>
-    <loc>https://fgeerolf.com/data/insee/referendum_2005.html</loc>
-    <lastmod>2026-09-02</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/insee/REVALORISATION-PENSIONS.html</loc>
@@ -8245,10 +8221,6 @@
     <lastmod>2026-09-09</lastmod>
   </url>
   <url>
-    <loc>https://fgeerolf.com/data/log/</loc>
-    <lastmod>2026-10-10</lastmod>
-  </url>
-  <url>
     <loc>https://fgeerolf.com/data/log/microprocessor-trend-data.html</loc>
     <lastmod>2026-10-10</lastmod>
   </url>
@@ -9605,10 +9577,6 @@
   <url>
     <loc>https://fgeerolf.com/data/phillips.html</loc>
     <lastmod>2026-09-09</lastmod>
-  </url>
-  <url>
-    <loc>https://fgeerolf.com/data/phillips/</loc>
-    <lastmod>2026-10-10</lastmod>
   </url>
   <url>
     <loc>https://fgeerolf.com/data/phillips/classification-ER-coarse.html</loc>

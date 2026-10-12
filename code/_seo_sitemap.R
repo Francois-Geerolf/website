@@ -156,8 +156,19 @@ for (p in tracked_docs) {
       else as_day(file.info(file.path(root, p))$mtime))
 }
 
+# --- known-dead URLs ----------------------------------------------------
+# Search Console "Introuvable (404)" / "403" (checked live 2026-10-12): the
+# catalog (_datasets.RData) still lists them but the page is gone, or the
+# source dir has no index.html. Drop them until they are rebuilt.
+dead <- paste0(BASE, c(
+  "/data/insee/presidentielles_2002.html", "/data/insee/presidentielles_2017.html",
+  "/data/insee/referendum_1992.html",      "/data/insee/referendum_2005.html",
+  "/data/fred/fred_MD.html",
+  "/data/circana/", "/data/log/", "/data/phillips/"))
+
 # --- de-dupe, write -----------------------------------------------------
 m <- do.call(rbind, urls)
+m <- m[!m[, 1] %in% dead, , drop = FALSE]
 m <- m[!duplicated(m[, 1]), , drop = FALSE]
 m <- m[order(m[, 1]), , drop = FALSE]
 
