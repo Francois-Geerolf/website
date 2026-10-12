@@ -707,38 +707,80 @@ meteo_table_days <- function(daily) {
     meteo_gt(15)
 }
 
+# meteo_reactable : tableau standard du dossier (recherche, pagination, wrap mobile) --------
+
+meteo_reactable <- function(df, html = character(), page_size = 10, columns = list()) {
+  cols <- utils::modifyList(
+    stats::setNames(lapply(html, \(x) reactable::colDef(html = TRUE)), html), columns)
+  reactable::reactable(
+    df,
+    searchable = TRUE, pagination = TRUE, defaultPageSize = page_size,
+    showPageSizeOptions = TRUE, pageSizeOptions = c(10, 25, 50, 100),
+    compact = TRUE, resizable = TRUE, highlight = TRUE, wrap = TRUE,
+    defaultColDef = reactable::colDef(
+      align = "left", na = "",
+      headerStyle = list(fontWeight = "bold"),
+      style = list(whiteSpace = "normal", wordBreak = "break-word")
+    ),
+    columns = cols
+  )
+}
+
 # meteo_pages_reactable : liste des pages du répertoire data/meteo --------
+# (les pages de redirection -- anciennes URL -- sont ignorées)
 
 meteo_pages_reactable <- function(dir = here::here("data", "meteo")) {
   qmd <- setdiff(list.files(dir, "\\.qmd$"), "index.qmd")
+  qmd <- qmd[!vapply(file.path(dir, qmd), \(f) any(grepl("http-equiv", readLines(f, warn = FALSE))), TRUE)]
   title_of <- \(f) {
     l <- grep("^title:", readLines(file.path(dir, f), n = 5, warn = FALSE), value = TRUE)[1]
     gsub('^title:\\s*|"', "", l)
   }
   tibble::tibble(slug = sub("\\.qmd$", "", qmd),
-                 Title = vapply(qmd, title_of, ""),
-                 updated = as.Date(file.mtime(file.path(dir, qmd)))) |>
+                 Title = vapply(qmd, title_of, "")) |>
     dplyr::left_join(dplyr::select(meteo_stations, slug, Lieu = lieu, source), by = "slug") |>
     dplyr::mutate(
       Title = sub("^Météo — ", "", Title),
       Source = dplyr::recode(source, meteo60 = "Météo-France (meteo60)",
                              iem = "NOAA ASOS (Iowa Mesonet)", .missing = "Météo-France"),
-      Type = dplyr::if_else(is.na(source), "Données", "Station"),
       page = sprintf('<a href="https://fgeerolf.com/data/meteo/%s.html">%s</a>', slug, slug)
     ) |>
-    dplyr::arrange(Type == "Données", match(slug, meteo_stations$slug), slug) |>
+    dplyr::arrange(is.na(source), match(slug, meteo_stations$slug), slug) |>
     dplyr::select(page, Title, Lieu, Source) |>
-    reactable::reactable(
-      searchable = TRUE, pagination = TRUE, defaultPageSize = 10,
-      compact = TRUE, resizable = TRUE, highlight = TRUE, wrap = TRUE,
-      defaultColDef = reactable::colDef(
-        align = "left", na = "",
-        headerStyle = list(fontWeight = "bold"),
-        style = list(whiteSpace = "normal", wordBreak = "break-word")
-      ),
-      columns = list(
-        page  = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 170),
-        Title = reactable::colDef(minWidth = 140)
-      )
-    )
+    meteo_reactable(html = "page", columns = list(
+      page  = reactable::colDef(html = TRUE, minWidth = 90, maxWidth = 170),
+      Title = reactable::colDef(minWidth = 140)))
+}
+
+# meteo_all_stations : relevés d'un jour pour toutes les stations meteo60 --------
+
+meteo_all_stations <- function(date = Sys.Date() - 1) {
+  # Le CSV a un « ; » final dans l'entête (colonne vide) alors que les lignes
+  # n'ont que 6 champs : on saute l'entête et on nomme les colonnes nous-mêmes.
+  readr::read_delim(
+    paste0("https://www.meteo60.fr/stations-releves/jour-csv?date=", format(date, "%d/%m/%Y")),
+    delim = ";", skip = 1,
+    col_names = c("Station", "tmin", "tmax", "tmoy", "pluie", "soleil"),
+    col_types = readr::cols(.default = "c"), show_col_types = FALSE
+  ) |>
+    dplyr::transmute(
+      Dépt = stringr::str_extract(Station, "^[0-9AB]{2,3}(?= - )"),
+      Station = stringr::str_squish(sub("^[0-9AB]{2,3} - ", "", Station)),
+      `T° min` = meteo_num(sub("\\*$", "", tmin)), `T° max` = meteo_num(sub("\\*$", "", tmax)),
+      `T° moy` = meteo_num(sub("\\*$", "", tmoy)), `Pluie mm` = meteo_num(pluie),
+      `Soleil h` = suppressWarnings(round(
+        lubridate::period_to_seconds(lubridate::hm(sub("h", ":", soleil))) / 3600, 1))
+    ) |>
+    dplyr::filter(!is.na(`T° max`) | !is.na(`Pluie mm`))
+}
+
+meteo_extremes_md <- function(d) {
+  top <- \(v, f, unit) {
+    r <- d[which(f(d[[v]]) == d[[v]])[1], ]
+    sprintf("%s (%s) : %s%s", r$Station, r$Dépt, format(r[[v]], decimal.mark = ","), unit)
+  }
+  paste0("- **Plus chaud** : ", top("T° max", \(x) max(x, na.rm = TRUE), "°"), "\n",
+         "- **Plus froid** : ", top("T° min", \(x) min(x, na.rm = TRUE), "°"), "\n",
+         "- **Plus arrosé** : ", top("Pluie mm", \(x) max(x, na.rm = TRUE), " mm"), "\n",
+         "- **Plus ensoleillé** : ", top("Soleil h", \(x) max(x, na.rm = TRUE), " h"), "\n")
 }

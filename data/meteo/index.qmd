@@ -24,14 +24,15 @@ format:
 editor: source
 ---
 
+<!-- Généré par data/meteo/_pages.R : modifier le générateur, pas ce fichier. -->
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
-source(here::here("code/meteo.R"))
+source(here::here("code", "meteo.R"))
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
                       dpi = 150, fig.align = "center", out.width = "560px")
-# Mise à jour automatique : data/**/*.qmd est recompilé par .github/workflows/themes.yml
 stations <- setNames(meteo_stations$court, meteo_stations$id)
 daily <- meteo_daily(stations, 30)
 ```
@@ -137,3 +138,4 @@ Sources : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (stations Mét�
 #| output: asis
 page_compile_line()
 ```
+

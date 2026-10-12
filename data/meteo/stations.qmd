@@ -1,5 +1,5 @@
 ---
-title: Stations
+title: "Météo — Toutes les stations, hier"
 lang: fr
 subtitle: '<img src="https://fgeerolf.com/data/logos/meteo.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Données - Météo'
 author:
@@ -12,7 +12,7 @@ format:
     theme: [flatly, ../_fgeerolf.scss]
     embed-resources: false
     other-links:
-      - text: "Données Météo"
+      - text: "Toutes les stations"
         href: "https://fgeerolf.com/data/meteo/"
       - text: "Autres données"
         href: "https://fgeerolf.com/data/"
@@ -24,38 +24,35 @@ format:
 editor: source
 ---
 
-```{r, echo = FALSE, message = FALSE}
+<!-- Généré par data/meteo/_pages.R : modifier le générateur, pas ce fichier. -->
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 source(here::here("code", "meteo.R"))
-load(here::here("data", "meteo", "station_list.RData"))
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                      dpi = 150, fig.align = "center", out.width = "560px")
+d <- meteo_all_stations(Sys.Date() - 1)
 ```
 
-
-
+```{r}
+#| output: asis
+cat("Relevés du ", format(Sys.Date() - 1, "%A %d %B %Y"), " pour ", nrow(d), " stations Météo-France.\n\n", meteo_extremes_md(d), sep = "")
+```
 
 # Toutes les stations
 
-## Tous
-
 ```{r}
-# Le CSV meteo60 a un « ; » final dans l'entête (colonne vide « ...7 ») alors que
-# les lignes de données n'ont que 6 champs : on saute l'entête et on fournit les
-# noms de colonnes nous-mêmes pour éviter les messages de renommage / parsing.
-read_delim(
-  paste0("https://www.meteo60.fr/stations-releves/jour-csv?date=",
-         format(Sys.Date() - days(1), "%d/%m/%Y")),
-  delim = ";",
-  skip = 1,
-  col_names = c("Station", "Temperature_mini", "Temperature_maxi",
-                "Temperature_moy", "Precipitations", "Ensoleillement"),
-  col_types = readr::cols(.default = "c"),
-  show_col_types = FALSE
-) %>%
-  print_table_conditional()
+meteo_reactable(d, page_size = 25, columns = list(
+  Dépt = reactable::colDef(maxWidth = 60),
+  Station = reactable::colDef(minWidth = 130)))
 ```
 
+Sources : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (stations Météo-France) ; [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/) (stations ASOS/METAR hors de France).
 
-
+```{r}
+#| output: asis
+page_compile_line()
+```
 

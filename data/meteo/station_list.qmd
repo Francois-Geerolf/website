@@ -1,5 +1,5 @@
 ---
-title: Station list
+title: "Météo — Liste des stations Météo-France"
 lang: fr
 subtitle: '<img src="https://fgeerolf.com/data/logos/meteo.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Données - Météo'
 author:
@@ -12,7 +12,7 @@ format:
     theme: [flatly, ../_fgeerolf.scss]
     embed-resources: false
     other-links:
-      - text: "Données Météo"
+      - text: "Toutes les stations"
         href: "https://fgeerolf.com/data/meteo/"
       - text: "Autres données"
         href: "https://fgeerolf.com/data/"
@@ -24,48 +24,53 @@ format:
 editor: source
 ---
 
-```{r, echo = FALSE, message = FALSE}
+<!-- Généré par data/meteo/_pages.R : modifier le générateur, pas ce fichier. -->
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 source(here::here("_rinit.R"))
 invisible(Sys.setlocale("LC_TIME", "fr_FR.UTF-8"))
 invisible(Sys.setenv(TZ = "Europe/Paris"))
 source(here::here("code", "meteo.R"))
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                      dpi = 150, fig.align = "center", out.width = "560px")
 load(here::here("data", "meteo", "station_list.RData"))
+sl <- station_list |>
+  dplyr::transmute(
+    Station = stringr::str_to_title(.data[[names(station_list)[4]]]),
+    Dépt = substr(`NUM_POSTE / NUMER_STA`, 1, 2),
+    `Id OMM` = Id_OMM, `N° poste` = `NUM_POSTE / NUMER_STA`,
+    `Altitude m` = as.numeric(`ALTITUDE / ELEVATION`),
+    Ouverture = as.Date(`DATE OUVERTURE / DATA SERIES START`, "%Y%m%d"),
+    Type = `TYPE POSTE / STATION TYPE`
+  ) |>
+  dplyr::arrange(Dépt, Station)
 ```
 
-# Info
+Liste des stations temps réel publiée par Météo-France (juillet 2014, `station_list.R`). L'identifiant meteo60 d'une station est son **Id OMM** s'il existe, sinon son **N° poste** (ex. Samoëns : 74258002).
 
-## Types de stations
+**Type de poste**
 
-Type poste / Station type:
+- **0** : stations synoptiques Radome, temps réel, expertise à J+1
+- **1** : stations Radome du Réseau Régional Auto (RRA), temps réel, expertise à J+1
+- **2** : stations automatiques non Radome, temps réel, expertise à J+1
+- **3** : stations automatiques non Radome, temps réel, expertise à J+2
 
-- 0	Stations synoptiques Radome / acquisition en temps réel / expertise à J+1
-	Synoptic Radome stations / real-time / data validation at D+1
-- 1	Stations Radome du Réseau Régional Auto (RRA) acquisition en temps réel, expertise à J+1
-	Non synoptic Radome stations / real-time / data validation at D+1
-- 2	Stations automatiques non Radome / acquisition en temps réel / expertise à J+1
-	Automatic station / real-time / data validation at D+1
-- 3	Stations automatiques non Radome avec acquisition en temps réel et expertise à J+2
-	Automatic station / real-time / data validation at D+2
-
-# Stations
-
-## OMM
+# Stations OMM
 
 ```{r}
-station_list %>%
-  filter(!is.na(Id_OMM)) %>%
-  select(1, 2, 3, 4, 8) %>%
-  arrange(`DATE OUVERTURE / DATA SERIES START`) %>%
-  print_table_conditional()
+meteo_reactable(dplyr::filter(sl, !is.na(`Id OMM`)), page_size = 25)
 ```
 
-## Toutes
-
+# Toutes les stations
 
 ```{r}
-station_list %>%
-  select(1, 2, 3, 4, 8) %>%
-  arrange(`DATE OUVERTURE / DATA SERIES START`) %>%
-  print_table_conditional()
+meteo_reactable(sl, page_size = 25)
+```
+
+Sources : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (stations Météo-France) ; [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/) (stations ASOS/METAR hors de France).
+
+```{r}
+#| output: asis
+page_compile_line()
 ```
 

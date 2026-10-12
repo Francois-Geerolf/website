@@ -1,0 +1,8 @@
+---
+title: "Météo"
+include-in-header:
+  text: '<meta http-equiv="refresh" content="0; url=index.html"><link rel="canonical" href="https://fgeerolf.com/data/meteo/index.html">'
+---
+
+Cette page a déménagé : [index.html](index.html).
+

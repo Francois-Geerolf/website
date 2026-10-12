@@ -1,0 +1,7 @@
+# Pages météo recompilées toutes les heures avec des noms d'images fixes
+# (unnamed-chunk-N-1.png) : cache court pour ne pas servir d'anciens graphiques.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|png)$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+</IfModule>
