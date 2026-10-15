@@ -1,6 +1,8 @@
 ---
 title: "Météo — Toutes les stations, hier"
 lang: fr
+filters:
+  - ../../code/genderize-fr.lua
 subtitle: '<img src="https://fgeerolf.com/data/logos/meteo.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Données - Météo'
 author:
   - name: François Geerolf

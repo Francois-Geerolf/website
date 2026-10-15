@@ -20,6 +20,8 @@ redirects <- c("montsouris"      = "paris-montsouris.html",
 yaml <- function(title, back = "Toutes les stations") paste0('---
 title: "', title, '"
 lang: fr
+filters:
+  - ../../code/genderize-fr.lua
 subtitle: \'<img src="https://fgeerolf.com/data/logos/meteo.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Données - Météo\'
 author:
   - name: François Geerolf
@@ -81,8 +83,11 @@ write_qmd <- function(name, txt) {
 idx <- paste0(
   yaml("Météo", back = "Données Météo"),
   setup('stations <- setNames(meteo_stations$court, meteo_stations$id)
-daily <- meteo_daily(stations, 30)'),
-  "\n# Pages\n", chunk("meteo_pages_reactable()"),
+daily <- meteo_daily(stations, 30)
+hs <- meteo_hourly_all(Sys.Date() - 2)'),
+  "\n# En ce moment\n",
+  chunk("cat(meteo_freshness_md(hs), \"\\n\")", asis = TRUE),
+  chunk("meteo_now_table(hs)"),
   "\n# Comparaison par jour\n\n## Températures maximales, 30 derniers jours\n",
   chunk('meteo_plot_heatmap(daily, "tmax")', 5, 9.5),
   "\n## Température moyenne\n",
@@ -90,9 +95,10 @@ daily <- meteo_daily(stations, 30)'),
   paste0(purrr::pmap_chr(meteo_stations, \(id, slug, court, nom, ...) paste0(
     "\n# ", nom, "\n",
     chunk(sprintf('cat(meteo_stations$lieu[meteo_stations$slug == "%s"], " · [**Page détaillée →**](%s.html)\\n")', slug, slug), asis = TRUE),
-    chunk(sprintf('meteo_plot_hours("%s", "%s — 48 dernières heures")', id, nom), 5, 6.5),
+    chunk(sprintf('meteo_plot_hours(h = hs[["%s"]], title = "%s — 48 dernières heures")', id, nom), 5, 6.5),
     chunk(sprintf('meteo_plot_days(dplyr::filter(daily, station == "%s"), "%s — 30 derniers jours")', court, nom), 5, 6)
   )), collapse = ""),
+  "\n# Toutes les pages\n", chunk("meteo_pages_reactable()"),
   footer)
 write_qmd("index", idx)
 

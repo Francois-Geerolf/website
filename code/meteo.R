@@ -19,7 +19,10 @@ meteo_station_heure_par_heure <- function(station_id = "07156",
         format(date, "%d/%m/%Y")
       )
     ) %>%
-    mutate(data = purrr::map(url, readr::read_delim, show_col_types = FALSE)) %>%
+    # tout en texte : une colonne vide un jour (lue en NA logique/numerique) et remplie
+    # le lendemain faisait echouer l'empilement des jours (ex. Point_rosee a Marignane)
+    mutate(data = purrr::map(url, readr::read_delim, show_col_types = FALSE,
+                             col_types = readr::cols(.default = "c"))) %>%
     mutate(data = purrr::map(data, \(df) {
       df$Vent_moyen <- as.character(df$Vent_moyen)
       df$Nebulosite <- as.character(df$Nebulosite)
@@ -605,6 +608,63 @@ meteo_now_md <- function(h) {
   )
   paste0("Dernière observation, ", format(l$t, "%A %d %B à %Hh%M (heure locale)"), " : ",
          paste(parts, collapse = " · "))
+}
+
+# meteo_hourly_all : relevés horaires de toutes les stations, chargés une fois --------
+# (réutilisés par l'en-tête « En ce moment » et les graphiques 48 h de l'index ;
+# une station en panne donne un tableau vide au lieu de faire échouer la page)
+
+meteo_hourly_all <- function(from = Sys.Date() - 2) {
+  purrr::map(stats::setNames(meteo_stations$id, meteo_stations$id), \(id)
+    tryCatch(meteo_hourly(id, from = from),
+             error = function(e) tibble::tibble(t = as.POSIXct(character()), temp = numeric())))
+}
+
+# meteo_freshness_md : date des derniers relevés + heure de mise à jour de la page --------
+
+meteo_freshness_md <- function(hs) {
+  last <- purrr::map(hs, \(h) if (nrow(h)) max(h$t) else NA)
+  last <- last[!vapply(last, \(x) all(is.na(x)), TRUE)]
+  if (!length(last)) return("Aucun relevé récent disponible.")
+  latest <- lubridate::with_tz(do.call(max, unname(last)), "Europe/Paris")
+  now <- lubridate::with_tz(Sys.time(), "Europe/Paris")
+  paste0("**Relevés les plus récents : ", format(latest, "%A %d %B %Y à %Hh%M"),
+         "** (heure de Paris). Page mise à jour automatiquement toutes les heures ",
+         "— dernière mise à jour le ", format(now, "%d/%m à %Hh%M"), ".")
+}
+
+# meteo_now_table : dernière observation de chaque station --------
+
+meteo_now_table <- function(hs, stale_hours = 3) {
+  now <- Sys.time()
+  rows <- purrr::pmap(meteo_stations, \(id, slug, nom, tz, ...) {
+    h <- hs[[id]]
+    if (is.null(h) || !nrow(h)) return(NULL)
+    l <- dplyr::slice_tail(h, n = 1)
+    age <- as.numeric(difftime(now, l$t, units = "hours"))
+    tibble::tibble(
+      Station = sprintf("[%s](%s.html)", nom, slug),
+      `Relevé (heure locale)` = paste0(format(lubridate::with_tz(l$t, tz), "%a %d %b, %Hh%M"),
+                                       if (age > stale_hours) " ⚠️" else ""),
+      `T°` = round(l$temp, 1),
+      `Hum. %` = round(l$humidite),
+      `Vent km/h` = dplyr::if_else(is.na(l$vent), NA_character_,
+                                   paste0(round(l$vent), dplyr::if_else(is.na(l$rafales), "",
+                                                                        paste0(" (raf. ", round(l$rafales), ")")))),
+      `Pluie 24 h mm` = round(sum(h$pluie[h$t > l$t - 24 * 3600], na.rm = TRUE), 1)
+    )
+  })
+  d <- dplyr::bind_rows(rows)
+  d |>
+    gt::gt() |>
+    gt::fmt_markdown(columns = Station) |>
+    gt::sub_missing(missing_text = "–") |>
+    gt::data_color(columns = `T°`, fn = scales::col_numeric(meteo_temp_pal, domain = c(-5, 35))) |>
+    gt::cols_align("center", -Station) |>
+    gt::tab_source_note(gt::md(sprintf(
+      "⚠️ : dernier relevé de plus de %d h au moment de la mise à jour (station en retard ou en panne).",
+      stale_hours))) |>
+    gt::tab_options(table.width = "100%", quarto.disable_processing = TRUE)
 }
 
 # meteo_plot_year : une station, 12 derniers mois --------

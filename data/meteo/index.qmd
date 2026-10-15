@@ -1,6 +1,8 @@
 ---
 title: "Météo"
 lang: fr
+filters:
+  - ../../code/genderize-fr.lua
 subtitle: '<img src="https://fgeerolf.com/data/logos/meteo.png" alt="" style="height:1em;width:1em;object-fit:contain;vertical-align:-0.15em;margin-right:.35em">Données - Météo'
 author:
   - name: François Geerolf
@@ -35,12 +37,18 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
                       dpi = 150, fig.align = "center", out.width = "560px")
 stations <- setNames(meteo_stations$court, meteo_stations$id)
 daily <- meteo_daily(stations, 30)
+hs <- meteo_hourly_all(Sys.Date() - 2)
 ```
 
-# Pages
+# En ce moment
 
 ```{r}
-meteo_pages_reactable()
+#| output: asis
+cat(meteo_freshness_md(hs), "\n")
+```
+
+```{r}
+meteo_now_table(hs)
 ```
 
 # Comparaison par jour
@@ -65,7 +73,7 @@ cat(meteo_stations$lieu[meteo_stations$slug == "paris-montsouris"], " · [**Page
 ```
 
 ```{r, fig.width = 5, fig.height = 6.5}
-meteo_plot_hours("07156", "Paris-Montsouris — 48 dernières heures")
+meteo_plot_hours(h = hs[["07156"]], title = "Paris-Montsouris — 48 dernières heures")
 ```
 
 ```{r, fig.width = 5, fig.height = 6}
@@ -80,7 +88,7 @@ cat(meteo_stations$lieu[meteo_stations$slug == "ile-de-batz"], " · [**Page dét
 ```
 
 ```{r, fig.width = 5, fig.height = 6.5}
-meteo_plot_hours("07116", "Île de Batz — 48 dernières heures")
+meteo_plot_hours(h = hs[["07116"]], title = "Île de Batz — 48 dernières heures")
 ```
 
 ```{r, fig.width = 5, fig.height = 6}
@@ -95,7 +103,7 @@ cat(meteo_stations$lieu[meteo_stations$slug == "marseille"], " · [**Page détai
 ```
 
 ```{r, fig.width = 5, fig.height = 6.5}
-meteo_plot_hours("07650", "Marseille-Marignane — 48 dernières heures")
+meteo_plot_hours(h = hs[["07650"]], title = "Marseille-Marignane — 48 dernières heures")
 ```
 
 ```{r, fig.width = 5, fig.height = 6}
@@ -110,7 +118,7 @@ cat(meteo_stations$lieu[meteo_stations$slug == "samoens"], " · [**Page détaill
 ```
 
 ```{r, fig.width = 5, fig.height = 6.5}
-meteo_plot_hours("74258002", "Samoëns — 48 dernières heures")
+meteo_plot_hours(h = hs[["74258002"]], title = "Samoëns — 48 dernières heures")
 ```
 
 ```{r, fig.width = 5, fig.height = 6}
@@ -125,11 +133,17 @@ cat(meteo_stations$lieu[meteo_stations$slug == "los-angeles"], " · [**Page dét
 ```
 
 ```{r, fig.width = 5, fig.height = 6.5}
-meteo_plot_hours("LAX", "Los Angeles (LAX) — 48 dernières heures")
+meteo_plot_hours(h = hs[["LAX"]], title = "Los Angeles (LAX) — 48 dernières heures")
 ```
 
 ```{r, fig.width = 5, fig.height = 6}
 meteo_plot_days(dplyr::filter(daily, station == "Los Angeles"), "Los Angeles (LAX) — 30 derniers jours")
+```
+
+# Toutes les pages
+
+```{r}
+meteo_pages_reactable()
 ```
 
 Sources : [meteo60.fr](https://www.meteo60.fr/stations-releves/) (stations Météo-France) ; [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/) (stations ASOS/METAR hors de France).
