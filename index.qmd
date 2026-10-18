@@ -67,6 +67,10 @@ Revision requested at American Economic Review
 
 {{< include working-papers/en/Geerolf2020.qmd >}}
 
+{{< include working-papers/en/Geerolf2026b.qmd >}}
+
+{{< include working-papers/en/Geerolf2026a.qmd >}}
+
 # Publications 
 
 ## Français
