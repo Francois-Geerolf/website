@@ -129,7 +129,13 @@ Revision requested at American Economic Review
 
 ## English
 
+{{< include publications/en/Blot2026b.qmd >}}
+
+{{< include publications/en/Blot2026a.qmd >}}
+
 {{< include publications/en/Creel2025.qmd >}}
+
+{{< include publications/en/Blot2025b.qmd >}}
 
 {{< include publications/en/Blot2025.qmd >}}
 
