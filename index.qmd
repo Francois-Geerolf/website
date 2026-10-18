@@ -36,7 +36,19 @@ Economist, OFCE (Observatoire Français des Conjonctures Economiques)
 
 Macroeconomics, Finance, Inflation, Housing, Pareto
 
-# Research
+# Documents de travail / Working Papers
+
+## Français
+
+{{< include working-papers/fr/Geerolf2026e.qmd >}}
+
+{{< include working-papers/fr/Geerolf2026b.qmd >}}
+
+{{< include working-papers/fr/Geerolf2026a.qmd >}}
+
+{{< include working-papers/fr/Geerolf2025b.qmd >}}
+
+## English
 
 {{< include working-papers/en/Geerolf2017.qmd >}}
 Revision requested at American Economic Review
@@ -55,9 +67,9 @@ Revision requested at American Economic Review
 
 {{< include working-papers/en/Geerolf2020.qmd >}}
 
-{{< include publications/en/Geerolf2022c.qmd >}}
+# Publications 
 
-# Travaux en Français
+## Français
 
 {{< include publications/fr/Geerolf2026b.qmd >}}
 
@@ -111,7 +123,7 @@ Revision requested at American Economic Review
 
 {{< include publications/fr/Geerolf2018a.qmd >}}
 
-# Other in English
+## English
 
 {{< include publications/en/Creel2025.qmd >}}
 
@@ -140,6 +152,8 @@ Revision requested at American Economic Review
 {{< include publications/en/Blot2022.qmd >}}
 
 {{< include publications/en/Geerolf2022b.qmd >}}
+
+{{< include publications/en/Geerolf2022c.qmd >}}
 
 {{< include publications/en/Geerolf2022d.qmd >}}
 
@@ -177,13 +191,26 @@ Revision requested at American Economic Review
 
 {{< include public-debate/fr/Geerolf2022a.qmd >}}
 
-# Teaching (English)
+# Enseignement / Teaching
+
+## Français
+
+{{< include teaching/fr/Geerolf2025.qmd >}}
+
+{{< include teaching/fr/Geerolf2024.qmd >}}
+
+## English
+
+{{< include teaching/en/Geerolf2022.qmd >}}
+
+{{< include teaching/en/Geerolf2021.qmd >}}
 
 {{< include teaching/en/Geerolf2014b.qmd >}}
 
 {{< include teaching/en/Geerolf2014a.qmd >}}
 
 {{< include teaching/en/Geerolf2016.qmd >}}
+
 
 # Ph.D. Dissertation
 
@@ -203,7 +230,7 @@ Bibliographie. [[<i class="fa-solid fa-book"></i> en](https://fgeerolf.com/bibli
 
 # Contact
 
-Email: francois.geerolf@polytechnique.org
+Email: francois.geerolf@sciencespo.fr
 
 OFCE  
 10, place de Catalogne  
