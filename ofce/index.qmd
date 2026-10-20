@@ -29,122 +29,237 @@ editor: source
 
 [![](../files/OFCE_(logo).png){width=20%}](https://fgeerolf.com/ofce/)
 
+# Documents de travail
+
+## Français
+
+<!-- Un IPCH alternatif -->
+<!-- {{< include ../working-papers/fr/Geerolf2026i.qmd >}} -->
+
+<!-- Ce que vaut un euro chez le pharmacien -->
+{{< include ../working-papers/fr/Geerolf2026f.qmd >}}
+
+<!-- Des inégalités “historiquement élevées” ? -->
+<!-- {{< include ../working-papers/fr/Geerolf2026l.qmd >}} -->
+
+<!-- Les mensonges de la taxe Zucman -->
+<!-- {{< include ../working-papers/fr/Geerolf2026k.qmd >}} -->
+
+<!-- CAS Pensions : l'Insee et la convention budgétaire -->
+<!-- {{< include ../working-papers/fr/Geerolf2026j.qmd >}} -->
+
+<!-- Mesurer l'évolution des salaires -->
+{{< include ../working-papers/fr/Geerolf2026h.qmd >}}
+
+<!-- Mesurer l'évolution des salaires dans le secteur privé -->
+{{< include ../working-papers/fr/Geerolf2026g.qmd >}}
+
+<!-- Mesurer l'évolution des salaires dans la fonction publique -->
+{{< include ../working-papers/fr/Geerolf2026e.qmd >}}
+
+<!-- Pouvoir d'achat : avant le vent, le thermomètre -->
+{{< include ../working-papers/fr/Geerolf2026d.qmd >}}
+
+<!-- France-Allemagne : ce que les prix mesurés doivent aux méthodes -->
+<!-- {{< include ../working-papers/fr/Geerolf2026c.qmd >}} -->
+
+<!-- Pourquoi l'indice des loyers d'habitation (ILH) de l'Insee sous-estime la hausse des loyers -->
+{{< include ../working-papers/fr/Geerolf2026b.qmd >}}
+
+<!-- Effet qualité et mesure de l'inflation -->
+{{< include ../working-papers/fr/Geerolf2026a.qmd >}}
+
+<!-- Le pouvoir d'achat selon l'Insee -->
+{{< include ../working-papers/fr/Geerolf2025b.qmd >}}
+
+<!-- Pouvoir d'achat : l'addition que l'Insee ne fait pas -->
+{{< include ../working-papers/fr/Geerolf2025a.qmd >}}
+
+<!-- La charge de la dette, premier budget de l'État ? L'illusion nominale -->
+{{< include ../working-papers/fr/Geerolf2025c.qmd >}}
+
+## Anglais
+
+<!-- The Share of Inherited Wealth in France: Revisiting Flow-Based Estimates -->
+{{< include ../working-papers/en/Geerolf2026b.qmd >}}
+
+<!-- Inheritance Flows in France: Using Estate and Gift Tax Data to Measure Long-Term Trends -->
+{{< include ../working-papers/en/Geerolf2026a.qmd >}}
+
 # Articles
 
 ## Français
 
+<!-- L'harmonisation européenne de la mesure de l'inflation : un chantier inachevé -->
 {{< include ../publications/fr/Geerolf2026b.qmd >}}
 
+<!-- Marchés, experts et démocratie. La science économique et le risque d’un « despotisme doux » -->
 {{< include ../publications/fr/Geerolf2026a.qmd >}}
 
+<!-- Liberté des marchés et démocratie : pourquoi les peuples ne croient plus aux promesses libérales. Introduction -->
 {{< include ../publications/fr/Audard2026.qmd >}}
 
+<!-- L'Europe face au retour de l'énergie chère -->
 {{< include ../publications/fr/Geerolf2025a.qmd >}}
 
+<!-- L’orientation de la politique monétaire de la BCE à l’épreuve de l’incertitude économique -->
 {{< include ../publications/fr/Blot2025.qmd >}}
 
+<!-- Réindustrialisation : l’Union Européenne et les nations -->
 {{< include ../publications/fr/Geerolf2024d.qmd >}}
 
+<!-- Mesurer "le" pouvoir d'achat -->
 {{< include ../publications/fr/Geerolf2024c.qmd >}}
 
+<!-- La taxe inflationniste, le pouvoir d’achat, le taux d’épargne et le déficit public -->
 {{< include ../publications/fr/Geerolf2024b.qmd >}}
 
+<!-- Inflation en France : IPC ou IPCH ? -->
 {{< include ../publications/fr/Geerolf2024a.qmd >}}
 
+<!-- 25 ans d'union monétaire: la zone euro à travers les crises -->
 {{< include ../publications/fr/Aurissergues2024.qmd >}}
 
+<!-- L’analyse de l’inflation par catégorie de ménages : quelques problèmes méthodologiques -->
 {{< include ../publications/fr/Geerolf2023c.qmd >}}
 
+<!-- Les politiques économiques de lutte contre l’inflation en Europe -->
 {{< include ../publications/fr/Geerolf2023b.qmd >}}
 
+<!-- Les incidences économiques de l'action pour le climat. Rapport thématique: inflation -->
 {{< include ../publications/fr/Dees2023.qmd >}}
 
+<!-- Une analyse macroéconomique de l'inflation -->
 {{< include ../publications/fr/Antonin2023.qmd >}}
 
+<!-- La politique économique en Europe face à l’inflation -->
 {{< include ../publications/fr/Geerolf2023a.qmd >}}
 
+<!-- Inflation en Europe : les conséquences sociales de la guerre en Ukraine -->
 {{< include ../publications/fr/Allegre2022.qmd >}}
 
+<!-- Inflation et pouvoir d’achat : “it’s the politics, stupid !” -->
 {{< include ../publications/fr/Geerolf2022b.qmd >}}
 
+<!-- L'Europe, de réelles avancées mais des choix à assumer -->
 {{< include ../publications/fr/Creel2022.qmd >}}
 
+<!-- Au sujet du Blog de l'Insee: “Mais si, l'Insee prend bien en compte le logement dans l'inflation !” -->
 {{< include ../publications/fr/Geerolf2022.qmd >}}
 
 ## Anglais
 
+<!-- The ECB’s monetary stance: time to balance the risks -->
+{{< include ../publications/en/Blot2026b.qmd >}}
+
+<!-- Not All Energy Shocks Are Created Equal -->
+{{< include ../publications/en/Blot2026a.qmd >}}
+
+<!-- Paradigm shift after the inflation shock? -->
 {{< include ../publications/en/Creel2025.qmd >}}
 
+<!-- Dominance in Transition? The Future of the Dollar and the Euro -->
+{{< include ../publications/en/Blot2025b.qmd >}}
+
+<!-- The ECB’s monetary policy stance in an uncertain environment -->
 {{< include ../publications/en/Blot2025.qmd >}}
 
+<!-- Measuring “the” Purchasing Power -->
 {{< include ../publications/en/Geerolf2024c.qmd >}}
 
+<!-- The Inflation Tax, Purchasing Power, the Savings Rate, and the Public Deficit -->
 {{< include ../publications/en/Geerolf2024b.qmd >}}
 
+<!-- Inflation in France : CPI or HICP ? -->
 {{< include ../publications/en/Geerolf2024a.qmd >}}
 
+<!-- 25 years of monetary union: The eurozone through its crises -->
 {{< include ../publications/en/Aurissergues2024.qmd >}}
 
+<!-- Analyzing inflation by household categories: some methodological issues -->
 {{< include ../publications/en/Geerolf2023c.qmd >}}
 
+<!-- Are inflation dynamics different in the euro area and the United States? -->
 {{< include ../publications/en/Blot2023d.qmd >}}
 
+<!-- Excess liquidity in the euro area? Assessment and possible ways forward -->
 {{< include ../publications/en/Blot2023c.qmd >}}
 
+<!-- Is monetary tightening a threat to financial stability? -->
 {{< include ../publications/en/Blot2023b.qmd >}}
 
+<!-- The direct and indirect impacts of the war on inflation -->
 {{< include ../publications/en/Blot2023a.qmd >}}
 
+<!-- The “Baqaee-Farhi approach” and a russian gas embargo -->
 {{< include ../publications/en/Geerolf2022c.qmd >}}
 
+<!-- Heterogeneity of inflation in the euro area: more complicated than it seems -->
 {{< include ../publications/en/Blot2022.qmd >}}
 
+<!-- Social Impact of the War in Ukraine (SIWU) -->
 {{< include ../publications/en/Geerolf2022b.qmd >}}
 
+<!-- Inflation and purchasing power: “it’s the politics, stupid !” -->
 {{< include ../publications/en/Geerolf2022d.qmd >}}
 
+<!-- On Insee’s blog post ‘Yes, Insee does take housing into account in inflation!’ -->
 {{< include ../publications/en/Geerolf2022.qmd >}}
 
 # Débat public
 
 ## Tribunes
 
+<!-- Sur l’évolution du pouvoir d’achat, un diagnostic de plus en plus biaisé -->
 {{< include ../public-debate/fr/Concialdi2025.qmd >}}
 
+<!-- La charge d’intérêt sur la dette publique, ou le mythe du gouffre financier -->
 {{< include ../public-debate/fr/Geerolf2025.qmd >}}
 
 ## Interviews
 
+<!-- La France n’est pas un paradis fiscal mais un des pays les plus redistributifs au monde -->
 {{< include ../public-debate/fr/Geerolf2025b.qmd >}}
 
+<!-- La hausse du pouvoir d'achat est fortement surestimée ! -->
 {{< include ../public-debate/fr/Geerolf2024a.qmd >}}
 
+<!-- Il se passe dans la réalité l’inverse de ce que prévoient les modèles -->
 {{< include ../public-debate/fr/Geerolf2022b.qmd >}}
 
+<!-- Qui va payer cette facture énergétique ? -->
 {{< include ../public-debate/fr/Geerolf2022.qmd >}}
 
 ## Autres interventions (sélection)
 
+<!-- Le système fiscal français est-il redistributif ou “régressif” ? -->
 {{< include ../public-debate/fr/Geerolf2026.qmd >}}
 
+<!-- La dette publique est-elle vraiment alarmante ? L’avis contrasté de deux experts -->
 {{< include ../public-debate/fr/EcalleGeerolf2025.qmd >}}
 
+<!-- Le rapport Draghi, une avancée indéniable mais inaboutie dans la réflexion sur les défis structurels de l’Union européenne -->
 {{< include ../public-debate/fr/Geerolf2024b.qmd >}}
 
+<!-- Grosse manip : cette hausse des prix qu'on nous cache -->
 {{< include ../public-debate/fr/Geerolf2022a.qmd >}}
 
 # Enseignements
 
 ## Français
 
+<!-- Macroéconomie (ENPC, 2ème année) -->
 {{< include ../teaching/fr/Geerolf2025.qmd >}}
 
+<!-- Fondamentaux de l'économie pour l'ingénieur (ENPC, Tronc Commun 1ère année) -->
 {{< include ../teaching/fr/Geerolf2024.qmd >}}
 
 ## Anglais
 
+<!-- Macroeconomics: Evidence, Theory and Policy (Sciences Po, 2nd year Undergraduate) -->
 {{< include ../teaching/en/Geerolf2022.qmd >}}
 
+<!-- Intermediate Macroeconomics: Evidence, Theory and Policy (Sciences Po, Euro-American Programme, 2nd year Undergraduate) -->
 {{< include ../teaching/en/Geerolf2021.qmd >}}
 
 # Expertise
