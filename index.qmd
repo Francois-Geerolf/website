@@ -70,7 +70,7 @@ Macroeconomics, Finance, Inflation, Housing, Pareto
 <!-- Pouvoir d'achat : avant le vent, le thermomètre -->
 {{< include working-papers/fr/Geerolf2026d.qmd >}}
 
-<!-- France-Allemagne : ce que les prix mesurés doivent aux méthodes -->
+<!-- France-Allemagne : une croissance égale, des méthodes qui ne le sont pas -->
 <!-- {{< include working-papers/fr/Geerolf2026c.qmd >}} -->
 
 <!-- Pourquoi l'indice des loyers d'habitation (ILH) de l'Insee sous-estime la hausse des loyers -->
