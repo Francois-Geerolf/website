@@ -40,6 +40,9 @@ Macroeconomics, Finance, Inflation, Housing, Pareto
 
 ## Français
 
+<!-- L'indépendance de la statistique publique à l'épreuve du pouvoir d'achat -->
+{{< include working-papers/fr/Geerolf2026m.qmd >}}
+
 <!-- Un IPCH alternatif -->
 <!-- {{< include working-papers/fr/Geerolf2026i.qmd >}} -->
 
