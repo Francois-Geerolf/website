@@ -32,10 +32,6 @@ Economist, OFCE (Observatoire Français des Conjonctures Economiques)
 [![](files/cepii-logo.png){width=20%}](https://fgeerolf.com/cepii/)
 [![](files/ucla-logo.png){width=15%}](https://fgeerolf.com/ucla/)
 
-# Research Interests
-
-Macroeconomics, Finance, Inflation, Housing, Pareto
-
 # Documents de travail / Working Papers
 
 ## Français
@@ -342,17 +338,21 @@ Revision requested at American Economic Review
 <!-- Bubbles and Asset Supply -->
 {{< include publications/en/Geerolf2013.qmd >}}
 
-# Awards
+# Research Interests
 
-Top Finance Graduate Award 2014. [[<i class="fas fa-globe"></i> html](https://www.tilmeld.dk/financegradaward2021/previous-winners)]
-
-Prix L.E. Rivot, Académie des Sciences, 2008.
+Macroeconomics, Finance, Inflation, Housing, Pareto
 
 # Curriculum Vitae
 
 CV. [[<i class="fa-solid fa-user-tie"></i> en](https://fgeerolf.com/cv.pdf)] [[<i class="fa-solid fa-camera"></i> jpg](https://fgeerolf.com/files/fgeerolf-1.jpg)] [[<i class="fa-solid fa-camera"></i> png](https://fgeerolf.com/files/fgeerolf-1.png)]
 
 Bibliographie. [[<i class="fa-solid fa-book"></i> en](https://fgeerolf.com/bibliography.html)] [[<i class="fa-solid fa-book"></i> fr](https://fgeerolf.com/bibliographie.html)] [[<i class="fa-solid fa-book"></i> idref](https://www.idref.fr/158596331)]
+
+# Awards
+
+Top Finance Graduate Award 2014. [[<i class="fas fa-globe"></i> html](https://www.tilmeld.dk/financegradaward2021/previous-winners)]
+
+Prix L.E. Rivot, Académie des Sciences, 2008.
 
 # Contact
 
