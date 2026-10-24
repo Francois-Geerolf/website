@@ -34,22 +34,16 @@ editor: source
 ## Français
 
 <!-- L'indépendance de la statistique publique à l'épreuve du pouvoir d'achat -->
-{{< include ../working-papers/fr/Geerolf2026m.qmd >}}
+{{< include ../working-papers/fr/Geerolf2026l.qmd >}}
 
 <!-- Un IPCH alternatif -->
-<!-- {{< include ../working-papers/fr/Geerolf2026i.qmd >}} -->
+<!-- {{< include ../working-papers/fr/Geerolf2026j.qmd >}} -->
 
 <!-- Ce que vaut un euro chez le pharmacien -->
-{{< include ../working-papers/fr/Geerolf2026f.qmd >}}
-
-<!-- Des inégalités “historiquement élevées” ? -->
-<!-- {{< include ../working-papers/fr/Geerolf2026l.qmd >}} -->
-
-<!-- Les mensonges de la taxe Zucman -->
-<!-- {{< include ../working-papers/fr/Geerolf2026k.qmd >}} -->
+{{< include ../working-papers/fr/Geerolf2026i.qmd >}}
 
 <!-- CAS Pensions : l'Insee et la convention budgétaire -->
-<!-- {{< include ../working-papers/fr/Geerolf2026j.qmd >}} -->
+<!-- {{< include ../working-papers/fr/Geerolf2026k.qmd >}} -->
 
 <!-- Mesurer l'évolution des salaires -->
 {{< include ../working-papers/fr/Geerolf2026h.qmd >}}
@@ -58,28 +52,37 @@ editor: source
 {{< include ../working-papers/fr/Geerolf2026g.qmd >}}
 
 <!-- Mesurer l'évolution des salaires dans la fonction publique -->
-{{< include ../working-papers/fr/Geerolf2026e.qmd >}}
+{{< include ../working-papers/fr/Geerolf2026f.qmd >}}
 
 <!-- Pouvoir d'achat : avant le vent, le thermomètre -->
-{{< include ../working-papers/fr/Geerolf2026d.qmd >}}
+{{< include ../working-papers/fr/Geerolf2026e.qmd >}}
 
 <!-- France-Allemagne : une croissance égale, des méthodes qui ne le sont pas -->
-<!-- {{< include ../working-papers/fr/Geerolf2026c.qmd >}} -->
+<!-- {{< include ../working-papers/fr/Geerolf2026d.qmd >}} -->
 
 <!-- Pourquoi l'indice des loyers d'habitation (ILH) de l'Insee sous-estime la hausse des loyers -->
 {{< include ../working-papers/fr/Geerolf2026b.qmd >}}
 
+<!-- Effet qualité : la note promise -->
+{{< include ../working-papers/fr/Geerolf2026c.qmd >}}
+
 <!-- Effet qualité et mesure de l'inflation -->
 {{< include ../working-papers/fr/Geerolf2026a.qmd >}}
 
+<!-- Des inégalités “historiquement élevées” ? -->
+<!-- {{< include ../working-papers/fr/Geerolf2025e.qmd >}} -->
+
+<!-- Les mensonges de la taxe Zucman -->
+<!-- {{< include ../working-papers/fr/Geerolf2025d.qmd >}} -->
+
 <!-- Le pouvoir d'achat selon l'Insee -->
-{{< include ../working-papers/fr/Geerolf2025b.qmd >}}
+{{< include ../working-papers/fr/Geerolf2025c.qmd >}}
 
 <!-- Pouvoir d'achat : l'addition que l'Insee ne fait pas -->
-{{< include ../working-papers/fr/Geerolf2025a.qmd >}}
+{{< include ../working-papers/fr/Geerolf2025b.qmd >}}
 
 <!-- La charge de la dette, premier budget de l'État ? L'illusion nominale -->
-{{< include ../working-papers/fr/Geerolf2025c.qmd >}}
+{{< include ../working-papers/fr/Geerolf2025a.qmd >}}
 
 ## Anglais
 
