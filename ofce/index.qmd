@@ -63,7 +63,7 @@ editor: source
 <!-- Pourquoi l'indice des loyers d'habitation (ILH) de l'Insee sous-estime la hausse des loyers -->
 {{< include ../working-papers/fr/Geerolf2026b.qmd >}}
 
-<!-- Effet qualité : la note promise -->
+<!-- Effet qualité : la note promise ? -->
 {{< include ../working-papers/fr/Geerolf2026c.qmd >}}
 
 <!-- Effet qualité et mesure de l'inflation -->
