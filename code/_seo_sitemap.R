@@ -169,6 +169,34 @@ dead <- paste0(BASE, c(
 # --- de-dupe, write -----------------------------------------------------
 m <- do.call(rbind, urls)
 m <- m[!m[, 1] %in% dead, , drop = FALSE]
+
+# --- pages en ligne mais non indexées ----------------------------------
+# Liste tenue par code/indexation.sh (appelé par le .sh de chaque article avec
+# INDEXER=oui|non) dans noindex.txt, à la racine du site rendu. Les mêmes noms
+# reçoivent l'en-tête X-Robots-Tag "noindex" dans le .htaccess.
+local({
+  f <- file.path(path.expand("~/iCloud/website"), "noindex.txt")
+  if (!file.exists(f)) f <- path.expand("~/Dropbox/website/noindex.txt")
+  noms <- if (file.exists(f)) trimws(readLines(f, warn = FALSE)) else character()
+  noms <- noms[nzchar(noms)]
+  if (length(noms)) {
+    motif <- paste0("^(", paste(noms, collapse = "|"), ")(-slides|-handouts)?\\.(html|pdf)$")
+    nx <- grepl(motif, basename(m[, 1]))
+    m <<- m[!nx, , drop = FALSE]
+    message(sprintf("[_seo_sitemap] %d URL(s) noindex exclue(s) : %s", sum(nx), paste(noms, collapse = ", ")))
+  }
+})
+
+# --- fichiers à la racine du site --------------------------------------
+# Mettre SITEMAP_RACINE <- FALSE pour retirer du sitemap tous les fichiers
+# déposés à la racine (articles, slides, handouts, PDF). La page d'accueil (/)
+# et les sous-dossiers (/data/, /econ102/, ...) restent dans tous les cas.
+SITEMAP_RACINE <- TRUE
+if (!SITEMAP_RACINE) {
+  chemin <- sub(paste0("^", BASE, "/?"), "", m[, 1])
+  racine <- nzchar(chemin) & !grepl("/", chemin, fixed = TRUE)
+  m <- m[!racine, , drop = FALSE]
+}
 m <- m[!duplicated(m[, 1]), , drop = FALSE]
 m <- m[order(m[, 1]), , drop = FALSE]
 
