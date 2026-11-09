@@ -36,6 +36,9 @@ Economist, OFCE (Observatoire Français des Conjonctures Economiques)
 
 ## Français
 
+<!-- Échelle linéaire ou échelle logarithmique ? -->
+{{< include working-papers/fr/Geerolf2021.qmd >}}
+
 <!-- L'indépendance de la statistique publique à l'épreuve du pouvoir d'achat -->
 {{< include working-papers/fr/Geerolf2026n.qmd >}}
 
