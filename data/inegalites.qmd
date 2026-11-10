@@ -55,6 +55,14 @@ tribble(~ theme,
   theme_file_updates()
 ```
 
+# Salaires
+
+## Par centiles
+
+```{r}
+ig_d("insee", "IP2132", "centiles-2017-2025")
+```
+
 
 # Bibliographie en lien
 
