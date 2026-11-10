@@ -1,0 +1,79 @@
+---
+title: IFE - Institut français d'économie
+lang: fr
+filters:
+  - ../code/genderize-fr.lua
+author:
+  - name: François Geerolf
+    url: https://fgeerolf.com
+format:
+  html:
+    code-fold: false
+    toc: true
+    theme: [flatly, ../data/_fgeerolf.scss]
+    embed-resources: false
+    other-links:
+      - href: "https://fgeerolf.com/"
+        text: "Accueil"
+        icon: house
+      - text: "UCLA"
+        href: "https://fgeerolf.com/ucla/"
+      - text: "CEPII"
+        href: "https://fgeerolf.com/cepii/"
+      - text: "OFCE"
+        href: "https://fgeerolf.com/ofce/"
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    include-after-body: ../statcounter.html
+editor: source
+---
+
+[![](../files/ife-logo.png){width=25%}](https://fgeerolf.com/ife/)
+
+Travaux réalisés depuis le 1er juillet 2026 à l'[IFE](https://ife.eco) (Institut français d'économie), né de la fusion du [CEPII](https://fgeerolf.com/cepii/) et de l'[OFCE](https://fgeerolf.com/ofce/).
+
+# Documents de travail
+
+## Français
+
+<!-- L'indépendance de la statistique publique à l'épreuve du pouvoir d'achat -->
+{{< include ../working-papers/fr/Geerolf2026n.qmd >}}
+
+<!-- Un IPCH alternatif -->
+<!-- {{< include ../working-papers/fr/Geerolf2026l.qmd >}} -->
+
+<!-- Ce que vaut un euro chez le pharmacien -->
+{{< include ../working-papers/fr/Geerolf2026k.qmd >}}
+
+<!-- CAS Pensions : l'Insee et la convention budgétaire -->
+<!-- {{< include ../working-papers/fr/Geerolf2026m.qmd >}} -->
+
+<!-- Mesurer l'évolution des salaires -->
+{{< include ../working-papers/fr/Geerolf2026j.qmd >}}
+
+<!-- Mesurer l'évolution des salaires dans le secteur privé -->
+{{< include ../working-papers/fr/Geerolf2026i.qmd >}}
+
+<!-- Mesurer l'évolution des salaires dans la fonction publique -->
+{{< include ../working-papers/fr/Geerolf2026h.qmd >}}
+
+<!-- Pouvoir d'achat : avant le vent, le thermomètre -->
+{{< include ../working-papers/fr/Geerolf2026g.qmd >}}
+
+## Anglais
+
+<!-- The Share of Inherited Wealth in France: Revisiting Flow-Based Estimates -->
+{{< include ../working-papers/en/Geerolf2026b.qmd >}}
+
+# Articles
+
+## Français
+
+<!-- L'harmonisation européenne de la mesure de l'inflation : un chantier inachevé -->
+{{< include ../publications/fr/Geerolf2026b.qmd >}}
+
+## Anglais
+
+<!-- The ECB’s monetary stance: time to balance the risks -->
+{{< include ../publications/en/Blot2026b.qmd >}}
