@@ -57,7 +57,13 @@ tribble(~ theme,
 
 # Salaires
 
-## Par centiles
+## Distribution 2025
+
+```{r}
+ig_d("insee", "IP2132", "figure3")
+```
+
+## Evolution 2017-2025, Par centile
 
 ```{r}
 ig_d("insee", "IP2132", "centiles-2017-2025")
