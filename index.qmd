@@ -30,7 +30,7 @@ editor: source
 
 Économiste, IFE (Institut Français d’Économie)
 
-Anciennement économiste à l'[OFCE](https://www.ofce.fr/), conseiller scientifique au [CEPII](https://www.cepii.fr/) et professeur assistant à [UCLA](https://economics.ucla.edu/).
+Anciennement économiste à l'[OFCE](https://fgeerolf.com/ofce/), conseiller scientifique au [CEPII](https://fgeerolf.com/cepii/) et professeur assistant à [UCLA](https://fgeerolf.com/ucla/).
 
 [![](files/ife-logo.png){width=25%}](https://fgeerolf.com/ife/)
 [![](files/OFCE_(logo).png){width=20%}](https://fgeerolf.com/ofce/)
