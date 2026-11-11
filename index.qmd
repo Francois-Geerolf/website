@@ -28,7 +28,7 @@ format:
 editor: source
 ---
 
-Économiste, IFE (Institut Français d’Économie)
+Économiste, [IFE](https://fgeerolf.com/ife/) (Institut Français d’Économie)
 
 Anciennement économiste à l'[OFCE](https://fgeerolf.com/ofce/), conseiller scientifique au [CEPII](https://fgeerolf.com/cepii/) et professeur assistant à [UCLA](https://fgeerolf.com/ucla/).
 
