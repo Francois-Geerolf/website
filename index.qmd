@@ -65,6 +65,9 @@ Anciennement économiste à l'[OFCE](https://fgeerolf.com/ofce/), conseiller sci
 <!-- Pouvoir d'achat : avant le vent, le thermomètre -->
 {{< include working-papers/fr/Geerolf2026g.qmd >}}
 
+<!-- La proie et l'ombre (réponse à Philippe Herlin) -->
+{{< include working-papers/fr/Geerolf2026o.qmd >}}
+
 <!-- France-Allemagne : une croissance égale, des méthodes qui ne le sont pas -->
 <!-- {{< include working-papers/fr/Geerolf2026f.qmd >}} -->
 

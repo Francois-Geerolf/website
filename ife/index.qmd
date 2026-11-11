@@ -61,6 +61,9 @@ Travaux réalisés depuis le 1er juillet 2026 à l'[IFE](https://ife.eco) (Insti
 <!-- Pouvoir d'achat : avant le vent, le thermomètre -->
 {{< include ../working-papers/fr/Geerolf2026g.qmd >}}
 
+<!-- La proie et l'ombre (réponse à Philippe Herlin) -->
+{{< include ../working-papers/fr/Geerolf2026o.qmd >}}
+
 ## Anglais
 
 <!-- The Share of Inherited Wealth in France: Revisiting Flow-Based Estimates -->
