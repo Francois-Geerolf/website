@@ -141,6 +141,9 @@ Revision requested at American Economic Review
 
 ## Français
 
+<!-- Pouvoir d'achat : ce que masquent les revenus du patrimoine -->
+{{< include publications/fr/Geerolf2026c.qmd >}}
+
 <!-- L'harmonisation européenne de la mesure de l'inflation : un chantier inachevé -->
 {{< include publications/fr/Geerolf2026b.qmd >}}
 

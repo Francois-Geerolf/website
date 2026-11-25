@@ -2,6 +2,8 @@
 
 ## Français
 
+{{< include ../publications/fr/Geerolf2026c.qmd >}}
+
 {{< include ../publications/fr/Geerolf2024c.qmd >}}
 
 {{< include ../publications/fr/Geerolf2024b.qmd >}}
